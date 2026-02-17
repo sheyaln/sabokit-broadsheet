@@ -349,8 +349,13 @@ func (ws *WorkspaceSettings) Validate(passphrase string) error {
 		return fmt.Errorf("invalid timezone: %s", ws.Timezone)
 	}
 
-	if ws.WebsiteURL != "" && !govalidator.IsURL(ws.WebsiteURL) {
-		return fmt.Errorf("invalid website URL: %s", ws.WebsiteURL)
+	if ws.WebsiteURL != "" {
+		if !govalidator.IsURL(ws.WebsiteURL) {
+			return fmt.Errorf("invalid website URL: %s", ws.WebsiteURL)
+		}
+		if !strings.HasPrefix(ws.WebsiteURL, "http://") && !strings.HasPrefix(ws.WebsiteURL, "https://") {
+			return fmt.Errorf("website URL must include protocol (http:// or https://): %s", ws.WebsiteURL)
+		}
 	}
 
 	if ws.LogoURL != "" && !govalidator.IsURL(ws.LogoURL) {

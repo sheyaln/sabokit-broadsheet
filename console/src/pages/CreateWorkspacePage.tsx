@@ -155,8 +155,18 @@ export function CreateWorkspacePage() {
             name="website_url"
             rules={[
               {
-                pattern: /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/,
-                message: t`Please enter a valid URL`,
+                validator: (_: unknown, value: string) => {
+                  if (!value || value === '') return Promise.resolve()
+                  if (!/^https?:\/\//i.test(value)) {
+                    return Promise.reject(t`URL must start with http:// or https://`)
+                  }
+                  try {
+                    new URL(value)
+                    return Promise.resolve()
+                  } catch {
+                    return Promise.reject(t`Please enter a valid URL`)
+                  }
+                },
                 validateTrigger: 'onBlur'
               }
             ]}

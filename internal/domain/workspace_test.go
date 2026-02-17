@@ -149,6 +149,24 @@ func TestWorkspace_Validate(t *testing.T) {
 			expectErr: true,
 		},
 		{
+			name: "website URL without protocol",
+			workspace: Workspace{
+				ID:   "test123",
+				Name: "Test Workspace",
+				Settings: WorkspaceSettings{
+					WebsiteURL: "example.com",
+					LogoURL:    "https://example.com/logo.png",
+					Timezone:   "UTC",
+					FileManager: FileManagerSettings{
+						Endpoint:  "https://s3.amazonaws.com",
+						Bucket:    "my-bucket",
+						AccessKey: "AKIAIOSFODNN7EXAMPLE",
+					},
+				},
+			},
+			expectErr: true,
+		},
+		{
 			name: "invalid logo URL",
 			workspace: Workspace{
 				ID:   "test123",
@@ -536,6 +554,24 @@ func TestCreateWorkspaceRequest_Validate(t *testing.T) {
 			wantErr: true,
 		},
 		{
+			name: "website URL without protocol",
+			request: CreateWorkspaceRequest{
+				ID:   "test123",
+				Name: "Test Workspace",
+				Settings: WorkspaceSettings{
+					WebsiteURL: "example.com",
+					LogoURL:    "https://example.com/logo.png",
+					Timezone:   "UTC",
+					FileManager: FileManagerSettings{
+						Endpoint:  "https://s3.amazonaws.com",
+						Bucket:    "my-bucket",
+						AccessKey: "AKIAIOSFODNN7EXAMPLE",
+					},
+				},
+			},
+			wantErr: true,
+		},
+		{
 			name: "invalid logo URL",
 			request: CreateWorkspaceRequest{
 				ID:   "test123",
@@ -691,6 +727,24 @@ func TestUpdateWorkspaceRequest_Validate(t *testing.T) {
 					WebsiteURL: "https://example.com",
 					LogoURL:    "https://example.com/logo.png",
 					Timezone:   "InvalidTimezone",
+					FileManager: FileManagerSettings{
+						Endpoint:  "https://s3.amazonaws.com",
+						Bucket:    "my-bucket",
+						AccessKey: "AKIAIOSFODNN7EXAMPLE",
+					},
+				},
+			},
+			wantErr: true,
+		},
+		{
+			name: "website URL without protocol",
+			request: UpdateWorkspaceRequest{
+				ID:   "test123",
+				Name: "Test Workspace",
+				Settings: WorkspaceSettings{
+					WebsiteURL: "example.com",
+					LogoURL:    "https://example.com/logo.png",
+					Timezone:   "UTC",
 					FileManager: FileManagerSettings{
 						Endpoint:  "https://s3.amazonaws.com",
 						Bucket:    "my-bucket",

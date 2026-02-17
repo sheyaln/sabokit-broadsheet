@@ -170,7 +170,22 @@ export function GeneralSettings({ workspace, onWorkspaceUpdate, isOwner }: Gener
         <Form.Item
           name="website_url"
           label={t`Website URL`}
-          rules={[{ type: 'url' as const, message: t`Please enter a valid URL` }]}
+          rules={[
+            {
+              validator: (_: unknown, value: string) => {
+                if (!value || value === '') return Promise.resolve()
+                if (!/^https?:\/\//i.test(value)) {
+                  return Promise.reject(t`URL must start with http:// or https://`)
+                }
+                try {
+                  new URL(value)
+                  return Promise.resolve()
+                } catch {
+                  return Promise.reject(t`Please enter a valid URL`)
+                }
+              }
+            }
+          ]}
         >
           <Input placeholder="https://example.com" />
         </Form.Item>
