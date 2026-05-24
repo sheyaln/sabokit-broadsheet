@@ -29,6 +29,13 @@ type SystemConfig struct {
 	SMTPBridgePort          int
 	SMTPBridgeTLSCertBase64 string
 	SMTPBridgeTLSKeyBase64  string
+	OIDCEnabled             bool
+	OIDCIssuerURL           string
+	OIDCClientID            string
+	OIDCClientSecret        string
+	OIDCAutoProvision       bool
+	OIDCAllowMagicCode      bool
+	OIDCGroupsClaim         string
 }
 
 // SettingService provides methods for managing system settings
@@ -164,6 +171,45 @@ func (s *SettingService) GetSystemConfig(ctx context.Context, secretKey string) 
 			return nil, fmt.Errorf("failed to decrypt SMTP bridge TLS key: %w", err)
 		}
 		config.SMTPBridgeTLSKeyBase64 = decrypted
+	}
+
+	// Load OIDC settings
+	if setting, err := s.repo.Get(ctx, "oidc_enabled"); err == nil {
+		config.OIDCEnabled = setting.Value == "true"
+	}
+
+	if setting, err := s.repo.Get(ctx, "oidc_issuer_url"); err == nil {
+		config.OIDCIssuerURL = setting.Value
+	}
+
+	if setting, err := s.repo.Get(ctx, "oidc_client_id"); err == nil {
+		config.OIDCClientID = setting.Value
+	}
+
+	if setting, err := s.repo.Get(ctx, "encrypted_oidc_client_secret"); err == nil && setting.Value != "" {
+		decrypted, err := crypto.DecryptFromHexString(setting.Value, secretKey)
+		if err != nil {
+			return nil, fmt.Errorf("failed to decrypt OIDC client secret: %w", err)
+		}
+		config.OIDCClientSecret = decrypted
+	}
+
+	if setting, err := s.repo.Get(ctx, "oidc_auto_provision"); err == nil {
+		config.OIDCAutoProvision = setting.Value != "false"
+	} else {
+		config.OIDCAutoProvision = true
+	}
+
+	if setting, err := s.repo.Get(ctx, "oidc_allow_magic_code"); err == nil {
+		config.OIDCAllowMagicCode = setting.Value != "false"
+	} else {
+		config.OIDCAllowMagicCode = true
+	}
+
+	if setting, err := s.repo.Get(ctx, "oidc_groups_claim"); err == nil && setting.Value != "" {
+		config.OIDCGroupsClaim = setting.Value
+	} else {
+		config.OIDCGroupsClaim = "groups"
 	}
 
 	return config, nil

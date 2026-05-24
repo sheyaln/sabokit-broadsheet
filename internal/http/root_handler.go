@@ -29,6 +29,8 @@ type RootHandler struct {
 	smtpBridgeDomain      string
 	smtpBridgePort        int
 	smtpBridgeTLSMode     string // "off", "starttls", or "implicit"
+	oidcEnabled           bool
+	oidcAllowMagicCode    bool
 	workspaceRepo         domain.WorkspaceRepository
 	blogService           domain.BlogService
 	cache                 cache.Cache
@@ -47,6 +49,8 @@ func NewRootHandler(
 	smtpBridgeDomain string,
 	smtpBridgePort int,
 	smtpBridgeTLSMode string,
+	oidcEnabled bool,
+	oidcAllowMagicCode bool,
 	workspaceRepo domain.WorkspaceRepository,
 	blogService domain.BlogService,
 	cache cache.Cache,
@@ -63,6 +67,8 @@ func NewRootHandler(
 		smtpBridgeDomain:      smtpBridgeDomain,
 		smtpBridgePort:        smtpBridgePort,
 		smtpBridgeTLSMode:     smtpBridgeTLSMode,
+		oidcEnabled:           oidcEnabled,
+		oidcAllowMagicCode:    oidcAllowMagicCode,
 		workspaceRepo:         workspaceRepo,
 		blogService:           blogService,
 		cache:                 cache,
@@ -145,8 +151,18 @@ func (h *RootHandler) serveConfigJS(w http.ResponseWriter, r *http.Request) {
 		smtpBridgeEnabledStr = "true"
 	}
 
+	oidcEnabledStr := "false"
+	if h.oidcEnabled {
+		oidcEnabledStr = "true"
+	}
+
+	oidcAllowMagicCodeStr := "true"
+	if !h.oidcAllowMagicCode {
+		oidcAllowMagicCodeStr = "false"
+	}
+
 	configJS := fmt.Sprintf(
-		"window.API_ENDPOINT = %q;\nwindow.VERSION = %q;\nwindow.ROOT_EMAIL = %q;\nwindow.IS_INSTALLED = %s;\nwindow.TIMEZONES = %s;\nwindow.SMTP_BRIDGE_ENABLED = %s;\nwindow.SMTP_BRIDGE_DOMAIN = %q;\nwindow.SMTP_BRIDGE_PORT = %d;\nwindow.SMTP_BRIDGE_TLS_MODE = %q;",
+		"window.API_ENDPOINT = %q;\nwindow.VERSION = %q;\nwindow.ROOT_EMAIL = %q;\nwindow.IS_INSTALLED = %s;\nwindow.TIMEZONES = %s;\nwindow.SMTP_BRIDGE_ENABLED = %s;\nwindow.SMTP_BRIDGE_DOMAIN = %q;\nwindow.SMTP_BRIDGE_PORT = %d;\nwindow.SMTP_BRIDGE_TLS_MODE = %q;\nwindow.OIDC_ENABLED = %s;\nwindow.OIDC_ALLOW_MAGIC_CODE = %s;",
 		h.apiEndpoint,
 		h.version,
 		h.rootEmail,
@@ -156,6 +172,8 @@ func (h *RootHandler) serveConfigJS(w http.ResponseWriter, r *http.Request) {
 		h.smtpBridgeDomain,
 		h.smtpBridgePort,
 		h.smtpBridgeTLSMode,
+		oidcEnabledStr,
+		oidcAllowMagicCodeStr,
 	)
 	_, _ = w.Write([]byte(configJS))
 }

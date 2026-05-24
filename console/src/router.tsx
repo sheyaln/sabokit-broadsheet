@@ -4,6 +4,7 @@ import { RootLayout } from './layouts/RootLayout'
 import { WorkspaceLayout } from './layouts/WorkspaceLayout'
 import { SignInPage } from './pages/SignInPage'
 import { LogoutPage } from './pages/LogoutPage'
+import { OIDCCallbackPage } from './pages/OIDCCallbackPage'
 import { AcceptInvitationPage } from './pages/AcceptInvitationPage'
 import { CreateWorkspacePage } from './pages/CreateWorkspacePage'
 import { DashboardPage } from './pages/DashboardPage'
@@ -39,6 +40,8 @@ export interface ContactsSearch {
 
 export interface SignInSearch {
   email?: string
+  error?: string
+  message?: string
 }
 
 export interface AcceptInvitationSearch {
@@ -72,7 +75,20 @@ const signinRoute = createRoute({
   path: '/console/signin',
   component: SignInPage,
   validateSearch: (search: Record<string, unknown>): SignInSearch => ({
-    email: search.email as string | undefined
+    email: search.email as string | undefined,
+    error: search.error as string | undefined,
+    message: search.message as string | undefined
+  })
+})
+
+// Create the OIDC callback route
+const oidcCallbackRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/console/auth/oidc/callback',
+  component: OIDCCallbackPage,
+  validateSearch: (search: Record<string, unknown>) => ({
+    token: search.token as string | undefined,
+    expires_at: search.expires_at as string | undefined
   })
 })
 
@@ -245,6 +261,7 @@ const workspaceBlogRoute = createRoute({
 const routeTree = rootRoute.addChildren([
   indexRoute,
   signinRoute,
+  oidcCallbackRoute,
   logoutRoute,
   setupRoute,
   acceptInvitationRoute,

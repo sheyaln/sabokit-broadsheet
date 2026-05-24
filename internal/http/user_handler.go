@@ -36,6 +36,7 @@ type UserHandler struct {
 	getJWTSecret     func() ([]byte, error)
 	logger           logger.Logger
 	tracer           tracing.Tracer
+	magicCodeGuard   *OIDCMagicCodeGuard
 }
 
 // extractEmailDomain extracts domain part from an email address
@@ -56,6 +57,7 @@ func NewUserHandler(userService UserServiceInterface, workspaceService domain.Wo
 		getJWTSecret:     getJWTSecret,
 		logger:           logger,
 		tracer:           tracing.GetTracer(),
+		magicCodeGuard:   NewOIDCMagicCodeGuard(cfg.OIDC.Enabled, cfg.OIDC.AllowMagicCode),
 	}
 }
 
@@ -374,8 +376,8 @@ func (h *UserHandler) UpdateLanguage(w http.ResponseWriter, r *http.Request) {
 
 func (h *UserHandler) RegisterRoutes(mux *http.ServeMux) {
 	// Public routes (no auth required)
-	mux.HandleFunc("/api/user.signin", h.SignIn)
-	mux.HandleFunc("/api/user.verify", h.VerifyCode)
+	mux.HandleFunc("/api/user.signin", h.magicCodeGuard.Guard(h.SignIn))
+	mux.HandleFunc("/api/user.verify", h.magicCodeGuard.Guard(h.VerifyCode))
 	mux.HandleFunc("/api/user.rootSignin", h.RootSignIn)
 
 	// Create auth middleware

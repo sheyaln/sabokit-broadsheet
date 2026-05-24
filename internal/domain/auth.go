@@ -31,3 +31,17 @@ type AuthService interface {
 	ValidateInvitationToken(token string) (invitationID, workspaceID, email string, err error)
 	InvalidateSecretCache()
 }
+
+// OIDCGroupMapping maps an IdP group to Notifuse role and permissions (settings key: "oidc_group_mappings").
+type OIDCGroupMapping struct {
+	OIDCGroup     string          `json:"oidc_group"`
+	Role          string          `json:"role"` // "owner" or "member"
+	AllWorkspaces bool            `json:"all_workspaces"`
+	Permissions   UserPermissions `json:"permissions"`
+}
+
+type OIDCState struct {
+	State     string    `json:"state"`
+	Nonce     string    `json:"nonce"`
+	CreatedAt time.Time `json:"created_at"`
+}

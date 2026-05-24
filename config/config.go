@@ -24,6 +24,7 @@ type Config struct {
 	Tracing             TracingConfig
 	SMTP                SMTPConfig
 	SMTPBridge          SMTPBridgeConfig
+	OIDC                OIDCConfig
 	Demo                DemoConfig
 	Broadcast           BroadcastConfig
 	TaskScheduler       TaskSchedulerConfig
@@ -62,6 +63,13 @@ type EnvValues struct {
 	SMTPBridgeTLSCertBase64 string
 	SMTPBridgeTLSKeyBase64  string
 	SMTPBridgeTLSMode       string // "off", "starttls", "implicit", or "" (empty = auto-resolve)
+	OIDCEnabled             string // "true", "false", or "" (empty = not set)
+	OIDCIssuerURL           string
+	OIDCClientID            string
+	OIDCClientSecret        string
+	OIDCAutoProvision       string // "true", "false", or "" (empty = not set, defaults to true)
+	OIDCAllowMagicCode      string // "true", "false", or "" (empty = not set, defaults to true)
+	OIDCGroupsClaim         string
 }
 
 type DemoConfig struct {
@@ -161,6 +169,16 @@ type SMTPBridgeConfig struct {
 	TLSMode       string // "off", "starttls", or "implicit" — resolved at Load time
 }
 
+type OIDCConfig struct {
+	Enabled        bool   // Enable OIDC SSO
+	IssuerURL      string // OIDC provider issuer URL (for discovery)
+	ClientID       string // OAuth2 client ID
+	ClientSecret   string // OAuth2 client secret
+	AutoProvision  bool   // Auto-create users on first SSO login
+	AllowMagicCode bool   // Allow magic code login alongside SSO
+	GroupsClaim    string // Name of the claim containing user groups (default: "groups")
+}
+
 type BroadcastConfig struct {
 	DefaultRateLimit int // Default rate limit per minute for broadcasts (0 means use service default)
 }
@@ -203,6 +221,13 @@ type SystemSettings struct {
 	SMTPBridgeTLSCertBase64 string
 	SMTPBridgeTLSKeyBase64  string
 	SMTPBridgeTLSMode       string
+	OIDCEnabled             bool
+	OIDCIssuerURL           string
+	OIDCClientID            string
+	OIDCClientSecret        string
+	OIDCAutoProvision       bool
+	OIDCAllowMagicCode      bool
+	OIDCGroupsClaim         string
 }
 
 // getSystemDSN constructs the database connection string for the system database
@@ -344,6 +369,37 @@ func loadSystemSettings(db *sql.DB, secretKey string) (*SystemSettings, error) {
 		}
 
 		settings.SMTPBridgeTLSMode = settingsMap["smtp_bridge_tls_mode"]
+
+		// Load OIDC settings
+		if val, ok := settingsMap["oidc_enabled"]; ok {
+			settings.OIDCEnabled = val == "true"
+		}
+		settings.OIDCIssuerURL = settingsMap["oidc_issuer_url"]
+		settings.OIDCClientID = settingsMap["oidc_client_id"]
+
+		if encryptedSecret, ok := settingsMap["encrypted_oidc_client_secret"]; ok && encryptedSecret != "" {
+			if decrypted, err := crypto.DecryptFromHexString(encryptedSecret, secretKey); err == nil {
+				settings.OIDCClientSecret = decrypted
+			}
+		}
+
+		if val, ok := settingsMap["oidc_auto_provision"]; ok {
+			settings.OIDCAutoProvision = val != "false"
+		} else {
+			settings.OIDCAutoProvision = true
+		}
+
+		if val, ok := settingsMap["oidc_allow_magic_code"]; ok {
+			settings.OIDCAllowMagicCode = val != "false"
+		} else {
+			settings.OIDCAllowMagicCode = true
+		}
+
+		if val, ok := settingsMap["oidc_groups_claim"]; ok && val != "" {
+			settings.OIDCGroupsClaim = val
+		} else {
+			settings.OIDCGroupsClaim = "groups"
+		}
 	}
 
 	return settings, nil
@@ -548,6 +604,31 @@ func LoadWithOptions(opts LoadOptions) (*Config, error) {
 		smtpBridgeTLSMode = v.GetString("SMTP_RELAY_TLS") // backward compat
 	}
 
+	oidcEnabledStr := ""
+	if v.IsSet("OIDC_ENABLED") {
+		if v.GetBool("OIDC_ENABLED") {
+			oidcEnabledStr = "true"
+		} else {
+			oidcEnabledStr = "false"
+		}
+	}
+	oidcAutoProvisionStr := ""
+	if v.IsSet("OIDC_AUTO_PROVISION") {
+		if v.GetBool("OIDC_AUTO_PROVISION") {
+			oidcAutoProvisionStr = "true"
+		} else {
+			oidcAutoProvisionStr = "false"
+		}
+	}
+	oidcAllowMagicCodeStr := ""
+	if v.IsSet("OIDC_ALLOW_MAGIC_CODE") {
+		if v.GetBool("OIDC_ALLOW_MAGIC_CODE") {
+			oidcAllowMagicCodeStr = "true"
+		} else {
+			oidcAllowMagicCodeStr = "false"
+		}
+	}
+
 	envVals := EnvValues{
 		RootEmail:               v.GetString("ROOT_EMAIL"),
 		APIEndpoint:             v.GetString("API_ENDPOINT"),
@@ -565,6 +646,13 @@ func LoadWithOptions(opts LoadOptions) (*Config, error) {
 		SMTPBridgeTLSCertBase64: smtpBridgeTLSCertBase64,
 		SMTPBridgeTLSKeyBase64:  smtpBridgeTLSKeyBase64,
 		SMTPBridgeTLSMode:       smtpBridgeTLSMode,
+		OIDCEnabled:             oidcEnabledStr,
+		OIDCIssuerURL:           v.GetString("OIDC_ISSUER_URL"),
+		OIDCClientID:            v.GetString("OIDC_CLIENT_ID"),
+		OIDCClientSecret:        v.GetString("OIDC_CLIENT_SECRET"),
+		OIDCAutoProvision:       oidcAutoProvisionStr,
+		OIDCAllowMagicCode:      oidcAllowMagicCodeStr,
+		OIDCGroupsClaim:         v.GetString("OIDC_GROUPS_CLAIM"),
 	}
 
 	// Derive JWT secret from SECRET_KEY
@@ -754,6 +842,54 @@ func LoadWithOptions(opts LoadOptions) (*Config, error) {
 		checkForUpdates = v.GetBool("CHECK_FOR_UPDATES")
 	}
 
+	// OIDC settings - env var overrides database
+	var oidcConfig OIDCConfig
+	if isInstalled && systemSettings != nil {
+		oidcConfig = OIDCConfig{
+			Enabled:        envVals.OIDCEnabled == "true",
+			IssuerURL:      envVals.OIDCIssuerURL,
+			ClientID:       envVals.OIDCClientID,
+			ClientSecret:   envVals.OIDCClientSecret,
+			AutoProvision:  envVals.OIDCAutoProvision != "false",
+			AllowMagicCode: envVals.OIDCAllowMagicCode != "false",
+			GroupsClaim:    envVals.OIDCGroupsClaim,
+		}
+		if envVals.OIDCEnabled == "" {
+			oidcConfig.Enabled = systemSettings.OIDCEnabled
+		}
+		if oidcConfig.IssuerURL == "" {
+			oidcConfig.IssuerURL = systemSettings.OIDCIssuerURL
+		}
+		if oidcConfig.ClientID == "" {
+			oidcConfig.ClientID = systemSettings.OIDCClientID
+		}
+		if oidcConfig.ClientSecret == "" {
+			oidcConfig.ClientSecret = systemSettings.OIDCClientSecret
+		}
+		if envVals.OIDCAutoProvision == "" {
+			oidcConfig.AutoProvision = systemSettings.OIDCAutoProvision
+		}
+		if envVals.OIDCAllowMagicCode == "" {
+			oidcConfig.AllowMagicCode = systemSettings.OIDCAllowMagicCode
+		}
+		if oidcConfig.GroupsClaim == "" {
+			oidcConfig.GroupsClaim = systemSettings.OIDCGroupsClaim
+		}
+	} else {
+		oidcConfig = OIDCConfig{
+			Enabled:        envVals.OIDCEnabled == "true",
+			IssuerURL:      envVals.OIDCIssuerURL,
+			ClientID:       envVals.OIDCClientID,
+			ClientSecret:   envVals.OIDCClientSecret,
+			AutoProvision:  envVals.OIDCAutoProvision != "false",
+			AllowMagicCode: envVals.OIDCAllowMagicCode != "false",
+			GroupsClaim:    envVals.OIDCGroupsClaim,
+		}
+	}
+	if oidcConfig.GroupsClaim == "" {
+		oidcConfig.GroupsClaim = "groups"
+	}
+
 	// Sanitize API endpoint - strip trailing slashes to prevent double-slash URL issues
 	apiEndpoint = strings.TrimRight(apiEndpoint, "/")
 
@@ -769,6 +905,7 @@ func LoadWithOptions(opts LoadOptions) (*Config, error) {
 		},
 		Database:   dbConfig,
 		SMTP:       smtpConfig,
+		OIDC:       oidcConfig,
 		SMTPBridge: smtpBridgeConfig,
 		Security: SecurityConfig{
 			JWTSecret: jwtSecret,

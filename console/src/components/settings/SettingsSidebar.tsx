@@ -4,7 +4,8 @@ import {
   TagsOutlined,
   SettingOutlined,
   ExclamationCircleOutlined,
-  MailOutlined
+  MailOutlined,
+  SafetyCertificateOutlined
 } from '@ant-design/icons'
 import { useLingui } from '@lingui/react/macro'
 
@@ -14,6 +15,7 @@ export type SettingsSection =
   | 'webhooks'
   | 'custom-fields'
   | 'smtp-bridge'
+  | 'sso'
   | 'general'
   | 'blog'
   | 'danger-zone'
@@ -106,6 +108,11 @@ export function SettingsSidebar({ activeSection, onSectionChange, isOwner }: Set
       key: 'smtp-bridge',
       icon: <MailOutlined />,
       label: t`SMTP Bridge`
+    },
+    {
+      key: 'sso',
+      icon: <SafetyCertificateOutlined />,
+      label: t`SSO (OIDC)`
     },
     {
       key: 'general',

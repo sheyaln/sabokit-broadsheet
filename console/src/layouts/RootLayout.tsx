@@ -17,11 +17,17 @@ export function RootLayout() {
   const isLogoutRoute = useMatch({ from: '/console/logout', shouldThrow: false })
   const isWorkspaceCreateRoute = useMatch({ from: '/console/workspace/create', shouldThrow: false })
   const isSetupRoute = useMatch({ from: '/console/setup', shouldThrow: false })
+  const isOIDCCallbackRoute = useMatch({ from: '/console/auth/oidc/callback', shouldThrow: false })
 
   // Check if system is installed (explicitly check for true to handle undefined case)
   const isInstalled = window.IS_INSTALLED === true
 
-  const isPublicRoute = isSigninRoute || isAcceptInvitationRoute || isLogoutRoute || isSetupRoute
+  const isPublicRoute =
+    isSigninRoute ||
+    isAcceptInvitationRoute ||
+    isLogoutRoute ||
+    isSetupRoute ||
+    isOIDCCallbackRoute
 
   // If system is not installed, redirect to setup wizard
   const shouldRedirectToSetup = !isInstalled && !isSetupRoute

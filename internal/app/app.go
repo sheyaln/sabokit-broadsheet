@@ -157,6 +157,7 @@ type App struct {
 	automationService                *service.AutomationService
 	automationScheduler              *service.AutomationScheduler
 	llmService                       *service.LLMService
+	oidcService                      *service.OIDCService
 	emailQueueWorker                 *queue.EmailQueueWorker
 	dataFeedFetcher                  broadcast.DataFeedFetcher
 	// providers
@@ -986,6 +987,27 @@ func (a *App) InitServices() error {
 		a.rateLimiter, // Use global rate limiter
 	)
 
+	if a.config.OIDC.Enabled {
+		oidcCfg := service.OIDCServiceConfig{
+			Config:         &a.config.OIDC,
+			APIEndpoint:    a.config.APIEndpoint,
+			UserRepo:       a.userRepo,
+			WorkspaceRepo:  a.workspaceRepo,
+			AuthService:    a.authService,
+			SettingService: a.settingService,
+			SecretKey:      a.config.Security.SecretKey,
+			Logger:         a.logger,
+		}
+
+		oidcSvc, err := service.NewOIDCService(context.Background(), oidcCfg)
+		if err != nil {
+			a.logger.WithField("error", err.Error()).Error("Failed to initialize OIDC service")
+		} else {
+			a.oidcService = oidcSvc
+			a.logger.WithField("issuer", a.config.OIDC.IssuerURL).Info("OIDC SSO service initialized")
+		}
+	}
+
 	// Initialize SMTP bridge server if enabled
 	if a.config.SMTPBridge.Enabled {
 		// TLS is required for starttls and implicit modes; skipped for off.
@@ -1071,6 +1093,8 @@ func (a *App) InitHandlers() error {
 		a.config.SMTPBridge.Domain,
 		a.config.SMTPBridge.Port,
 		a.config.SMTPBridge.TLSMode,
+		a.oidcService != nil,
+		a.config.OIDC.AllowMagicCode,
 		a.workspaceRepo,
 		a.blogService,
 		a.blogCache,
@@ -1200,6 +1224,11 @@ func (a *App) InitHandlers() error {
 	webhookSubscriptionHandler.RegisterRoutes(a.mux)
 	automationHandler.RegisterRoutes(a.mux)
 	llmHandler.RegisterRoutes(a.mux)
+
+	if a.oidcService != nil {
+		oidcHandler := httpHandler.NewOIDCHandler(a.oidcService, getJWTSecret, a.logger)
+		oidcHandler.RegisterRoutes(a.mux)
+	}
 
 	return nil
 }
@@ -1411,6 +1440,10 @@ func (a *App) Shutdown(ctx context.Context) error {
 	// Stop global rate limiter
 	if a.rateLimiter != nil {
 		a.rateLimiter.Stop()
+	}
+
+	if a.oidcService != nil {
+		a.oidcService.Stop()
 	}
 
 	// Shutdown SMTP bridge server if running

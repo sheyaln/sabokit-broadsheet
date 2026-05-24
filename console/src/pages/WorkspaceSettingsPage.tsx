@@ -7,6 +7,7 @@ import { Workspace, WorkspaceMember } from '../services/api/types'
 import { WorkspaceMembers } from '../components/settings/WorkspaceMembers'
 import { GeneralSettings } from '../components/settings/GeneralSettings'
 import { SMTPBridgeSettings } from '../components/settings/SMTPBridgeSettings'
+import { OIDCSettings } from '../components/settings/OIDCSettings'
 import { Integrations } from '../components/settings/Integrations'
 import { CustomFieldsConfiguration } from '../components/settings/CustomFieldsConfiguration'
 import { BlogSettings } from '../components/settings/BlogSettings'
@@ -36,6 +37,7 @@ export function WorkspaceSettingsPage() {
     'webhooks',
     'custom-fields',
     'smtp-bridge',
+    'sso',
     'general',
     'blog',
     'danger-zone'
@@ -136,6 +138,8 @@ export function WorkspaceSettingsPage() {
         )
       case 'smtp-bridge':
         return <SMTPBridgeSettings />
+      case 'sso':
+        return <OIDCSettings />
       case 'general':
         return (
           <GeneralSettings

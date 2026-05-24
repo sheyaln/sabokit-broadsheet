@@ -1,4 +1,4 @@
-import { Form, Input, Button, Card, App, Space } from 'antd'
+import { Form, Input, Button, Card, App, Space, Divider, Alert } from 'antd'
 import { useAuth } from '../contexts/AuthContext'
 import { useNavigate, useSearch } from '@tanstack/react-router'
 import { useState, useEffect, useCallback, useRef } from 'react'
@@ -6,6 +6,9 @@ import { authService } from '../services/api/auth'
 import { SignInRequest, VerifyCodeRequest } from '../services/api/types'
 import { MainLayout } from '../layouts/MainLayout'
 import { useLingui } from '@lingui/react/macro'
+
+const oidcEnabled = window.OIDC_ENABLED
+const allowMagicCode = window.OIDC_ALLOW_MAGIC_CODE
 
 export function SignInPage() {
   const { t } = useLingui()
@@ -19,6 +22,16 @@ export function SignInPage() {
   const { message } = App.useApp()
   const [form] = Form.useForm()
   const hasAutoSubmitted = useRef(false)
+
+  useEffect(() => {
+    if (search.error === 'oidc_failed' && search.message) {
+      message.error(search.message)
+    }
+  }, [search.error, search.message, message])
+
+  const handleSSOLogin = () => {
+    window.location.href = `${window.API_ENDPOINT}/api/auth/oidc/authorize`
+  }
 
   const handleCodeSubmit = useCallback(
     async (values: { code: string }, emailToUse?: string) => {
@@ -126,80 +139,108 @@ export function SignInPage() {
     }
   }
 
+  const showMagicCode = !oidcEnabled || allowMagicCode
+
   return (
     <MainLayout>
       <div className="flex items-center justify-center h-[calc(100vh-48px)]">
         <Card title={t`Sign In`} style={{ width: 400 }}>
-          {!showCodeInput ? (
-            <Form
-              form={form}
-              name="email"
-              onFinish={handleEmailSubmit}
-              layout="vertical"
-              initialValues={{ email }}
-            >
-              <Form.Item
-                label={t`Email`}
-                name="email"
-                rules={[
-                  { required: true, message: t`Please input your email!` },
-                  { type: 'email', message: t`Please enter a valid email!` }
-                ]}
-              >
-                <Input placeholder={t`Email`} type="email" />
-              </Form.Item>
+          {search.error === 'oidc_failed' && search.message && (
+            <Alert
+              message={search.message}
+              type="error"
+              showIcon
+              style={{ marginBottom: 16 }}
+            />
+          )}
 
-              <Form.Item>
-                <Button type="primary" htmlType="submit" block loading={loading}>
-                  {t`Send Magic Code`}
-                </Button>
-              </Form.Item>
-            </Form>
-          ) : (
+          {oidcEnabled && (
+            <Button type="primary" block size="large" onClick={handleSSOLogin}>
+              {t`Sign in with SSO`}
+            </Button>
+          )}
+
+          {oidcEnabled && showMagicCode && <Divider>{t`or`}</Divider>}
+
+          {showMagicCode && (
             <>
-              <p style={{ marginBottom: 24 }}>{t`Enter the 6-digit code sent to ${email}`}</p>
-              <Form name="code" onFinish={handleCodeSubmit} layout="vertical">
-                <Form.Item
-                  name="code"
-                  rules={[
-                    { required: true, message: t`Please input the magic code!` },
-                    {
-                      pattern: /^\d{6}$/,
-                      message: t`Please enter a valid 6-digit code!`
-                    }
-                  ]}
+              {!showCodeInput ? (
+                <Form
+                  form={form}
+                  name="email"
+                  onFinish={handleEmailSubmit}
+                  layout="vertical"
+                  initialValues={{ email }}
                 >
-                  <Input
-                    placeholder="000000"
-                    maxLength={6}
-                    style={{ textAlign: 'center', letterSpacing: '0.5em' }}
-                  />
-                </Form.Item>
-
-                <Form.Item>
-                  <Button type="primary" htmlType="submit" block loading={loading}>
-                    {t`Verify Code`}
-                  </Button>
-                </Form.Item>
-
-                <Space style={{ width: '100%', justifyContent: 'space-between' }}>
-                  <Button
-                    type="link"
-                    onClick={() => setShowCodeInput(false)}
-                    style={{ padding: 0 }}
+                  <Form.Item
+                    label={t`Email`}
+                    name="email"
+                    rules={[
+                      { required: true, message: t`Please input your email!` },
+                      { type: 'email', message: t`Please enter a valid email!` }
+                    ]}
                   >
-                    {t`Use a different email`}
-                  </Button>
-                  <Button
-                    type="link"
-                    onClick={handleResendCode}
-                    loading={resendLoading}
-                    style={{ padding: 0 }}
-                  >
-                    {t`Resend code`}
-                  </Button>
-                </Space>
-              </Form>
+                    <Input placeholder={t`Email`} type="email" />
+                  </Form.Item>
+
+                  <Form.Item>
+                    <Button
+                      type={oidcEnabled ? 'default' : 'primary'}
+                      htmlType="submit"
+                      block
+                      loading={loading}
+                    >
+                      {t`Send Magic Code`}
+                    </Button>
+                  </Form.Item>
+                </Form>
+              ) : (
+                <>
+                  <p style={{ marginBottom: 24 }}>{t`Enter the 6-digit code sent to ${email}`}</p>
+                  <Form name="code" onFinish={handleCodeSubmit} layout="vertical">
+                    <Form.Item
+                      name="code"
+                      rules={[
+                        { required: true, message: t`Please input the magic code!` },
+                        {
+                          pattern: /^\d{6}$/,
+                          message: t`Please enter a valid 6-digit code!`
+                        }
+                      ]}
+                    >
+                      <Input
+                        placeholder="000000"
+                        maxLength={6}
+                        style={{ textAlign: 'center', letterSpacing: '0.5em' }}
+                      />
+                    </Form.Item>
+
+                    <Form.Item>
+                      <Button type="primary" htmlType="submit" block loading={loading}>
+                        {t`Verify Code`}
+                      </Button>
+                    </Form.Item>
+
+                    <Space style={{ width: '100%', justifyContent: 'space-between' }}>
+                      <Button
+                        type="link"
+                        onClick={() => setShowCodeInput(false)}
+                        style={{ padding: 0 }}
+                      >
+                        {t`Use a different email`}
+                      </Button>
+                      <Button
+                        type="link"
+                        onClick={handleResendCode}
+                        loading={resendLoading}
+                        style={{ padding: 0 }}
+                      >
+                        {t`Resend code`}
+                      </Button>
+                    </Space>
+                  </Form>
+                </>
+              )}
             </>
           )}
         </Card>
