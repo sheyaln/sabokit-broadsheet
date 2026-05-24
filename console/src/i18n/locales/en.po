@@ -5930,8 +5930,12 @@ msgid "Managed by {0} ({1} integration)"
 msgstr "Managed by {0} ({1} integration)"
 
 #: src/components/settings/OIDCSettings.tsx:217
-msgid "Map IdP groups to Notifuse roles and permissions. Users without a matching group get member access with full permissions by default."
-msgstr "Map IdP groups to Notifuse roles and permissions. Users without a matching group get member access with full permissions by default."
+msgid "Map IdP groups to Broadside roles and permissions. Users without a matching group get member access with full permissions by default."
+msgstr "Map IdP groups to Broadside roles and permissions. Users without a matching group get member access with full permissions by default."
+
+#: src/components/settings/OIDCSettings.tsx:217
+#~ msgid "Map IdP groups to Notifuse roles and permissions. Users without a matching group get member access with full permissions by default."
+#~ msgstr "Map IdP groups to Notifuse roles and permissions. Users without a matching group get member access with full permissions by default."
 
 #: src/components/contacts/ContactsCsvUploadDrawer.tsx:1042
 msgid "Map your CSV columns to contact fields. The"

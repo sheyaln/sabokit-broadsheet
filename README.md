@@ -1,16 +1,14 @@
-# Notifuse
+# Broadside
 
-[![Go Report Card](https://img.shields.io/badge/go%20report-A+-brightgreen.svg?style=flat)](https://goreportcard.com/report/github.com/Notifuse/notifuse)
-[![Go](https://github.com/Notifuse/notifuse/actions/workflows/go.yml/badge.svg)](https://github.com/Notifuse/notifuse/actions/workflows/go.yml)
-[![codecov](https://codecov.io/gh/Notifuse/notifuse/graph/badge.svg?token=VZ0HBEM9OZ)](https://codecov.io/gh/Notifuse/notifuse)
+> *A broadside: a single-sheet political pamphlet, printed cheaply and distributed widely. The original mass-communication tool.*
 
-**[☁️ Notifuse Cloud — from $16/month](https://www.notifuse.com/)** · **[🎯 Try the Live Demo](https://demo.notifuse.com/console/signin?email=demo@notifuse.com)**
+**A self-hosted email platform with OIDC SSO, for organizations that want to own their stack.**
 
-Skip the setup and get started instantly with **[Notifuse Cloud](https://www.notifuse.com/)** — fully managed hosting starting at just **$16/month**.
+Broadside is a fork of [Notifuse](https://github.com/Notifuse/notifuse) (AGPLv3) with first-class support for OIDC single sign-on (Authentik, Keycloak, Okta, etc.), built for organizations that need to run their own email/marketing stack rather than rent SaaS.
 
-**The open-source alternative to Mailchimp, Brevo, Mailjet, Listmonk, Mailerlite, and Klaviyo, Loop.so, etc.**
+**The open-source alternative to Mailchimp, Brevo, Mailjet, Listmonk, Mailerlite, Klaviyo, Loop.so, etc.**
 
-Notifuse is a modern, self-hosted emailing platform that allows you to send newsletters and transactional emails at a fraction of the cost. Built with Go and React, it provides enterprise-grade features with the flexibility of open-source software.
+Built with Go and React. Same core engine as upstream Notifuse, with the SSO feature upstream chose not to ship.
 
 <img alt="Email Editor" src="https://github.com/user-attachments/assets/f650ac1b-58fd-44fb-884d-e9811255f1e4" />
 
@@ -48,7 +46,7 @@ Notifuse is a modern, self-hosted emailing platform that allows you to send news
 
 ## 🏗️ Architecture
 
-Notifuse follows clean architecture principles with clear separation of concerns:
+Broadside follows clean architecture principles with clear separation of concerns:
 
 ### Backend (Go)
 
@@ -84,41 +82,23 @@ Notifuse follows clean architecture principles with clear separation of concerns
 
 ## 📚 Documentation
 
-- **[Complete Documentation](https://docs.notifuse.com)** - Comprehensive guides and tutorials
+Upstream Notifuse documentation applies to most features: **[docs.notifuse.com](https://docs.notifuse.com)**. Broadside-specific documentation (OIDC setup, group mappings) lives in this repo.
 
-## 🤝 Contributing
+## 🔀 Relationship to Notifuse
 
-We welcome contributions!
+Broadside is a hard fork of [Notifuse](https://github.com/Notifuse/notifuse). We track upstream by force-rebasing `main` onto upstream when syncing, then re-applying our additions on top. We do not contribute back upstream because the upstream contributor agreement requires full IP assignment — we prefer to keep our work under AGPLv3 ownership rather than transferred.
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests
-5. Submit a pull request
-
-**Note:** We prefer well-described issues over pull requests. If you have a feature idea or found a bug, please open an issue first with a clear description of the problem or enhancement. This allows for discussion before implementation.
-
-By submitting a pull request to this repository, you agree to transfer all intellectual property rights of your contribution to the repository owner. Your contribution will be licensed under the same terms as the project.
+If you want the original, go to [github.com/Notifuse/notifuse](https://github.com/Notifuse/notifuse). If you want SSO + self-hosting without the SaaS upsell, you're in the right place.
 
 ## 📄 License
 
-Notifuse is released under the [GNU Affero General Public License v3.0](LICENSE).
+Broadside is released under the [GNU Affero General Public License v3.0](LICENCE.md), the same license as upstream Notifuse. Original Notifuse code remains copyright (C) 2025 Notifuse. Broadside additions retain that copyright and add ours.
 
-## 🆘 Support
+## 🌟 Why Choose Broadside?
 
-- **Documentation**: [docs.notifuse.com](https://docs.notifuse.com)
-- **Email Support**: [hello@notifuse.com](mailto:hello@notifuse.com)
-- **GitHub Issues**: [Report bugs or request features](https://github.com/Notifuse/notifuse/issues)
-
-## 🌟 Why Choose Notifuse?
-
-- **💰 Cost-Effective**: Self-hosted solution with no per-email pricing
+- **🪪 SSO first-class**: OIDC built in, with IdP group → workspace permission mapping
+- **💰 Cost-Effective**: Self-hosted, no per-email pricing
 - **🔒 Privacy-First**: Your data stays on your infrastructure
-- **🛠️ Customizable**: Open-source with extensive customization options
+- **🛠️ Customizable**: Open-source (AGPLv3), extensible
 - **📈 Scalable**: Built to handle millions of emails
-- **🚀 Modern**: Built with modern technologies and best practices
 - **🔧 Developer-Friendly**: Comprehensive API and webhook support
-
----
-
-**Ready to get started?** [Try the live demo](https://demo.notifuse.com/console/signin?email=demo@notifuse.com) or [deploy your own instance](https://docs.notifuse.com) in minutes.
