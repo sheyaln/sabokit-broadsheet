@@ -10,7 +10,7 @@ import (
 	"github.com/sheyaln/sabokit-broadside/internal/domain"
 	"github.com/sheyaln/sabokit-broadside/internal/service/broadcast"
 	"github.com/sheyaln/sabokit-broadside/pkg/logger"
-	"github.com/sheyaln/sabokit-broadside/pkg/notifuse_mjml"
+	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
 	"github.com/google/uuid"
 )
 
@@ -963,7 +963,7 @@ func (s *BroadcastService) SendToIndividual(ctx context.Context, request *domain
 		endpoint = *workspace.Settings.CustomEndpointURL
 	}
 
-	trackingSettings := notifuse_mjml.TrackingSettings{
+	trackingSettings := broadside_mjml.TrackingSettings{
 		Endpoint:       endpoint,
 		EnableTracking: workspace.Settings.EmailTrackingEnabled,
 		WorkspaceID:    request.WorkspaceID,
@@ -1010,7 +1010,7 @@ func (s *BroadcastService) SendToIndividual(ctx context.Context, request *domain
 		WorkspaceID:      request.WorkspaceID,
 		MessageID:        messageID,
 		VisualEditorTree: emailContent.VisualEditorTree,
-		TemplateData:     notifuse_mjml.MapOfAny(templateData),
+		TemplateData:     broadside_mjml.MapOfAny(templateData),
 		TrackingSettings: trackingSettings,
 	}
 	compileReq.MjmlSource = emailContent.GetCodeModeMjmlSource()

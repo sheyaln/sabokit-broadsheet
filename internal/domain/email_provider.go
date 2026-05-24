@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/sheyaln/sabokit-broadside/pkg/notifuse_mjml"
+	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
 	"github.com/asaskevich/govalidator"
 	"github.com/google/uuid"
 )
@@ -409,7 +409,7 @@ type SendEmailRequest struct {
 	MessageData    MessageData
 
 	// Configuration
-	TrackingSettings notifuse_mjml.TrackingSettings
+	TrackingSettings broadside_mjml.TrackingSettings
 	EmailProvider    *EmailProvider `validate:"required"`
 	EmailOptions     EmailOptions
 }

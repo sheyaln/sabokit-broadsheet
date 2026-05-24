@@ -11,7 +11,7 @@ import (
 	"github.com/DATA-DOG/go-sqlmock"
 	"github.com/sheyaln/sabokit-broadside/internal/domain"
 	"github.com/sheyaln/sabokit-broadside/internal/domain/mocks"
-	"github.com/sheyaln/sabokit-broadside/pkg/notifuse_mjml"
+	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -52,7 +52,7 @@ func createSampleTransactionalNotification() *domain.TransactionalNotification {
 				},
 			},
 		},
-		TrackingSettings: notifuse_mjml.TrackingSettings{
+		TrackingSettings: broadside_mjml.TrackingSettings{
 			EnableTracking: true,
 			UTMSource:      "notifuse",
 			UTMMedium:      "email",

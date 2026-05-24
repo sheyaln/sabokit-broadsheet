@@ -1,11 +1,11 @@
 package templates
 
 import (
-	"github.com/sheyaln/sabokit-broadside/pkg/notifuse_mjml"
+	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
 )
 
 // CreateSupabaseSignupEmailStructure creates the detailed MJML structure for the signup confirmation email
-func CreateSupabaseSignupEmailStructure() (notifuse_mjml.EmailBlock, error) {
+func CreateSupabaseSignupEmailStructure() (broadside_mjml.EmailBlock, error) {
 	jsonTemplate := `{
   "emailTree": {
     "id": "mjml-1",

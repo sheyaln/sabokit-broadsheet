@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/sheyaln/sabokit-broadside/pkg/notifuse_mjml"
+	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -20,7 +20,7 @@ func TestSupabaseTemplateCreation(t *testing.T) {
 				require.NotNil(t, block, "Template block should not be nil")
 
 				// Verify it's a valid MJML structure
-				assert.Equal(t, notifuse_mjml.MJMLComponentMjml, block.GetType(),
+				assert.Equal(t, broadside_mjml.MJMLComponentMjml, block.GetType(),
 					"Root block should be mjml type")
 				assert.NotNil(t, block.GetChildren(), "Root block should have children")
 			})
@@ -32,7 +32,7 @@ func TestSupabaseTemplateCreation(t *testing.T) {
 		require.NoError(t, err)
 
 		// Verify root
-		assert.Equal(t, notifuse_mjml.MJMLComponentMjml, block.GetType())
+		assert.Equal(t, broadside_mjml.MJMLComponentMjml, block.GetType())
 
 		// Verify has head and body
 		children := block.GetChildren()
@@ -40,11 +40,11 @@ func TestSupabaseTemplateCreation(t *testing.T) {
 
 		// Check head
 		head := children[0]
-		assert.Equal(t, notifuse_mjml.MJMLComponentMjHead, head.GetType())
+		assert.Equal(t, broadside_mjml.MJMLComponentMjHead, head.GetType())
 
 		// Check body
 		body := children[1]
-		assert.Equal(t, notifuse_mjml.MJMLComponentMjBody, body.GetType())
+		assert.Equal(t, broadside_mjml.MJMLComponentMjBody, body.GetType())
 		assert.NotEmpty(t, body.GetChildren(), "Body should have children")
 	})
 
@@ -53,7 +53,7 @@ func TestSupabaseTemplateCreation(t *testing.T) {
 		require.NoError(t, err)
 
 		// Verify root
-		assert.Equal(t, notifuse_mjml.MJMLComponentMjml, block.GetType())
+		assert.Equal(t, broadside_mjml.MJMLComponentMjml, block.GetType())
 
 		// Verify has head and body
 		children := block.GetChildren()
@@ -76,7 +76,7 @@ func TestSupabaseTemplateRoundTrip(t *testing.T) {
 				require.NoError(t, err, "Should be able to marshal template")
 
 				// Unmarshal back
-				retrieved, err := notifuse_mjml.UnmarshalEmailBlock(originalJSON)
+				retrieved, err := broadside_mjml.UnmarshalEmailBlock(originalJSON)
 				require.NoError(t, err, "Should be able to unmarshal template")
 
 				// Marshal retrieved
@@ -100,16 +100,16 @@ func TestSupabaseTemplateComponents(t *testing.T) {
 		componentTypes := findAllComponentTypes(block)
 
 		// Should contain these components at minimum
-		expectedComponents := []notifuse_mjml.MJMLComponentType{
-			notifuse_mjml.MJMLComponentMjml,
-			notifuse_mjml.MJMLComponentMjHead,
-			notifuse_mjml.MJMLComponentMjBody,
-			notifuse_mjml.MJMLComponentMjWrapper,
-			notifuse_mjml.MJMLComponentMjSection,
-			notifuse_mjml.MJMLComponentMjColumn,
-			notifuse_mjml.MJMLComponentMjImage,
-			notifuse_mjml.MJMLComponentMjText,
-			notifuse_mjml.MJMLComponentMjButton,
+		expectedComponents := []broadside_mjml.MJMLComponentType{
+			broadside_mjml.MJMLComponentMjml,
+			broadside_mjml.MJMLComponentMjHead,
+			broadside_mjml.MJMLComponentMjBody,
+			broadside_mjml.MJMLComponentMjWrapper,
+			broadside_mjml.MJMLComponentMjSection,
+			broadside_mjml.MJMLComponentMjColumn,
+			broadside_mjml.MJMLComponentMjImage,
+			broadside_mjml.MJMLComponentMjText,
+			broadside_mjml.MJMLComponentMjButton,
 		}
 
 		for _, expected := range expectedComponents {
@@ -120,12 +120,12 @@ func TestSupabaseTemplateComponents(t *testing.T) {
 }
 
 // Helper function to recursively find all component types in a tree
-func findAllComponentTypes(block notifuse_mjml.EmailBlock) []notifuse_mjml.MJMLComponentType {
+func findAllComponentTypes(block broadside_mjml.EmailBlock) []broadside_mjml.MJMLComponentType {
 	if block == nil {
 		return nil
 	}
 
-	types := []notifuse_mjml.MJMLComponentType{block.GetType()}
+	types := []broadside_mjml.MJMLComponentType{block.GetType()}
 
 	for _, child := range block.GetChildren() {
 		childTypes := findAllComponentTypes(child)

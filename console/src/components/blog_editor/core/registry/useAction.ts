@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import type { Editor } from '@tiptap/react'
-import { useNotifuseEditor } from '../../hooks/useEditor'
+import { useBroadsideEditor } from '../../hooks/useEditor'
 import { notifuseActionRegistry } from './ActionRegistry'
 import type { ActionDefinition } from './ActionRegistry'
 
@@ -70,7 +70,7 @@ export interface ActionState {
  */
 export function useAction(actionId: string, config?: UseActionConfig): ActionState {
   const { editor: providedEditor, hideWhenUnavailable = false } = config || {}
-  const { editor } = useNotifuseEditor(providedEditor)
+  const { editor } = useBroadsideEditor(providedEditor)
 
   // Get the action definition from the registry
   const action = notifuseActionRegistry.get(actionId)

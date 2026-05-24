@@ -16,7 +16,7 @@ import (
 	"github.com/sheyaln/sabokit-broadside/internal/domain"
 	"github.com/sheyaln/sabokit-broadside/internal/domain/mocks"
 	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
-	"github.com/sheyaln/sabokit-broadside/pkg/notifuse_mjml"
+	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
 )
 
 func TestWorkspaceService_ListWorkspaces(t *testing.T) {
@@ -929,7 +929,7 @@ func TestWorkspaceService_UpdateWorkspace(t *testing.T) {
 
 		// Create a test email block
 		blockJSON := []byte(`{"id":"b1","type":"mj-text","content":"Hello","attributes":{"fontSize":"16px"}}`)
-		testBlock, _ := notifuse_mjml.UnmarshalEmailBlock(blockJSON)
+		testBlock, _ := broadside_mjml.UnmarshalEmailBlock(blockJSON)
 
 		// Existing workspace with template blocks
 		existingTemplateBlocks := []domain.TemplateBlock{
@@ -990,7 +990,7 @@ func TestWorkspaceService_UpdateWorkspace(t *testing.T) {
 
 		// Create a test email block
 		blockJSON := []byte(`{"id":"b1","type":"mj-text","content":"Hello","attributes":{"fontSize":"16px"}}`)
-		testBlock, _ := notifuse_mjml.UnmarshalEmailBlock(blockJSON)
+		testBlock, _ := broadside_mjml.UnmarshalEmailBlock(blockJSON)
 
 		existingWorkspace := &domain.Workspace{
 			ID:   workspaceID,

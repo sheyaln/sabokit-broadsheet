@@ -11,7 +11,7 @@ import (
 	domainmocks "github.com/sheyaln/sabokit-broadside/internal/domain/mocks"
 	"github.com/sheyaln/sabokit-broadside/pkg/logger"
 	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
-	"github.com/sheyaln/sabokit-broadside/pkg/notifuse_mjml"
+	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
 )
@@ -185,28 +185,28 @@ func TestDemoService_CompileTemplateToHTML_Basic(t *testing.T) {
 	titleContent := "Title"
 	textContent := "Hello"
 
-	titleBase := notifuse_mjml.NewBaseBlock("title", notifuse_mjml.MJMLComponentMjTitle)
+	titleBase := broadside_mjml.NewBaseBlock("title", broadside_mjml.MJMLComponentMjTitle)
 	titleBase.Content = &titleContent
-	title := &notifuse_mjml.MJTitleBlock{BaseBlock: titleBase}
+	title := &broadside_mjml.MJTitleBlock{BaseBlock: titleBase}
 
-	head := &notifuse_mjml.MJHeadBlock{BaseBlock: notifuse_mjml.NewBaseBlock("head", notifuse_mjml.MJMLComponentMjHead)}
-	head.Children = []notifuse_mjml.EmailBlock{title}
+	head := &broadside_mjml.MJHeadBlock{BaseBlock: broadside_mjml.NewBaseBlock("head", broadside_mjml.MJMLComponentMjHead)}
+	head.Children = []broadside_mjml.EmailBlock{title}
 
-	textBase := notifuse_mjml.NewBaseBlock("text", notifuse_mjml.MJMLComponentMjText)
+	textBase := broadside_mjml.NewBaseBlock("text", broadside_mjml.MJMLComponentMjText)
 	textBase.Content = &textContent
-	text := &notifuse_mjml.MJTextBlock{BaseBlock: textBase}
+	text := &broadside_mjml.MJTextBlock{BaseBlock: textBase}
 
-	col := &notifuse_mjml.MJColumnBlock{BaseBlock: notifuse_mjml.NewBaseBlock("col", notifuse_mjml.MJMLComponentMjColumn)}
-	col.Children = []notifuse_mjml.EmailBlock{text}
+	col := &broadside_mjml.MJColumnBlock{BaseBlock: broadside_mjml.NewBaseBlock("col", broadside_mjml.MJMLComponentMjColumn)}
+	col.Children = []broadside_mjml.EmailBlock{text}
 
-	sec := &notifuse_mjml.MJSectionBlock{BaseBlock: notifuse_mjml.NewBaseBlock("sec", notifuse_mjml.MJMLComponentMjSection)}
-	sec.Children = []notifuse_mjml.EmailBlock{col}
+	sec := &broadside_mjml.MJSectionBlock{BaseBlock: broadside_mjml.NewBaseBlock("sec", broadside_mjml.MJMLComponentMjSection)}
+	sec.Children = []broadside_mjml.EmailBlock{col}
 
-	body := &notifuse_mjml.MJBodyBlock{BaseBlock: notifuse_mjml.NewBaseBlock("body", notifuse_mjml.MJMLComponentMjBody)}
-	body.Children = []notifuse_mjml.EmailBlock{sec}
+	body := &broadside_mjml.MJBodyBlock{BaseBlock: broadside_mjml.NewBaseBlock("body", broadside_mjml.MJMLComponentMjBody)}
+	body.Children = []broadside_mjml.EmailBlock{sec}
 
-	root := &notifuse_mjml.MJMLBlock{BaseBlock: notifuse_mjml.NewBaseBlock("root", notifuse_mjml.MJMLComponentMjml)}
-	root.Children = []notifuse_mjml.EmailBlock{head, body}
+	root := &broadside_mjml.MJMLBlock{BaseBlock: broadside_mjml.NewBaseBlock("root", broadside_mjml.MJMLComponentMjml)}
+	root.Children = []broadside_mjml.EmailBlock{head, body}
 
 	html := svc.compileTemplateToHTML("demo", "message-1", root, domain.MapOfAny{"contact": domain.MapOfAny{"first_name": "Test"}})
 	assert.NotEmpty(t, html)
@@ -363,10 +363,10 @@ func TestDemoService_CreateNewsletterStructures_NotNil(t *testing.T) {
 	assert.NotNil(t, b2)
 	assert.NotNil(t, b3)
 	assert.NotNil(t, b4)
-	assert.Equal(t, notifuse_mjml.MJMLComponentMjml, b1.GetType())
-	assert.Equal(t, notifuse_mjml.MJMLComponentMjml, b2.GetType())
-	assert.Equal(t, notifuse_mjml.MJMLComponentMjml, b3.GetType())
-	assert.Equal(t, notifuse_mjml.MJMLComponentMjml, b4.GetType())
+	assert.Equal(t, broadside_mjml.MJMLComponentMjml, b1.GetType())
+	assert.Equal(t, broadside_mjml.MJMLComponentMjml, b2.GetType())
+	assert.Equal(t, broadside_mjml.MJMLComponentMjml, b3.GetType())
+	assert.Equal(t, broadside_mjml.MJMLComponentMjml, b4.GetType())
 }
 
 func TestDemoService_ContentFactories(t *testing.T) {
@@ -513,7 +513,7 @@ func TestDemoService_CompileTemplateToHTML_WithMinimalInput(t *testing.T) {
 
 	// Create a minimal MJML structure (just mj-text without proper MJML wrapper)
 	// gomjml handles this by producing partial HTML output
-	minimalBlock := &notifuse_mjml.MJTextBlock{BaseBlock: notifuse_mjml.NewBaseBlock("minimal", notifuse_mjml.MJMLComponentMjText)}
+	minimalBlock := &broadside_mjml.MJTextBlock{BaseBlock: broadside_mjml.NewBaseBlock("minimal", broadside_mjml.MJMLComponentMjText)}
 	minimalBlock.Content = nil
 
 	testData := domain.MapOfAny{"test": "value"}
@@ -811,28 +811,28 @@ func TestDemoService_CompileTemplateToHTML_Success(t *testing.T) {
 	titleContent := "Test Title"
 	textContent := "Test Content"
 
-	titleBase := notifuse_mjml.NewBaseBlock("title", notifuse_mjml.MJMLComponentMjTitle)
+	titleBase := broadside_mjml.NewBaseBlock("title", broadside_mjml.MJMLComponentMjTitle)
 	titleBase.Content = &titleContent
-	title := &notifuse_mjml.MJTitleBlock{BaseBlock: titleBase}
+	title := &broadside_mjml.MJTitleBlock{BaseBlock: titleBase}
 
-	head := &notifuse_mjml.MJHeadBlock{BaseBlock: notifuse_mjml.NewBaseBlock("head", notifuse_mjml.MJMLComponentMjHead)}
-	head.Children = []notifuse_mjml.EmailBlock{title}
+	head := &broadside_mjml.MJHeadBlock{BaseBlock: broadside_mjml.NewBaseBlock("head", broadside_mjml.MJMLComponentMjHead)}
+	head.Children = []broadside_mjml.EmailBlock{title}
 
-	textBase := notifuse_mjml.NewBaseBlock("text", notifuse_mjml.MJMLComponentMjText)
+	textBase := broadside_mjml.NewBaseBlock("text", broadside_mjml.MJMLComponentMjText)
 	textBase.Content = &textContent
-	text := &notifuse_mjml.MJTextBlock{BaseBlock: textBase}
+	text := &broadside_mjml.MJTextBlock{BaseBlock: textBase}
 
-	col := &notifuse_mjml.MJColumnBlock{BaseBlock: notifuse_mjml.NewBaseBlock("col", notifuse_mjml.MJMLComponentMjColumn)}
-	col.Children = []notifuse_mjml.EmailBlock{text}
+	col := &broadside_mjml.MJColumnBlock{BaseBlock: broadside_mjml.NewBaseBlock("col", broadside_mjml.MJMLComponentMjColumn)}
+	col.Children = []broadside_mjml.EmailBlock{text}
 
-	sec := &notifuse_mjml.MJSectionBlock{BaseBlock: notifuse_mjml.NewBaseBlock("sec", notifuse_mjml.MJMLComponentMjSection)}
-	sec.Children = []notifuse_mjml.EmailBlock{col}
+	sec := &broadside_mjml.MJSectionBlock{BaseBlock: broadside_mjml.NewBaseBlock("sec", broadside_mjml.MJMLComponentMjSection)}
+	sec.Children = []broadside_mjml.EmailBlock{col}
 
-	body := &notifuse_mjml.MJBodyBlock{BaseBlock: notifuse_mjml.NewBaseBlock("body", notifuse_mjml.MJMLComponentMjBody)}
-	body.Children = []notifuse_mjml.EmailBlock{sec}
+	body := &broadside_mjml.MJBodyBlock{BaseBlock: broadside_mjml.NewBaseBlock("body", broadside_mjml.MJMLComponentMjBody)}
+	body.Children = []broadside_mjml.EmailBlock{sec}
 
-	root := &notifuse_mjml.MJMLBlock{BaseBlock: notifuse_mjml.NewBaseBlock("root", notifuse_mjml.MJMLComponentMjml)}
-	root.Children = []notifuse_mjml.EmailBlock{head, body}
+	root := &broadside_mjml.MJMLBlock{BaseBlock: broadside_mjml.NewBaseBlock("root", broadside_mjml.MJMLComponentMjml)}
+	root.Children = []broadside_mjml.EmailBlock{head, body}
 
 	testData := domain.MapOfAny{"contact": domain.MapOfAny{"first_name": "John"}}
 	html := svc.compileTemplateToHTML("demo", "test-message", root, testData)
@@ -846,15 +846,15 @@ func TestDemoService_CompileTemplateToHTML_CompilationFailure(t *testing.T) {
 	svc := &DemoService{logger: logger.NewLoggerWithLevel("disabled")}
 
 	// Create an invalid MJML structure that will cause compilation to fail
-	invalidText := &notifuse_mjml.MJTextBlock{BaseBlock: notifuse_mjml.NewBaseBlock("invalid", notifuse_mjml.MJMLComponentMjText)}
+	invalidText := &broadside_mjml.MJTextBlock{BaseBlock: broadside_mjml.NewBaseBlock("invalid", broadside_mjml.MJMLComponentMjText)}
 	invalidText.Content = nil // Invalid content
 
 	// Create a minimal but potentially problematic structure
-	body := &notifuse_mjml.MJBodyBlock{BaseBlock: notifuse_mjml.NewBaseBlock("body", notifuse_mjml.MJMLComponentMjBody)}
-	body.Children = []notifuse_mjml.EmailBlock{invalidText}
+	body := &broadside_mjml.MJBodyBlock{BaseBlock: broadside_mjml.NewBaseBlock("body", broadside_mjml.MJMLComponentMjBody)}
+	body.Children = []broadside_mjml.EmailBlock{invalidText}
 
-	root := &notifuse_mjml.MJMLBlock{BaseBlock: notifuse_mjml.NewBaseBlock("root", notifuse_mjml.MJMLComponentMjml)}
-	root.Children = []notifuse_mjml.EmailBlock{body}
+	root := &broadside_mjml.MJMLBlock{BaseBlock: broadside_mjml.NewBaseBlock("root", broadside_mjml.MJMLComponentMjml)}
+	root.Children = []broadside_mjml.EmailBlock{body}
 
 	testData := domain.MapOfAny{"test": "value"}
 	html := svc.compileTemplateToHTML("demo", "test", root, testData)

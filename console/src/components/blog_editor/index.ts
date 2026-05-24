@@ -5,8 +5,8 @@
  */
 
 // Main component
-export { NotifuseEditor, DEFAULT_INITIAL_CONTENT } from './NotifuseEditor'
-export type { NotifuseEditorProps, NotifuseEditorRef, TOCAnchor } from './NotifuseEditor'
+export { BroadsideEditor, DEFAULT_INITIAL_CONTENT } from './BroadsideEditor'
+export type { BroadsideEditorProps, BroadsideEditorRef, TOCAnchor } from './BroadsideEditor'
 
 // Types
 export type {

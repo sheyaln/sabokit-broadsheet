@@ -8,7 +8,7 @@ import (
 	"github.com/sheyaln/sabokit-broadside/internal/domain"
 	"github.com/sheyaln/sabokit-broadside/internal/domain/mocks"
 	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
-	"github.com/sheyaln/sabokit-broadside/pkg/notifuse_mjml"
+	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
 	"github.com/golang/mock/gomock"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
@@ -1886,8 +1886,8 @@ func TestTransactionalNotificationService_TestTemplate(t *testing.T) {
 		Name: "Test Template",
 		Email: &domain.EmailTemplate{
 			Subject: "Test Subject",
-			VisualEditorTree: &notifuse_mjml.MJMLBlock{
-				BaseBlock: notifuse_mjml.NewBaseBlock("root", notifuse_mjml.MJMLComponentMjml),
+			VisualEditorTree: &broadside_mjml.MJMLBlock{
+				BaseBlock: broadside_mjml.NewBaseBlock("root", broadside_mjml.MJMLComponentMjml),
 			},
 			ReplyTo: "",
 		},
@@ -2036,8 +2036,8 @@ func TestTransactionalNotificationService_TestTemplate_WithChannelOptions(t *tes
 		Name: "Test Template",
 		Email: &domain.EmailTemplate{
 			Subject: "Test Subject",
-			VisualEditorTree: &notifuse_mjml.MJMLBlock{
-				BaseBlock: notifuse_mjml.NewBaseBlock("root", notifuse_mjml.MJMLComponentMjml),
+			VisualEditorTree: &broadside_mjml.MJMLBlock{
+				BaseBlock: broadside_mjml.NewBaseBlock("root", broadside_mjml.MJMLComponentMjml),
 			},
 			ReplyTo: "",
 		},
@@ -2454,8 +2454,8 @@ func TestTransactionalNotificationService_TestTemplate_ErrorCases(t *testing.T) 
 			Name: "Test Template",
 			Email: &domain.EmailTemplate{
 				Subject: "Test Subject",
-				VisualEditorTree: &notifuse_mjml.MJMLBlock{
-					BaseBlock: notifuse_mjml.NewBaseBlock("root", notifuse_mjml.MJMLComponentMjml),
+				VisualEditorTree: &broadside_mjml.MJMLBlock{
+					BaseBlock: broadside_mjml.NewBaseBlock("root", broadside_mjml.MJMLComponentMjml),
 				},
 			},
 		}
@@ -2588,16 +2588,16 @@ func TestTransactionalNotificationService_TestTemplate_WithLanguage(t *testing.T
 		Name: "Test Template",
 		Email: &domain.EmailTemplate{
 			Subject: "English Subject",
-			VisualEditorTree: &notifuse_mjml.MJMLBlock{
-				BaseBlock: notifuse_mjml.NewBaseBlock("root", notifuse_mjml.MJMLComponentMjml),
+			VisualEditorTree: &broadside_mjml.MJMLBlock{
+				BaseBlock: broadside_mjml.NewBaseBlock("root", broadside_mjml.MJMLComponentMjml),
 			},
 		},
 		Translations: map[string]domain.TemplateTranslation{
 			"fr": {
 				Email: &domain.EmailTemplate{
 					Subject: "Sujet Français",
-					VisualEditorTree: &notifuse_mjml.MJMLBlock{
-						BaseBlock: notifuse_mjml.NewBaseBlock("root-fr", notifuse_mjml.MJMLComponentMjml),
+					VisualEditorTree: &broadside_mjml.MJMLBlock{
+						BaseBlock: broadside_mjml.NewBaseBlock("root-fr", broadside_mjml.MJMLComponentMjml),
 					},
 				},
 			},

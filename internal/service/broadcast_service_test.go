@@ -12,7 +12,7 @@ import (
 	domainmocks "github.com/sheyaln/sabokit-broadside/internal/domain/mocks"
 	broadcastmocks "github.com/sheyaln/sabokit-broadside/internal/service/broadcast/mocks"
 	"github.com/sheyaln/sabokit-broadside/pkg/logger"
-	notifusemjml "github.com/sheyaln/sabokit-broadside/pkg/notifuse_mjml"
+	notifusemjml "github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
 	"github.com/golang/mock/gomock"
 	"github.com/preslavrachev/gomjml/mjml"
 	"github.com/stretchr/testify/assert"

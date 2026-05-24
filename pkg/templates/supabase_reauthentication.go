@@ -1,11 +1,11 @@
 package templates
 
 import (
-	"github.com/sheyaln/sabokit-broadside/pkg/notifuse_mjml"
+	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
 )
 
 // CreateSupabaseReauthenticationEmailStructure creates the detailed MJML structure for the reauthentication email
-func CreateSupabaseReauthenticationEmailStructure() (notifuse_mjml.EmailBlock, error) {
+func CreateSupabaseReauthenticationEmailStructure() (broadside_mjml.EmailBlock, error) {
 	jsonTemplate := `{
   "emailTree": {
     "id": "mjml-1",

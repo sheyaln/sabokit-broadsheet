@@ -7,7 +7,7 @@ import (
 
 	"github.com/sheyaln/sabokit-broadside/internal/domain"
 	"github.com/sheyaln/sabokit-broadside/pkg/logger"
-	"github.com/sheyaln/sabokit-broadside/pkg/notifuse_mjml"
+	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
 	"github.com/sheyaln/sabokit-broadside/pkg/tracing"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
@@ -303,7 +303,7 @@ func (s *EmailService) SendEmailForTemplate(ctx context.Context, request domain.
 		endpoint = *workspace.Settings.CustomEndpointURL
 	}
 
-	trackingSettings := notifuse_mjml.TrackingSettings{
+	trackingSettings := broadside_mjml.TrackingSettings{
 		Endpoint:       endpoint,
 		EnableTracking: request.TrackingSettings.EnableTracking,
 		UTMSource:      request.TrackingSettings.UTMSource,
@@ -366,7 +366,7 @@ func (s *EmailService) SendEmailForTemplate(ctx context.Context, request domain.
 	}
 
 	// Process subject line through Liquid templating if it contains Liquid tags
-	subject, err := notifuse_mjml.ProcessLiquidTemplate(
+	subject, err := broadside_mjml.ProcessLiquidTemplate(
 		emailContent.Subject,
 		request.MessageData.Data,
 		"email_subject",
@@ -384,7 +384,7 @@ func (s *EmailService) SendEmailForTemplate(ctx context.Context, request domain.
 
 	// Allow override of subject via email options
 	if request.EmailOptions.Subject != nil && *request.EmailOptions.Subject != "" {
-		overrideSubject, err := notifuse_mjml.ProcessLiquidTemplate(
+		overrideSubject, err := broadside_mjml.ProcessLiquidTemplate(
 			*request.EmailOptions.Subject,
 			request.MessageData.Data,
 			"email_subject_override",

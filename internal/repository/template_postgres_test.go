@@ -12,7 +12,7 @@ import (
 	"github.com/DATA-DOG/go-sqlmock"
 	"github.com/sheyaln/sabokit-broadside/internal/domain"
 	"github.com/sheyaln/sabokit-broadside/internal/repository/testutil"
-	"github.com/sheyaln/sabokit-broadside/pkg/notifuse_mjml"
+	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
@@ -184,32 +184,32 @@ func (m *MockWorkspaceRepository) WithWorkspaceTransaction(ctx context.Context, 
 }
 
 // Helper function to create a simple text block for testing
-func createTestTextBlock(id, textContent string) notifuse_mjml.EmailBlock {
+func createTestTextBlock(id, textContent string) broadside_mjml.EmailBlock {
 	content := textContent
-	base := notifuse_mjml.NewBaseBlock(id, notifuse_mjml.MJMLComponentMjText)
+	base := broadside_mjml.NewBaseBlock(id, broadside_mjml.MJMLComponentMjText)
 	base.Content = &content
-	return &notifuse_mjml.MJTextBlock{BaseBlock: base}
+	return &broadside_mjml.MJTextBlock{BaseBlock: base}
 }
 
 // Helper function to create a valid MJML tree structure for testing
-func createValidTestTree() notifuse_mjml.EmailBlock {
+func createValidTestTree() broadside_mjml.EmailBlock {
 	textBlock := createTestTextBlock("txt1", "Test content")
-	columnBase := notifuse_mjml.NewBaseBlock("col1", notifuse_mjml.MJMLComponentMjColumn)
-	columnBase.Children = []notifuse_mjml.EmailBlock{textBlock}
-	columnBlock := &notifuse_mjml.MJColumnBlock{BaseBlock: columnBase}
+	columnBase := broadside_mjml.NewBaseBlock("col1", broadside_mjml.MJMLComponentMjColumn)
+	columnBase.Children = []broadside_mjml.EmailBlock{textBlock}
+	columnBlock := &broadside_mjml.MJColumnBlock{BaseBlock: columnBase}
 
-	sectionBase := notifuse_mjml.NewBaseBlock("sec1", notifuse_mjml.MJMLComponentMjSection)
-	sectionBase.Children = []notifuse_mjml.EmailBlock{columnBlock}
-	sectionBlock := &notifuse_mjml.MJSectionBlock{BaseBlock: sectionBase}
+	sectionBase := broadside_mjml.NewBaseBlock("sec1", broadside_mjml.MJMLComponentMjSection)
+	sectionBase.Children = []broadside_mjml.EmailBlock{columnBlock}
+	sectionBlock := &broadside_mjml.MJSectionBlock{BaseBlock: sectionBase}
 
-	bodyBase := notifuse_mjml.NewBaseBlock("body1", notifuse_mjml.MJMLComponentMjBody)
-	bodyBase.Children = []notifuse_mjml.EmailBlock{sectionBlock}
-	bodyBlock := &notifuse_mjml.MJBodyBlock{BaseBlock: bodyBase}
+	bodyBase := broadside_mjml.NewBaseBlock("body1", broadside_mjml.MJMLComponentMjBody)
+	bodyBase.Children = []broadside_mjml.EmailBlock{sectionBlock}
+	bodyBlock := &broadside_mjml.MJBodyBlock{BaseBlock: bodyBase}
 
-	rootBase := notifuse_mjml.NewBaseBlock("root", notifuse_mjml.MJMLComponentMjml)
+	rootBase := broadside_mjml.NewBaseBlock("root", broadside_mjml.MJMLComponentMjml)
 	rootBase.Attributes["version"] = "4.0.0"
-	rootBase.Children = []notifuse_mjml.EmailBlock{bodyBlock}
-	return &notifuse_mjml.MJMLBlock{BaseBlock: rootBase}
+	rootBase.Children = []broadside_mjml.EmailBlock{bodyBlock}
+	return &broadside_mjml.MJMLBlock{BaseBlock: rootBase}
 }
 
 // Helper function to create a valid template for testing

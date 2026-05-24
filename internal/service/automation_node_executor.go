@@ -12,7 +12,7 @@ import (
 
 	"github.com/sheyaln/sabokit-broadside/internal/domain"
 	"github.com/sheyaln/sabokit-broadside/pkg/logger"
-	"github.com/sheyaln/sabokit-broadside/pkg/notifuse_mjml"
+	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
 	"github.com/google/uuid"
 )
 
@@ -299,7 +299,7 @@ func (e *EmailNodeExecutor) Execute(ctx context.Context, params NodeExecutionPar
 		endpoint = *workspace.Settings.CustomEndpointURL
 	}
 
-	trackingSettings := notifuse_mjml.TrackingSettings{
+	trackingSettings := broadside_mjml.TrackingSettings{
 		Endpoint:       endpoint,
 		EnableTracking: workspace.Settings.EmailTrackingEnabled,
 		UTMSource:      "automation",
@@ -344,15 +344,15 @@ func (e *EmailNodeExecutor) Execute(ctx context.Context, params NodeExecutionPar
 	emailContent := template.ResolveEmailContent(contactLang, workspace.Settings.DefaultLanguage)
 
 	// 9. Compile template
-	compileReq := notifuse_mjml.CompileTemplateRequest{
+	compileReq := broadside_mjml.CompileTemplateRequest{
 		WorkspaceID:      params.WorkspaceID,
 		MessageID:        messageID,
 		VisualEditorTree: emailContent.VisualEditorTree,
-		TemplateData:     notifuse_mjml.MapOfAny(templateData),
+		TemplateData:     broadside_mjml.MapOfAny(templateData),
 		TrackingSettings: trackingSettings,
 	}
 	compileReq.MjmlSource = emailContent.GetCodeModeMjmlSource()
-	compiledTemplate, err := notifuse_mjml.CompileTemplate(compileReq)
+	compiledTemplate, err := broadside_mjml.CompileTemplate(compileReq)
 	if err != nil {
 		return nil, fmt.Errorf("failed to compile template: %w", err)
 	}
@@ -366,7 +366,7 @@ func (e *EmailNodeExecutor) Execute(ctx context.Context, params NodeExecutionPar
 	htmlContent := *compiledTemplate.HTML
 
 	// 10. Process subject line through Liquid templating
-	subject, err := notifuse_mjml.ProcessLiquidTemplate(
+	subject, err := broadside_mjml.ProcessLiquidTemplate(
 		emailContent.Subject,
 		templateData,
 		"email_subject",

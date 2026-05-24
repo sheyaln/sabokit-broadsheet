@@ -11,9 +11,9 @@ import (
 	"strconv"
 	"time"
 
-	// Import the notifuse_mjml package
+	// Import the broadside_mjml package
 
-	"github.com/sheyaln/sabokit-broadside/pkg/notifuse_mjml"
+	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
 	"github.com/asaskevich/govalidator"
 )
 
@@ -281,7 +281,7 @@ type EmailTemplate struct {
 	Subject          string                  `json:"subject"`
 	SubjectPreview   *string                 `json:"subject_preview,omitempty"`
 	CompiledPreview  string                  `json:"compiled_preview"` // compiled html
-	VisualEditorTree notifuse_mjml.EmailBlock `json:"visual_editor_tree"`
+	VisualEditorTree broadside_mjml.EmailBlock `json:"visual_editor_tree"`
 	Text             *string                 `json:"text,omitempty"`
 }
 
@@ -321,7 +321,7 @@ func (e *EmailTemplate) Validate(testData MapOfAny) error {
 		}
 	} else {
 		// Visual mode validation (default)
-		if e.VisualEditorTree.GetType() != notifuse_mjml.MJMLComponentMjml {
+		if e.VisualEditorTree.GetType() != broadside_mjml.MJMLComponentMjml {
 			return fmt.Errorf("invalid email template: visual_editor_tree must have type 'mjml'")
 		}
 		if e.VisualEditorTree.GetChildren() == nil {
@@ -338,16 +338,16 @@ func (e *EmailTemplate) Validate(testData MapOfAny) error {
 				templateDataStr = string(jsonDataBytes)
 			}
 
-			// Compile tree to MJML using our pkg/notifuse_mjml function
+			// Compile tree to MJML using our pkg/broadside_mjml function
 			var mjmlResult string
 			if templateDataStr != "" {
-				result, err := notifuse_mjml.ConvertJSONToMJMLWithData(e.VisualEditorTree, templateDataStr)
+				result, err := broadside_mjml.ConvertJSONToMJMLWithData(e.VisualEditorTree, templateDataStr)
 				if err != nil {
 					return fmt.Errorf("failed to convert tree to MJML: %w", err)
 				}
 				mjmlResult = result
 			} else {
-				mjmlResult = notifuse_mjml.ConvertJSONToMJML(e.VisualEditorTree)
+				mjmlResult = broadside_mjml.ConvertJSONToMJML(e.VisualEditorTree)
 			}
 			e.CompiledPreview = mjmlResult
 		}
@@ -411,7 +411,7 @@ func (x *EmailTemplate) UnmarshalJSON(data []byte) error {
 
 	// Handle the VisualEditorTree field specially
 	if len(aux.VisualEditorTree) > 0 {
-		block, err := notifuse_mjml.UnmarshalEmailBlock(aux.VisualEditorTree)
+		block, err := broadside_mjml.UnmarshalEmailBlock(aux.VisualEditorTree)
 		if err != nil {
 			return fmt.Errorf("failed to unmarshal VisualEditorTree: %w", err)
 		}
@@ -747,9 +747,9 @@ func (r *DeleteTemplateRequest) Validate() (workspaceID string, id string, err e
 
 // --- Compile Request/Response ---
 
-// Use types from notifuse_mjml package
-type CompileTemplateRequest = notifuse_mjml.CompileTemplateRequest
-type CompileTemplateResponse = notifuse_mjml.CompileTemplateResponse
+// Use types from broadside_mjml package
+type CompileTemplateRequest = broadside_mjml.CompileTemplateRequest
+type CompileTemplateResponse = broadside_mjml.CompileTemplateResponse
 
 // TemplateService provides operations for managing templates
 type TemplateService interface {
@@ -769,7 +769,7 @@ type TemplateService interface {
 	DeleteTemplate(ctx context.Context, workspaceID string, id string) error
 
 	// CompileTemplate compiles a visual editor tree to MJML and HTML
-	CompileTemplate(ctx context.Context, payload CompileTemplateRequest) (*CompileTemplateResponse, error) // Use notifuse_mjml.EmailBlock
+	CompileTemplate(ctx context.Context, payload CompileTemplateRequest) (*CompileTemplateResponse, error) // Use broadside_mjml.EmailBlock
 }
 
 // TemplateRepository provides database operations for templates
@@ -818,7 +818,7 @@ type TemplateDataRequest struct {
 	ContactWithList    ContactWithList                `json:"contact_with_list"`
 	MessageID          string                         `json:"message_id"`
 	ProvidedData       MapOfAny                       `json:"provided_data,omitempty"`
-	TrackingSettings   notifuse_mjml.TrackingSettings `json:"tracking_settings"`
+	TrackingSettings   broadside_mjml.TrackingSettings `json:"tracking_settings"`
 	Broadcast          *Broadcast                     `json:"broadcast,omitempty"`
 }
 

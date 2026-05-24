@@ -5849,7 +5849,7 @@ msgstr "Cargando eventos de webhook..."
 msgid "Loading webhook status..."
 msgstr "Cargando estado del webhook..."
 
-#: src/components/blog_editor/NotifuseEditor.tsx:478
+#: src/components/blog_editor/BroadsideEditor.tsx:478
 #: src/components/messages/MessageHistoryTab.tsx:610
 #: src/components/templates/TemplateSelectorInput.tsx:131
 #: src/components/timeline/ContactTimeline.tsx:823
@@ -9085,7 +9085,7 @@ msgstr "Iniciar subida"
 msgid "Start writing your blog post..."
 msgstr "Empieza a escribir tu publicación de blog..."
 
-#: src/components/blog_editor/NotifuseEditor.tsx:367
+#: src/components/blog_editor/BroadsideEditor.tsx:367
 #: src/components/email_builder/ui/tiptap/TiptapRichEditor.tsx:21
 msgid "Start writing..."
 msgstr "Empieza a escribir..."

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import type { Editor } from '@tiptap/react'
-import { useNotifuseEditor } from '../../hooks/useEditor'
+import { useBroadsideEditor } from '../../hooks/useEditor'
 import { notifuseActionRegistry } from './ActionRegistry'
 import type { ActionDefinition } from './ActionRegistry'
 
@@ -81,7 +81,7 @@ export function useActions(
   config?: UseActionsConfig
 ): Map<string, BatchActionState> {
   const { editor: providedEditor, hideWhenUnavailable = false } = config || {}
-  const { editor } = useNotifuseEditor(providedEditor)
+  const { editor } = useBroadsideEditor(providedEditor)
 
   // Track visibility states for all actions
   const [visibilityMap, setVisibilityMap] = useState<Map<string, boolean>>(() => {

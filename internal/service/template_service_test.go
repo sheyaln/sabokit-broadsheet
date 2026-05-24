@@ -12,7 +12,7 @@ import (
 	"github.com/sheyaln/sabokit-broadside/internal/service"                  // Added logger import
 	"github.com/sheyaln/sabokit-broadside/pkg/logger"
 	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks" // Corrected import path
-	"github.com/sheyaln/sabokit-broadside/pkg/notifuse_mjml"
+	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
 	"github.com/golang/mock/gomock" // Added gomock import
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -72,12 +72,12 @@ func TestTemplateService_CreateTemplate(t *testing.T) {
 			SenderID:        "sender-123",
 			Subject:         "Test Email",
 			CompiledPreview: "<p>Test</p>",
-			VisualEditorTree: func() notifuse_mjml.EmailBlock {
-				bodyBase := notifuse_mjml.NewBaseBlock("body", notifuse_mjml.MJMLComponentMjBody)
-				bodyBlock := &notifuse_mjml.MJBodyBlock{BaseBlock: bodyBase}
-				rootBase := notifuse_mjml.NewBaseBlock("root", notifuse_mjml.MJMLComponentMjml)
-				rootBase.Children = []notifuse_mjml.EmailBlock{bodyBlock}
-				return &notifuse_mjml.MJMLBlock{BaseBlock: rootBase}
+			VisualEditorTree: func() broadside_mjml.EmailBlock {
+				bodyBase := broadside_mjml.NewBaseBlock("body", broadside_mjml.MJMLComponentMjBody)
+				bodyBlock := &broadside_mjml.MJBodyBlock{BaseBlock: bodyBase}
+				rootBase := broadside_mjml.NewBaseBlock("root", broadside_mjml.MJMLComponentMjml)
+				rootBase.Children = []broadside_mjml.EmailBlock{bodyBlock}
+				return &broadside_mjml.MJMLBlock{BaseBlock: rootBase}
 			}(),
 		},
 		// Version should be set to 1 by the service
@@ -209,12 +209,12 @@ func TestTemplateService_CreateTemplate(t *testing.T) {
 				SenderID:        "sender-123",
 				Subject:         "Test Email",
 				CompiledPreview: "<p>Test</p>",
-				VisualEditorTree: func() notifuse_mjml.EmailBlock {
-					bodyBase := notifuse_mjml.NewBaseBlock("body", notifuse_mjml.MJMLComponentMjBody)
-					bodyBlock := &notifuse_mjml.MJBodyBlock{BaseBlock: bodyBase}
-					rootBase := notifuse_mjml.NewBaseBlock("root", notifuse_mjml.MJMLComponentMjml)
-					rootBase.Children = []notifuse_mjml.EmailBlock{bodyBlock}
-					return &notifuse_mjml.MJMLBlock{BaseBlock: rootBase}
+				VisualEditorTree: func() broadside_mjml.EmailBlock {
+					bodyBase := broadside_mjml.NewBaseBlock("body", broadside_mjml.MJMLComponentMjBody)
+					bodyBlock := &broadside_mjml.MJBodyBlock{BaseBlock: bodyBase}
+					rootBase := broadside_mjml.NewBaseBlock("root", broadside_mjml.MJMLComponentMjml)
+					rootBase.Children = []broadside_mjml.EmailBlock{bodyBlock}
+					return &broadside_mjml.MJMLBlock{BaseBlock: rootBase}
 				}(),
 			},
 			Translations: map[string]domain.TemplateTranslation{
@@ -222,12 +222,12 @@ func TestTemplateService_CreateTemplate(t *testing.T) {
 					SenderID:        "sender-123",
 					Subject:         "Betreff DE",
 					CompiledPreview: "<p>Test DE</p>",
-					VisualEditorTree: func() notifuse_mjml.EmailBlock {
-						bodyBase := notifuse_mjml.NewBaseBlock("body", notifuse_mjml.MJMLComponentMjBody)
-						bodyBlock := &notifuse_mjml.MJBodyBlock{BaseBlock: bodyBase}
-						rootBase := notifuse_mjml.NewBaseBlock("root", notifuse_mjml.MJMLComponentMjml)
-						rootBase.Children = []notifuse_mjml.EmailBlock{bodyBlock}
-						return &notifuse_mjml.MJMLBlock{BaseBlock: rootBase}
+					VisualEditorTree: func() broadside_mjml.EmailBlock {
+						bodyBase := broadside_mjml.NewBaseBlock("body", broadside_mjml.MJMLComponentMjBody)
+						bodyBlock := &broadside_mjml.MJBodyBlock{BaseBlock: bodyBase}
+						rootBase := broadside_mjml.NewBaseBlock("root", broadside_mjml.MJMLComponentMjml)
+						rootBase.Children = []broadside_mjml.EmailBlock{bodyBlock}
+						return &broadside_mjml.MJMLBlock{BaseBlock: rootBase}
 					}(),
 				}},
 			},
@@ -273,12 +273,12 @@ func TestTemplateService_CreateTemplate(t *testing.T) {
 				SenderID:        "sender-123",
 				Subject:         "Test Email",
 				CompiledPreview: "<p>Test</p>",
-				VisualEditorTree: func() notifuse_mjml.EmailBlock {
-					bodyBase := notifuse_mjml.NewBaseBlock("body", notifuse_mjml.MJMLComponentMjBody)
-					bodyBlock := &notifuse_mjml.MJBodyBlock{BaseBlock: bodyBase}
-					rootBase := notifuse_mjml.NewBaseBlock("root", notifuse_mjml.MJMLComponentMjml)
-					rootBase.Children = []notifuse_mjml.EmailBlock{bodyBlock}
-					return &notifuse_mjml.MJMLBlock{BaseBlock: rootBase}
+				VisualEditorTree: func() broadside_mjml.EmailBlock {
+					bodyBase := broadside_mjml.NewBaseBlock("body", broadside_mjml.MJMLComponentMjBody)
+					bodyBlock := &broadside_mjml.MJBodyBlock{BaseBlock: bodyBase}
+					rootBase := broadside_mjml.NewBaseBlock("root", broadside_mjml.MJMLComponentMjml)
+					rootBase.Children = []broadside_mjml.EmailBlock{bodyBlock}
+					return &broadside_mjml.MJMLBlock{BaseBlock: rootBase}
 				}(),
 			},
 			Translations: map[string]domain.TemplateTranslation{
@@ -286,12 +286,12 @@ func TestTemplateService_CreateTemplate(t *testing.T) {
 					SenderID:        "sender-123",
 					Subject:         "Sujet FR",
 					CompiledPreview: "<p>Test FR</p>",
-					VisualEditorTree: func() notifuse_mjml.EmailBlock {
-						bodyBase := notifuse_mjml.NewBaseBlock("body", notifuse_mjml.MJMLComponentMjBody)
-						bodyBlock := &notifuse_mjml.MJBodyBlock{BaseBlock: bodyBase}
-						rootBase := notifuse_mjml.NewBaseBlock("root", notifuse_mjml.MJMLComponentMjml)
-						rootBase.Children = []notifuse_mjml.EmailBlock{bodyBlock}
-						return &notifuse_mjml.MJMLBlock{BaseBlock: rootBase}
+					VisualEditorTree: func() broadside_mjml.EmailBlock {
+						bodyBase := broadside_mjml.NewBaseBlock("body", broadside_mjml.MJMLComponentMjBody)
+						bodyBlock := &broadside_mjml.MJBodyBlock{BaseBlock: bodyBase}
+						rootBase := broadside_mjml.NewBaseBlock("root", broadside_mjml.MJMLComponentMjml)
+						rootBase.Children = []broadside_mjml.EmailBlock{bodyBlock}
+						return &broadside_mjml.MJMLBlock{BaseBlock: rootBase}
 					}(),
 				}},
 			},
@@ -337,12 +337,12 @@ func TestTemplateService_CreateTemplate(t *testing.T) {
 				SenderID:        "sender-123",
 				Subject:         "Test Email",
 				CompiledPreview: "<p>Test</p>",
-				VisualEditorTree: func() notifuse_mjml.EmailBlock {
-					bodyBase := notifuse_mjml.NewBaseBlock("body", notifuse_mjml.MJMLComponentMjBody)
-					bodyBlock := &notifuse_mjml.MJBodyBlock{BaseBlock: bodyBase}
-					rootBase := notifuse_mjml.NewBaseBlock("root", notifuse_mjml.MJMLComponentMjml)
-					rootBase.Children = []notifuse_mjml.EmailBlock{bodyBlock}
-					return &notifuse_mjml.MJMLBlock{BaseBlock: rootBase}
+				VisualEditorTree: func() broadside_mjml.EmailBlock {
+					bodyBase := broadside_mjml.NewBaseBlock("body", broadside_mjml.MJMLComponentMjBody)
+					bodyBlock := &broadside_mjml.MJBodyBlock{BaseBlock: bodyBase}
+					rootBase := broadside_mjml.NewBaseBlock("root", broadside_mjml.MJMLComponentMjml)
+					rootBase.Children = []broadside_mjml.EmailBlock{bodyBlock}
+					return &broadside_mjml.MJMLBlock{BaseBlock: rootBase}
 				}(),
 			},
 			Translations: map[string]domain.TemplateTranslation{
@@ -350,12 +350,12 @@ func TestTemplateService_CreateTemplate(t *testing.T) {
 					SenderID:        "sender-123",
 					Subject:         "Sujet FR",
 					CompiledPreview: "<p>FR</p>",
-					VisualEditorTree: func() notifuse_mjml.EmailBlock {
-						bodyBase := notifuse_mjml.NewBaseBlock("body", notifuse_mjml.MJMLComponentMjBody)
-						bodyBlock := &notifuse_mjml.MJBodyBlock{BaseBlock: bodyBase}
-						rootBase := notifuse_mjml.NewBaseBlock("root", notifuse_mjml.MJMLComponentMjml)
-						rootBase.Children = []notifuse_mjml.EmailBlock{bodyBlock}
-						return &notifuse_mjml.MJMLBlock{BaseBlock: rootBase}
+					VisualEditorTree: func() broadside_mjml.EmailBlock {
+						bodyBase := broadside_mjml.NewBaseBlock("body", broadside_mjml.MJMLComponentMjBody)
+						bodyBlock := &broadside_mjml.MJBodyBlock{BaseBlock: bodyBase}
+						rootBase := broadside_mjml.NewBaseBlock("root", broadside_mjml.MJMLComponentMjml)
+						rootBase.Children = []broadside_mjml.EmailBlock{bodyBlock}
+						return &broadside_mjml.MJMLBlock{BaseBlock: rootBase}
 					}(),
 				}},
 			},
@@ -407,12 +407,12 @@ func TestTemplateService_GetTemplateByID(t *testing.T) {
 			SenderID:        "sender-123",
 			Subject:         "Test Email",
 			CompiledPreview: "<html><body>Test</body></html>",
-			VisualEditorTree: func() notifuse_mjml.EmailBlock {
-				bodyBase := notifuse_mjml.NewBaseBlock("body", notifuse_mjml.MJMLComponentMjBody)
-				bodyBlock := &notifuse_mjml.MJBodyBlock{BaseBlock: bodyBase}
-				rootBase := notifuse_mjml.NewBaseBlock("root", notifuse_mjml.MJMLComponentMjml)
-				rootBase.Children = []notifuse_mjml.EmailBlock{bodyBlock}
-				return &notifuse_mjml.MJMLBlock{BaseBlock: rootBase}
+			VisualEditorTree: func() broadside_mjml.EmailBlock {
+				bodyBase := broadside_mjml.NewBaseBlock("body", broadside_mjml.MJMLComponentMjBody)
+				bodyBlock := &broadside_mjml.MJBodyBlock{BaseBlock: bodyBase}
+				rootBase := broadside_mjml.NewBaseBlock("root", broadside_mjml.MJMLComponentMjml)
+				rootBase.Children = []broadside_mjml.EmailBlock{bodyBlock}
+				return &broadside_mjml.MJMLBlock{BaseBlock: rootBase}
 			}(),
 		},
 	}
@@ -635,12 +635,12 @@ func TestTemplateService_UpdateTemplate(t *testing.T) {
 			SenderID:        "sender-123",
 			Subject:         "Old Subject",
 			CompiledPreview: "<p>Old</p>",
-			VisualEditorTree: func() notifuse_mjml.EmailBlock {
-				bodyBase := notifuse_mjml.NewBaseBlock("body", notifuse_mjml.MJMLComponentMjBody)
-				bodyBlock := &notifuse_mjml.MJBodyBlock{BaseBlock: bodyBase}
-				rootBase := notifuse_mjml.NewBaseBlock("root", notifuse_mjml.MJMLComponentMjml)
-				rootBase.Children = []notifuse_mjml.EmailBlock{bodyBlock}
-				return &notifuse_mjml.MJMLBlock{BaseBlock: rootBase}
+			VisualEditorTree: func() broadside_mjml.EmailBlock {
+				bodyBase := broadside_mjml.NewBaseBlock("body", broadside_mjml.MJMLComponentMjBody)
+				bodyBlock := &broadside_mjml.MJBodyBlock{BaseBlock: bodyBase}
+				rootBase := broadside_mjml.NewBaseBlock("root", broadside_mjml.MJMLComponentMjml)
+				rootBase.Children = []broadside_mjml.EmailBlock{bodyBlock}
+				return &broadside_mjml.MJMLBlock{BaseBlock: rootBase}
 			}(),
 		},
 	}
@@ -654,12 +654,12 @@ func TestTemplateService_UpdateTemplate(t *testing.T) {
 			SenderID:        "sender-123",   // Updated field
 			Subject:         "New Subject",  // Updated field
 			CompiledPreview: "<h1>New</h1>", // Updated field
-			VisualEditorTree: func() notifuse_mjml.EmailBlock {
-				bodyBase := notifuse_mjml.NewBaseBlock("body", notifuse_mjml.MJMLComponentMjBody)
-				bodyBlock := &notifuse_mjml.MJBodyBlock{BaseBlock: bodyBase}
-				rootBase := notifuse_mjml.NewBaseBlock("root", notifuse_mjml.MJMLComponentMjml)
-				rootBase.Children = []notifuse_mjml.EmailBlock{bodyBlock}
-				return &notifuse_mjml.MJMLBlock{BaseBlock: rootBase}
+			VisualEditorTree: func() broadside_mjml.EmailBlock {
+				bodyBase := broadside_mjml.NewBaseBlock("body", broadside_mjml.MJMLComponentMjBody)
+				bodyBlock := &broadside_mjml.MJBodyBlock{BaseBlock: bodyBase}
+				rootBase := broadside_mjml.NewBaseBlock("root", broadside_mjml.MJMLComponentMjml)
+				rootBase.Children = []broadside_mjml.EmailBlock{bodyBlock}
+				return &broadside_mjml.MJMLBlock{BaseBlock: rootBase}
 			}(),
 		},
 		// Version, CreatedAt, UpdatedAt should be handled by the service
@@ -1016,30 +1016,30 @@ func (l *MockLogger) WithField(key string, value interface{}) logger.Logger  { r
 func (l *MockLogger) WithFields(fields map[string]interface{}) logger.Logger { return l }
 
 // --- Helper to create a basic text block ---
-func createTestTextBlock(id, textContent string) notifuse_mjml.EmailBlock {
+func createTestTextBlock(id, textContent string) broadside_mjml.EmailBlock {
 	content := textContent
-	base := notifuse_mjml.NewBaseBlock(id, notifuse_mjml.MJMLComponentMjText)
+	base := broadside_mjml.NewBaseBlock(id, broadside_mjml.MJMLComponentMjText)
 	base.Content = &content
-	return &notifuse_mjml.MJTextBlock{BaseBlock: base}
+	return &broadside_mjml.MJTextBlock{BaseBlock: base}
 }
 
 // --- Helper to create a valid nested structure for testing success ---
-func createValidTestTree(textBlock notifuse_mjml.EmailBlock) notifuse_mjml.EmailBlock {
-	columnBase := notifuse_mjml.NewBaseBlock("col1", notifuse_mjml.MJMLComponentMjColumn)
-	columnBase.Children = []notifuse_mjml.EmailBlock{textBlock}
-	columnBlock := &notifuse_mjml.MJColumnBlock{BaseBlock: columnBase}
+func createValidTestTree(textBlock broadside_mjml.EmailBlock) broadside_mjml.EmailBlock {
+	columnBase := broadside_mjml.NewBaseBlock("col1", broadside_mjml.MJMLComponentMjColumn)
+	columnBase.Children = []broadside_mjml.EmailBlock{textBlock}
+	columnBlock := &broadside_mjml.MJColumnBlock{BaseBlock: columnBase}
 
-	sectionBase := notifuse_mjml.NewBaseBlock("sec1", notifuse_mjml.MJMLComponentMjSection)
-	sectionBase.Children = []notifuse_mjml.EmailBlock{columnBlock}
-	sectionBlock := &notifuse_mjml.MJSectionBlock{BaseBlock: sectionBase}
+	sectionBase := broadside_mjml.NewBaseBlock("sec1", broadside_mjml.MJMLComponentMjSection)
+	sectionBase.Children = []broadside_mjml.EmailBlock{columnBlock}
+	sectionBlock := &broadside_mjml.MJSectionBlock{BaseBlock: sectionBase}
 
-	bodyBase := notifuse_mjml.NewBaseBlock("body1", notifuse_mjml.MJMLComponentMjBody)
-	bodyBase.Children = []notifuse_mjml.EmailBlock{sectionBlock}
-	bodyBlock := &notifuse_mjml.MJBodyBlock{BaseBlock: bodyBase}
+	bodyBase := broadside_mjml.NewBaseBlock("body1", broadside_mjml.MJMLComponentMjBody)
+	bodyBase.Children = []broadside_mjml.EmailBlock{sectionBlock}
+	bodyBlock := &broadside_mjml.MJBodyBlock{BaseBlock: bodyBase}
 
-	rootBase := notifuse_mjml.NewBaseBlock("root", notifuse_mjml.MJMLComponentMjml)
-	rootBase.Children = []notifuse_mjml.EmailBlock{bodyBlock}
-	return &notifuse_mjml.MJMLBlock{BaseBlock: rootBase}
+	rootBase := broadside_mjml.NewBaseBlock("root", broadside_mjml.MJMLComponentMjml)
+	rootBase.Children = []broadside_mjml.EmailBlock{bodyBlock}
+	return &broadside_mjml.MJMLBlock{BaseBlock: rootBase}
 }
 
 func TestCompileTemplate_Success(t *testing.T) {
@@ -1056,7 +1056,7 @@ func TestCompileTemplate_Success(t *testing.T) {
 	workspaceID := "ws_123"
 	userID := "user_abc"
 	testTree := createValidTestTree(createTestTextBlock("txt1", "Hello {{name}}"))
-	testData := notifuse_mjml.MapOfAny{"name": "Tester"}
+	testData := broadside_mjml.MapOfAny{"name": "Tester"}
 
 	// Mock expectations
 	mockAuthService.EXPECT().AuthenticateUserForWorkspace(gomock.Any(), workspaceID).Return(ctx, &domain.User{ID: userID}, &domain.UserWorkspace{
@@ -1112,9 +1112,9 @@ func TestCompileTemplate_TreeToMjmlError(t *testing.T) {
 
 	// Create a tree containing a block that will cause TreeToMjml to return an error (e.g., bad liquid)
 	invalidContent := "{% invalid tag %}"
-	badLiquidBase := notifuse_mjml.NewBaseBlock("badliq", notifuse_mjml.MJMLComponentMjText)
+	badLiquidBase := broadside_mjml.NewBaseBlock("badliq", broadside_mjml.MJMLComponentMjText)
 	badLiquidBase.Content = &invalidContent
-	badLiquidBlock := &notifuse_mjml.MJTextBlock{BaseBlock: badLiquidBase}
+	badLiquidBlock := &broadside_mjml.MJTextBlock{BaseBlock: badLiquidBase}
 	badLiquidTree := createValidTestTree(badLiquidBlock) // Embed the bad block in a valid structure
 
 	// Mock Auth
@@ -1131,7 +1131,7 @@ func TestCompileTemplate_TreeToMjmlError(t *testing.T) {
 	resp, err := svc.CompileTemplate(ctx, domain.CompileTemplateRequest{
 		WorkspaceID:      workspaceID,
 		VisualEditorTree: badLiquidTree,
-		TemplateData:     notifuse_mjml.MapOfAny{"name": "test"}, // Provide template data to trigger liquid processing
+		TemplateData:     broadside_mjml.MapOfAny{"name": "test"}, // Provide template data to trigger liquid processing
 	})
 
 	// --- Assert ---
@@ -1201,7 +1201,7 @@ func TestCompileTemplate_SystemCallBypassesAuth(t *testing.T) {
 		WorkspaceID:      workspaceID,
 		VisualEditorTree: testTree,
 		TemplateData:     nil,
-		TrackingSettings: notifuse_mjml.TrackingSettings{},
+		TrackingSettings: broadside_mjml.TrackingSettings{},
 	})
 
 	// --- Assert ---
@@ -1223,8 +1223,8 @@ func TestCompileTemplate_InvalidTreeData(t *testing.T) {
 	ctx := context.Background()
 	workspaceID := "ws_123"
 	userID := "user_abc"
-	invalidTree := &notifuse_mjml.MJMLBlock{
-		BaseBlock: notifuse_mjml.NewBaseBlock("root_invalid", notifuse_mjml.MJMLComponentMjml),
+	invalidTree := &broadside_mjml.MJMLBlock{
+		BaseBlock: broadside_mjml.NewBaseBlock("root_invalid", broadside_mjml.MJMLComponentMjml),
 	}
 
 	// Mock expectations
@@ -1366,12 +1366,12 @@ func TestTemplateService_UpdateTemplate_CodeMode(t *testing.T) {
 				EditorMode:      "", // visual (default)
 				Subject:         "Subject",
 				CompiledPreview: "<html>Test</html>",
-				VisualEditorTree: func() notifuse_mjml.EmailBlock {
-					bodyBase := notifuse_mjml.NewBaseBlock("body", notifuse_mjml.MJMLComponentMjBody)
-					bodyBlock := &notifuse_mjml.MJBodyBlock{BaseBlock: bodyBase}
-					rootBase := notifuse_mjml.NewBaseBlock("root", notifuse_mjml.MJMLComponentMjml)
-					rootBase.Children = []notifuse_mjml.EmailBlock{bodyBlock}
-					return &notifuse_mjml.MJMLBlock{BaseBlock: rootBase}
+				VisualEditorTree: func() broadside_mjml.EmailBlock {
+					bodyBase := broadside_mjml.NewBaseBlock("body", broadside_mjml.MJMLComponentMjBody)
+					bodyBlock := &broadside_mjml.MJBodyBlock{BaseBlock: bodyBase}
+					rootBase := broadside_mjml.NewBaseBlock("root", broadside_mjml.MJMLComponentMjml)
+					rootBase.Children = []broadside_mjml.EmailBlock{bodyBlock}
+					return &broadside_mjml.MJMLBlock{BaseBlock: rootBase}
 				}(),
 			},
 		}
@@ -1417,12 +1417,12 @@ func TestTemplateService_UpdateTemplate_CodeMode(t *testing.T) {
 				EditorMode:      domain.EditorModeVisual, // trying to switch
 				Subject:         "Subject",
 				CompiledPreview: "<html>Test</html>",
-				VisualEditorTree: func() notifuse_mjml.EmailBlock {
-					bodyBase := notifuse_mjml.NewBaseBlock("body", notifuse_mjml.MJMLComponentMjBody)
-					bodyBlock := &notifuse_mjml.MJBodyBlock{BaseBlock: bodyBase}
-					rootBase := notifuse_mjml.NewBaseBlock("root", notifuse_mjml.MJMLComponentMjml)
-					rootBase.Children = []notifuse_mjml.EmailBlock{bodyBlock}
-					return &notifuse_mjml.MJMLBlock{BaseBlock: rootBase}
+				VisualEditorTree: func() broadside_mjml.EmailBlock {
+					bodyBase := broadside_mjml.NewBaseBlock("body", broadside_mjml.MJMLComponentMjBody)
+					bodyBlock := &broadside_mjml.MJBodyBlock{BaseBlock: bodyBase}
+					rootBase := broadside_mjml.NewBaseBlock("root", broadside_mjml.MJMLComponentMjml)
+					rootBase.Children = []broadside_mjml.EmailBlock{bodyBlock}
+					return &broadside_mjml.MJMLBlock{BaseBlock: rootBase}
 				}(),
 			},
 		}

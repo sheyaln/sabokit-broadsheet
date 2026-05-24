@@ -1,11 +1,11 @@
 package templates
 
 import (
-	"github.com/sheyaln/sabokit-broadside/pkg/notifuse_mjml"
+	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
 )
 
 // CreateSupabaseEmailChangeEmailStructure creates the detailed MJML structure for the email change confirmation email
-func CreateSupabaseEmailChangeEmailStructure() (notifuse_mjml.EmailBlock, error) {
+func CreateSupabaseEmailChangeEmailStructure() (broadside_mjml.EmailBlock, error) {
 	jsonTemplate := `{
   "emailTree": {
     "id": "mjml-1",

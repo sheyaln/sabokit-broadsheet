@@ -7,7 +7,7 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/pkg/notifuse_mjml"
+	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
 	"github.com/asaskevich/govalidator"
 	"github.com/google/uuid"
 )
@@ -18,7 +18,7 @@ import (
 type TemplateBlock struct {
 	ID      string                   `json:"id"`
 	Name    string                   `json:"name"`
-	Block   notifuse_mjml.EmailBlock `json:"block"`
+	Block   broadside_mjml.EmailBlock `json:"block"`
 	Created time.Time                `json:"created"`
 	Updated time.Time                `json:"updated"`
 }
@@ -70,7 +70,7 @@ func (tb *TemplateBlock) UnmarshalJSON(data []byte) error {
 		if blockStr == `""` || blockStr == `null` {
 			tb.Block = nil
 		} else {
-			block, err := notifuse_mjml.UnmarshalEmailBlock(temp.Block)
+			block, err := broadside_mjml.UnmarshalEmailBlock(temp.Block)
 			if err != nil {
 				return fmt.Errorf("failed to unmarshal template block: %w", err)
 			}
@@ -87,7 +87,7 @@ func (tb *TemplateBlock) UnmarshalJSON(data []byte) error {
 type CreateTemplateBlockRequest struct {
 	WorkspaceID string                   `json:"workspace_id"`
 	Name        string                   `json:"name"`
-	Block       notifuse_mjml.EmailBlock `json:"block"`
+	Block       broadside_mjml.EmailBlock `json:"block"`
 }
 
 // UnmarshalJSON implements custom JSON unmarshaling for CreateTemplateBlockRequest
@@ -112,7 +112,7 @@ func (r *CreateTemplateBlockRequest) UnmarshalJSON(data []byte) error {
 		if blockStr == `""` || blockStr == `null` {
 			r.Block = nil
 		} else {
-			block, err := notifuse_mjml.UnmarshalEmailBlock(temp.Block)
+			block, err := broadside_mjml.UnmarshalEmailBlock(temp.Block)
 			if err != nil {
 				return fmt.Errorf("failed to unmarshal template block: %w", err)
 			}
@@ -164,7 +164,7 @@ type UpdateTemplateBlockRequest struct {
 	WorkspaceID string                   `json:"workspace_id"`
 	ID          string                   `json:"id"`
 	Name        string                   `json:"name"`
-	Block       notifuse_mjml.EmailBlock `json:"block"`
+	Block       broadside_mjml.EmailBlock `json:"block"`
 }
 
 // UnmarshalJSON implements custom JSON unmarshaling for UpdateTemplateBlockRequest
@@ -191,7 +191,7 @@ func (r *UpdateTemplateBlockRequest) UnmarshalJSON(data []byte) error {
 		if blockStr == `""` || blockStr == `null` {
 			r.Block = nil
 		} else {
-			block, err := notifuse_mjml.UnmarshalEmailBlock(temp.Block)
+			block, err := broadside_mjml.UnmarshalEmailBlock(temp.Block)
 			if err != nil {
 				return fmt.Errorf("failed to unmarshal template block: %w", err)
 			}

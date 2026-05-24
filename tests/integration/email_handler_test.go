@@ -14,7 +14,7 @@ import (
 
 	"github.com/sheyaln/sabokit-broadside/internal/domain"
 	"github.com/sheyaln/sabokit-broadside/pkg/crypto"
-	"github.com/sheyaln/sabokit-broadside/pkg/notifuse_mjml"
+	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
 	"github.com/sheyaln/sabokit-broadside/tests/testutil"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -965,11 +965,11 @@ func TestEmailHandler_TrackedLinkPreservesUTM(t *testing.T) {
 		`<mj-button href="https://shop.example.com/product?ref=email">Buy Now</mj-button>` +
 		`</mj-column></mj-section></mj-body></mjml>`
 
-	compileResp, err := notifuse_mjml.CompileTemplate(notifuse_mjml.CompileTemplateRequest{
+	compileResp, err := broadside_mjml.CompileTemplate(broadside_mjml.CompileTemplateRequest{
 		WorkspaceID: "ws-utm",
 		MessageID:   "msg-utm",
 		MjmlSource:  &mjmlSource,
-		TrackingSettings: notifuse_mjml.TrackingSettings{
+		TrackingSettings: broadside_mjml.TrackingSettings{
 			EnableTracking: true,
 			Endpoint:       baseURL,
 			UTMSource:      "newsletter",

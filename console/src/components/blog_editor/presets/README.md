@@ -53,16 +53,16 @@ Pre-configured style presets for common use cases.
 ### Import a single preset:
 
 ```typescript
-import { NotifuseEditor, timesJournalPreset } from '@/components/blog_editor'
+import { BroadsideEditor, timesJournalPreset } from '@/components/blog_editor'
 
-;<NotifuseEditor styleConfig={timesJournalPreset} />
+;<BroadsideEditor styleConfig={timesJournalPreset} />
 ```
 
 ### Import multiple presets:
 
 ```typescript
 import {
-  NotifuseEditor,
+  BroadsideEditor,
   timesJournalPreset,
   modernMagazinePreset,
   minimalBlogPreset,
@@ -77,7 +77,7 @@ const presets = {
   academic: academicPaperPreset
 }
 
-<NotifuseEditor styleConfig={presets[selectedPreset]} />
+<BroadsideEditor styleConfig={presets[selectedPreset]} />
 ```
 
 ### Customize a preset:
@@ -97,7 +97,7 @@ const customJournal = {
   }
 }
 
-<NotifuseEditor styleConfig={customJournal} />
+<BroadsideEditor styleConfig={customJournal} />
 ```
 
 ## Creating Your Own Preset

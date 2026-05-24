@@ -11,7 +11,7 @@ import (
 
 	"github.com/sheyaln/sabokit-broadside/internal/domain"
 	"github.com/sheyaln/sabokit-broadside/pkg/logger"
-	"github.com/sheyaln/sabokit-broadside/pkg/notifuse_mjml"
+	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
 	"github.com/google/uuid"
 	"golang.org/x/sync/semaphore"
 )
@@ -239,7 +239,7 @@ func (s *messageSender) SendToRecipient(ctx context.Context, workspaceID string,
 		broadcast.UTMParameters.Content = template.ID
 	}
 
-	trackingSettings := notifuse_mjml.TrackingSettings{
+	trackingSettings := broadside_mjml.TrackingSettings{
 		Endpoint:       endpoint,
 		EnableTracking: trackingEnabled,
 		UTMSource:      broadcast.UTMParameters.Source,
@@ -258,7 +258,7 @@ func (s *messageSender) SendToRecipient(ctx context.Context, workspaceID string,
 	}
 
 	// Compile template with the provided data
-	compileReq := notifuse_mjml.CompileTemplateRequest{
+	compileReq := broadside_mjml.CompileTemplateRequest{
 		WorkspaceID:      workspaceID,
 		MessageID:        messageID,
 		VisualEditorTree: emailContent.VisualEditorTree,
@@ -266,7 +266,7 @@ func (s *messageSender) SendToRecipient(ctx context.Context, workspaceID string,
 		TrackingSettings: trackingSettings,
 	}
 	compileReq.MjmlSource = emailContent.GetCodeModeMjmlSource()
-	compiledTemplate, err := notifuse_mjml.CompileTemplate(compileReq)
+	compiledTemplate, err := broadside_mjml.CompileTemplate(compileReq)
 
 	if err != nil {
 		s.logger.WithFields(map[string]interface{}{
@@ -307,7 +307,7 @@ func (s *messageSender) SendToRecipient(ctx context.Context, workspaceID string,
 	}
 
 	// Process subject line through Liquid templating if it contains Liquid tags
-	processedSubject, err := notifuse_mjml.ProcessLiquidTemplate(
+	processedSubject, err := broadside_mjml.ProcessLiquidTemplate(
 		emailContent.Subject,
 		data,
 		"email_subject",
@@ -524,7 +524,7 @@ func (s *messageSender) SendBatch(ctx context.Context, workspaceID string, integ
 		// Generate a unique message ID for tracking
 		messageID := generateMessageID(workspaceID)
 
-		trackingSettings := notifuse_mjml.TrackingSettings{
+		trackingSettings := broadside_mjml.TrackingSettings{
 			Endpoint:       endpoint,
 			EnableTracking: trackingEnabled,
 			UTMSource:      broadcast.UTMParameters.Source,

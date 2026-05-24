@@ -1,11 +1,11 @@
 package templates
 
 import (
-	"github.com/sheyaln/sabokit-broadside/pkg/notifuse_mjml"
+	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
 )
 
 // CreateSupabaseMagicLinkEmailStructure creates the detailed MJML structure for the magic link email
-func CreateSupabaseMagicLinkEmailStructure() (notifuse_mjml.EmailBlock, error) {
+func CreateSupabaseMagicLinkEmailStructure() (broadside_mjml.EmailBlock, error) {
 	jsonTemplate := `{
   "emailTree": {
     "id": "mjml-1",

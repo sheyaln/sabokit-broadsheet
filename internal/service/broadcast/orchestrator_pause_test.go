@@ -10,7 +10,7 @@ import (
 	"github.com/sheyaln/sabokit-broadside/internal/service/broadcast"
 	"github.com/sheyaln/sabokit-broadside/internal/service/broadcast/mocks"
 	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
-	"github.com/sheyaln/sabokit-broadside/pkg/notifuse_mjml"
+	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -140,14 +140,14 @@ func TestBroadcastOrchestrator_Process_PausedBroadcast(t *testing.T) {
 		AnyTimes()
 
 	// Mock template repository - the orchestrator will try to load templates before detecting pause
-	bodyBlock := &notifuse_mjml.MJBodyBlock{
-		BaseBlock: notifuse_mjml.NewBaseBlock("body-1", notifuse_mjml.MJMLComponentMjBody),
+	bodyBlock := &broadside_mjml.MJBodyBlock{
+		BaseBlock: broadside_mjml.NewBaseBlock("body-1", broadside_mjml.MJMLComponentMjBody),
 	}
 
-	mjmlBlock := &notifuse_mjml.MJMLBlock{
-		BaseBlock: notifuse_mjml.NewBaseBlock("mjml-root", notifuse_mjml.MJMLComponentMjml),
+	mjmlBlock := &broadside_mjml.MJMLBlock{
+		BaseBlock: broadside_mjml.NewBaseBlock("mjml-root", broadside_mjml.MJMLComponentMjml),
 	}
-	mjmlBlock.Children = []notifuse_mjml.EmailBlock{bodyBlock}
+	mjmlBlock.Children = []broadside_mjml.EmailBlock{bodyBlock}
 
 	mockTemplate := &domain.Template{
 		ID:   "template-1",
@@ -322,14 +322,14 @@ func TestBroadcastOrchestrator_Process_PausedDuringProcessing(t *testing.T) {
 		AnyTimes()
 
 	// Mock template
-	bodyBlock := &notifuse_mjml.MJBodyBlock{
-		BaseBlock: notifuse_mjml.NewBaseBlock("body-1", notifuse_mjml.MJMLComponentMjBody),
+	bodyBlock := &broadside_mjml.MJBodyBlock{
+		BaseBlock: broadside_mjml.NewBaseBlock("body-1", broadside_mjml.MJMLComponentMjBody),
 	}
 
-	mjmlBlock := &notifuse_mjml.MJMLBlock{
-		BaseBlock: notifuse_mjml.NewBaseBlock("mjml-root", notifuse_mjml.MJMLComponentMjml),
+	mjmlBlock := &broadside_mjml.MJMLBlock{
+		BaseBlock: broadside_mjml.NewBaseBlock("mjml-root", broadside_mjml.MJMLComponentMjml),
 	}
-	mjmlBlock.Children = []notifuse_mjml.EmailBlock{bodyBlock}
+	mjmlBlock.Children = []broadside_mjml.EmailBlock{bodyBlock}
 
 	mockTemplate := &domain.Template{
 		ID:   "template-1",
@@ -510,14 +510,14 @@ func TestBroadcastOrchestrator_Process_PausedVsCancelled(t *testing.T) {
 				Return(workspace, nil).
 				AnyTimes()
 
-			bodyBlock := &notifuse_mjml.MJBodyBlock{
-				BaseBlock: notifuse_mjml.NewBaseBlock("body-1", notifuse_mjml.MJMLComponentMjBody),
+			bodyBlock := &broadside_mjml.MJBodyBlock{
+				BaseBlock: broadside_mjml.NewBaseBlock("body-1", broadside_mjml.MJMLComponentMjBody),
 			}
 
-			mjmlBlock := &notifuse_mjml.MJMLBlock{
-				BaseBlock: notifuse_mjml.NewBaseBlock("mjml-root", notifuse_mjml.MJMLComponentMjml),
+			mjmlBlock := &broadside_mjml.MJMLBlock{
+				BaseBlock: broadside_mjml.NewBaseBlock("mjml-root", broadside_mjml.MJMLComponentMjml),
 			}
-			mjmlBlock.Children = []notifuse_mjml.EmailBlock{bodyBlock}
+			mjmlBlock.Children = []broadside_mjml.EmailBlock{bodyBlock}
 
 			mockTemplate := &domain.Template{
 				ID:   "template-1",

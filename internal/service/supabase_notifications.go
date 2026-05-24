@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/pkg/notifuse_mjml"
+	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
 )
 
 // CreateDefaultSupabaseNotifications creates the default Supabase auth email transactional notifications
@@ -29,7 +29,7 @@ func (s *SupabaseService) CreateDefaultSupabaseNotifications(ctx context.Context
 				TemplateID: mappings.Signup,
 			},
 		},
-		TrackingSettings: notifuse_mjml.TrackingSettings{
+		TrackingSettings: broadside_mjml.TrackingSettings{
 			EnableTracking: false,
 		},
 		CreatedAt: time.Now().UTC(),
@@ -52,7 +52,7 @@ func (s *SupabaseService) CreateDefaultSupabaseNotifications(ctx context.Context
 				TemplateID: mappings.MagicLink,
 			},
 		},
-		TrackingSettings: notifuse_mjml.TrackingSettings{
+		TrackingSettings: broadside_mjml.TrackingSettings{
 			EnableTracking: false,
 		},
 		CreatedAt: time.Now().UTC(),
@@ -75,7 +75,7 @@ func (s *SupabaseService) CreateDefaultSupabaseNotifications(ctx context.Context
 				TemplateID: mappings.Recovery,
 			},
 		},
-		TrackingSettings: notifuse_mjml.TrackingSettings{
+		TrackingSettings: broadside_mjml.TrackingSettings{
 			EnableTracking: false,
 		},
 		CreatedAt: time.Now().UTC(),
@@ -98,7 +98,7 @@ func (s *SupabaseService) CreateDefaultSupabaseNotifications(ctx context.Context
 				TemplateID: mappings.EmailChange,
 			},
 		},
-		TrackingSettings: notifuse_mjml.TrackingSettings{
+		TrackingSettings: broadside_mjml.TrackingSettings{
 			EnableTracking: false,
 		},
 		CreatedAt: time.Now().UTC(),
@@ -121,7 +121,7 @@ func (s *SupabaseService) CreateDefaultSupabaseNotifications(ctx context.Context
 				TemplateID: mappings.Invite,
 			},
 		},
-		TrackingSettings: notifuse_mjml.TrackingSettings{
+		TrackingSettings: broadside_mjml.TrackingSettings{
 			EnableTracking: false,
 		},
 		CreatedAt: time.Now().UTC(),
@@ -144,7 +144,7 @@ func (s *SupabaseService) CreateDefaultSupabaseNotifications(ctx context.Context
 				TemplateID: mappings.Reauthentication,
 			},
 		},
-		TrackingSettings: notifuse_mjml.TrackingSettings{
+		TrackingSettings: broadside_mjml.TrackingSettings{
 			EnableTracking: false,
 		},
 		CreatedAt: time.Now().UTC(),

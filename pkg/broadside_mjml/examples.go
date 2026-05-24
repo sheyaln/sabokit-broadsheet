@@ -1,4 +1,4 @@
-package notifuse_mjml
+package broadside_mjml
 
 import (
 	"fmt"

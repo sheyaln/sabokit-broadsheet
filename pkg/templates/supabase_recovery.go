@@ -1,11 +1,11 @@
 package templates
 
 import (
-	"github.com/sheyaln/sabokit-broadside/pkg/notifuse_mjml"
+	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
 )
 
 // CreateSupabaseRecoveryEmailStructure creates the detailed MJML structure for the password recovery email
-func CreateSupabaseRecoveryEmailStructure() (notifuse_mjml.EmailBlock, error) {
+func CreateSupabaseRecoveryEmailStructure() (broadside_mjml.EmailBlock, error) {
 	jsonTemplate := `{
   "emailTree": {
     "id": "mjml-1",

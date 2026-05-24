@@ -19,19 +19,19 @@ The Notifuse Editor supports dynamic styling through a type-safe JSON configurat
 
 ```typescript
 import {
-  NotifuseEditor,
+  BroadsideEditor,
   defaultEditorStyles,
   type EditorStyleConfig
 } from '@/components/blog_editor'
 
 // Use default styles (styleConfig is optional)
 function MyEditor() {
-  return <NotifuseEditor />
+  return <BroadsideEditor />
 }
 
 // Or explicitly pass default styles
 function MyEditorWithDefaults() {
-  return <NotifuseEditor styleConfig={defaultEditorStyles} />
+  return <BroadsideEditor styleConfig={defaultEditorStyles} />
 }
 
 // Or customize
@@ -45,7 +45,7 @@ const customStyles: EditorStyleConfig = {
 }
 
 function MyCustomEditor() {
-  return <NotifuseEditor styleConfig={customStyles} />
+  return <BroadsideEditor styleConfig={customStyles} />
 }
 ```
 
@@ -74,7 +74,7 @@ interface EditorStyleConfig {
 }
 
 // Component Props
-interface NotifuseEditorProps {
+interface BroadsideEditorProps {
   placeholder?: string
   initialContent?: string
   styleConfig?: EditorStyleConfig // Optional - defaults to defaultEditorStyles
@@ -192,7 +192,7 @@ Store the `EditorStyleConfig` JSON in your database alongside blog posts or as u
 
 ```typescript
 import {
-  NotifuseEditor,
+  BroadsideEditor,
   defaultEditorStyles,
   validateStyleConfig,
   type EditorStyleConfig
@@ -209,7 +209,7 @@ function BlogEditorComponent({ configFromBackend }: EditorComponentProps) {
   // Validate config (throws StyleConfigValidationError on invalid config)
   const validConfig = validateStyleConfig(styleConfig)
 
-  return <NotifuseEditor styleConfig={validConfig} />
+  return <BroadsideEditor styleConfig={validConfig} />
 }
 ```
 
@@ -276,9 +276,9 @@ The editor includes four ready-to-use presets:
 Traditional newspaper typography with classic serif fonts:
 
 ```typescript
-import { NotifuseEditor, timesJournalPreset } from '@/components/blog_editor'
+import { BroadsideEditor, timesJournalPreset } from '@/components/blog_editor'
 
-;<NotifuseEditor styleConfig={timesJournalPreset} />
+;<BroadsideEditor styleConfig={timesJournalPreset} />
 ```
 
 - ✍️ Georgia/Times New Roman serif
@@ -291,9 +291,9 @@ import { NotifuseEditor, timesJournalPreset } from '@/components/blog_editor'
 Clean, contemporary design with sans-serif:
 
 ```typescript
-import { NotifuseEditor, modernMagazinePreset } from '@/components/blog_editor'
+import { BroadsideEditor, modernMagazinePreset } from '@/components/blog_editor'
 
-;<NotifuseEditor styleConfig={modernMagazinePreset} />
+;<BroadsideEditor styleConfig={modernMagazinePreset} />
 ```
 
 - 🎨 System sans-serif fonts
@@ -306,9 +306,9 @@ import { NotifuseEditor, modernMagazinePreset } from '@/components/blog_editor'
 Distraction-free Medium-inspired design:
 
 ```typescript
-import { NotifuseEditor, minimalBlogPreset } from '@/components/blog_editor'
+import { BroadsideEditor, minimalBlogPreset } from '@/components/blog_editor'
 
-;<NotifuseEditor styleConfig={minimalBlogPreset} />
+;<BroadsideEditor styleConfig={minimalBlogPreset} />
 ```
 
 - 📖 Clean 18px reading size
@@ -321,9 +321,9 @@ import { NotifuseEditor, minimalBlogPreset } from '@/components/blog_editor'
 Formal, structured scholarly writing:
 
 ```typescript
-import { NotifuseEditor, academicPaperPreset } from '@/components/blog_editor'
+import { BroadsideEditor, academicPaperPreset } from '@/components/blog_editor'
 
-;<NotifuseEditor styleConfig={academicPaperPreset} />
+;<BroadsideEditor styleConfig={academicPaperPreset} />
 ```
 
 - 📚 Georgia/Times serif

@@ -8,7 +8,7 @@ import (
 	"github.com/sheyaln/sabokit-broadside/internal/domain"
 	"github.com/sheyaln/sabokit-broadside/internal/domain/mocks"
 	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
-	"github.com/sheyaln/sabokit-broadside/pkg/notifuse_mjml"
+	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
 	"github.com/golang/mock/gomock"
 	"github.com/google/uuid"
 	"github.com/preslavrachev/gomjml/mjml"
@@ -857,7 +857,7 @@ func TestEmailService_SendEmailForTemplate(t *testing.T) {
 	}
 
 	// Create tracking settings
-	trackingSettings := notifuse_mjml.TrackingSettings{
+	trackingSettings := broadside_mjml.TrackingSettings{
 		Endpoint:       "https://track.example.com",
 		EnableTracking: true,
 		UTMSource:      "newsletter",
@@ -897,8 +897,8 @@ func TestEmailService_SendEmailForTemplate(t *testing.T) {
 			Subject:  "Welcome to Our Service",
 			SenderID: emailSender.ID,
 			ReplyTo:  "support@example.com",
-			VisualEditorTree: &notifuse_mjml.MJMLBlock{
-				BaseBlock: notifuse_mjml.NewBaseBlock("root", notifuse_mjml.MJMLComponentMjml),
+			VisualEditorTree: &broadside_mjml.MJMLBlock{
+				BaseBlock: broadside_mjml.NewBaseBlock("root", broadside_mjml.MJMLComponentMjml),
 			},
 		},
 	}

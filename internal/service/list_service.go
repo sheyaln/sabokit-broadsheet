@@ -9,7 +9,7 @@ import (
 	"github.com/sheyaln/sabokit-broadside/pkg/cache"
 	"github.com/sheyaln/sabokit-broadside/pkg/disposable_emails"
 	"github.com/sheyaln/sabokit-broadside/pkg/logger"
-	"github.com/sheyaln/sabokit-broadside/pkg/notifuse_mjml"
+	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
 	"github.com/google/uuid"
 )
 
@@ -403,7 +403,7 @@ func (s *ListService) SubscribeToLists(ctx context.Context, payload *domain.Subs
 			endpoint = *workspace.Settings.CustomEndpointURL
 		}
 
-		trackingSettings := notifuse_mjml.TrackingSettings{
+		trackingSettings := broadside_mjml.TrackingSettings{
 			Endpoint:       endpoint,
 			EnableTracking: workspace.Settings.EmailTrackingEnabled,
 			UTMSource:      workspace.Settings.WebsiteURL,

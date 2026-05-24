@@ -16,7 +16,7 @@ import (
 	"github.com/sheyaln/sabokit-broadside/internal/domain/mocks"
 	http_handler "github.com/sheyaln/sabokit-broadside/internal/http"
 	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
-	notifusemjml "github.com/sheyaln/sabokit-broadside/pkg/notifuse_mjml"
+	notifusemjml "github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
 
 	"github.com/golang/mock/gomock"
 

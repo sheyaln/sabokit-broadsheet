@@ -9,7 +9,7 @@ import (
 
 	"github.com/sheyaln/sabokit-broadside/internal/domain"
 	"github.com/sheyaln/sabokit-broadside/pkg/logger"
-	"github.com/sheyaln/sabokit-broadside/pkg/notifuse_mjml"
+	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
 )
 
 type TemplateService struct {
@@ -49,17 +49,17 @@ func (s *TemplateService) updateEmailMetadataBlocks(template *domain.Template) {
 		return
 	}
 
-	s.updateBlockContentRecursively(template.Email.VisualEditorTree, notifuse_mjml.MJMLComponentMjTitle, template.Name)
+	s.updateBlockContentRecursively(template.Email.VisualEditorTree, broadside_mjml.MJMLComponentMjTitle, template.Name)
 
 	previewText := template.Name
 	if template.Email.SubjectPreview != nil && *template.Email.SubjectPreview != "" {
 		previewText = *template.Email.SubjectPreview
 	}
-	s.updateBlockContentRecursively(template.Email.VisualEditorTree, notifuse_mjml.MJMLComponentMjPreview, previewText)
+	s.updateBlockContentRecursively(template.Email.VisualEditorTree, broadside_mjml.MJMLComponentMjPreview, previewText)
 }
 
 // updateBlockContentRecursively traverses the email block tree and updates content for blocks of the specified type
-func (s *TemplateService) updateBlockContentRecursively(block notifuse_mjml.EmailBlock, blockType notifuse_mjml.MJMLComponentType, content string) {
+func (s *TemplateService) updateBlockContentRecursively(block broadside_mjml.EmailBlock, blockType broadside_mjml.MJMLComponentType, content string) {
 	if block == nil {
 		return
 	}
@@ -67,9 +67,9 @@ func (s *TemplateService) updateBlockContentRecursively(block notifuse_mjml.Emai
 	// Check if this is the block type we're looking for
 	if block.GetType() == blockType {
 		switch typedBlock := block.(type) {
-		case *notifuse_mjml.MJTitleBlock:
+		case *broadside_mjml.MJTitleBlock:
 			typedBlock.Content = &content
-		case *notifuse_mjml.MJPreviewBlock:
+		case *broadside_mjml.MJPreviewBlock:
 			typedBlock.Content = &content
 		}
 	}
@@ -423,5 +423,5 @@ func (s *TemplateService) CompileTemplate(ctx context.Context, payload domain.Co
 		payload.TrackingSettings.Endpoint = s.apiEndpoint
 	}
 
-	return notifuse_mjml.CompileTemplate(payload)
+	return broadside_mjml.CompileTemplate(payload)
 }
