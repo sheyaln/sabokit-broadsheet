@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Notifuse/notifuse/config"
+	"github.com/sheyaln/sabokit-broadside/config"
 	_ "github.com/lib/pq"
 )
 

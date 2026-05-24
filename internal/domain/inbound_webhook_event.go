@@ -10,8 +10,8 @@ import (
 	"github.com/asaskevich/govalidator"
 )
 
-//go:generate mockgen -destination mocks/mock_inbound_webhook_event_repository.go -package mocks github.com/Notifuse/notifuse/internal/domain InboundWebhookEventRepository
-//go:generate mockgen -destination mocks/mock_inbound_webhook_event_service.go -package mocks github.com/Notifuse/notifuse/internal/domain InboundWebhookEventServiceInterface
+//go:generate mockgen -destination mocks/mock_inbound_webhook_event_repository.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain InboundWebhookEventRepository
+//go:generate mockgen -destination mocks/mock_inbound_webhook_event_service.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain InboundWebhookEventServiceInterface
 
 // EmailEventType defines the type of email webhook event
 type EmailEventType string

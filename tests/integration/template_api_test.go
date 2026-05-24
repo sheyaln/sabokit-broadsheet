@@ -7,9 +7,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Notifuse/notifuse/config"
-	"github.com/Notifuse/notifuse/internal/app"
-	"github.com/Notifuse/notifuse/tests/testutil"
+	"github.com/sheyaln/sabokit-broadside/config"
+	"github.com/sheyaln/sabokit-broadside/internal/app"
+	"github.com/sheyaln/sabokit-broadside/tests/testutil"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -258,7 +258,7 @@ func TestTemplateIntegrationBasic(t *testing.T) {
 
 // TestTemplateCompileWithSubject verifies that /api/templates.compile renders
 // subject and subject_preview through the Liquid engine using test_data.
-// Regression for https://github.com/Notifuse/notifuse/issues/329.
+// Regression for https://github.com/sheyaln/sabokit-broadside/issues/329.
 func TestTemplateCompileWithSubject(t *testing.T) {
 	testutil.SkipIfShort(t)
 	testutil.SetupTestEnvironment()

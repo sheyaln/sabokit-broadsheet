@@ -7,7 +7,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/Notifuse/notifuse/internal/domain"
+	"github.com/sheyaln/sabokit-broadside/internal/domain"
 )
 
 func TestContactList_Validate(t *testing.T) {

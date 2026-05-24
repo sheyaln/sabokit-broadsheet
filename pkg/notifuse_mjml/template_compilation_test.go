@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Notifuse/notifuse/pkg/crypto"
+	"github.com/sheyaln/sabokit-broadside/pkg/crypto"
 	"github.com/stretchr/testify/assert"
 )
 

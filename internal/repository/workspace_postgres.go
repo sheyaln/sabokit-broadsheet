@@ -8,10 +8,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Notifuse/notifuse/config"
-	"github.com/Notifuse/notifuse/internal/database"
-	"github.com/Notifuse/notifuse/internal/domain"
-	pkgDatabase "github.com/Notifuse/notifuse/pkg/database"
+	"github.com/sheyaln/sabokit-broadside/config"
+	"github.com/sheyaln/sabokit-broadside/internal/database"
+	"github.com/sheyaln/sabokit-broadside/internal/domain"
+	pkgDatabase "github.com/sheyaln/sabokit-broadside/pkg/database"
 )
 
 type workspaceRepository struct {

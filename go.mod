@@ -1,4 +1,4 @@
-module github.com/Notifuse/notifuse
+module github.com/sheyaln/sabokit-broadside
 
 go 1.25.4
 

@@ -8,9 +8,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Notifuse/notifuse/internal/domain"
-	"github.com/Notifuse/notifuse/internal/repository"
-	"github.com/Notifuse/notifuse/pkg/notifuse_mjml"
+	"github.com/sheyaln/sabokit-broadside/internal/domain"
+	"github.com/sheyaln/sabokit-broadside/internal/repository"
+	"github.com/sheyaln/sabokit-broadside/pkg/notifuse_mjml"
 	"github.com/google/uuid"
 )
 

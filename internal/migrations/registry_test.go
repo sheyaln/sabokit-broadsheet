@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
-	"github.com/Notifuse/notifuse/config"
-	"github.com/Notifuse/notifuse/internal/domain"
+	"github.com/sheyaln/sabokit-broadside/config"
+	"github.com/sheyaln/sabokit-broadside/internal/domain"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

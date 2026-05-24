@@ -3,7 +3,7 @@ package domain
 import (
 	"fmt"
 
-	"github.com/Notifuse/notifuse/pkg/crypto"
+	"github.com/sheyaln/sabokit-broadside/pkg/crypto"
 )
 
 // OpenAISettings contains configuration for OpenAI or OpenAI-compatible providers

@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/Notifuse/notifuse/pkg/crypto"
+	"github.com/sheyaln/sabokit-broadside/pkg/crypto"
 	svix "github.com/standard-webhooks/standard-webhooks/libraries/go"
 )
 

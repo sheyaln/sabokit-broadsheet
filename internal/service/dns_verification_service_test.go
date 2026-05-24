@@ -5,8 +5,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Notifuse/notifuse/internal/domain"
-	pkgmocks "github.com/Notifuse/notifuse/pkg/mocks"
+	"github.com/sheyaln/sabokit-broadside/internal/domain"
+	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

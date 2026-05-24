@@ -5,15 +5,15 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/Notifuse/notifuse/pkg/notifuse_mjml"
+	"github.com/sheyaln/sabokit-broadside/pkg/notifuse_mjml"
 	"github.com/asaskevich/govalidator"
 	"github.com/google/uuid"
 )
 
-//go:generate mockgen -destination mocks/mock_email_service.go -package mocks github.com/Notifuse/notifuse/internal/domain EmailServiceInterface
-//go:generate mockgen -destination mocks/mock_http_client.go -package mocks github.com/Notifuse/notifuse/internal/domain HTTPClient
-//go:generate mockgen -destination mocks/mock_ses_client.go -package mocks github.com/Notifuse/notifuse/internal/domain SESClient
-//go:generate mockgen -destination mocks/mock_email_provider_service.go -package mocks github.com/Notifuse/notifuse/internal/domain EmailProviderService
+//go:generate mockgen -destination mocks/mock_email_service.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain EmailServiceInterface
+//go:generate mockgen -destination mocks/mock_http_client.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain HTTPClient
+//go:generate mockgen -destination mocks/mock_ses_client.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain SESClient
+//go:generate mockgen -destination mocks/mock_email_provider_service.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain EmailProviderService
 
 // HTTPClient defines the interface for HTTP operations
 type HTTPClient interface {

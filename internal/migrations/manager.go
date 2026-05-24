@@ -8,9 +8,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/Notifuse/notifuse/config"
-	"github.com/Notifuse/notifuse/internal/domain"
-	"github.com/Notifuse/notifuse/pkg/logger"
+	"github.com/sheyaln/sabokit-broadside/config"
+	"github.com/sheyaln/sabokit-broadside/internal/domain"
+	"github.com/sheyaln/sabokit-broadside/pkg/logger"
 	_ "github.com/lib/pq" // PostgreSQL driver
 )
 

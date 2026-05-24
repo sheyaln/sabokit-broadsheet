@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/Notifuse/notifuse/internal/domain"
+	"github.com/sheyaln/sabokit-broadside/internal/domain"
 )
 
 // AllowedContactFields defines valid field names for updated_fields filter (prevents SQL injection)

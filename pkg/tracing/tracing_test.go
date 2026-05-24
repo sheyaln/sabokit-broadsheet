@@ -10,7 +10,7 @@ import (
 
 	"go.opencensus.io/trace"
 
-	"github.com/Notifuse/notifuse/config"
+	"github.com/sheyaln/sabokit-broadside/config"
 )
 
 func TestInitTracing_Disabled(t *testing.T) {

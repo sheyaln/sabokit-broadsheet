@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/Notifuse/notifuse/internal/service"
-	"github.com/Notifuse/notifuse/pkg/logger"
+	"github.com/sheyaln/sabokit-broadside/internal/service"
+	"github.com/sheyaln/sabokit-broadside/pkg/logger"
 )
 
 // SupabaseWebhookHandler handles HTTP requests for Supabase webhooks

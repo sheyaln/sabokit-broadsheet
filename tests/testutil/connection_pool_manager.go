@@ -5,7 +5,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Notifuse/notifuse/config"
+	"github.com/sheyaln/sabokit-broadside/config"
 )
 
 // TestConnectionPoolManager manages multiple isolated connection pools for tests

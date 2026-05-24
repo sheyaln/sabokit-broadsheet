@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
-	"github.com/Notifuse/notifuse/internal/service"
-	"github.com/Notifuse/notifuse/pkg/logger"
+	"github.com/sheyaln/sabokit-broadside/internal/service"
+	"github.com/sheyaln/sabokit-broadside/pkg/logger"
 	"github.com/stretchr/testify/assert"
 )
 

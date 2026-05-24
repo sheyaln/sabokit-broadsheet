@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Notifuse/notifuse/pkg/crypto"
+	"github.com/sheyaln/sabokit-broadside/pkg/crypto"
 	"github.com/preslavrachev/gomjml/mjml"
 )
 

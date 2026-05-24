@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Notifuse/notifuse/pkg/crypto"
-	"github.com/Notifuse/notifuse/pkg/smtp_bridge"
+	"github.com/sheyaln/sabokit-broadside/pkg/crypto"
+	"github.com/sheyaln/sabokit-broadside/pkg/smtp_bridge"
 	_ "github.com/lib/pq" // PostgreSQL driver
 	"github.com/spf13/viper"
 )

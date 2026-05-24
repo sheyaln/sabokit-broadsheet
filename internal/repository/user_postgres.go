@@ -10,8 +10,8 @@ import (
 	"github.com/google/uuid"
 	"go.opencensus.io/trace"
 
-	"github.com/Notifuse/notifuse/internal/domain"
-	"github.com/Notifuse/notifuse/pkg/tracing"
+	"github.com/sheyaln/sabokit-broadside/internal/domain"
+	"github.com/sheyaln/sabokit-broadside/pkg/tracing"
 )
 
 type userRepository struct {

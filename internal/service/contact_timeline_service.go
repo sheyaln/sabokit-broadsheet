@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 
-	"github.com/Notifuse/notifuse/internal/domain"
+	"github.com/sheyaln/sabokit-broadside/internal/domain"
 )
 
 // ContactTimelineService implements domain.ContactTimelineService

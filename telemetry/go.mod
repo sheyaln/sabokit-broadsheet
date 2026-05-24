@@ -1,4 +1,4 @@
-module github.com/Notifuse/notifuse/telemetry
+module github.com/sheyaln/sabokit-broadside/telemetry
 
 go 1.24.0
 

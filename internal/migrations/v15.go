@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/Notifuse/notifuse/config"
-	"github.com/Notifuse/notifuse/internal/domain"
+	"github.com/sheyaln/sabokit-broadside/config"
+	"github.com/sheyaln/sabokit-broadside/internal/domain"
 )
 
 // V15Migration migrates from PASETO to JWT authentication

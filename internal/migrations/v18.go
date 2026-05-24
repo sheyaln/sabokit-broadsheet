@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/Notifuse/notifuse/config"
-	"github.com/Notifuse/notifuse/internal/domain"
+	"github.com/sheyaln/sabokit-broadside/config"
+	"github.com/sheyaln/sabokit-broadside/internal/domain"
 )
 
 // V18Migration adds custom events system and semantic naming for all internal timeline events

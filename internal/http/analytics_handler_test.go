@@ -7,11 +7,11 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/Notifuse/notifuse/internal/domain/mocks"
+	"github.com/sheyaln/sabokit-broadside/internal/domain/mocks"
 
-	"github.com/Notifuse/notifuse/pkg/analytics"
+	"github.com/sheyaln/sabokit-broadside/pkg/analytics"
 
-	"github.com/Notifuse/notifuse/pkg/logger"
+	"github.com/sheyaln/sabokit-broadside/pkg/logger"
 
 	"github.com/golang/mock/gomock"
 

@@ -8,11 +8,11 @@ import (
 	"os"
 	"time"
 
-	"github.com/Notifuse/notifuse/config"
-	"github.com/Notifuse/notifuse/internal/database"
-	"github.com/Notifuse/notifuse/internal/migrations"
-	"github.com/Notifuse/notifuse/pkg/crypto"
-	"github.com/Notifuse/notifuse/pkg/logger"
+	"github.com/sheyaln/sabokit-broadside/config"
+	"github.com/sheyaln/sabokit-broadside/internal/database"
+	"github.com/sheyaln/sabokit-broadside/internal/migrations"
+	"github.com/sheyaln/sabokit-broadside/pkg/crypto"
+	"github.com/sheyaln/sabokit-broadside/pkg/logger"
 	_ "github.com/lib/pq"
 )
 

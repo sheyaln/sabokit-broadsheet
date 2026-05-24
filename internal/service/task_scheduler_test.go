@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	pkgmocks "github.com/Notifuse/notifuse/pkg/mocks"
+	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
 )

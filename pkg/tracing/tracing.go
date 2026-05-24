@@ -19,10 +19,10 @@ import (
 	"go.opencensus.io/stats/view"
 	"go.opencensus.io/trace"
 
-	"github.com/Notifuse/notifuse/config"
+	"github.com/sheyaln/sabokit-broadside/config"
 )
 
-//go:generate mockgen -destination=../mocks/mock_tracer.go -package=pkgmocks github.com/Notifuse/notifuse/pkg/tracing Tracer
+//go:generate mockgen -destination=../mocks/mock_tracer.go -package=pkgmocks github.com/sheyaln/sabokit-broadside/pkg/tracing Tracer
 
 // Tracer defines the interface for tracing functionality
 // codecov:ignore:start

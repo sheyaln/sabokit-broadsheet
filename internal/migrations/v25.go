@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/Notifuse/notifuse/config"
-	"github.com/Notifuse/notifuse/internal/domain"
+	"github.com/sheyaln/sabokit-broadside/config"
+	"github.com/sheyaln/sabokit-broadside/internal/domain"
 )
 
 // V25Migration fixes automation_enroll_contact to not check list subscription.

@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Notifuse/notifuse/internal/domain"
-	"github.com/Notifuse/notifuse/pkg/logger"
+	"github.com/sheyaln/sabokit-broadside/internal/domain"
+	"github.com/sheyaln/sabokit-broadside/pkg/logger"
 )
 
 // FirecrawlScrapeRequest is the request for scraping a URL

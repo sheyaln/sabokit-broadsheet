@@ -3,9 +3,9 @@ package broadcast
 import (
 	"testing"
 
-	"github.com/Notifuse/notifuse/internal/domain/mocks"
-	broadcastmocks "github.com/Notifuse/notifuse/internal/service/broadcast/mocks"
-	pkgmocks "github.com/Notifuse/notifuse/pkg/mocks"
+	"github.com/sheyaln/sabokit-broadside/internal/domain/mocks"
+	broadcastmocks "github.com/sheyaln/sabokit-broadside/internal/service/broadcast/mocks"
+	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
 )

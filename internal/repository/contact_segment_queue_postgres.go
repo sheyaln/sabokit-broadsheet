@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/Notifuse/notifuse/internal/domain"
+	"github.com/sheyaln/sabokit-broadside/internal/domain"
 	"github.com/lib/pq"
 )
 

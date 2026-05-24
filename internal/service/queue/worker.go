@@ -6,9 +6,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Notifuse/notifuse/internal/domain"
-	"github.com/Notifuse/notifuse/pkg/emailerror"
-	"github.com/Notifuse/notifuse/pkg/logger"
+	"github.com/sheyaln/sabokit-broadside/internal/domain"
+	"github.com/sheyaln/sabokit-broadside/pkg/emailerror"
+	"github.com/sheyaln/sabokit-broadside/pkg/logger"
 )
 
 // EmailQueueWorkerConfig holds configuration for the worker pool

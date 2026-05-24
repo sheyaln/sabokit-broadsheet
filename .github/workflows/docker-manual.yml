@@ -16,7 +16,7 @@ on:
 
 env:
   REGISTRY: docker.io
-  IMAGE_NAME: notifuse/notifuse
+  IMAGE_NAME: sheyaln/sabokit-broadside
 
 jobs:
   build:

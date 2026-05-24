@@ -5,8 +5,8 @@ import (
 	"time"
 )
 
-//go:generate mockgen -destination mocks/mock_auth_repository.go -package mocks github.com/Notifuse/notifuse/internal/domain AuthRepository
-//go:generate mockgen -destination mocks/mock_auth_service.go -package mocks github.com/Notifuse/notifuse/internal/domain AuthService
+//go:generate mockgen -destination mocks/mock_auth_repository.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain AuthRepository
+//go:generate mockgen -destination mocks/mock_auth_service.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain AuthService
 
 type ContextKey string
 

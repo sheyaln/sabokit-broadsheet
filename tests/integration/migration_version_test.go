@@ -6,10 +6,10 @@ import (
 	"os"
 	"testing"
 
-	"github.com/Notifuse/notifuse/config"
-	"github.com/Notifuse/notifuse/internal/migrations"
-	"github.com/Notifuse/notifuse/pkg/logger"
-	"github.com/Notifuse/notifuse/tests/testutil"
+	"github.com/sheyaln/sabokit-broadside/config"
+	"github.com/sheyaln/sabokit-broadside/internal/migrations"
+	"github.com/sheyaln/sabokit-broadside/pkg/logger"
+	"github.com/sheyaln/sabokit-broadside/tests/testutil"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

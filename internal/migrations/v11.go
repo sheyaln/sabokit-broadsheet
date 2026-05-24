@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/Notifuse/notifuse/config"
-	"github.com/Notifuse/notifuse/internal/domain"
+	"github.com/sheyaln/sabokit-broadside/config"
+	"github.com/sheyaln/sabokit-broadside/internal/domain"
 )
 
 // V11Migration implements the migration from version 10.x to 11.0

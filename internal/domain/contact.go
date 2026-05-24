@@ -12,7 +12,7 @@ import (
 	"time"
 	"unicode"
 
-	"github.com/Notifuse/notifuse/pkg/crypto"
+	"github.com/sheyaln/sabokit-broadside/pkg/crypto"
 	"github.com/asaskevich/govalidator"
 	"github.com/tidwall/gjson"
 )
@@ -21,8 +21,8 @@ var (
 	ErrContactNotFound = errors.New("contact not found")
 )
 
-//go:generate mockgen -destination mocks/mock_contact_service.go -package mocks github.com/Notifuse/notifuse/internal/domain ContactService
-//go:generate mockgen -destination mocks/mock_contact_repository.go -package mocks github.com/Notifuse/notifuse/internal/domain ContactRepository
+//go:generate mockgen -destination mocks/mock_contact_service.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain ContactService
+//go:generate mockgen -destination mocks/mock_contact_repository.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain ContactRepository
 
 // Contact represents a contact in the system
 type Contact struct {

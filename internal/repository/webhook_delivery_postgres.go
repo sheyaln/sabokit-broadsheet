@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/Notifuse/notifuse/internal/domain"
+	"github.com/sheyaln/sabokit-broadside/internal/domain"
 )
 
 // webhookDeliveryRepository implements domain.WebhookDeliveryRepository for PostgreSQL

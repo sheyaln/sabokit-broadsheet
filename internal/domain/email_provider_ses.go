@@ -4,15 +4,15 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/Notifuse/notifuse/pkg/crypto"
+	"github.com/sheyaln/sabokit-broadside/pkg/crypto"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/service/ses"
 	"github.com/aws/aws-sdk-go/service/sns"
 )
 
-//go:generate mockgen -destination mocks/mock_ses_service.go -package mocks github.com/Notifuse/notifuse/internal/domain SESServiceInterface
-//go:generate mockgen -destination mocks/mock_ses_client.go -package mocks github.com/Notifuse/notifuse/internal/domain SESClient
-//go:generate mockgen -destination mocks/mock_sns_client.go -package mocks github.com/Notifuse/notifuse/internal/domain SNSClient
+//go:generate mockgen -destination mocks/mock_ses_service.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain SESServiceInterface
+//go:generate mockgen -destination mocks/mock_ses_client.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain SESClient
+//go:generate mockgen -destination mocks/mock_sns_client.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain SNSClient
 
 // SESWebhookClient defines the interface for SES client operations related to webhook management
 type SESClient interface {

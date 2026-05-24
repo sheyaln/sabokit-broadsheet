@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/Notifuse/notifuse/internal/service"
-	"github.com/Notifuse/notifuse/pkg/logger"
+	"github.com/sheyaln/sabokit-broadside/internal/service"
+	"github.com/sheyaln/sabokit-broadside/pkg/logger"
 )
 
 // AppShutdowner defines the interface for triggering app shutdown

@@ -3,7 +3,7 @@ package domain
 import (
 	"testing"
 
-	"github.com/Notifuse/notifuse/pkg/analytics"
+	"github.com/sheyaln/sabokit-broadside/pkg/analytics"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

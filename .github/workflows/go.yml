@@ -42,7 +42,7 @@ jobs:
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          slug: Notifuse/notifuse
+          slug: sheyaln/sabokit-broadside
           files: coverage-unit.txt
           fail_ci_if_error: false
           verbose: true
@@ -152,7 +152,7 @@ jobs:
       #   uses: codecov/codecov-action@v3
       #   with:
       #     token: ${{ secrets.CODECOV_TOKEN }}
-      #     slug: Notifuse/notifuse
+      #     slug: sheyaln/sabokit-broadside
       #     file: coverage-integration.txt
       #     fail_ci_if_error: true
       #     verbose: true

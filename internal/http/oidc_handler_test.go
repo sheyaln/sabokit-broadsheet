@@ -15,9 +15,9 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/Notifuse/notifuse/internal/domain"
-	http_handler "github.com/Notifuse/notifuse/internal/http"
-	pkgmocks "github.com/Notifuse/notifuse/pkg/mocks"
+	"github.com/sheyaln/sabokit-broadside/internal/domain"
+	http_handler "github.com/sheyaln/sabokit-broadside/internal/http"
+	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
 )
 
 // fakeOIDCService is a hand-rolled fake satisfying http.OIDCServiceInterface.

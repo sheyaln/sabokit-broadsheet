@@ -6,11 +6,11 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/Notifuse/notifuse/internal/domain"
-	"github.com/Notifuse/notifuse/pkg/logger"
+	"github.com/sheyaln/sabokit-broadside/internal/domain"
+	"github.com/sheyaln/sabokit-broadside/pkg/logger"
 )
 
-//go:generate mockgen -destination=./mocks/mock_broadcast_orchestrator.go -package=mocks github.com/Notifuse/notifuse/internal/service/broadcast BroadcastOrchestratorInterface
+//go:generate mockgen -destination=./mocks/mock_broadcast_orchestrator.go -package=mocks github.com/sheyaln/sabokit-broadside/internal/service/broadcast BroadcastOrchestratorInterface
 
 // BroadcastOrchestratorInterface defines the interface for broadcast orchestration
 type BroadcastOrchestratorInterface interface {

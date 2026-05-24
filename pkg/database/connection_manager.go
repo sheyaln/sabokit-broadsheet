@@ -9,8 +9,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Notifuse/notifuse/config"
-	"github.com/Notifuse/notifuse/internal/database"
+	"github.com/sheyaln/sabokit-broadside/config"
+	"github.com/sheyaln/sabokit-broadside/internal/database"
 )
 
 // pingHealthCheckTimeout caps the GetWorkspaceConnection pool health check.

@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/Notifuse/notifuse/pkg/crypto"
+	"github.com/sheyaln/sabokit-broadside/pkg/crypto"
 )
 
-//go:generate mockgen -destination mocks/mock_sparkpost_service.go -package mocks github.com/Notifuse/notifuse/internal/domain SparkPostServiceInterface
+//go:generate mockgen -destination mocks/mock_sparkpost_service.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain SparkPostServiceInterface
 
 // SparkPostWebhookPayload represents the webhook payload from SparkPost
 type SparkPostWebhookPayload struct {
@@ -110,7 +110,7 @@ func (s *SparkPostSettings) Validate(passphrase string) error {
 	return nil
 }
 
-//go:generate mockgen -destination mocks/mock_sparkpost_service.go -package mocks github.com/Notifuse/notifuse/internal/domain SparkPostServiceInterface
+//go:generate mockgen -destination mocks/mock_sparkpost_service.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain SparkPostServiceInterface
 
 // SparkPostServiceInterface defines operations for managing SparkPost webhooks
 type SparkPostServiceInterface interface {

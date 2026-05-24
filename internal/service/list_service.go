@@ -5,11 +5,11 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/Notifuse/notifuse/internal/domain"
-	"github.com/Notifuse/notifuse/pkg/cache"
-	"github.com/Notifuse/notifuse/pkg/disposable_emails"
-	"github.com/Notifuse/notifuse/pkg/logger"
-	"github.com/Notifuse/notifuse/pkg/notifuse_mjml"
+	"github.com/sheyaln/sabokit-broadside/internal/domain"
+	"github.com/sheyaln/sabokit-broadside/pkg/cache"
+	"github.com/sheyaln/sabokit-broadside/pkg/disposable_emails"
+	"github.com/sheyaln/sabokit-broadside/pkg/logger"
+	"github.com/sheyaln/sabokit-broadside/pkg/notifuse_mjml"
 	"github.com/google/uuid"
 )
 

@@ -7,8 +7,8 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/Notifuse/notifuse/internal/database/schema"
-	"github.com/Notifuse/notifuse/internal/domain"
+	"github.com/sheyaln/sabokit-broadside/internal/database/schema"
+	"github.com/sheyaln/sabokit-broadside/internal/domain"
 )
 
 // InitializeDatabase creates all necessary database tables if they don't exist

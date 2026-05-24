@@ -16,12 +16,12 @@ import (
 	"github.com/stretchr/testify/require"
 
 	"github.com/DATA-DOG/go-sqlmock"
-	"github.com/Notifuse/notifuse/config"
-	"github.com/Notifuse/notifuse/internal/domain"
-	"github.com/Notifuse/notifuse/internal/domain/mocks"
-	"github.com/Notifuse/notifuse/internal/repository/testutil"
-	"github.com/Notifuse/notifuse/pkg/crypto"
-	pkgDatabase "github.com/Notifuse/notifuse/pkg/database"
+	"github.com/sheyaln/sabokit-broadside/config"
+	"github.com/sheyaln/sabokit-broadside/internal/domain"
+	"github.com/sheyaln/sabokit-broadside/internal/domain/mocks"
+	"github.com/sheyaln/sabokit-broadside/internal/repository/testutil"
+	"github.com/sheyaln/sabokit-broadside/pkg/crypto"
+	pkgDatabase "github.com/sheyaln/sabokit-broadside/pkg/database"
 )
 
 // mockConnectionManager is a simple mock for testing

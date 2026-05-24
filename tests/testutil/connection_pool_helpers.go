@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Notifuse/notifuse/config"
+	"github.com/sheyaln/sabokit-broadside/config"
 	"github.com/stretchr/testify/require"
 )
 

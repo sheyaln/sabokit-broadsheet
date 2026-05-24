@@ -6,12 +6,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Notifuse/notifuse/config"
-	"github.com/Notifuse/notifuse/internal/domain"
-	domainmocks "github.com/Notifuse/notifuse/internal/domain/mocks"
-	"github.com/Notifuse/notifuse/pkg/logger"
-	pkgmocks "github.com/Notifuse/notifuse/pkg/mocks"
-	"github.com/Notifuse/notifuse/pkg/notifuse_mjml"
+	"github.com/sheyaln/sabokit-broadside/config"
+	"github.com/sheyaln/sabokit-broadside/internal/domain"
+	domainmocks "github.com/sheyaln/sabokit-broadside/internal/domain/mocks"
+	"github.com/sheyaln/sabokit-broadside/pkg/logger"
+	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
+	"github.com/sheyaln/sabokit-broadside/pkg/notifuse_mjml"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
 )

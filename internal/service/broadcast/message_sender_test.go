@@ -8,11 +8,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Notifuse/notifuse/internal/domain"
-	"github.com/Notifuse/notifuse/internal/domain/mocks"
-	bmocks "github.com/Notifuse/notifuse/internal/service/broadcast/mocks"
-	pkgmocks "github.com/Notifuse/notifuse/pkg/mocks"
-	"github.com/Notifuse/notifuse/pkg/notifuse_mjml"
+	"github.com/sheyaln/sabokit-broadside/internal/domain"
+	"github.com/sheyaln/sabokit-broadside/internal/domain/mocks"
+	bmocks "github.com/sheyaln/sabokit-broadside/internal/service/broadcast/mocks"
+	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
+	"github.com/sheyaln/sabokit-broadside/pkg/notifuse_mjml"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
 )

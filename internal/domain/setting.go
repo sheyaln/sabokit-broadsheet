@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-//go:generate mockgen -destination mocks/mock_setting_repository.go -package mocks github.com/Notifuse/notifuse/internal/domain SettingRepository
+//go:generate mockgen -destination mocks/mock_setting_repository.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain SettingRepository
 
 // Setting represents a system setting
 type Setting struct {

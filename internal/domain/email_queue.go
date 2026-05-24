@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-//go:generate mockgen -destination mocks/mock_email_queue_repository.go -package mocks github.com/Notifuse/notifuse/internal/domain EmailQueueRepository
+//go:generate mockgen -destination mocks/mock_email_queue_repository.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain EmailQueueRepository
 
 // EmailQueueStatus represents the status of a queued email
 type EmailQueueStatus string

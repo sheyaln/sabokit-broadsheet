@@ -7,8 +7,8 @@ import (
 	"time"
 )
 
-//go:generate mockgen -destination mocks/mock_custom_event_service.go -package mocks github.com/Notifuse/notifuse/internal/domain CustomEventService
-//go:generate mockgen -destination mocks/mock_custom_event_repository.go -package mocks github.com/Notifuse/notifuse/internal/domain CustomEventRepository
+//go:generate mockgen -destination mocks/mock_custom_event_service.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain CustomEventService
+//go:generate mockgen -destination mocks/mock_custom_event_repository.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain CustomEventRepository
 
 // Goal type constants
 const (

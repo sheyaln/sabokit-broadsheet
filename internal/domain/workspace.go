@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Notifuse/notifuse/pkg/crypto"
+	"github.com/sheyaln/sabokit-broadside/pkg/crypto"
 	"github.com/asaskevich/govalidator"
 )
 
@@ -85,8 +85,8 @@ func (up *UserPermissions) Scan(value interface{}) error {
 	return json.Unmarshal(cloned, up)
 }
 
-//go:generate mockgen -destination mocks/mock_workspace_repository.go -package mocks github.com/Notifuse/notifuse/internal/domain WorkspaceRepository
-//go:generate mockgen -destination mocks/mock_workspace_service.go -package mocks github.com/Notifuse/notifuse/internal/domain WorkspaceServiceInterface
+//go:generate mockgen -destination mocks/mock_workspace_repository.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain WorkspaceRepository
+//go:generate mockgen -destination mocks/mock_workspace_service.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain WorkspaceServiceInterface
 
 // IntegrationType defines the type of integration
 type IntegrationType string
