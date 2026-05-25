@@ -4,8 +4,7 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { lingui } from '@lingui/vite-plugin'
 import { fileURLToPath } from 'url'
-import { dirname, resolve } from 'path'
-import { readFileSync } from 'fs'
+import { dirname } from 'path'
 import path from 'path'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -24,24 +23,17 @@ export default defineConfig({
     lingui(),
   ],
   server: {
-    host: 'broadsidedev.local',
-    https: {
-      key: readFileSync(resolve(__dirname, 'certificates/key.pem')),
-      cert: readFileSync(resolve(__dirname, 'certificates/cert.pem'))
-    },
+    host: 'localhost',
+    port: 5173,
     proxy: {
-      '/config.js': {
-        target: 'https://localapi.broadside.local:4000',
-        changeOrigin: true,
-        secure: false,
-        rewrite: (path) => path.replace(/^\/console/, '')
-      },
+      '/api': { target: 'http://localhost:8080', changeOrigin: true, secure: false },
       '/console/config.js': {
-        target: 'https://localapi.broadside.local:4000',
+        target: 'http://localhost:8080',
         changeOrigin: true,
         secure: false,
-        rewrite: (path) => path.replace(/^\/console/, '')
-      }
+        rewrite: (p) => p.replace(/^\/console/, '')
+      },
+      '/config.js': { target: 'http://localhost:8080', changeOrigin: true, secure: false }
     }
   },
   test: {
