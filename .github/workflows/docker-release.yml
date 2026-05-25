@@ -4,7 +4,6 @@ on:
   push:
     tags:
       - "v*.*"
-      - "20*.*.*"
       - "latest"
 
 env:
