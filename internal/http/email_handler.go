@@ -7,11 +7,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/internal/http/middleware"
-	"github.com/sheyaln/sabokit-broadside/pkg/botdetection"
-	"github.com/sheyaln/sabokit-broadside/pkg/crypto"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/internal/http/middleware"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/botdetection"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/crypto"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
 )
 
 // paddedTrackingPixel is a 1x1 transparent PNG padded with tEXt metadata to 825 bytes

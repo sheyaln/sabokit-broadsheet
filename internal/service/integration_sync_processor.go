@@ -6,8 +6,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
 )
 
 // IntegrationSyncHandler defines the interface for integration-specific sync handlers

@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
 )
 
 func TestGetTranslations_PerLocale(t *testing.T) {
@@ -12,14 +12,14 @@ func TestGetTranslations_PerLocale(t *testing.T) {
 		lang            string
 		expectedSubject string // MagicCode.Subject
 	}{
-		{"en", "Your Broadside authentication code"},
-		{"fr", "Votre code d'authentification Broadside"},
-		{"es", "Tu código de autenticación de Broadside"},
-		{"de", "Ihr Broadside-Authentifizierungscode"},
-		{"ca", "El teu codi d'autenticació de Broadside"},
-		{"pt-BR", "Seu código de autenticação do Broadside"},
-		{"ja", "Broadside 認証コード"},
-		{"it", "Il tuo codice di autenticazione Broadside"},
+		{"en", "Your Broadsheet authentication code"},
+		{"fr", "Votre code d'authentification Broadsheet"},
+		{"es", "Tu código de autenticación de Broadsheet"},
+		{"de", "Ihr Broadsheet-Authentifizierungscode"},
+		{"ca", "El teu codi d'autenticació de Broadsheet"},
+		{"pt-BR", "Seu código de autenticação do Broadsheet"},
+		{"ja", "Broadsheet 認証コード"},
+		{"it", "Il tuo codice di autenticazione Broadsheet"},
 	}
 
 	for _, tc := range cases {

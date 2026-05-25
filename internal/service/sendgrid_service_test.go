@@ -12,10 +12,10 @@ import (
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/internal/domain/mocks"
-	"github.com/sheyaln/sabokit-broadside/internal/service"
-	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain/mocks"
+	"github.com/sheyaln/sabokit-broadsheet/internal/service"
+	pkgmocks "github.com/sheyaln/sabokit-broadsheet/pkg/mocks"
 )
 
 // mockSendGridHTTPResponse creates a mock HTTP response for SendGrid tests
@@ -430,7 +430,7 @@ func TestSendGridService_SendEmail(t *testing.T) {
 
 				// Verify request body contains custom_args
 				body, _ := io.ReadAll(req.Body)
-				assert.Contains(t, string(body), `"broadside_message_id":"msg-789"`)
+				assert.Contains(t, string(body), `"broadsheet_message_id":"msg-789"`)
 
 				return mockSendGridHTTPResponse(http.StatusAccepted, `{}`), nil
 			})

@@ -31,7 +31,7 @@ const queryClient = new QueryClient({
   }
 })
 
-// Broadside — Newsprint (after-hours) tokens for Ant Design.
+// Broadsheet — Newsprint (after-hours) tokens for Ant Design.
 // Dark variant: warm darks, brick-red re-tuned for AA on near-black.
 // See console/THEMES.md for the design notes and alternative directions.
 const PAPER = '#1A1612'         // page bg — warm near-black

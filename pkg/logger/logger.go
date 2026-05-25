@@ -7,7 +7,7 @@ import (
 	"github.com/rs/zerolog"
 )
 
-//go:generate mockgen -destination=../mocks/mock_logger.go -package=pkgmocks github.com/sheyaln/sabokit-broadside/pkg/logger Logger
+//go:generate mockgen -destination=../mocks/mock_logger.go -package=pkgmocks github.com/sheyaln/sabokit-broadsheet/pkg/logger Logger
 
 type Logger interface {
 	Debug(msg string)

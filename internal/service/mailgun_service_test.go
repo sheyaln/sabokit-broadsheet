@@ -14,9 +14,9 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/internal/domain/mocks"
-	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain/mocks"
+	pkgmocks "github.com/sheyaln/sabokit-broadsheet/pkg/mocks"
 )
 
 func TestMailgunService_ListWebhooks(t *testing.T) {

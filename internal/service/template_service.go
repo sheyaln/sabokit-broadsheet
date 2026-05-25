@@ -7,9 +7,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
-	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/broadsheet_mjml"
 )
 
 type TemplateService struct {
@@ -49,17 +49,17 @@ func (s *TemplateService) updateEmailMetadataBlocks(template *domain.Template) {
 		return
 	}
 
-	s.updateBlockContentRecursively(template.Email.VisualEditorTree, broadside_mjml.MJMLComponentMjTitle, template.Name)
+	s.updateBlockContentRecursively(template.Email.VisualEditorTree, broadsheet_mjml.MJMLComponentMjTitle, template.Name)
 
 	previewText := template.Name
 	if template.Email.SubjectPreview != nil && *template.Email.SubjectPreview != "" {
 		previewText = *template.Email.SubjectPreview
 	}
-	s.updateBlockContentRecursively(template.Email.VisualEditorTree, broadside_mjml.MJMLComponentMjPreview, previewText)
+	s.updateBlockContentRecursively(template.Email.VisualEditorTree, broadsheet_mjml.MJMLComponentMjPreview, previewText)
 }
 
 // updateBlockContentRecursively traverses the email block tree and updates content for blocks of the specified type
-func (s *TemplateService) updateBlockContentRecursively(block broadside_mjml.EmailBlock, blockType broadside_mjml.MJMLComponentType, content string) {
+func (s *TemplateService) updateBlockContentRecursively(block broadsheet_mjml.EmailBlock, blockType broadsheet_mjml.MJMLComponentType, content string) {
 	if block == nil {
 		return
 	}
@@ -67,9 +67,9 @@ func (s *TemplateService) updateBlockContentRecursively(block broadside_mjml.Ema
 	// Check if this is the block type we're looking for
 	if block.GetType() == blockType {
 		switch typedBlock := block.(type) {
-		case *broadside_mjml.MJTitleBlock:
+		case *broadsheet_mjml.MJTitleBlock:
 			typedBlock.Content = &content
-		case *broadside_mjml.MJPreviewBlock:
+		case *broadsheet_mjml.MJPreviewBlock:
 			typedBlock.Content = &content
 		}
 	}
@@ -423,5 +423,5 @@ func (s *TemplateService) CompileTemplate(ctx context.Context, payload domain.Co
 		payload.TrackingSettings.Endpoint = s.apiEndpoint
 	}
 
-	return broadside_mjml.CompileTemplate(payload)
+	return broadsheet_mjml.CompileTemplate(payload)
 }

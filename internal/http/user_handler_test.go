@@ -10,17 +10,17 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/config"
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/internal/service"
+	"github.com/sheyaln/sabokit-broadsheet/config"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/internal/service"
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/golang/mock/gomock"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain/mocks"
-	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain/mocks"
+	pkgmocks "github.com/sheyaln/sabokit-broadsheet/pkg/mocks"
 )
 
 func setupUserHandlerTest(t *testing.T) (*UserHandler, *mocks.MockUserServiceInterface, *mocks.MockWorkspaceServiceInterface, []byte) {

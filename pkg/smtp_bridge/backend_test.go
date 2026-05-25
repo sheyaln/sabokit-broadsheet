@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
 	"github.com/emersion/go-smtp"
 )
 

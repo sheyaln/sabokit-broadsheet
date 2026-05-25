@@ -9,10 +9,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/config"
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
-	"github.com/sheyaln/sabokit-broadside/pkg/mailer"
+	"github.com/sheyaln/sabokit-broadsheet/config"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/mailer"
 	"github.com/asaskevich/govalidator"
 	"github.com/google/uuid"
 )

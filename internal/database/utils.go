@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/config"
+	"github.com/sheyaln/sabokit-broadsheet/config"
 	_ "github.com/lib/pq" // PostgreSQL driver
 )
 

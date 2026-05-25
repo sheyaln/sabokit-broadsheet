@@ -52,7 +52,7 @@ export function MainLayout({ children }: MainLayoutProps) {
             }}
           >
             <img
-              src="/console/broadside-icon.png"
+              src="/console/broadsheet-icon.png"
               alt=""
               width={44}
               height={44}

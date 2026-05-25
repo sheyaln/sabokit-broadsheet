@@ -11,12 +11,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/internal/domain/mocks"
-	http_handler "github.com/sheyaln/sabokit-broadside/internal/http"
-	"github.com/sheyaln/sabokit-broadside/internal/service"
-	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
-	broadsidemjml "github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain/mocks"
+	http_handler "github.com/sheyaln/sabokit-broadsheet/internal/http"
+	"github.com/sheyaln/sabokit-broadsheet/internal/service"
+	pkgmocks "github.com/sheyaln/sabokit-broadsheet/pkg/mocks"
+	broadsheetmjml "github.com/sheyaln/sabokit-broadsheet/pkg/broadsheet_mjml"
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/golang/mock/gomock"
 	"github.com/google/uuid"
@@ -58,7 +58,7 @@ func setupTemplateBlockHandlerTest(t *testing.T) (*mocks.MockTemplateBlockServic
 
 func createTestTemplateBlock() *domain.TemplateBlock {
 	blockJSON := []byte(`{"id":"b1","type":"mj-text","content":"Hello","attributes":{"fontSize":"16px"}}`)
-	blk, _ := broadsidemjml.UnmarshalEmailBlock(blockJSON)
+	blk, _ := broadsheetmjml.UnmarshalEmailBlock(blockJSON)
 	now := time.Now().UTC()
 	return &domain.TemplateBlock{
 		ID:      uuid.New().String(),
@@ -309,7 +309,7 @@ func TestTemplateBlockHandler_HandleGet(t *testing.T) {
 func TestTemplateBlockHandler_HandleCreate(t *testing.T) {
 	workspaceID := "workspace123"
 	blockJSON := []byte(`{"id":"b1","type":"mj-text","content":"Hello","attributes":{"fontSize":"16px"}}`)
-	blk, _ := broadsidemjml.UnmarshalEmailBlock(blockJSON)
+	blk, _ := broadsheetmjml.UnmarshalEmailBlock(blockJSON)
 
 	validRequest := domain.CreateTemplateBlockRequest{
 		WorkspaceID: workspaceID,
@@ -429,7 +429,7 @@ func TestTemplateBlockHandler_HandleUpdate(t *testing.T) {
 	workspaceID := "workspace123"
 	blockID := uuid.New().String()
 	blockJSON := []byte(`{"id":"b1","type":"mj-text","content":"Hello","attributes":{"fontSize":"16px"}}`)
-	blk, _ := broadsidemjml.UnmarshalEmailBlock(blockJSON)
+	blk, _ := broadsheetmjml.UnmarshalEmailBlock(blockJSON)
 
 	validRequest := domain.UpdateTemplateBlockRequest{
 		WorkspaceID: workspaceID,

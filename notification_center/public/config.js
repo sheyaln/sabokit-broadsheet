@@ -1,1 +1,1 @@
-window.API_ENDPOINT = 'https://localapi.broadside.local:4000'
+window.API_ENDPOINT = 'https://localapi.broadsheet.local:4000'

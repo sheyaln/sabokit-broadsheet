@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
 )
 
 type jsonFeed struct {

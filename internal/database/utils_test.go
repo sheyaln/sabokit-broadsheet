@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/config"
+	"github.com/sheyaln/sabokit-broadsheet/config"
 	"github.com/stretchr/testify/assert"
 )
 

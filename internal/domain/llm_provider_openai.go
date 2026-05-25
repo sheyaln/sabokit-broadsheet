@@ -3,7 +3,7 @@ package domain
 import (
 	"fmt"
 
-	"github.com/sheyaln/sabokit-broadside/pkg/crypto"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/crypto"
 )
 
 // OpenAISettings contains configuration for OpenAI or OpenAI-compatible providers

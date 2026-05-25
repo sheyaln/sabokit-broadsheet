@@ -12,10 +12,10 @@ import (
 	"github.com/google/uuid"
 	"golang.org/x/oauth2"
 
-	"github.com/sheyaln/sabokit-broadside/config"
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/pkg/cache"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/config"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/cache"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
 )
 
 const (

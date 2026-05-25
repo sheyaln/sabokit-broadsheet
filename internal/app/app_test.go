@@ -18,10 +18,10 @@ import (
 	"time"
 
 	"github.com/DATA-DOG/go-sqlmock"
-	"github.com/sheyaln/sabokit-broadside/config"
-	pkgDatabase "github.com/sheyaln/sabokit-broadside/pkg/database"
-	"github.com/sheyaln/sabokit-broadside/pkg/mailer"
-	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
+	"github.com/sheyaln/sabokit-broadsheet/config"
+	pkgDatabase "github.com/sheyaln/sabokit-broadsheet/pkg/database"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/mailer"
+	pkgmocks "github.com/sheyaln/sabokit-broadsheet/pkg/mocks"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -40,7 +40,7 @@ func createTestConfig() *config.Config {
 			Password: "postgres_test",
 			Host:     "localhost",
 			Port:     5432,
-			DBName:   "broadside_test",
+			DBName:   "broadsheet_test",
 		},
 		Server: config.ServerConfig{
 			Host: "localhost",
@@ -690,7 +690,7 @@ func generateSelfSignedCert(t *testing.T) (certFile string, keyFile string) {
 	}
 
 	// Write cert to temp file
-	certOut, err := os.CreateTemp("", "broadside_test_cert_*.pem")
+	certOut, err := os.CreateTemp("", "broadsheet_test_cert_*.pem")
 	if err != nil {
 		t.Fatalf("failed to create temp cert file: %v", err)
 	}
@@ -700,7 +700,7 @@ func generateSelfSignedCert(t *testing.T) (certFile string, keyFile string) {
 	_ = certOut.Close()
 
 	// Write key to temp file
-	keyOut, err := os.CreateTemp("", "broadside_test_key_*.pem")
+	keyOut, err := os.CreateTemp("", "broadsheet_test_key_*.pem")
 	if err != nil {
 		t.Fatalf("failed to create temp key file: %v", err)
 	}

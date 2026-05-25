@@ -1,16 +1,16 @@
-# Broadside Editor - Dynamic Styling Guide
+# Broadsheet Editor - Dynamic Styling Guide
 
-This guide explains how to customize the Broadside Editor's appearance through the `styleConfig` prop.
+This guide explains how to customize the Broadsheet Editor's appearance through the `styleConfig` prop.
 
 ## Overview
 
-The Broadside Editor supports dynamic styling through a type-safe JSON configuration. This allows you to customize fonts, colors, sizes, and spacing for all text elements in the editor.
+The Broadsheet Editor supports dynamic styling through a type-safe JSON configuration. This allows you to customize fonts, colors, sizes, and spacing for all text elements in the editor.
 
 ## Table of Contents
 
 - [Quick Start](#quick-start)
 - [Style Configuration Reference](#style-configuration-reference)
-- [Integration with Broadside Go Backend](#integration-with-broadside-go-backend)
+- [Integration with Broadsheet Go Backend](#integration-with-broadsheet-go-backend)
 - [Blog Post Rendering](#blog-post-rendering)
 - [Examples](#examples)
 - [Validation](#validation)
@@ -19,19 +19,19 @@ The Broadside Editor supports dynamic styling through a type-safe JSON configura
 
 ```typescript
 import {
-  BroadsideEditor,
+  BroadsheetEditor,
   defaultEditorStyles,
   type EditorStyleConfig
 } from '@/components/blog_editor'
 
 // Use default styles (styleConfig is optional)
 function MyEditor() {
-  return <BroadsideEditor />
+  return <BroadsheetEditor />
 }
 
 // Or explicitly pass default styles
 function MyEditorWithDefaults() {
-  return <BroadsideEditor styleConfig={defaultEditorStyles} />
+  return <BroadsheetEditor styleConfig={defaultEditorStyles} />
 }
 
 // Or customize
@@ -45,7 +45,7 @@ const customStyles: EditorStyleConfig = {
 }
 
 function MyCustomEditor() {
-  return <BroadsideEditor styleConfig={customStyles} />
+  return <BroadsheetEditor styleConfig={customStyles} />
 }
 ```
 
@@ -74,7 +74,7 @@ interface EditorStyleConfig {
 }
 
 // Component Props
-interface BroadsideEditorProps {
+interface BroadsheetEditorProps {
   placeholder?: string
   initialContent?: string
   styleConfig?: EditorStyleConfig // Optional - defaults to defaultEditorStyles
@@ -182,7 +182,7 @@ interface LinkStyles {
 }
 ```
 
-## Integration with Broadside Go Backend
+## Integration with Broadsheet Go Backend
 
 ### Step 1: Store Style Config in Database
 
@@ -192,7 +192,7 @@ Store the `EditorStyleConfig` JSON in your database alongside blog posts or as u
 
 ```typescript
 import {
-  BroadsideEditor,
+  BroadsheetEditor,
   defaultEditorStyles,
   validateStyleConfig,
   type EditorStyleConfig
@@ -209,7 +209,7 @@ function BlogEditorComponent({ configFromBackend }: EditorComponentProps) {
   // Validate config (throws StyleConfigValidationError on invalid config)
   const validConfig = validateStyleConfig(styleConfig)
 
-  return <BroadsideEditor styleConfig={validConfig} />
+  return <BroadsheetEditor styleConfig={validConfig} />
 }
 ```
 
@@ -276,9 +276,9 @@ The editor includes four ready-to-use presets:
 Traditional newspaper typography with classic serif fonts:
 
 ```typescript
-import { BroadsideEditor, timesJournalPreset } from '@/components/blog_editor'
+import { BroadsheetEditor, timesJournalPreset } from '@/components/blog_editor'
 
-;<BroadsideEditor styleConfig={timesJournalPreset} />
+;<BroadsheetEditor styleConfig={timesJournalPreset} />
 ```
 
 - ✍️ Georgia/Times New Roman serif
@@ -291,9 +291,9 @@ import { BroadsideEditor, timesJournalPreset } from '@/components/blog_editor'
 Clean, contemporary design with sans-serif:
 
 ```typescript
-import { BroadsideEditor, modernMagazinePreset } from '@/components/blog_editor'
+import { BroadsheetEditor, modernMagazinePreset } from '@/components/blog_editor'
 
-;<BroadsideEditor styleConfig={modernMagazinePreset} />
+;<BroadsheetEditor styleConfig={modernMagazinePreset} />
 ```
 
 - 🎨 System sans-serif fonts
@@ -306,9 +306,9 @@ import { BroadsideEditor, modernMagazinePreset } from '@/components/blog_editor'
 Distraction-free Medium-inspired design:
 
 ```typescript
-import { BroadsideEditor, minimalBlogPreset } from '@/components/blog_editor'
+import { BroadsheetEditor, minimalBlogPreset } from '@/components/blog_editor'
 
-;<BroadsideEditor styleConfig={minimalBlogPreset} />
+;<BroadsheetEditor styleConfig={minimalBlogPreset} />
 ```
 
 - 📖 Clean 18px reading size
@@ -321,9 +321,9 @@ import { BroadsideEditor, minimalBlogPreset } from '@/components/blog_editor'
 Formal, structured scholarly writing:
 
 ```typescript
-import { BroadsideEditor, academicPaperPreset } from '@/components/blog_editor'
+import { BroadsheetEditor, academicPaperPreset } from '@/components/blog_editor'
 
-;<BroadsideEditor styleConfig={academicPaperPreset} />
+;<BroadsheetEditor styleConfig={academicPaperPreset} />
 ```
 
 - 📚 Georgia/Times serif
@@ -596,4 +596,4 @@ These stacks:
 
 ## Support
 
-For issues or questions about dynamic styling, refer to the Broadside Editor documentation or contact support.
+For issues or questions about dynamic styling, refer to the Broadsheet Editor documentation or contact support.

@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/DATA-DOG/go-sqlmock"
-	"github.com/sheyaln/sabokit-broadside/config"
+	"github.com/sheyaln/sabokit-broadsheet/config"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

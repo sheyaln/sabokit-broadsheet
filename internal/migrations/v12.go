@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/sheyaln/sabokit-broadside/config"
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/config"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
 )
 
 // V12Migration implements the migration from version 11.x to 12.0

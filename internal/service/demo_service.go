@@ -7,10 +7,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/config"
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
-	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
+	"github.com/sheyaln/sabokit-broadsheet/config"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/broadsheet_mjml"
 	"github.com/google/uuid"
 )
 
@@ -241,9 +241,9 @@ func (s *DemoService) createDemoWorkspace(ctx context.Context) error {
 		authenticatedCtx,
 		workspaceID,
 		"Demo Workspace",
-		"https://demo.broadside.example",
-		"https://www.broadside.example/apple-touch-icon.png",
-		"https://demo.broadside.example/cover.png",
+		"https://demo.broadsheet.example",
+		"https://www.broadsheet.example/apple-touch-icon.png",
+		"https://demo.broadsheet.example/cover.png",
 		"UTC",
 		fileManagerSettings,
 		domain.DefaultLanguageCode, []string{"en", "fr", "es"},
@@ -387,7 +387,7 @@ func (s *DemoService) createDemoSMTPIntegration(ctx context.Context, workspaceID
 	smtpProvider := domain.EmailProvider{
 		Kind: domain.EmailProviderKindSMTP,
 		SMTP: &domain.SMTPSettings{
-			Host:     "mailpit.broadside.example",
+			Host:     "mailpit.broadsheet.example",
 			Port:     1025,
 			Username: "admin",
 			Password: "", // No password needed for demo Mailpit
@@ -396,8 +396,8 @@ func (s *DemoService) createDemoSMTPIntegration(ctx context.Context, workspaceID
 		Senders: []domain.EmailSender{
 			{
 				ID:        uuid.New().String(),
-				Email:     "demo@broadside.example",
-				Name:      "Broadside Demo",
+				Email:     "demo@broadsheet.example",
+				Name:      "Broadsheet Demo",
 				IsDefault: true,
 			},
 		},
@@ -651,7 +651,7 @@ func (s *DemoService) createSampleTemplates(ctx context.Context, workspaceID str
 		"fr": "{{contact.first_name}}, Votre mise à jour hebdomadaire est arrivée ! 📧",
 		"es": "{{contact.first_name}}, ¡Tu actualización semanal está aquí! 📧",
 	}
-	nlMJMLStructures := map[string]broadside_mjml.EmailBlock{
+	nlMJMLStructures := map[string]broadsheet_mjml.EmailBlock{
 		"fr": s.createNewsletterMJMLStructure(nlContents["fr"]),
 		"es": s.createNewsletterMJMLStructure(nlContents["es"]),
 	}
@@ -694,7 +694,7 @@ func (s *DemoService) createSampleTemplates(ctx context.Context, workspaceID str
 		"fr": "🚀 {{contact.first_name}}, Les articles et nouveautés de la semaine !",
 		"es": "🚀 {{contact.first_name}}, ¡Las mejores historias y novedades de la semana!",
 	}
-	nlV2MJMLStructures := map[string]broadside_mjml.EmailBlock{
+	nlV2MJMLStructures := map[string]broadsheet_mjml.EmailBlock{
 		"fr": s.createNewsletterV2MJMLStructure(nlV2Contents["fr"]),
 		"es": s.createNewsletterV2MJMLStructure(nlV2Contents["es"]),
 	}
@@ -737,7 +737,7 @@ func (s *DemoService) createSampleTemplates(ctx context.Context, workspaceID str
 		"fr": "Bienvenue dans notre communauté, {{contact.first_name}} ! 🎉",
 		"es": "¡Bienvenido/a a nuestra comunidad, {{contact.first_name}}! 🎉",
 	}
-	wMJMLStructures := map[string]broadside_mjml.EmailBlock{
+	wMJMLStructures := map[string]broadsheet_mjml.EmailBlock{
 		"fr": s.createWelcomeMJMLStructure(wContents["fr"]),
 		"es": s.createWelcomeMJMLStructure(wContents["es"]),
 	}
@@ -773,7 +773,7 @@ func (s *DemoService) createSampleTemplates(ctx context.Context, workspaceID str
 			"last_name":  "Johnson",
 			"email":      "alex.johnson@example.com",
 		},
-		"reset_url": "https://demo.broadside.example/reset-password?token=demo_token_123",
+		"reset_url": "https://demo.broadsheet.example/reset-password?token=demo_token_123",
 	}
 	passwordResetHTML := s.compileTemplateToHTML(workspaceID, "password-reset-preview", passwordResetMJML, passwordResetTestData)
 
@@ -781,7 +781,7 @@ func (s *DemoService) createSampleTemplates(ctx context.Context, workspaceID str
 		"fr": "Réinitialisez votre mot de passe, {{contact.first_name}}",
 		"es": "Restablece tu contraseña, {{contact.first_name}}",
 	}
-	prMJMLStructures := map[string]broadside_mjml.EmailBlock{
+	prMJMLStructures := map[string]broadsheet_mjml.EmailBlock{
 		"fr": s.createPasswordResetMJMLStructure(prContents["fr"]),
 		"es": s.createPasswordResetMJMLStructure(prContents["es"]),
 	}
@@ -812,27 +812,27 @@ func (s *DemoService) createSampleTemplates(ctx context.Context, workspaceID str
 	return nil
 }
 
-// compileTemplateToHTML compiles an MJML structure to HTML using the broadside_mjml package
-func (s *DemoService) compileTemplateToHTML(workspaceID, messageID string, mjmlStructure broadside_mjml.EmailBlock, testData domain.MapOfAny) string {
-	// Convert domain.MapOfAny to broadside_mjml.MapOfAny
-	mjmlTestData := make(broadside_mjml.MapOfAny)
+// compileTemplateToHTML compiles an MJML structure to HTML using the broadsheet_mjml package
+func (s *DemoService) compileTemplateToHTML(workspaceID, messageID string, mjmlStructure broadsheet_mjml.EmailBlock, testData domain.MapOfAny) string {
+	// Convert domain.MapOfAny to broadsheet_mjml.MapOfAny
+	mjmlTestData := make(broadsheet_mjml.MapOfAny)
 	for k, v := range testData {
 		mjmlTestData[k] = v
 	}
 
 	// Create compile request
-	compileReq := broadside_mjml.CompileTemplateRequest{
+	compileReq := broadsheet_mjml.CompileTemplateRequest{
 		WorkspaceID:      workspaceID,
 		MessageID:        messageID,
 		VisualEditorTree: mjmlStructure,
 		TemplateData:     mjmlTestData,
-		TrackingSettings: broadside_mjml.TrackingSettings{
+		TrackingSettings: broadsheet_mjml.TrackingSettings{
 			EnableTracking: false, // Disable tracking for demo templates
 		},
 	}
 
 	// Compile the template
-	resp, err := broadside_mjml.CompileTemplate(compileReq)
+	resp, err := broadsheet_mjml.CompileTemplate(compileReq)
 	if err != nil {
 		s.logger.WithField("error", err.Error()).Error("Failed to compile MJML template")
 		return s.createFallbackHTML() // Return fallback HTML on error
@@ -854,7 +854,7 @@ func (s *DemoService) compileTemplateToHTML(workspaceID, messageID string, mjmlS
 func (s *DemoService) buildEmailTranslations(
 	workspaceID, messageIDPrefix string,
 	subjects map[string]string,
-	mjmlStructures map[string]broadside_mjml.EmailBlock,
+	mjmlStructures map[string]broadsheet_mjml.EmailBlock,
 	testData domain.MapOfAny,
 ) map[string]domain.TemplateTranslation {
 	translations := make(map[string]domain.TemplateTranslation)
@@ -951,7 +951,7 @@ func getNewsletterContents() map[string]newsletterContent {
 			highlights: "📈 This Week's Highlights",
 			listItems:  "• New feature releases and improvements<br>• Industry insights and trends<br>• Community highlights and success stories",
 			buttonText: "Read Full Newsletter",
-			footerText: "You received this email because you're subscribed to our newsletter.<br><a href=\"{{unsubscribe_url}}\">Unsubscribe</a> | <a href=\"https://demo.broadside.example\">Visit our website</a>",
+			footerText: "You received this email because you're subscribed to our newsletter.<br><a href=\"{{unsubscribe_url}}\">Unsubscribe</a> | <a href=\"https://demo.broadsheet.example\">Visit our website</a>",
 		},
 		"fr": {
 			lang:       "fr",
@@ -962,7 +962,7 @@ func getNewsletterContents() map[string]newsletterContent {
 			highlights: "📈 Les Temps Forts de la Semaine",
 			listItems:  "• Nouvelles fonctionnalités et améliorations<br>• Analyses et tendances du secteur<br>• Moments forts de la communauté et succès",
 			buttonText: "Lire la Newsletter Complète",
-			footerText: "Vous recevez cet e-mail car vous êtes abonné(e) à notre newsletter.<br><a href=\"{{unsubscribe_url}}\">Se désabonner</a> | <a href=\"https://demo.broadside.example\">Visiter notre site</a>",
+			footerText: "Vous recevez cet e-mail car vous êtes abonné(e) à notre newsletter.<br><a href=\"{{unsubscribe_url}}\">Se désabonner</a> | <a href=\"https://demo.broadsheet.example\">Visiter notre site</a>",
 		},
 		"es": {
 			lang:       "es",
@@ -973,7 +973,7 @@ func getNewsletterContents() map[string]newsletterContent {
 			highlights: "📈 Destacados de la Semana",
 			listItems:  "• Nuevas funcionalidades y mejoras<br>• Análisis y tendencias del sector<br>• Momentos destacados de la comunidad y casos de éxito",
 			buttonText: "Leer el Boletín Completo",
-			footerText: "Recibes este correo porque estás suscrito/a a nuestro boletín.<br><a href=\"{{unsubscribe_url}}\">Cancelar suscripción</a> | <a href=\"https://demo.broadside.example\">Visitar nuestro sitio</a>",
+			footerText: "Recibes este correo porque estás suscrito/a a nuestro boletín.<br><a href=\"{{unsubscribe_url}}\">Cancelar suscripción</a> | <a href=\"https://demo.broadsheet.example\">Visitar nuestro sitio</a>",
 		},
 	}
 }
@@ -993,7 +993,7 @@ func getNewsletterV2Contents() map[string]newsletterV2Content {
 			feature3Title:   "🔥 Trending Now",
 			feature3Content: "The tools and strategies everyone's talking about this week. Don't miss out on the conversation.",
 			buttonText:      "Explore More",
-			footerText:      "You're receiving this because you subscribed to our weekly digest.<br><a href=\"{{unsubscribe_url}}\">Unsubscribe</a> | <a href=\"https://demo.broadside.example/preferences\">Manage Preferences</a>",
+			footerText:      "You're receiving this because you subscribed to our weekly digest.<br><a href=\"{{unsubscribe_url}}\">Unsubscribe</a> | <a href=\"https://demo.broadsheet.example/preferences\">Manage Preferences</a>",
 		},
 		"fr": {
 			lang:            "fr",
@@ -1008,7 +1008,7 @@ func getNewsletterV2Contents() map[string]newsletterV2Content {
 			feature3Title:   "🔥 Tendances du Moment",
 			feature3Content: "Les outils et stratégies dont tout le monde parle cette semaine. Ne manquez pas la conversation.",
 			buttonText:      "En Savoir Plus",
-			footerText:      "Vous recevez ceci car vous êtes abonné(e) à notre résumé hebdomadaire.<br><a href=\"{{unsubscribe_url}}\">Se désabonner</a> | <a href=\"https://demo.broadside.example/preferences\">Gérer les préférences</a>",
+			footerText:      "Vous recevez ceci car vous êtes abonné(e) à notre résumé hebdomadaire.<br><a href=\"{{unsubscribe_url}}\">Se désabonner</a> | <a href=\"https://demo.broadsheet.example/preferences\">Gérer les préférences</a>",
 		},
 		"es": {
 			lang:            "es",
@@ -1023,7 +1023,7 @@ func getNewsletterV2Contents() map[string]newsletterV2Content {
 			feature3Title:   "🔥 Tendencias del Momento",
 			feature3Content: "Las herramientas y estrategias de las que todos hablan esta semana. No te pierdas la conversación.",
 			buttonText:      "Explorar Más",
-			footerText:      "Recibes esto porque te suscribiste a nuestro resumen semanal.<br><a href=\"{{unsubscribe_url}}\">Cancelar suscripción</a> | <a href=\"https://demo.broadside.example/preferences\">Gestionar preferencias</a>",
+			footerText:      "Recibes esto porque te suscribiste a nuestro resumen semanal.<br><a href=\"{{unsubscribe_url}}\">Cancelar suscripción</a> | <a href=\"https://demo.broadsheet.example/preferences\">Gestionar preferencias</a>",
 		},
 	}
 }
@@ -1096,7 +1096,7 @@ func getPasswordResetContents() map[string]passwordResetContent {
 }
 
 // createNewsletterMJMLStructure creates the MJML structure for the newsletter template
-func (s *DemoService) createNewsletterMJMLStructure(c newsletterContent) broadside_mjml.EmailBlock {
+func (s *DemoService) createNewsletterMJMLStructure(c newsletterContent) broadsheet_mjml.EmailBlock {
 	// Create the text content block
 	textContent := c.mainText
 	highlightsContent := c.highlights
@@ -1107,100 +1107,100 @@ func (s *DemoService) createNewsletterMJMLStructure(c newsletterContent) broadsi
 	headerTextContent := c.headerText
 
 	// Create header text block
-	headerTextBase := broadside_mjml.NewBaseBlock("header-text", broadside_mjml.MJMLComponentMjText)
+	headerTextBase := broadsheet_mjml.NewBaseBlock("header-text", broadsheet_mjml.MJMLComponentMjText)
 	headerTextBase.Content = &headerTextContent
-	headerText := &broadside_mjml.MJTextBlock{BaseBlock: headerTextBase}
+	headerText := &broadsheet_mjml.MJTextBlock{BaseBlock: headerTextBase}
 
 	// Create main text block
-	mainTextBase := broadside_mjml.NewBaseBlock("main-text", broadside_mjml.MJMLComponentMjText)
+	mainTextBase := broadsheet_mjml.NewBaseBlock("main-text", broadsheet_mjml.MJMLComponentMjText)
 	mainTextBase.Content = &textContent
-	mainText := &broadside_mjml.MJTextBlock{BaseBlock: mainTextBase}
+	mainText := &broadsheet_mjml.MJTextBlock{BaseBlock: mainTextBase}
 
 	// Create divider
-	divider := &broadside_mjml.MJDividerBlock{
-		BaseBlock: broadside_mjml.NewBaseBlock("divider", broadside_mjml.MJMLComponentMjDivider),
+	divider := &broadsheet_mjml.MJDividerBlock{
+		BaseBlock: broadsheet_mjml.NewBaseBlock("divider", broadsheet_mjml.MJMLComponentMjDivider),
 	}
 
 	// Create highlights title
-	highlightsTextBase := broadside_mjml.NewBaseBlock("highlights-title", broadside_mjml.MJMLComponentMjText)
+	highlightsTextBase := broadsheet_mjml.NewBaseBlock("highlights-title", broadsheet_mjml.MJMLComponentMjText)
 	highlightsTextBase.Content = &highlightsContent
-	highlightsText := &broadside_mjml.MJTextBlock{BaseBlock: highlightsTextBase}
+	highlightsText := &broadsheet_mjml.MJTextBlock{BaseBlock: highlightsTextBase}
 
 	// Create highlights list
-	highlightsListBase := broadside_mjml.NewBaseBlock("highlights-list", broadside_mjml.MJMLComponentMjText)
+	highlightsListBase := broadsheet_mjml.NewBaseBlock("highlights-list", broadsheet_mjml.MJMLComponentMjText)
 	highlightsListBase.Content = &listContent
-	highlightsList := &broadside_mjml.MJTextBlock{BaseBlock: highlightsListBase}
+	highlightsList := &broadsheet_mjml.MJTextBlock{BaseBlock: highlightsListBase}
 
 	// Create button
-	buttonBase := broadside_mjml.NewBaseBlock("cta-button", broadside_mjml.MJMLComponentMjButton)
+	buttonBase := broadsheet_mjml.NewBaseBlock("cta-button", broadsheet_mjml.MJMLComponentMjButton)
 	buttonBase.Attributes["background-color"] = "#3498db"
 	buttonBase.Attributes["color"] = "#ffffff"
 	buttonBase.Attributes["font-size"] = "16px"
 	buttonBase.Attributes["padding"] = "12px 24px"
 	buttonBase.Attributes["border-radius"] = "6px"
-	buttonBase.Attributes["href"] = "https://demo.broadside.example/newsletter?utm_source={{utm_source}}&utm_medium={{utm_medium}}&utm_campaign={{utm_campaign}}"
+	buttonBase.Attributes["href"] = "https://demo.broadsheet.example/newsletter?utm_source={{utm_source}}&utm_medium={{utm_medium}}&utm_campaign={{utm_campaign}}"
 	buttonBase.Content = &buttonContent
-	button := &broadside_mjml.MJButtonBlock{BaseBlock: buttonBase}
+	button := &broadsheet_mjml.MJButtonBlock{BaseBlock: buttonBase}
 
 	// Create title and preview blocks
-	titleBase := broadside_mjml.NewBaseBlock("title", broadside_mjml.MJMLComponentMjTitle)
+	titleBase := broadsheet_mjml.NewBaseBlock("title", broadsheet_mjml.MJMLComponentMjTitle)
 	titleBase.Content = &titleContent
-	title := &broadside_mjml.MJTitleBlock{BaseBlock: titleBase}
+	title := &broadsheet_mjml.MJTitleBlock{BaseBlock: titleBase}
 
-	previewBase := broadside_mjml.NewBaseBlock("preview", broadside_mjml.MJMLComponentMjPreview)
+	previewBase := broadsheet_mjml.NewBaseBlock("preview", broadsheet_mjml.MJMLComponentMjPreview)
 	previewBase.Content = &previewContent
-	preview := &broadside_mjml.MJPreviewBlock{BaseBlock: previewBase}
+	preview := &broadsheet_mjml.MJPreviewBlock{BaseBlock: previewBase}
 
 	// Create footer text
 	footerContent := c.footerText
-	footerTextBase := broadside_mjml.NewBaseBlock("footer-text", broadside_mjml.MJMLComponentMjText)
+	footerTextBase := broadsheet_mjml.NewBaseBlock("footer-text", broadsheet_mjml.MJMLComponentMjText)
 	footerTextBase.Content = &footerContent
-	footerText := &broadside_mjml.MJTextBlock{BaseBlock: footerTextBase}
+	footerText := &broadsheet_mjml.MJTextBlock{BaseBlock: footerTextBase}
 
 	// Create columns for layout
-	headerColumnBase := broadside_mjml.NewBaseBlock("header-column", broadside_mjml.MJMLComponentMjColumn)
-	headerColumnBase.Children = []broadside_mjml.EmailBlock{headerText}
-	headerColumn := &broadside_mjml.MJColumnBlock{BaseBlock: headerColumnBase}
+	headerColumnBase := broadsheet_mjml.NewBaseBlock("header-column", broadsheet_mjml.MJMLComponentMjColumn)
+	headerColumnBase.Children = []broadsheet_mjml.EmailBlock{headerText}
+	headerColumn := &broadsheet_mjml.MJColumnBlock{BaseBlock: headerColumnBase}
 
-	contentColumnBase := broadside_mjml.NewBaseBlock("content-column", broadside_mjml.MJMLComponentMjColumn)
-	contentColumnBase.Children = []broadside_mjml.EmailBlock{mainText, divider, highlightsText, highlightsList, button}
-	contentColumn := &broadside_mjml.MJColumnBlock{BaseBlock: contentColumnBase}
+	contentColumnBase := broadsheet_mjml.NewBaseBlock("content-column", broadsheet_mjml.MJMLComponentMjColumn)
+	contentColumnBase.Children = []broadsheet_mjml.EmailBlock{mainText, divider, highlightsText, highlightsList, button}
+	contentColumn := &broadsheet_mjml.MJColumnBlock{BaseBlock: contentColumnBase}
 
-	footerColumnBase := broadside_mjml.NewBaseBlock("footer-column", broadside_mjml.MJMLComponentMjColumn)
-	footerColumnBase.Children = []broadside_mjml.EmailBlock{footerText}
-	footerColumn := &broadside_mjml.MJColumnBlock{BaseBlock: footerColumnBase}
+	footerColumnBase := broadsheet_mjml.NewBaseBlock("footer-column", broadsheet_mjml.MJMLComponentMjColumn)
+	footerColumnBase.Children = []broadsheet_mjml.EmailBlock{footerText}
+	footerColumn := &broadsheet_mjml.MJColumnBlock{BaseBlock: footerColumnBase}
 
 	// Create sections
-	headerSectionBase := broadside_mjml.NewBaseBlock("header-section", broadside_mjml.MJMLComponentMjSection)
-	headerSectionBase.Children = []broadside_mjml.EmailBlock{headerColumn}
-	headerSection := &broadside_mjml.MJSectionBlock{BaseBlock: headerSectionBase}
+	headerSectionBase := broadsheet_mjml.NewBaseBlock("header-section", broadsheet_mjml.MJMLComponentMjSection)
+	headerSectionBase.Children = []broadsheet_mjml.EmailBlock{headerColumn}
+	headerSection := &broadsheet_mjml.MJSectionBlock{BaseBlock: headerSectionBase}
 
-	contentSectionBase := broadside_mjml.NewBaseBlock("content-section", broadside_mjml.MJMLComponentMjSection)
-	contentSectionBase.Children = []broadside_mjml.EmailBlock{contentColumn}
-	contentSection := &broadside_mjml.MJSectionBlock{BaseBlock: contentSectionBase}
+	contentSectionBase := broadsheet_mjml.NewBaseBlock("content-section", broadsheet_mjml.MJMLComponentMjSection)
+	contentSectionBase.Children = []broadsheet_mjml.EmailBlock{contentColumn}
+	contentSection := &broadsheet_mjml.MJSectionBlock{BaseBlock: contentSectionBase}
 
-	footerSectionBase := broadside_mjml.NewBaseBlock("footer-section", broadside_mjml.MJMLComponentMjSection)
-	footerSectionBase.Children = []broadside_mjml.EmailBlock{footerColumn}
-	footerSection := &broadside_mjml.MJSectionBlock{BaseBlock: footerSectionBase}
+	footerSectionBase := broadsheet_mjml.NewBaseBlock("footer-section", broadsheet_mjml.MJMLComponentMjSection)
+	footerSectionBase.Children = []broadsheet_mjml.EmailBlock{footerColumn}
+	footerSection := &broadsheet_mjml.MJSectionBlock{BaseBlock: footerSectionBase}
 
 	// Create head and body
-	headBase := broadside_mjml.NewBaseBlock("head", broadside_mjml.MJMLComponentMjHead)
-	headBase.Children = []broadside_mjml.EmailBlock{title, preview}
-	head := &broadside_mjml.MJHeadBlock{BaseBlock: headBase}
+	headBase := broadsheet_mjml.NewBaseBlock("head", broadsheet_mjml.MJMLComponentMjHead)
+	headBase.Children = []broadsheet_mjml.EmailBlock{title, preview}
+	head := &broadsheet_mjml.MJHeadBlock{BaseBlock: headBase}
 
-	bodyBase := broadside_mjml.NewBaseBlock("body", broadside_mjml.MJMLComponentMjBody)
-	bodyBase.Children = []broadside_mjml.EmailBlock{headerSection, contentSection, footerSection}
-	body := &broadside_mjml.MJBodyBlock{BaseBlock: bodyBase}
+	bodyBase := broadsheet_mjml.NewBaseBlock("body", broadsheet_mjml.MJMLComponentMjBody)
+	bodyBase.Children = []broadsheet_mjml.EmailBlock{headerSection, contentSection, footerSection}
+	body := &broadsheet_mjml.MJBodyBlock{BaseBlock: bodyBase}
 
 	// Create root MJML block
-	rootBase := broadside_mjml.NewBaseBlock("mjml-root", broadside_mjml.MJMLComponentMjml)
+	rootBase := broadsheet_mjml.NewBaseBlock("mjml-root", broadsheet_mjml.MJMLComponentMjml)
 	rootBase.Attributes["lang"] = c.lang
-	rootBase.Children = []broadside_mjml.EmailBlock{head, body}
-	return &broadside_mjml.MJMLBlock{BaseBlock: rootBase}
+	rootBase.Children = []broadsheet_mjml.EmailBlock{head, body}
+	return &broadsheet_mjml.MJMLBlock{BaseBlock: rootBase}
 }
 
 // createNewsletterV2MJMLStructure creates the MJML structure for the newsletter v2 template (modern card-based design)
-func (s *DemoService) createNewsletterV2MJMLStructure(c newsletterV2Content) broadside_mjml.EmailBlock {
+func (s *DemoService) createNewsletterV2MJMLStructure(c newsletterV2Content) broadsheet_mjml.EmailBlock {
 	// Create the text content blocks with different styling and content
 	titleContent := c.title
 	previewContent := c.preview
@@ -1220,131 +1220,131 @@ func (s *DemoService) createNewsletterV2MJMLStructure(c newsletterV2Content) bro
 	buttonContent := c.buttonText
 
 	// Create title and preview blocks
-	titleBase := broadside_mjml.NewBaseBlock("title", broadside_mjml.MJMLComponentMjTitle)
+	titleBase := broadsheet_mjml.NewBaseBlock("title", broadsheet_mjml.MJMLComponentMjTitle)
 	titleBase.Content = &titleContent
-	title := &broadside_mjml.MJTitleBlock{BaseBlock: titleBase}
+	title := &broadsheet_mjml.MJTitleBlock{BaseBlock: titleBase}
 
-	previewBase := broadside_mjml.NewBaseBlock("preview", broadside_mjml.MJMLComponentMjPreview)
+	previewBase := broadsheet_mjml.NewBaseBlock("preview", broadsheet_mjml.MJMLComponentMjPreview)
 	previewBase.Content = &previewContent
-	preview := &broadside_mjml.MJPreviewBlock{BaseBlock: previewBase}
+	preview := &broadsheet_mjml.MJPreviewBlock{BaseBlock: previewBase}
 
 	// Create hero section
-	heroTextBase := broadside_mjml.NewBaseBlock("hero-text", broadside_mjml.MJMLComponentMjText)
+	heroTextBase := broadsheet_mjml.NewBaseBlock("hero-text", broadsheet_mjml.MJMLComponentMjText)
 	heroTextBase.Content = &heroContent
-	heroText := &broadside_mjml.MJTextBlock{BaseBlock: heroTextBase}
+	heroText := &broadsheet_mjml.MJTextBlock{BaseBlock: heroTextBase}
 
-	introTextBase := broadside_mjml.NewBaseBlock("intro-text", broadside_mjml.MJMLComponentMjText)
+	introTextBase := broadsheet_mjml.NewBaseBlock("intro-text", broadsheet_mjml.MJMLComponentMjText)
 	introTextBase.Content = &introContent
-	introText := &broadside_mjml.MJTextBlock{BaseBlock: introTextBase}
+	introText := &broadsheet_mjml.MJTextBlock{BaseBlock: introTextBase}
 
 	// Create feature cards
-	feature1TitleTextBase := broadside_mjml.NewBaseBlock("feature1-title", broadside_mjml.MJMLComponentMjText)
+	feature1TitleTextBase := broadsheet_mjml.NewBaseBlock("feature1-title", broadsheet_mjml.MJMLComponentMjText)
 	feature1TitleTextBase.Content = &feature1Title
-	feature1TitleText := &broadside_mjml.MJTextBlock{BaseBlock: feature1TitleTextBase}
+	feature1TitleText := &broadsheet_mjml.MJTextBlock{BaseBlock: feature1TitleTextBase}
 
-	feature1ContentTextBase := broadside_mjml.NewBaseBlock("feature1-content", broadside_mjml.MJMLComponentMjText)
+	feature1ContentTextBase := broadsheet_mjml.NewBaseBlock("feature1-content", broadsheet_mjml.MJMLComponentMjText)
 	feature1ContentTextBase.Content = &feature1Content
-	feature1ContentText := &broadside_mjml.MJTextBlock{BaseBlock: feature1ContentTextBase}
+	feature1ContentText := &broadsheet_mjml.MJTextBlock{BaseBlock: feature1ContentTextBase}
 
-	feature2TitleTextBase := broadside_mjml.NewBaseBlock("feature2-title", broadside_mjml.MJMLComponentMjText)
+	feature2TitleTextBase := broadsheet_mjml.NewBaseBlock("feature2-title", broadsheet_mjml.MJMLComponentMjText)
 	feature2TitleTextBase.Content = &feature2Title
-	feature2TitleText := &broadside_mjml.MJTextBlock{BaseBlock: feature2TitleTextBase}
+	feature2TitleText := &broadsheet_mjml.MJTextBlock{BaseBlock: feature2TitleTextBase}
 
-	feature2ContentTextBase := broadside_mjml.NewBaseBlock("feature2-content", broadside_mjml.MJMLComponentMjText)
+	feature2ContentTextBase := broadsheet_mjml.NewBaseBlock("feature2-content", broadsheet_mjml.MJMLComponentMjText)
 	feature2ContentTextBase.Content = &feature2Content
-	feature2ContentText := &broadside_mjml.MJTextBlock{BaseBlock: feature2ContentTextBase}
+	feature2ContentText := &broadsheet_mjml.MJTextBlock{BaseBlock: feature2ContentTextBase}
 
-	feature3TitleTextBase := broadside_mjml.NewBaseBlock("feature3-title", broadside_mjml.MJMLComponentMjText)
+	feature3TitleTextBase := broadsheet_mjml.NewBaseBlock("feature3-title", broadsheet_mjml.MJMLComponentMjText)
 	feature3TitleTextBase.Content = &feature3Title
-	feature3TitleText := &broadside_mjml.MJTextBlock{BaseBlock: feature3TitleTextBase}
+	feature3TitleText := &broadsheet_mjml.MJTextBlock{BaseBlock: feature3TitleTextBase}
 
-	feature3ContentTextBase := broadside_mjml.NewBaseBlock("feature3-content", broadside_mjml.MJMLComponentMjText)
+	feature3ContentTextBase := broadsheet_mjml.NewBaseBlock("feature3-content", broadsheet_mjml.MJMLComponentMjText)
 	feature3ContentTextBase.Content = &feature3Content
-	feature3ContentText := &broadside_mjml.MJTextBlock{BaseBlock: feature3ContentTextBase}
+	feature3ContentText := &broadsheet_mjml.MJTextBlock{BaseBlock: feature3ContentTextBase}
 
 	// Create CTA button
-	buttonBase2 := broadside_mjml.NewBaseBlock("cta-button", broadside_mjml.MJMLComponentMjButton)
+	buttonBase2 := broadsheet_mjml.NewBaseBlock("cta-button", broadsheet_mjml.MJMLComponentMjButton)
 	buttonBase2.Attributes["background-color"] = "#667eea"
 	buttonBase2.Attributes["color"] = "#ffffff"
 	buttonBase2.Attributes["font-size"] = "16px"
 	buttonBase2.Attributes["font-weight"] = "bold"
 	buttonBase2.Attributes["padding"] = "15px 30px"
 	buttonBase2.Attributes["border-radius"] = "8px"
-	buttonBase2.Attributes["href"] = "https://demo.broadside.example/weekly-digest?utm_source={{utm_source}}&utm_medium={{utm_medium}}&utm_campaign={{utm_campaign}}"
+	buttonBase2.Attributes["href"] = "https://demo.broadsheet.example/weekly-digest?utm_source={{utm_source}}&utm_medium={{utm_medium}}&utm_campaign={{utm_campaign}}"
 	buttonBase2.Content = &buttonContent
-	button := &broadside_mjml.MJButtonBlock{BaseBlock: buttonBase2}
+	button := &broadsheet_mjml.MJButtonBlock{BaseBlock: buttonBase2}
 
 	// Create footer
 	footerContent := c.footerText
-	footerTextBase := broadside_mjml.NewBaseBlock("footer-text", broadside_mjml.MJMLComponentMjText)
+	footerTextBase := broadsheet_mjml.NewBaseBlock("footer-text", broadsheet_mjml.MJMLComponentMjText)
 	footerTextBase.Content = &footerContent
-	footerText := &broadside_mjml.MJTextBlock{BaseBlock: footerTextBase}
+	footerText := &broadsheet_mjml.MJTextBlock{BaseBlock: footerTextBase}
 
 	// Create columns and sections
-	heroColumnBase := broadside_mjml.NewBaseBlock("hero-column", broadside_mjml.MJMLComponentMjColumn)
-	heroColumnBase.Children = []broadside_mjml.EmailBlock{heroText, introText}
-	heroColumn := &broadside_mjml.MJColumnBlock{BaseBlock: heroColumnBase}
+	heroColumnBase := broadsheet_mjml.NewBaseBlock("hero-column", broadsheet_mjml.MJMLComponentMjColumn)
+	heroColumnBase.Children = []broadsheet_mjml.EmailBlock{heroText, introText}
+	heroColumn := &broadsheet_mjml.MJColumnBlock{BaseBlock: heroColumnBase}
 
 	// Create feature columns (side by side layout)
-	feature1ColumnBase := broadside_mjml.NewBaseBlock("feature1-column", broadside_mjml.MJMLComponentMjColumn)
-	feature1ColumnBase.Children = []broadside_mjml.EmailBlock{feature1TitleText, feature1ContentText}
-	feature1Column := &broadside_mjml.MJColumnBlock{BaseBlock: feature1ColumnBase}
+	feature1ColumnBase := broadsheet_mjml.NewBaseBlock("feature1-column", broadsheet_mjml.MJMLComponentMjColumn)
+	feature1ColumnBase.Children = []broadsheet_mjml.EmailBlock{feature1TitleText, feature1ContentText}
+	feature1Column := &broadsheet_mjml.MJColumnBlock{BaseBlock: feature1ColumnBase}
 
-	feature2ColumnBase := broadside_mjml.NewBaseBlock("feature2-column", broadside_mjml.MJMLComponentMjColumn)
-	feature2ColumnBase.Children = []broadside_mjml.EmailBlock{feature2TitleText, feature2ContentText}
-	feature2Column := &broadside_mjml.MJColumnBlock{BaseBlock: feature2ColumnBase}
+	feature2ColumnBase := broadsheet_mjml.NewBaseBlock("feature2-column", broadsheet_mjml.MJMLComponentMjColumn)
+	feature2ColumnBase.Children = []broadsheet_mjml.EmailBlock{feature2TitleText, feature2ContentText}
+	feature2Column := &broadsheet_mjml.MJColumnBlock{BaseBlock: feature2ColumnBase}
 
-	feature3ColumnBase := broadside_mjml.NewBaseBlock("feature3-column", broadside_mjml.MJMLComponentMjColumn)
-	feature3ColumnBase.Children = []broadside_mjml.EmailBlock{feature3TitleText, feature3ContentText}
-	feature3Column := &broadside_mjml.MJColumnBlock{BaseBlock: feature3ColumnBase}
+	feature3ColumnBase := broadsheet_mjml.NewBaseBlock("feature3-column", broadsheet_mjml.MJMLComponentMjColumn)
+	feature3ColumnBase.Children = []broadsheet_mjml.EmailBlock{feature3TitleText, feature3ContentText}
+	feature3Column := &broadsheet_mjml.MJColumnBlock{BaseBlock: feature3ColumnBase}
 
-	ctaColumnBase := broadside_mjml.NewBaseBlock("cta-column", broadside_mjml.MJMLComponentMjColumn)
-	ctaColumnBase.Children = []broadside_mjml.EmailBlock{button}
-	ctaColumn := &broadside_mjml.MJColumnBlock{BaseBlock: ctaColumnBase}
+	ctaColumnBase := broadsheet_mjml.NewBaseBlock("cta-column", broadsheet_mjml.MJMLComponentMjColumn)
+	ctaColumnBase.Children = []broadsheet_mjml.EmailBlock{button}
+	ctaColumn := &broadsheet_mjml.MJColumnBlock{BaseBlock: ctaColumnBase}
 
-	footerColumnBase := broadside_mjml.NewBaseBlock("footer-column", broadside_mjml.MJMLComponentMjColumn)
-	footerColumnBase.Children = []broadside_mjml.EmailBlock{footerText}
-	footerColumn := &broadside_mjml.MJColumnBlock{BaseBlock: footerColumnBase}
+	footerColumnBase := broadsheet_mjml.NewBaseBlock("footer-column", broadsheet_mjml.MJMLComponentMjColumn)
+	footerColumnBase.Children = []broadsheet_mjml.EmailBlock{footerText}
+	footerColumn := &broadsheet_mjml.MJColumnBlock{BaseBlock: footerColumnBase}
 
 	// Create sections
-	heroSectionBase := broadside_mjml.NewBaseBlock("hero-section", broadside_mjml.MJMLComponentMjSection)
-	heroSectionBase.Children = []broadside_mjml.EmailBlock{heroColumn}
-	heroSection := &broadside_mjml.MJSectionBlock{BaseBlock: heroSectionBase}
+	heroSectionBase := broadsheet_mjml.NewBaseBlock("hero-section", broadsheet_mjml.MJMLComponentMjSection)
+	heroSectionBase.Children = []broadsheet_mjml.EmailBlock{heroColumn}
+	heroSection := &broadsheet_mjml.MJSectionBlock{BaseBlock: heroSectionBase}
 
-	featuresSectionBase := broadside_mjml.NewBaseBlock("features-section", broadside_mjml.MJMLComponentMjSection)
-	featuresSectionBase.Children = []broadside_mjml.EmailBlock{feature1Column, feature2Column}
-	featuresSection := &broadside_mjml.MJSectionBlock{BaseBlock: featuresSectionBase}
+	featuresSectionBase := broadsheet_mjml.NewBaseBlock("features-section", broadsheet_mjml.MJMLComponentMjSection)
+	featuresSectionBase.Children = []broadsheet_mjml.EmailBlock{feature1Column, feature2Column}
+	featuresSection := &broadsheet_mjml.MJSectionBlock{BaseBlock: featuresSectionBase}
 
-	feature3SectionBase := broadside_mjml.NewBaseBlock("feature3-section", broadside_mjml.MJMLComponentMjSection)
-	feature3SectionBase.Children = []broadside_mjml.EmailBlock{feature3Column}
-	feature3Section := &broadside_mjml.MJSectionBlock{BaseBlock: feature3SectionBase}
+	feature3SectionBase := broadsheet_mjml.NewBaseBlock("feature3-section", broadsheet_mjml.MJMLComponentMjSection)
+	feature3SectionBase.Children = []broadsheet_mjml.EmailBlock{feature3Column}
+	feature3Section := &broadsheet_mjml.MJSectionBlock{BaseBlock: feature3SectionBase}
 
-	ctaSectionBase := broadside_mjml.NewBaseBlock("cta-section", broadside_mjml.MJMLComponentMjSection)
-	ctaSectionBase.Children = []broadside_mjml.EmailBlock{ctaColumn}
-	ctaSection := &broadside_mjml.MJSectionBlock{BaseBlock: ctaSectionBase}
+	ctaSectionBase := broadsheet_mjml.NewBaseBlock("cta-section", broadsheet_mjml.MJMLComponentMjSection)
+	ctaSectionBase.Children = []broadsheet_mjml.EmailBlock{ctaColumn}
+	ctaSection := &broadsheet_mjml.MJSectionBlock{BaseBlock: ctaSectionBase}
 
-	footerSectionBase := broadside_mjml.NewBaseBlock("footer-section", broadside_mjml.MJMLComponentMjSection)
-	footerSectionBase.Children = []broadside_mjml.EmailBlock{footerColumn}
-	footerSection := &broadside_mjml.MJSectionBlock{BaseBlock: footerSectionBase}
+	footerSectionBase := broadsheet_mjml.NewBaseBlock("footer-section", broadsheet_mjml.MJMLComponentMjSection)
+	footerSectionBase.Children = []broadsheet_mjml.EmailBlock{footerColumn}
+	footerSection := &broadsheet_mjml.MJSectionBlock{BaseBlock: footerSectionBase}
 
 	// Create head and body
-	headBase := broadside_mjml.NewBaseBlock("head", broadside_mjml.MJMLComponentMjHead)
-	headBase.Children = []broadside_mjml.EmailBlock{title, preview}
-	head := &broadside_mjml.MJHeadBlock{BaseBlock: headBase}
+	headBase := broadsheet_mjml.NewBaseBlock("head", broadsheet_mjml.MJMLComponentMjHead)
+	headBase.Children = []broadsheet_mjml.EmailBlock{title, preview}
+	head := &broadsheet_mjml.MJHeadBlock{BaseBlock: headBase}
 
-	bodyBase := broadside_mjml.NewBaseBlock("body", broadside_mjml.MJMLComponentMjBody)
-	bodyBase.Children = []broadside_mjml.EmailBlock{heroSection, featuresSection, feature3Section, ctaSection, footerSection}
-	body := &broadside_mjml.MJBodyBlock{BaseBlock: bodyBase}
+	bodyBase := broadsheet_mjml.NewBaseBlock("body", broadsheet_mjml.MJMLComponentMjBody)
+	bodyBase.Children = []broadsheet_mjml.EmailBlock{heroSection, featuresSection, feature3Section, ctaSection, footerSection}
+	body := &broadsheet_mjml.MJBodyBlock{BaseBlock: bodyBase}
 
 	// Create root MJML block
-	rootBase := broadside_mjml.NewBaseBlock("mjml-root", broadside_mjml.MJMLComponentMjml)
+	rootBase := broadsheet_mjml.NewBaseBlock("mjml-root", broadsheet_mjml.MJMLComponentMjml)
 	rootBase.Attributes["lang"] = c.lang
-	rootBase.Children = []broadside_mjml.EmailBlock{head, body}
-	return &broadside_mjml.MJMLBlock{BaseBlock: rootBase}
+	rootBase.Children = []broadsheet_mjml.EmailBlock{head, body}
+	return &broadsheet_mjml.MJMLBlock{BaseBlock: rootBase}
 }
 
 // createWelcomeMJMLStructure creates the MJML structure for the welcome template
-func (s *DemoService) createWelcomeMJMLStructure(c welcomeContent) broadside_mjml.EmailBlock {
+func (s *DemoService) createWelcomeMJMLStructure(c welcomeContent) broadsheet_mjml.EmailBlock {
 	// Create content strings
 	titleContent := c.title
 	previewContent := c.preview
@@ -1354,60 +1354,60 @@ func (s *DemoService) createWelcomeMJMLStructure(c welcomeContent) broadside_mjm
 	footerContent := c.footerText
 
 	// Create blocks using concrete types
-	titleBase := broadside_mjml.NewBaseBlock("title", broadside_mjml.MJMLComponentMjTitle)
+	titleBase := broadsheet_mjml.NewBaseBlock("title", broadsheet_mjml.MJMLComponentMjTitle)
 	titleBase.Content = &titleContent
-	title := &broadside_mjml.MJTitleBlock{BaseBlock: titleBase}
+	title := &broadsheet_mjml.MJTitleBlock{BaseBlock: titleBase}
 
-	previewBase := broadside_mjml.NewBaseBlock("preview", broadside_mjml.MJMLComponentMjPreview)
+	previewBase := broadsheet_mjml.NewBaseBlock("preview", broadsheet_mjml.MJMLComponentMjPreview)
 	previewBase.Content = &previewContent
-	preview := &broadside_mjml.MJPreviewBlock{BaseBlock: previewBase}
+	preview := &broadsheet_mjml.MJPreviewBlock{BaseBlock: previewBase}
 
-	welcomeTextBase := broadside_mjml.NewBaseBlock("welcome-text", broadside_mjml.MJMLComponentMjText)
+	welcomeTextBase := broadsheet_mjml.NewBaseBlock("welcome-text", broadsheet_mjml.MJMLComponentMjText)
 	welcomeTextBase.Content = &welcomeText
-	welcomeTextBlock := &broadside_mjml.MJTextBlock{BaseBlock: welcomeTextBase}
+	welcomeTextBlock := &broadsheet_mjml.MJTextBlock{BaseBlock: welcomeTextBase}
 
-	mainTextBase := broadside_mjml.NewBaseBlock("main-text", broadside_mjml.MJMLComponentMjText)
+	mainTextBase := broadsheet_mjml.NewBaseBlock("main-text", broadsheet_mjml.MJMLComponentMjText)
 	mainTextBase.Content = &mainContentText
-	mainText := &broadside_mjml.MJTextBlock{BaseBlock: mainTextBase}
+	mainText := &broadsheet_mjml.MJTextBlock{BaseBlock: mainTextBase}
 
-	buttonBase3 := broadside_mjml.NewBaseBlock("get-started-button", broadside_mjml.MJMLComponentMjButton)
+	buttonBase3 := broadsheet_mjml.NewBaseBlock("get-started-button", broadsheet_mjml.MJMLComponentMjButton)
 	buttonBase3.Attributes["background-color"] = "#27ae60"
 	buttonBase3.Attributes["color"] = "#ffffff"
 	buttonBase3.Attributes["font-size"] = "16px"
 	buttonBase3.Attributes["padding"] = "12px 24px"
 	buttonBase3.Attributes["border-radius"] = "6px"
-	buttonBase3.Attributes["href"] = "https://demo.broadside.example/getting-started?utm_source={{utm_source}}&utm_medium={{utm_medium}}&utm_campaign={{utm_campaign}}"
+	buttonBase3.Attributes["href"] = "https://demo.broadsheet.example/getting-started?utm_source={{utm_source}}&utm_medium={{utm_medium}}&utm_campaign={{utm_campaign}}"
 	buttonBase3.Content = &buttonContent
-	button := &broadside_mjml.MJButtonBlock{BaseBlock: buttonBase3}
+	button := &broadsheet_mjml.MJButtonBlock{BaseBlock: buttonBase3}
 
-	divider := &broadside_mjml.MJDividerBlock{
-		BaseBlock: broadside_mjml.NewBaseBlock("divider", broadside_mjml.MJMLComponentMjDivider),
+	divider := &broadsheet_mjml.MJDividerBlock{
+		BaseBlock: broadsheet_mjml.NewBaseBlock("divider", broadsheet_mjml.MJMLComponentMjDivider),
 	}
 
-	footerTextBase := broadside_mjml.NewBaseBlock("footer-text", broadside_mjml.MJMLComponentMjText)
+	footerTextBase := broadsheet_mjml.NewBaseBlock("footer-text", broadsheet_mjml.MJMLComponentMjText)
 	footerTextBase.Content = &footerContent
-	footerText := &broadside_mjml.MJTextBlock{BaseBlock: footerTextBase}
+	footerText := &broadsheet_mjml.MJTextBlock{BaseBlock: footerTextBase}
 
-	columnBase := broadside_mjml.NewBaseBlock("main-column", broadside_mjml.MJMLComponentMjColumn)
-	columnBase.Children = []broadside_mjml.EmailBlock{welcomeTextBlock, mainText, button, divider, footerText}
-	column := &broadside_mjml.MJColumnBlock{BaseBlock: columnBase}
+	columnBase := broadsheet_mjml.NewBaseBlock("main-column", broadsheet_mjml.MJMLComponentMjColumn)
+	columnBase.Children = []broadsheet_mjml.EmailBlock{welcomeTextBlock, mainText, button, divider, footerText}
+	column := &broadsheet_mjml.MJColumnBlock{BaseBlock: columnBase}
 
-	sectionBase := broadside_mjml.NewBaseBlock("main-section", broadside_mjml.MJMLComponentMjSection)
-	sectionBase.Children = []broadside_mjml.EmailBlock{column}
-	section := &broadside_mjml.MJSectionBlock{BaseBlock: sectionBase}
+	sectionBase := broadsheet_mjml.NewBaseBlock("main-section", broadsheet_mjml.MJMLComponentMjSection)
+	sectionBase.Children = []broadsheet_mjml.EmailBlock{column}
+	section := &broadsheet_mjml.MJSectionBlock{BaseBlock: sectionBase}
 
-	headBase := broadside_mjml.NewBaseBlock("head", broadside_mjml.MJMLComponentMjHead)
-	headBase.Children = []broadside_mjml.EmailBlock{title, preview}
-	head := &broadside_mjml.MJHeadBlock{BaseBlock: headBase}
+	headBase := broadsheet_mjml.NewBaseBlock("head", broadsheet_mjml.MJMLComponentMjHead)
+	headBase.Children = []broadsheet_mjml.EmailBlock{title, preview}
+	head := &broadsheet_mjml.MJHeadBlock{BaseBlock: headBase}
 
-	bodyBase := broadside_mjml.NewBaseBlock("body", broadside_mjml.MJMLComponentMjBody)
-	bodyBase.Children = []broadside_mjml.EmailBlock{section}
-	body := &broadside_mjml.MJBodyBlock{BaseBlock: bodyBase}
+	bodyBase := broadsheet_mjml.NewBaseBlock("body", broadsheet_mjml.MJMLComponentMjBody)
+	bodyBase.Children = []broadsheet_mjml.EmailBlock{section}
+	body := &broadsheet_mjml.MJBodyBlock{BaseBlock: bodyBase}
 
-	rootBase7 := broadside_mjml.NewBaseBlock("mjml-root", broadside_mjml.MJMLComponentMjml)
+	rootBase7 := broadsheet_mjml.NewBaseBlock("mjml-root", broadsheet_mjml.MJMLComponentMjml)
 	rootBase7.Attributes["lang"] = c.lang
-	rootBase7.Children = []broadside_mjml.EmailBlock{head, body}
-	return &broadside_mjml.MJMLBlock{BaseBlock: rootBase7}
+	rootBase7.Children = []broadsheet_mjml.EmailBlock{head, body}
+	return &broadsheet_mjml.MJMLBlock{BaseBlock: rootBase7}
 }
 
 // createSampleBroadcasts creates multiple sample broadcast campaigns and returns their IDs
@@ -1472,7 +1472,7 @@ func (s *DemoService) createSampleBroadcasts(ctx context.Context, workspaceID st
 			},
 			TrackingEnabled: true,
 			UTMParameters: &domain.UTMParameters{
-				Source:   "demo.broadside.example",
+				Source:   "demo.broadsheet.example",
 				Medium:   "email",
 				Campaign: bc.campaign,
 				Term:     "",
@@ -1519,7 +1519,7 @@ func (s *DemoService) createSampleBroadcasts(ctx context.Context, workspaceID st
 }
 
 // createPasswordResetMJMLStructure creates the MJML structure for the password reset template
-func (s *DemoService) createPasswordResetMJMLStructure(c passwordResetContent) broadside_mjml.EmailBlock {
+func (s *DemoService) createPasswordResetMJMLStructure(c passwordResetContent) broadsheet_mjml.EmailBlock {
 	// Create content strings
 	titleContent := c.title
 	previewContent := c.preview
@@ -1530,23 +1530,23 @@ func (s *DemoService) createPasswordResetMJMLStructure(c passwordResetContent) b
 	footerContent := c.footerText
 
 	// Create blocks using concrete types
-	titleBase := broadside_mjml.NewBaseBlock("title", broadside_mjml.MJMLComponentMjTitle)
+	titleBase := broadsheet_mjml.NewBaseBlock("title", broadsheet_mjml.MJMLComponentMjTitle)
 	titleBase.Content = &titleContent
-	title := &broadside_mjml.MJTitleBlock{BaseBlock: titleBase}
+	title := &broadsheet_mjml.MJTitleBlock{BaseBlock: titleBase}
 
-	previewBase := broadside_mjml.NewBaseBlock("preview", broadside_mjml.MJMLComponentMjPreview)
+	previewBase := broadsheet_mjml.NewBaseBlock("preview", broadsheet_mjml.MJMLComponentMjPreview)
 	previewBase.Content = &previewContent
-	preview := &broadside_mjml.MJPreviewBlock{BaseBlock: previewBase}
+	preview := &broadsheet_mjml.MJPreviewBlock{BaseBlock: previewBase}
 
-	headerTextBase := broadside_mjml.NewBaseBlock("header-text", broadside_mjml.MJMLComponentMjText)
+	headerTextBase := broadsheet_mjml.NewBaseBlock("header-text", broadsheet_mjml.MJMLComponentMjText)
 	headerTextBase.Content = &headerContent
-	headerText := &broadside_mjml.MJTextBlock{BaseBlock: headerTextBase}
+	headerText := &broadsheet_mjml.MJTextBlock{BaseBlock: headerTextBase}
 
-	mainTextBase := broadside_mjml.NewBaseBlock("main-text", broadside_mjml.MJMLComponentMjText)
+	mainTextBase := broadsheet_mjml.NewBaseBlock("main-text", broadsheet_mjml.MJMLComponentMjText)
 	mainTextBase.Content = &mainContent
-	mainText := &broadside_mjml.MJTextBlock{BaseBlock: mainTextBase}
+	mainText := &broadsheet_mjml.MJTextBlock{BaseBlock: mainTextBase}
 
-	buttonBase4 := broadside_mjml.NewBaseBlock("reset-button", broadside_mjml.MJMLComponentMjButton)
+	buttonBase4 := broadsheet_mjml.NewBaseBlock("reset-button", broadsheet_mjml.MJMLComponentMjButton)
 	buttonBase4.Attributes["background-color"] = "#e74c3c"
 	buttonBase4.Attributes["color"] = "#ffffff"
 	buttonBase4.Attributes["font-size"] = "16px"
@@ -1555,40 +1555,40 @@ func (s *DemoService) createPasswordResetMJMLStructure(c passwordResetContent) b
 	buttonBase4.Attributes["border-radius"] = "6px"
 	buttonBase4.Attributes["href"] = "{{reset_url}}"
 	buttonBase4.Content = &buttonContent
-	button := &broadside_mjml.MJButtonBlock{BaseBlock: buttonBase4}
+	button := &broadsheet_mjml.MJButtonBlock{BaseBlock: buttonBase4}
 
-	expireTextBase := broadside_mjml.NewBaseBlock("expire-text", broadside_mjml.MJMLComponentMjText)
+	expireTextBase := broadsheet_mjml.NewBaseBlock("expire-text", broadsheet_mjml.MJMLComponentMjText)
 	expireTextBase.Content = &expireContent
-	expireText := &broadside_mjml.MJTextBlock{BaseBlock: expireTextBase}
+	expireText := &broadsheet_mjml.MJTextBlock{BaseBlock: expireTextBase}
 
-	divider := &broadside_mjml.MJDividerBlock{
-		BaseBlock: broadside_mjml.NewBaseBlock("divider", broadside_mjml.MJMLComponentMjDivider),
+	divider := &broadsheet_mjml.MJDividerBlock{
+		BaseBlock: broadsheet_mjml.NewBaseBlock("divider", broadsheet_mjml.MJMLComponentMjDivider),
 	}
 
-	footerTextBase := broadside_mjml.NewBaseBlock("footer-text", broadside_mjml.MJMLComponentMjText)
+	footerTextBase := broadsheet_mjml.NewBaseBlock("footer-text", broadsheet_mjml.MJMLComponentMjText)
 	footerTextBase.Content = &footerContent
-	footerText := &broadside_mjml.MJTextBlock{BaseBlock: footerTextBase}
+	footerText := &broadsheet_mjml.MJTextBlock{BaseBlock: footerTextBase}
 
-	columnBase := broadside_mjml.NewBaseBlock("main-column", broadside_mjml.MJMLComponentMjColumn)
-	columnBase.Children = []broadside_mjml.EmailBlock{headerText, mainText, button, expireText, divider, footerText}
-	column := &broadside_mjml.MJColumnBlock{BaseBlock: columnBase}
+	columnBase := broadsheet_mjml.NewBaseBlock("main-column", broadsheet_mjml.MJMLComponentMjColumn)
+	columnBase.Children = []broadsheet_mjml.EmailBlock{headerText, mainText, button, expireText, divider, footerText}
+	column := &broadsheet_mjml.MJColumnBlock{BaseBlock: columnBase}
 
-	sectionBase := broadside_mjml.NewBaseBlock("main-section", broadside_mjml.MJMLComponentMjSection)
-	sectionBase.Children = []broadside_mjml.EmailBlock{column}
-	section := &broadside_mjml.MJSectionBlock{BaseBlock: sectionBase}
+	sectionBase := broadsheet_mjml.NewBaseBlock("main-section", broadsheet_mjml.MJMLComponentMjSection)
+	sectionBase.Children = []broadsheet_mjml.EmailBlock{column}
+	section := &broadsheet_mjml.MJSectionBlock{BaseBlock: sectionBase}
 
-	headBase := broadside_mjml.NewBaseBlock("head", broadside_mjml.MJMLComponentMjHead)
-	headBase.Children = []broadside_mjml.EmailBlock{title, preview}
-	head := &broadside_mjml.MJHeadBlock{BaseBlock: headBase}
+	headBase := broadsheet_mjml.NewBaseBlock("head", broadsheet_mjml.MJMLComponentMjHead)
+	headBase.Children = []broadsheet_mjml.EmailBlock{title, preview}
+	head := &broadsheet_mjml.MJHeadBlock{BaseBlock: headBase}
 
-	bodyBase := broadside_mjml.NewBaseBlock("body", broadside_mjml.MJMLComponentMjBody)
-	bodyBase.Children = []broadside_mjml.EmailBlock{section}
-	body := &broadside_mjml.MJBodyBlock{BaseBlock: bodyBase}
+	bodyBase := broadsheet_mjml.NewBaseBlock("body", broadsheet_mjml.MJMLComponentMjBody)
+	bodyBase.Children = []broadsheet_mjml.EmailBlock{section}
+	body := &broadsheet_mjml.MJBodyBlock{BaseBlock: bodyBase}
 
-	rootBase6 := broadside_mjml.NewBaseBlock("mjml-root", broadside_mjml.MJMLComponentMjml)
+	rootBase6 := broadsheet_mjml.NewBaseBlock("mjml-root", broadsheet_mjml.MJMLComponentMjml)
 	rootBase6.Attributes["lang"] = c.lang
-	rootBase6.Children = []broadside_mjml.EmailBlock{head, body}
-	return &broadside_mjml.MJMLBlock{BaseBlock: rootBase6}
+	rootBase6.Children = []broadsheet_mjml.EmailBlock{head, body}
+	return &broadsheet_mjml.MJMLBlock{BaseBlock: rootBase6}
 }
 
 // createSampleTransactionalNotifications creates sample transactional notifications
@@ -1605,7 +1605,7 @@ func (s *DemoService) createSampleTransactionalNotifications(ctx context.Context
 				TemplateID: "password-reset",
 			},
 		},
-		TrackingSettings: broadside_mjml.TrackingSettings{
+		TrackingSettings: broadsheet_mjml.TrackingSettings{
 			EnableTracking: true,
 		},
 		Metadata: domain.MapOfAny{
@@ -1897,7 +1897,7 @@ func (s *DemoService) generateTransactionalMessageHistoryForContact(contact *dom
 
 	// Add specific data for password reset messages
 	if messageType == "password-reset" {
-		messageData.Data["reset_url"] = "https://demo.broadside.example/reset-password?token=demo_token_123"
+		messageData.Data["reset_url"] = "https://demo.broadsheet.example/reset-password?token=demo_token_123"
 	}
 
 	// Base transactional message with sent status
@@ -1975,7 +1975,7 @@ func (s *DemoService) generateMessageHistoryForContact(contact *domain.Contact, 
 				"first_name": getStringValue(contact.FirstName),
 				"last_name":  getStringValue(contact.LastName),
 			},
-			"utm_source":   "demo.broadside.example",
+			"utm_source":   "demo.broadsheet.example",
 			"utm_medium":   utmMedium,
 			"utm_campaign": broadcastID,
 		},

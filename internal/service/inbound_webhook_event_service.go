@@ -10,9 +10,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
-	"github.com/sheyaln/sabokit-broadside/pkg/tracing"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/tracing"
 	"github.com/google/uuid"
 )
 
@@ -231,7 +231,7 @@ func dedupeStrings(in []string) []string {
 }
 
 // extractXMessageIDFromHeaders searches for the X-Message-ID header in SES mail headers.
-// This is used as a fallback when broadside_message_id tag is not present
+// This is used as a fallback when broadsheet_message_id tag is not present
 // (e.g., for emails sent via SendRawEmail before tags were added).
 func extractXMessageIDFromHeaders(headers []domain.SESHeader) string {
 	for _, header := range headers {
@@ -304,7 +304,7 @@ func (s *InboundWebhookEventService) processSESWebhook(integrationID string, raw
 	var recipientEmail, messageID string
 	var bounceType, bounceCategory, bounceDiagnostic, complaintFeedbackType string
 	var timestamp time.Time
-	var broadsideMessageID string
+	var broadsheetMessageID string
 
 	// Try to unmarshal as bounce notification
 	var bounceNotification domain.SESBounceNotification
@@ -318,15 +318,15 @@ func (s *InboundWebhookEventService) processSESWebhook(integrationID string, raw
 		bounceType = bounceNotification.Bounce.BounceType
 		bounceCategory = bounceNotification.Bounce.BounceSubType
 
-		// Check for broadside_message_id in tags
+		// Check for broadsheet_message_id in tags
 		if len(bounceNotification.Mail.Tags) > 0 {
-			if ids, ok := bounceNotification.Mail.Tags["broadside_message_id"]; ok && len(ids) > 0 {
-				broadsideMessageID = ids[0]
+			if ids, ok := bounceNotification.Mail.Tags["broadsheet_message_id"]; ok && len(ids) > 0 {
+				broadsheetMessageID = ids[0]
 			}
 		}
 		// Fallback to X-Message-ID header if tag not found
-		if broadsideMessageID == "" {
-			broadsideMessageID = extractXMessageIDFromHeaders(bounceNotification.Mail.Headers)
+		if broadsheetMessageID == "" {
+			broadsheetMessageID = extractXMessageIDFromHeaders(bounceNotification.Mail.Headers)
 		}
 
 		// Parse timestamp
@@ -346,15 +346,15 @@ func (s *InboundWebhookEventService) processSESWebhook(integrationID string, raw
 			messageID = complaintNotification.Mail.MessageID
 			complaintFeedbackType = complaintNotification.Complaint.ComplaintFeedbackType
 
-			// Check for broadside_message_id in tags
+			// Check for broadsheet_message_id in tags
 			if len(complaintNotification.Mail.Tags) > 0 {
-				if ids, ok := complaintNotification.Mail.Tags["broadside_message_id"]; ok && len(ids) > 0 {
-					broadsideMessageID = ids[0]
+				if ids, ok := complaintNotification.Mail.Tags["broadsheet_message_id"]; ok && len(ids) > 0 {
+					broadsheetMessageID = ids[0]
 				}
 			}
 			// Fallback to X-Message-ID header if tag not found
-			if broadsideMessageID == "" {
-				broadsideMessageID = extractXMessageIDFromHeaders(complaintNotification.Mail.Headers)
+			if broadsheetMessageID == "" {
+				broadsheetMessageID = extractXMessageIDFromHeaders(complaintNotification.Mail.Headers)
 			}
 
 			// Parse timestamp
@@ -373,15 +373,15 @@ func (s *InboundWebhookEventService) processSESWebhook(integrationID string, raw
 				}
 				messageID = deliveryNotification.Mail.MessageID
 
-				// Check for broadside_message_id in tags
+				// Check for broadsheet_message_id in tags
 				if len(deliveryNotification.Mail.Tags) > 0 {
-					if ids, ok := deliveryNotification.Mail.Tags["broadside_message_id"]; ok && len(ids) > 0 {
-						broadsideMessageID = ids[0]
+					if ids, ok := deliveryNotification.Mail.Tags["broadsheet_message_id"]; ok && len(ids) > 0 {
+						broadsheetMessageID = ids[0]
 					}
 				}
 				// Fallback to X-Message-ID header if tag not found
-				if broadsideMessageID == "" {
-					broadsideMessageID = extractXMessageIDFromHeaders(deliveryNotification.Mail.Headers)
+				if broadsheetMessageID == "" {
+					broadsheetMessageID = extractXMessageIDFromHeaders(deliveryNotification.Mail.Headers)
 				}
 
 				// Parse timestamp
@@ -400,9 +400,9 @@ func (s *InboundWebhookEventService) processSESWebhook(integrationID string, raw
 		}
 	}
 
-	// Use broadsideMessageID if available, otherwise fallback to provider's messageID
-	if broadsideMessageID != "" {
-		messageID = broadsideMessageID
+	// Use broadsheetMessageID if available, otherwise fallback to provider's messageID
+	if broadsheetMessageID != "" {
+		messageID = broadsheetMessageID
 	}
 
 	// Create the webhook event
@@ -449,12 +449,12 @@ func (s *InboundWebhookEventService) processPostmarkWebhook(integrationID string
 	var recipientEmail, messageID string
 	var bounceType, bounceCategory, bounceDiagnostic, complaintFeedbackType string
 	var timestamp time.Time
-	var broadsideMessageID string
+	var broadsheetMessageID string
 
-	// Check for broadside_message_id in metadata
+	// Check for broadsheet_message_id in metadata
 	if payload.Metadata != nil {
-		if msgID, ok := payload.Metadata["broadside_message_id"]; ok {
-			broadsideMessageID = msgID
+		if msgID, ok := payload.Metadata["broadsheet_message_id"]; ok {
+			broadsheetMessageID = msgID
 		}
 	}
 
@@ -533,9 +533,9 @@ func (s *InboundWebhookEventService) processPostmarkWebhook(integrationID string
 
 	messageID = payload.MessageID
 
-	// Use broadsideMessageID if available, otherwise fallback to provider's messageID
-	if broadsideMessageID != "" {
-		messageID = broadsideMessageID
+	// Use broadsheetMessageID if available, otherwise fallback to provider's messageID
+	if broadsheetMessageID != "" {
+		messageID = broadsheetMessageID
 	}
 
 	// Create the webhook event
@@ -583,16 +583,16 @@ func (s *InboundWebhookEventService) processMailgunWebhook(integrationID string,
 	var recipientEmail, messageID string
 	var bounceType, bounceCategory, bounceDiagnostic, complaintFeedbackType string
 	var timestamp time.Time
-	var broadsideMessageID string
+	var broadsheetMessageID string
 
 	// Set timestamp from event data
 	timestamp = time.Unix(int64(payload.EventData.Timestamp), 0)
 
-	// Check for broadside_message_id in the custom variables
+	// Check for broadsheet_message_id in the custom variables
 	if eventData, ok := jsonData["event-data"].(map[string]interface{}); ok {
 		if userVariables, ok := eventData["user-variables"].(map[string]interface{}); ok {
-			if id, ok := userVariables["broadside_message_id"]; ok {
-				broadsideMessageID = fmt.Sprintf("%v", id)
+			if id, ok := userVariables["broadsheet_message_id"]; ok {
+				broadsheetMessageID = fmt.Sprintf("%v", id)
 			}
 		}
 	}
@@ -625,9 +625,9 @@ func (s *InboundWebhookEventService) processMailgunWebhook(integrationID string,
 		return nil, fmt.Errorf("unsupported Mailgun event type: %s", payload.EventData.Event)
 	}
 
-	// Use broadsideMessageID if available, otherwise fallback to provider's messageID
-	if broadsideMessageID != "" {
-		messageID = broadsideMessageID
+	// Use broadsheetMessageID if available, otherwise fallback to provider's messageID
+	if broadsheetMessageID != "" {
+		messageID = broadsheetMessageID
 	}
 
 	// Create the webhook event
@@ -671,14 +671,14 @@ func (s *InboundWebhookEventService) processSparkPostWebhook(integrationID strin
 		var recipientEmail, messageID string
 		var bounceType, bounceCategory, bounceDiagnostic, complaintFeedbackType string
 		var timestamp time.Time
-		var broadsideMessageID string
+		var broadsheetMessageID string
 
 		if payload.MSys.MessageEvent == nil {
 			return nil, fmt.Errorf("no message_event found in SparkPost webhook payload")
 		}
 
-		if id, ok := payload.MSys.MessageEvent.RecipientMeta["broadside_message_id"]; ok {
-			broadsideMessageID = fmt.Sprintf("%v", id)
+		if id, ok := payload.MSys.MessageEvent.RecipientMeta["broadsheet_message_id"]; ok {
+			broadsheetMessageID = fmt.Sprintf("%v", id)
 		}
 
 		// Set common fields
@@ -726,9 +726,9 @@ func (s *InboundWebhookEventService) processSparkPostWebhook(integrationID strin
 			return nil, fmt.Errorf("unsupported SparkPost event type: %s", payload.MSys.MessageEvent.Type)
 		}
 
-		// Use broadsideMessageID if available, otherwise fallback to provider's messageID
-		if broadsideMessageID != "" {
-			messageID = broadsideMessageID
+		// Use broadsheetMessageID if available, otherwise fallback to provider's messageID
+		if broadsheetMessageID != "" {
+			messageID = broadsheetMessageID
 		}
 
 		// Create the webhook event
@@ -796,7 +796,7 @@ func (s *InboundWebhookEventService) processSingleMailjetEvent(integrationID str
 	var recipientEmail, messageID string
 	var bounceType, bounceCategory, bounceDiagnostic, complaintFeedbackType string
 	var timestamp time.Time
-	var broadsideMessageID string
+	var broadsheetMessageID string
 
 	// Set timestamp from Unix timestamp
 	timestamp = time.Unix(payload.Time, 0)
@@ -807,7 +807,7 @@ func (s *InboundWebhookEventService) processSingleMailjetEvent(integrationID str
 
 	// Check for X-MJ-CustomID in the custom variables
 	if payload.CustomID != "" {
-		broadsideMessageID = payload.CustomID
+		broadsheetMessageID = payload.CustomID
 	}
 
 	// Map Mailjet event types to our event types
@@ -861,9 +861,9 @@ func (s *InboundWebhookEventService) processSingleMailjetEvent(integrationID str
 		return nil, fmt.Errorf("unsupported Mailjet event type: %s", payload.Event)
 	}
 
-	// Use broadsideMessageID if available, otherwise fallback to provider's messageID
-	if broadsideMessageID != "" {
-		messageID = broadsideMessageID
+	// Use broadsheetMessageID if available, otherwise fallback to provider's messageID
+	if broadsheetMessageID != "" {
+		messageID = broadsheetMessageID
 	}
 
 	// Create the webhook event
@@ -964,11 +964,11 @@ func (s *InboundWebhookEventService) processSendGridWebhook(integrationID string
 		timestamp := time.Unix(sgEvent.Timestamp, 0)
 		recipientEmail := sgEvent.Email
 
-		// Use broadside_message_id if present (flattened at top level by SendGrid)
+		// Use broadsheet_message_id if present (flattened at top level by SendGrid)
 		// Otherwise fall back to SendGrid's message ID
 		messageID := sgEvent.SGMessageID
-		if sgEvent.BroadsideMessageID != "" {
-			messageID = sgEvent.BroadsideMessageID
+		if sgEvent.BroadsheetMessageID != "" {
+			messageID = sgEvent.BroadsheetMessageID
 		}
 
 		// Map SendGrid event types to our event types

@@ -7,11 +7,11 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/pkg/crypto"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
-	"github.com/sheyaln/sabokit-broadside/pkg/ratelimiter"
-	"github.com/sheyaln/sabokit-broadside/pkg/tracing"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/crypto"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/ratelimiter"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/tracing"
 	"github.com/google/uuid"
 	"go.opencensus.io/trace"
 )

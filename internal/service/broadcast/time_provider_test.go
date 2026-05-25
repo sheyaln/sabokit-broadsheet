@@ -4,8 +4,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/service/broadcast"
-	"github.com/sheyaln/sabokit-broadside/internal/service/broadcast/mocks"
+	"github.com/sheyaln/sabokit-broadsheet/internal/service/broadcast"
+	"github.com/sheyaln/sabokit-broadsheet/internal/service/broadcast/mocks"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
 )

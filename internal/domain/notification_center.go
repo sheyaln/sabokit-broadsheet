@@ -7,7 +7,7 @@ import (
 	"regexp"
 )
 
-//go:generate mockgen -destination mocks/mock_notification_center_service.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain NotificationCenterService
+//go:generate mockgen -destination mocks/mock_notification_center_service.go -package mocks github.com/sheyaln/sabokit-broadsheet/internal/domain NotificationCenterService
 
 type NotificationCenterService interface {
 	// GetContactPreferences returns public lists and notifications for a contact

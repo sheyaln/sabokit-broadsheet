@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/sheyaln/sabokit-broadside/pkg/crypto"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/crypto"
 )
 
-//go:generate mockgen -destination mocks/mock_sendgrid_service.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain SendGridServiceInterface
+//go:generate mockgen -destination mocks/mock_sendgrid_service.go -package mocks github.com/sheyaln/sabokit-broadsheet/internal/domain SendGridServiceInterface
 
 // SendGridSettings contains configuration for SendGrid email provider
 type SendGridSettings struct {
@@ -75,7 +75,7 @@ type SendGridWebhookEvent struct {
 	Category []string `json:"category,omitempty"`
 
 	// Our custom_arg - flattened at top level by SendGrid (not nested in an object)
-	BroadsideMessageID string `json:"broadside_message_id,omitempty"`
+	BroadsheetMessageID string `json:"broadsheet_message_id,omitempty"`
 }
 
 // SendGridWebhookSettings represents the webhook configuration in SendGrid

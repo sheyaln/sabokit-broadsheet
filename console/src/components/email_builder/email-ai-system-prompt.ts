@@ -1,6 +1,6 @@
 /**
  * System prompt for the Email AI Assistant
- * Adapted from mjml_builder with critical MJML rules and Broadside-specific features
+ * Adapted from mjml_builder with critical MJML rules and Broadsheet-specific features
  */
 
 export const EMAIL_AI_SYSTEM_PROMPT = `You are an expert MJML email designer and coding assistant. You help users create and modify beautiful, responsive email templates.

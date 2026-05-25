@@ -10,8 +10,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
 )
 
 // MailjetService implements the domain.MailjetServiceInterface
@@ -281,17 +281,17 @@ func (s *MailjetService) RegisterWebhooks(
 	}
 
 	// Check for existing webhooks that match our criteria
-	var broadsideWebhooks []domain.MailjetWebhook
+	var broadsheetWebhooks []domain.MailjetWebhook
 	for _, webhook := range existingWebhooks.Data {
 		if strings.Contains(webhook.Endpoint, baseURL) &&
 			strings.Contains(webhook.Endpoint, fmt.Sprintf("workspace_id=%s", workspaceID)) &&
 			strings.Contains(webhook.Endpoint, fmt.Sprintf("integration_id=%s", integrationID)) {
-			broadsideWebhooks = append(broadsideWebhooks, webhook)
+			broadsheetWebhooks = append(broadsheetWebhooks, webhook)
 		}
 	}
 
 	// Delete existing webhooks
-	for _, webhook := range broadsideWebhooks {
+	for _, webhook := range broadsheetWebhooks {
 		err := s.DeleteWebhook(ctx, *providerConfig.Mailjet, webhook.ID)
 		if err != nil {
 			s.logger.WithField("webhook_id", webhook.ID).

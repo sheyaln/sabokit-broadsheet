@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/sheyaln/sabokit-broadside/config"
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/config"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
 )
 
 // V7Migration implements the migration from version 6.x to 7.0

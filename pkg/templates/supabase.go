@@ -4,11 +4,11 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/broadsheet_mjml"
 )
 
 // parseEmailTreeJSON parses an email tree JSON string into an EmailBlock
-func parseEmailTreeJSON(jsonStr string) (broadside_mjml.EmailBlock, error) {
+func parseEmailTreeJSON(jsonStr string) (broadsheet_mjml.EmailBlock, error) {
 	var rawData map[string]json.RawMessage
 	if err := json.Unmarshal([]byte(jsonStr), &rawData); err != nil {
 		return nil, fmt.Errorf("failed to parse JSON: %w", err)
@@ -21,8 +21,8 @@ func parseEmailTreeJSON(jsonStr string) (broadside_mjml.EmailBlock, error) {
 		emailTreeData = []byte(jsonStr)
 	}
 
-	// Use the UnmarshalEmailBlock function from the broadside_mjml package
-	emailBlock, err := broadside_mjml.UnmarshalEmailBlock(emailTreeData)
+	// Use the UnmarshalEmailBlock function from the broadsheet_mjml package
+	emailBlock, err := broadsheet_mjml.UnmarshalEmailBlock(emailTreeData)
 	if err != nil {
 		return nil, fmt.Errorf("failed to unmarshal email block: %w", err)
 	}
@@ -32,8 +32,8 @@ func parseEmailTreeJSON(jsonStr string) (broadside_mjml.EmailBlock, error) {
 
 // AllSupabaseTemplates returns a map of all Supabase template creation functions
 // This makes it easy to iterate over all templates in tests
-func AllSupabaseTemplates() map[string]func() (broadside_mjml.EmailBlock, error) {
-	return map[string]func() (broadside_mjml.EmailBlock, error){
+func AllSupabaseTemplates() map[string]func() (broadsheet_mjml.EmailBlock, error) {
+	return map[string]func() (broadsheet_mjml.EmailBlock, error){
 		"signup":           CreateSupabaseSignupEmailStructure,
 		"magic_link":       CreateSupabaseMagicLinkEmailStructure,
 		"recovery":         CreateSupabaseRecoveryEmailStructure,

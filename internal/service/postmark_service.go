@@ -10,8 +10,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
 )
 
 // PostmarkService implements the domain.PostmarkServiceInterface
@@ -337,10 +337,10 @@ func (s *PostmarkService) RegisterWebhooks(
 	}
 
 	// Check if we have existing webhooks
-	broadsideWebhooks := s.filterPostmarkWebhooks(existingWebhooks.Webhooks, baseURL, workspaceID, integrationID)
+	broadsheetWebhooks := s.filterPostmarkWebhooks(existingWebhooks.Webhooks, baseURL, workspaceID, integrationID)
 
 	// If we have existing webhooks, unregister them
-	for _, webhook := range broadsideWebhooks {
+	for _, webhook := range broadsheetWebhooks {
 		err := s.UnregisterWebhook(ctx, *providerConfig.Postmark, webhook.ID)
 		if err != nil {
 			s.logger.WithField("webhook_id", webhook.ID).
@@ -419,10 +419,10 @@ func (s *PostmarkService) GetWebhookStatus(
 	}
 
 	// Filter webhooks for our integration
-	broadsideWebhooks := s.filterPostmarkWebhooks(existingWebhooks.Webhooks, "", workspaceID, integrationID)
+	broadsheetWebhooks := s.filterPostmarkWebhooks(existingWebhooks.Webhooks, "", workspaceID, integrationID)
 
 	// Check each webhook in the response
-	for _, webhook := range broadsideWebhooks {
+	for _, webhook := range broadsheetWebhooks {
 		// Create base endpoint status
 		baseEndpoint := domain.WebhookEndpointStatus{
 			WebhookID: strconv.Itoa(webhook.ID),
@@ -482,11 +482,11 @@ func (s *PostmarkService) UnregisterWebhooks(
 	}
 
 	// Find webhooks that contain this integration or workspace ID
-	broadsideWebhooks := s.filterPostmarkWebhooks(existingWebhooks.Webhooks, "", workspaceID, integrationID)
+	broadsheetWebhooks := s.filterPostmarkWebhooks(existingWebhooks.Webhooks, "", workspaceID, integrationID)
 
 	// Unregister each webhook
 	var lastError error
-	for _, webhook := range broadsideWebhooks {
+	for _, webhook := range broadsheetWebhooks {
 		err := s.UnregisterWebhook(ctx, *providerConfig.Postmark, webhook.ID)
 		if err != nil {
 			s.logger.WithField("webhook_id", webhook.ID).
@@ -552,7 +552,7 @@ func (s *PostmarkService) SendEmail(ctx context.Context, request domain.SendEmai
 		"HtmlBody":      request.Content,
 		"MessageStream": request.Provider.Postmark.GetMessageStream(),
 		"Metadata": map[string]string{
-			"broadside_message_id": request.MessageID,
+			"broadsheet_message_id": request.MessageID,
 		},
 	}
 

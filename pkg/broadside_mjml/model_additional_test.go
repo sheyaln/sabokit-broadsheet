@@ -1,4 +1,4 @@
-package broadside_mjml
+package broadsheet_mjml
 
 import "testing"
 

@@ -72,7 +72,7 @@ test:
 	INTEGRATION_TESTS=true \
 	TEST_DB_HOST=localhost \
 	TEST_DB_PORT=5433 \
-	TEST_DB_USER=broadside_test \
+	TEST_DB_USER=broadsheet_test \
 	TEST_DB_PASSWORD=test_password \
 	ENVIRONMENT=test \
 	go test -v -timeout 10m ../tests/integration/...
@@ -85,7 +85,7 @@ test-quick:
 	INTEGRATION_TESTS=true \
 	TEST_DB_HOST=localhost \
 	TEST_DB_PORT=5433 \
-	TEST_DB_USER=broadside_test \
+	TEST_DB_USER=broadsheet_test \
 	TEST_DB_PASSWORD=test_password \
 	ENVIRONMENT=test \
 	go test -v -timeout 5m -short ../tests/integration/...
@@ -97,7 +97,7 @@ test-blog:
 	INTEGRATION_TESTS=true \
 	TEST_DB_HOST=localhost \
 	TEST_DB_PORT=5433 \
-	TEST_DB_USER=broadside_test \
+	TEST_DB_USER=broadsheet_test \
 	TEST_DB_PASSWORD=test_password \
 	ENVIRONMENT=test \
 	go test -v -timeout 10m -run TestBlog ../tests/integration/...

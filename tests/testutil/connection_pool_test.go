@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/config"
+	"github.com/sheyaln/sabokit-broadsheet/config"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -21,9 +21,9 @@ func TestConnectionPoolFunctionality(t *testing.T) {
 	config := &config.DatabaseConfig{
 		Host:     getEnvOrDefault("TEST_DB_HOST", "localhost"),
 		Port:     5433,
-		User:     getEnvOrDefault("TEST_DB_USER", "broadside_test"),
+		User:     getEnvOrDefault("TEST_DB_USER", "broadsheet_test"),
 		Password: getEnvOrDefault("TEST_DB_PASSWORD", "test_password"),
-		Prefix:   "broadside_test",
+		Prefix:   "broadsheet_test",
 		SSLMode:  "disable",
 	}
 

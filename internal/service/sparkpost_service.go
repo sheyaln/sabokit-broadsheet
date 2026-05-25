@@ -9,8 +9,8 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
 )
 
 // SparkPostService implements the domain.SparkPostServiceInterface
@@ -413,7 +413,7 @@ func (s *SparkPostService) RegisterWebhooks(
 	} else {
 		// Create a new webhook
 		newWebhook := domain.SparkPostWebhook{
-			Name:     fmt.Sprintf("Broadside-%s", integrationID),
+			Name:     fmt.Sprintf("Broadsheet-%s", integrationID),
 			Target:   webhookURL,
 			Events:   sparkpostEvents,
 			Active:   true,
@@ -844,7 +844,7 @@ func (s *SparkPostService) SendEmail(ctx context.Context, request domain.SendEma
 			HTML:    request.Content,
 		},
 		Metadata: map[string]interface{}{
-			"broadside_message_id": request.MessageID,
+			"broadsheet_message_id": request.MessageID,
 		},
 	}
 

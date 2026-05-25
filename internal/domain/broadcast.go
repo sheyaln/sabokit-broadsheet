@@ -11,9 +11,9 @@ import (
 	"time"
 )
 
-//go:generate mockgen -destination mocks/mock_broadcast_service.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain BroadcastService
-//go:generate mockgen -destination mocks/mock_broadcast_sender.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain BroadcastSender
-//go:generate mockgen -destination mocks/mock_broadcast_repository.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain BroadcastRepository
+//go:generate mockgen -destination mocks/mock_broadcast_service.go -package mocks github.com/sheyaln/sabokit-broadsheet/internal/domain BroadcastService
+//go:generate mockgen -destination mocks/mock_broadcast_sender.go -package mocks github.com/sheyaln/sabokit-broadsheet/internal/domain BroadcastSender
+//go:generate mockgen -destination mocks/mock_broadcast_repository.go -package mocks github.com/sheyaln/sabokit-broadsheet/internal/domain BroadcastRepository
 
 // BroadcastStatus defines the current status of a broadcast
 type BroadcastStatus string

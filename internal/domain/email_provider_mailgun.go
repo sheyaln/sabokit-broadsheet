@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/sheyaln/sabokit-broadside/pkg/crypto"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/crypto"
 )
 
-//go:generate mockgen -destination mocks/mock_mailgun_service.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain MailgunServiceInterface
+//go:generate mockgen -destination mocks/mock_mailgun_service.go -package mocks github.com/sheyaln/sabokit-broadsheet/internal/domain MailgunServiceInterface
 
 // MailgunWebhookPayload represents a Mailgun webhook payload
 type MailgunWebhookPayload struct {
@@ -136,7 +136,7 @@ func (m *MailgunSettings) Validate(passphrase string) error {
 	return nil
 }
 
-//go:generate mockgen -destination mocks/mock_mailgun_service.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain MailgunServiceInterface
+//go:generate mockgen -destination mocks/mock_mailgun_service.go -package mocks github.com/sheyaln/sabokit-broadsheet/internal/domain MailgunServiceInterface
 
 // MailgunServiceInterface defines operations for managing Mailgun webhooks
 type MailgunServiceInterface interface {

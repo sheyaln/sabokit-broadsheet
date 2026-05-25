@@ -13,7 +13,7 @@ import { useMemo } from 'react'
  * @param providedEditor - Optional editor instance to use instead of the context editor
  * @returns The provided editor or the editor from context, whichever is available
  */
-export function useBroadsideEditor(providedEditor?: Editor | null): {
+export function useBroadsheetEditor(providedEditor?: Editor | null): {
   editor: Editor | null
   editorState?: Editor['state']
   canCommand?: Editor['can']

@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/pkg/emailerror"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/emailerror"
 	"github.com/stretchr/testify/assert"
 )
 

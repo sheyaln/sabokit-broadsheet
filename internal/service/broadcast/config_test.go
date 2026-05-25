@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/service/broadcast"
+	"github.com/sheyaln/sabokit-broadsheet/internal/service/broadcast"
 	"github.com/stretchr/testify/assert"
 )
 

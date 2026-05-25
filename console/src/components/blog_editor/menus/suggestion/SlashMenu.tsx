@@ -9,7 +9,7 @@ import type { Editor } from '@tiptap/react'
 // --- Hooks ---
 import { useFloatingMenu } from '../../hooks/useFloatingMenu'
 import { useMenuKeyboard } from '../../hooks/useMenuKeyboard'
-import { useBroadsideEditor } from '../../hooks/useEditor'
+import { useBroadsheetEditor } from '../../hooks/useEditor'
 
 // --- Components ---
 import { SlashPopoverContent } from './SlashPopoverContent'
@@ -30,7 +30,7 @@ interface SlashMenuProps {
  */
 export const SlashMenu = ({ editor: providedEditor }: SlashMenuProps) => {
   const { t } = useLingui()
-  const { editor } = useBroadsideEditor(providedEditor)
+  const { editor } = useBroadsheetEditor(providedEditor)
 
   const [show, setShow] = useState<boolean>(false)
   const [internalDecorationNode, setInternalDecorationNode] = useState<HTMLElement | null>(null)

@@ -3,7 +3,7 @@
 @import "./styles/reactflow.css";
 
 /*
- * Broadside — Newsprint (after-hours) theme
+ * Broadsheet — Newsprint (after-hours) theme
  *
  * The dark variant of the labour-press palette. Same DNA — warm darks
  * instead of cream paper, brick red re-tuned (#E26A55) so it reads on
@@ -163,13 +163,13 @@ th.ant-table-cell.contacts-fixed-col {
 
 /* The masthead rule — a couple of styles we'll opt into from the layout
  * chrome and login card to nod to broadsheet typography. */
-.broadside-masthead-rule {
+.broadsheet-masthead-rule {
   border-top: 2px solid #5a4f43;
   border-bottom: 1px solid #5a4f43;
   padding: 6px 0;
 }
 
-.broadside-eyebrow {
+.broadsheet-eyebrow {
   font-family: 'IBM Plex Sans', system-ui, sans-serif;
   font-size: 10px;
   font-weight: 600;
@@ -178,7 +178,7 @@ th.ant-table-cell.contacts-fixed-col {
   color: #a39c8e;
 }
 
-.broadside-display {
+.broadsheet-display {
   font-family: 'Fraunces', 'IBM Plex Serif', Georgia, serif;
   font-weight: 700;
   letter-spacing: -0.015em;

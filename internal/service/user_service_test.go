@@ -7,11 +7,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/internal/domain/mocks"
-	"github.com/sheyaln/sabokit-broadside/pkg/crypto"
-	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
-	"github.com/sheyaln/sabokit-broadside/pkg/ratelimiter"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain/mocks"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/crypto"
+	pkgmocks "github.com/sheyaln/sabokit-broadsheet/pkg/mocks"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/ratelimiter"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/require"
 )

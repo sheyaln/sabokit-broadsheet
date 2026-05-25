@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/sheyaln/sabokit-broadside/internal/service"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/internal/service"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
 )
 
 // SupabaseWebhookHandler handles HTTP requests for Supabase webhooks

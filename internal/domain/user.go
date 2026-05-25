@@ -5,8 +5,8 @@ import (
 	"time"
 )
 
-//go:generate mockgen -destination mocks/mock_user_repository.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain UserRepository
-//go:generate mockgen -destination mocks/mock_user_service.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain UserServiceInterface
+//go:generate mockgen -destination mocks/mock_user_repository.go -package mocks github.com/sheyaln/sabokit-broadsheet/internal/domain UserRepository
+//go:generate mockgen -destination mocks/mock_user_service.go -package mocks github.com/sheyaln/sabokit-broadsheet/internal/domain UserServiceInterface
 
 // Key for storing user ID and session ID in context
 type contextKey string

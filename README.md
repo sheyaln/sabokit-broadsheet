@@ -1,6 +1,6 @@
-# Broadside
+# Broadsheet
 
-> *A broadside (n.): a single sheet of paper, printed on one side, posted in public places to be read by anyone passing. The format of the IWW, the suffragists, the abolitionist press, the samizdat-passers and the leaflet-droppers. The original mass-communication tool, before the term existed.*
+> *A broadsheet (n.): a single sheet of paper, printed on one side, posted in public places to be read by anyone passing. The format of the IWW, the suffragists, the abolitionist press, the samizdat-passers and the leaflet-droppers. The original mass-communication tool, before the term existed.*
 
 A self-hosted email platform. Fork of [Notifuse](https://github.com/Notifuse/notifuse) (AGPLv3), with OIDC SSO and a small set of fork-specific patches on top of upstream releases. Go backend, React console.
 
@@ -56,7 +56,7 @@ Engine docs are upstream: [docs.notifuse.com](https://docs.notifuse.com) covers 
 
 ## Relationship to Notifuse
 
-Broadside is a hard fork of Notifuse. We track upstream by force-rebasing `main` onto upstream when syncing, then re-applying our additions on top. We do not contribute back upstream for branding and because the upstream contributor agreement requires full IP assignment.
+Broadsheet is a hard fork of Notifuse. We track upstream by force-rebasing `main` onto upstream when syncing, then re-applying our additions on top. We do not contribute back upstream for branding and because the upstream contributor agreement requires full IP assignment.
 
 For the original project, see [github.com/Notifuse/notifuse](https://github.com/Notifuse/notifuse).
 

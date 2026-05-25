@@ -2,7 +2,7 @@
 
 ## Marketing
 
-- create Broadside blog
+- create Broadsheet blog
 - pages on homepage for:
 
   - rich contact profiles with custom events + segments

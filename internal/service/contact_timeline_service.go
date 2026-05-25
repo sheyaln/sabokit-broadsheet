@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
 )
 
 // ContactTimelineService implements domain.ContactTimelineService

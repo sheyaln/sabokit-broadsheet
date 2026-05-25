@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/sheyaln/sabokit-broadside/pkg/crypto"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/crypto"
 )
 
 // PostmarkWebhookPayload represents the base webhook payload from Postmark
@@ -195,7 +195,7 @@ func (p *PostmarkSettings) Validate(passphrase string) error {
 	return nil
 }
 
-//go:generate mockgen -destination mocks/mock_postmark_service.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain PostmarkServiceInterface
+//go:generate mockgen -destination mocks/mock_postmark_service.go -package mocks github.com/sheyaln/sabokit-broadsheet/internal/domain PostmarkServiceInterface
 
 // PostmarkServiceInterface defines operations for managing Postmark webhooks
 type PostmarkServiceInterface interface {

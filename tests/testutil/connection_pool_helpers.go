@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/config"
+	"github.com/sheyaln/sabokit-broadsheet/config"
 	"github.com/stretchr/testify/require"
 )
 
@@ -172,9 +172,9 @@ func GetTestDatabaseConfig() *config.DatabaseConfig {
 	cfg := &config.DatabaseConfig{
 		Host:     testHost,
 		Port:     testPort,
-		User:     getEnvOrDefault("TEST_DB_USER", "broadside_test"),
+		User:     getEnvOrDefault("TEST_DB_USER", "broadsheet_test"),
 		Password: getEnvOrDefault("TEST_DB_PASSWORD", "test_password"),
-		Prefix:   "broadside_test",
+		Prefix:   "broadsheet_test",
 		SSLMode:  "disable",
 	}
 

@@ -426,8 +426,8 @@ export function WorkspaceLayout() {
             >
               {collapsed ? (
                 <img
-                  src="/console/broadside-icon.png"
-                  alt="Broadside"
+                  src="/console/broadsheet-icon.png"
+                  alt="Broadsheet"
                   width={32}
                   height={32}
                   style={{ display: 'inline-block' }}
@@ -435,7 +435,7 @@ export function WorkspaceLayout() {
               ) : (
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                   <img
-                    src="/console/broadside-icon.png"
+                    src="/console/broadsheet-icon.png"
                     alt=""
                     width={36}
                     height={36}

@@ -10,9 +10,9 @@ import (
 	"time"
 
 	"github.com/DATA-DOG/go-sqlmock"
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/internal/repository/testutil"
-	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/internal/repository/testutil"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/broadsheet_mjml"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
@@ -184,32 +184,32 @@ func (m *MockWorkspaceRepository) WithWorkspaceTransaction(ctx context.Context, 
 }
 
 // Helper function to create a simple text block for testing
-func createTestTextBlock(id, textContent string) broadside_mjml.EmailBlock {
+func createTestTextBlock(id, textContent string) broadsheet_mjml.EmailBlock {
 	content := textContent
-	base := broadside_mjml.NewBaseBlock(id, broadside_mjml.MJMLComponentMjText)
+	base := broadsheet_mjml.NewBaseBlock(id, broadsheet_mjml.MJMLComponentMjText)
 	base.Content = &content
-	return &broadside_mjml.MJTextBlock{BaseBlock: base}
+	return &broadsheet_mjml.MJTextBlock{BaseBlock: base}
 }
 
 // Helper function to create a valid MJML tree structure for testing
-func createValidTestTree() broadside_mjml.EmailBlock {
+func createValidTestTree() broadsheet_mjml.EmailBlock {
 	textBlock := createTestTextBlock("txt1", "Test content")
-	columnBase := broadside_mjml.NewBaseBlock("col1", broadside_mjml.MJMLComponentMjColumn)
-	columnBase.Children = []broadside_mjml.EmailBlock{textBlock}
-	columnBlock := &broadside_mjml.MJColumnBlock{BaseBlock: columnBase}
+	columnBase := broadsheet_mjml.NewBaseBlock("col1", broadsheet_mjml.MJMLComponentMjColumn)
+	columnBase.Children = []broadsheet_mjml.EmailBlock{textBlock}
+	columnBlock := &broadsheet_mjml.MJColumnBlock{BaseBlock: columnBase}
 
-	sectionBase := broadside_mjml.NewBaseBlock("sec1", broadside_mjml.MJMLComponentMjSection)
-	sectionBase.Children = []broadside_mjml.EmailBlock{columnBlock}
-	sectionBlock := &broadside_mjml.MJSectionBlock{BaseBlock: sectionBase}
+	sectionBase := broadsheet_mjml.NewBaseBlock("sec1", broadsheet_mjml.MJMLComponentMjSection)
+	sectionBase.Children = []broadsheet_mjml.EmailBlock{columnBlock}
+	sectionBlock := &broadsheet_mjml.MJSectionBlock{BaseBlock: sectionBase}
 
-	bodyBase := broadside_mjml.NewBaseBlock("body1", broadside_mjml.MJMLComponentMjBody)
-	bodyBase.Children = []broadside_mjml.EmailBlock{sectionBlock}
-	bodyBlock := &broadside_mjml.MJBodyBlock{BaseBlock: bodyBase}
+	bodyBase := broadsheet_mjml.NewBaseBlock("body1", broadsheet_mjml.MJMLComponentMjBody)
+	bodyBase.Children = []broadsheet_mjml.EmailBlock{sectionBlock}
+	bodyBlock := &broadsheet_mjml.MJBodyBlock{BaseBlock: bodyBase}
 
-	rootBase := broadside_mjml.NewBaseBlock("root", broadside_mjml.MJMLComponentMjml)
+	rootBase := broadsheet_mjml.NewBaseBlock("root", broadsheet_mjml.MJMLComponentMjml)
 	rootBase.Attributes["version"] = "4.0.0"
-	rootBase.Children = []broadside_mjml.EmailBlock{bodyBlock}
-	return &broadside_mjml.MJMLBlock{BaseBlock: rootBase}
+	rootBase.Children = []broadsheet_mjml.EmailBlock{bodyBlock}
+	return &broadsheet_mjml.MJMLBlock{BaseBlock: rootBase}
 }
 
 // Helper function to create a valid template for testing

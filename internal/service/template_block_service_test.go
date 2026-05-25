@@ -6,11 +6,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	domainmocks "github.com/sheyaln/sabokit-broadside/internal/domain/mocks"
-	"github.com/sheyaln/sabokit-broadside/internal/service"
-	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
-	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	domainmocks "github.com/sheyaln/sabokit-broadsheet/internal/domain/mocks"
+	"github.com/sheyaln/sabokit-broadsheet/internal/service"
+	pkgmocks "github.com/sheyaln/sabokit-broadsheet/pkg/mocks"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/broadsheet_mjml"
 	"github.com/golang/mock/gomock"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
@@ -18,9 +18,9 @@ import (
 )
 
 // Helper function to create a test EmailBlock
-func createTestEmailBlock() broadside_mjml.EmailBlock {
+func createTestEmailBlock() broadsheet_mjml.EmailBlock {
 	blockJSON := []byte(`{"id":"b1","type":"mj-text","content":"Hello","attributes":{"fontSize":"16px"}}`)
-	blk, _ := broadside_mjml.UnmarshalEmailBlock(blockJSON)
+	blk, _ := broadsheet_mjml.UnmarshalEmailBlock(blockJSON)
 	return blk
 }
 

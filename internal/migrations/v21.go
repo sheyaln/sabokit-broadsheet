@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/sheyaln/sabokit-broadside/config"
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/config"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
 )
 
 // V21Migration adds email queue tables for unified broadcast and automation email sending

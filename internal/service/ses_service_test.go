@@ -9,9 +9,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/internal/domain/mocks"
-	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain/mocks"
+	pkgmocks "github.com/sheyaln/sabokit-broadsheet/pkg/mocks"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/request"
@@ -415,13 +415,13 @@ func TestCreateSNSTopic_DefaultTopicName_Success(t *testing.T) {
 	}
 
 	mockCreateOutput := &sns.CreateTopicOutput{
-		TopicArn: aws.String("arn:aws:sns:us-east-1:123456789012:broadside-email-webhooks"),
+		TopicArn: aws.String("arn:aws:sns:us-east-1:123456789012:broadsheet-email-webhooks"),
 	}
 
 	mockSNSClient.EXPECT().
 		CreateTopicWithContext(gomock.Any(), gomock.Any()).
 		DoAndReturn(func(_ context.Context, input *sns.CreateTopicInput, _ ...request.Option) (*sns.CreateTopicOutput, error) {
-			assert.Equal(t, "broadside-email-webhooks", *input.Name)
+			assert.Equal(t, "broadsheet-email-webhooks", *input.Name)
 			return mockCreateOutput, nil
 		})
 
@@ -1055,7 +1055,7 @@ func TestRegisterWebhooks_Success(t *testing.T) {
 		},
 	}
 
-	topicARN := "arn:aws:sns:us-east-1:123456789012:broadside-ses-test-integration"
+	topicARN := "arn:aws:sns:us-east-1:123456789012:broadsheet-ses-test-integration"
 
 	// Mock SNS topic creation
 	mockSNSClient.EXPECT().
@@ -1164,7 +1164,7 @@ func TestRegisterWebhooks_ConfigSetError(t *testing.T) {
 		},
 	}
 
-	topicARN := "arn:aws:sns:us-east-1:123456789012:broadside-ses-test-integration"
+	topicARN := "arn:aws:sns:us-east-1:123456789012:broadsheet-ses-test-integration"
 
 	mockSNSClient.EXPECT().
 		CreateTopicWithContext(gomock.Any(), gomock.Any()).
@@ -1202,7 +1202,7 @@ func TestRegisterWebhooks_EventDestinationError(t *testing.T) {
 		},
 	}
 
-	topicARN := "arn:aws:sns:us-east-1:123456789012:broadside-ses-test-integration"
+	topicARN := "arn:aws:sns:us-east-1:123456789012:broadsheet-ses-test-integration"
 
 	mockSNSClient.EXPECT().
 		CreateTopicWithContext(gomock.Any(), gomock.Any()).
@@ -1244,7 +1244,7 @@ func TestGetWebhookStatus_RegisteredWebhooks(t *testing.T) {
 		},
 	}
 
-	configSetName := fmt.Sprintf("broadside-%s", integrationID)
+	configSetName := fmt.Sprintf("broadsheet-%s", integrationID)
 
 	// Mock configuration set exists
 	mockSESClient.EXPECT().
@@ -1373,7 +1373,7 @@ func TestGetWebhookStatus_ListEventDestinationsError(t *testing.T) {
 		},
 	}
 
-	configSetName := fmt.Sprintf("broadside-%s", integrationID)
+	configSetName := fmt.Sprintf("broadsheet-%s", integrationID)
 
 	mockSESClient.EXPECT().
 		ListConfigurationSetsWithContext(gomock.Any(), gomock.Any()).
@@ -1409,8 +1409,8 @@ func TestUnregisterWebhooks_Success(t *testing.T) {
 		},
 	}
 
-	configSetName := fmt.Sprintf("broadside-%s", integrationID)
-	destinationName := fmt.Sprintf("broadside-destination-%s", integrationID)
+	configSetName := fmt.Sprintf("broadsheet-%s", integrationID)
+	destinationName := fmt.Sprintf("broadsheet-destination-%s", integrationID)
 	topicARN := "arn:aws:sns:us-east-1:123456789012:test-topic"
 
 	// Mock configuration set exists
@@ -1519,8 +1519,8 @@ func TestUnregisterWebhooks_PartialFailure(t *testing.T) {
 		},
 	}
 
-	configSetName := fmt.Sprintf("broadside-%s", integrationID)
-	destinationName := fmt.Sprintf("broadside-destination-%s", integrationID)
+	configSetName := fmt.Sprintf("broadsheet-%s", integrationID)
+	destinationName := fmt.Sprintf("broadsheet-destination-%s", integrationID)
 	topicARN := "arn:aws:sns:us-east-1:123456789012:test-topic"
 
 	mockSESClient.EXPECT().
@@ -1775,7 +1775,7 @@ func TestSendEmail_EmptyCCBCC(t *testing.T) {
 			assert.Nil(t, input.ReplyToAddresses)
 			// Expect message ID tag
 			assert.Len(t, input.Tags, 1)
-			assert.Equal(t, "broadside_message_id", *input.Tags[0].Name)
+			assert.Equal(t, "broadsheet_message_id", *input.Tags[0].Name)
 			assert.Equal(t, "test-message-id", *input.Tags[0].Value)
 			return &ses.SendEmailOutput{}, nil
 		})
@@ -2032,7 +2032,7 @@ func TestSendEmail_WithConfigurationSet(t *testing.T) {
 
 	workspaceID := "test-workspace"
 	integrationID := "test-integration-id"
-	configSetName := fmt.Sprintf("broadside-%s", integrationID)
+	configSetName := fmt.Sprintf("broadsheet-%s", integrationID)
 
 	provider := &domain.EmailProvider{
 		SES: &domain.AmazonSESSettings{
@@ -2101,7 +2101,7 @@ func TestSendEmail_WithMessageIDTag(t *testing.T) {
 		DoAndReturn(func(_ context.Context, input *ses.SendEmailInput, _ ...request.Option) (*ses.SendEmailOutput, error) {
 			// Verify message ID tag
 			assert.Len(t, input.Tags, 1)
-			assert.Equal(t, "broadside_message_id", *input.Tags[0].Name)
+			assert.Equal(t, "broadsheet_message_id", *input.Tags[0].Name)
 			assert.Equal(t, messageID, *input.Tags[0].Value)
 
 			return &ses.SendEmailOutput{}, nil
@@ -2601,7 +2601,7 @@ func TestSendEmail_WithAttachmentsAndConfigSet(t *testing.T) {
 	service, mockSESClient, _, _, _ := createMockSESService(t)
 
 	integrationID := "test-integration"
-	configSetName := fmt.Sprintf("broadside-%s", integrationID)
+	configSetName := fmt.Sprintf("broadsheet-%s", integrationID)
 
 	provider := &domain.EmailProvider{
 		SES: &domain.AmazonSESSettings{
@@ -2865,7 +2865,7 @@ func TestSendEmail_VerifyMIMEStructureWithAttachments(t *testing.T) {
 			// Verify tags are included in SendRawEmail
 			assert.NotNil(t, input.Tags, "Tags should be set for SendRawEmail")
 			assert.Len(t, input.Tags, 1)
-			assert.Equal(t, "broadside_message_id", *input.Tags[0].Name)
+			assert.Equal(t, "broadsheet_message_id", *input.Tags[0].Name)
 			assert.Equal(t, "test-message-id", *input.Tags[0].Value)
 
 			return &ses.SendRawEmailOutput{}, nil
@@ -2917,7 +2917,7 @@ func TestSendEmail_WithListUnsubscribeHeaders(t *testing.T) {
 			// Verify tags are included in SendRawEmail
 			assert.NotNil(t, input.Tags, "Tags should be set for SendRawEmail")
 			assert.Len(t, input.Tags, 1)
-			assert.Equal(t, "broadside_message_id", *input.Tags[0].Name)
+			assert.Equal(t, "broadsheet_message_id", *input.Tags[0].Name)
 			assert.Equal(t, "test-message-id", *input.Tags[0].Value)
 
 			return &ses.SendRawEmailOutput{}, nil

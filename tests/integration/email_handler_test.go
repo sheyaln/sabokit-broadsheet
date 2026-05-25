@@ -12,10 +12,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/pkg/crypto"
-	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
-	"github.com/sheyaln/sabokit-broadside/tests/testutil"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/crypto"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/broadsheet_mjml"
+	"github.com/sheyaln/sabokit-broadsheet/tests/testutil"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -965,11 +965,11 @@ func TestEmailHandler_TrackedLinkPreservesUTM(t *testing.T) {
 		`<mj-button href="https://shop.example.com/product?ref=email">Buy Now</mj-button>` +
 		`</mj-column></mj-section></mj-body></mjml>`
 
-	compileResp, err := broadside_mjml.CompileTemplate(broadside_mjml.CompileTemplateRequest{
+	compileResp, err := broadsheet_mjml.CompileTemplate(broadsheet_mjml.CompileTemplateRequest{
 		WorkspaceID: "ws-utm",
 		MessageID:   "msg-utm",
 		MjmlSource:  &mjmlSource,
-		TrackingSettings: broadside_mjml.TrackingSettings{
+		TrackingSettings: broadsheet_mjml.TrackingSettings{
 			EnableTracking: true,
 			Endpoint:       baseURL,
 			UTMSource:      "newsletter",

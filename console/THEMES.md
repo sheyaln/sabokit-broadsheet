@@ -1,6 +1,6 @@
-# Broadside Console — Themes
+# Broadsheet Console — Themes
 
-This file documents the visual identity for the Broadside console and records
+This file documents the visual identity for the Broadsheet console and records
 two alternative directions that were considered. The brief was "slightly
 leftist broadsheet" — confident, plainspoken, literary, not party-coded.
 
@@ -89,7 +89,7 @@ brick fill without going off-brand.
 - `console/src/layouts/MainLayout.tsx` — the unauthenticated chrome with
   the broadsheet masthead.
 - `console/src/layouts/WorkspaceLayout.tsx` — the authenticated sidebar
-  with the inline Broadside masthead.
+  with the inline Broadsheet masthead.
 - `console/src/pages/SignInPage.tsx` — the sign-in card uses a hard 1px
   ink border with a soft offset shadow (a printed-box feel).
 - `console/src/components/settings/SettingsSidebar.tsx` — Settings header

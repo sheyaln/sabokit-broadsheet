@@ -80,8 +80,8 @@ const generateSupabaseWebhookURL = (
   integrationID: string
 ): string => {
   let defaultOrigin = window.location.origin
-  if (defaultOrigin.includes('broadsidedev.local')) {
-    defaultOrigin = 'https://localapi.broadside.local:4000'
+  if (defaultOrigin.includes('broadsheetdev.local')) {
+    defaultOrigin = 'https://localapi.broadsheet.local:4000'
   }
   const apiEndpoint = window.API_ENDPOINT?.trim() || defaultOrigin
 

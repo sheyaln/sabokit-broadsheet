@@ -13,12 +13,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/config"
-	"github.com/sheyaln/sabokit-broadside/internal/app"
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
-	"github.com/sheyaln/sabokit-broadside/pkg/mailer"
-	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
+	"github.com/sheyaln/sabokit-broadsheet/config"
+	"github.com/sheyaln/sabokit-broadsheet/internal/app"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/mailer"
+	pkgmocks "github.com/sheyaln/sabokit-broadsheet/pkg/mocks"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
 )
@@ -39,7 +39,7 @@ func TestSetupMinimalConfig(t *testing.T) {
 	os.Setenv("DB_PASS", "postgres_test")
 	os.Setenv("DB_HOST", "localhost")
 	os.Setenv("DB_PORT", "5432")
-	os.Setenv("DB_NAME", "broadside_test")
+	os.Setenv("DB_NAME", "broadsheet_test")
 	os.Setenv("ROOT_EMAIL", "test@example.com")
 
 	// Cleanup
@@ -130,7 +130,7 @@ func createSimpleTestConfig() *config.Config {
 			Password: "postgres_test",
 			Host:     "localhost",
 			Port:     5432,
-			DBName:   "broadside_test",
+			DBName:   "broadsheet_test",
 		},
 		Server: config.ServerConfig{
 			Host: "localhost",

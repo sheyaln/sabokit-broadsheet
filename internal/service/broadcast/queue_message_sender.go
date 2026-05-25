@@ -7,9 +7,9 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
-	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/broadsheet_mjml"
 	"github.com/google/uuid"
 )
 
@@ -150,7 +150,7 @@ func (s *queueMessageSender) SendBatch(
 		}
 
 		// Build tracking settings for BuildTemplateData
-		trackingSettings := broadside_mjml.TrackingSettings{
+		trackingSettings := broadsheet_mjml.TrackingSettings{
 			Endpoint:       endpoint,
 			EnableTracking: trackingEnabled,
 			UTMSource:      broadcast.UTMParameters.Source,
@@ -285,7 +285,7 @@ func (s *queueMessageSender) buildQueueEntry(
 	}
 
 	// Build tracking settings
-	trackingSettings := broadside_mjml.TrackingSettings{
+	trackingSettings := broadsheet_mjml.TrackingSettings{
 		Endpoint:       endpoint,
 		EnableTracking: trackingEnabled,
 		UTMSource:      broadcast.UTMParameters.Source,
@@ -310,7 +310,7 @@ func (s *queueMessageSender) buildQueueEntry(
 	}
 
 	// Compile template with the provided data
-	compileReq := broadside_mjml.CompileTemplateRequest{
+	compileReq := broadsheet_mjml.CompileTemplateRequest{
 		WorkspaceID:      workspaceID,
 		MessageID:        messageID,
 		VisualEditorTree: emailContent.VisualEditorTree,
@@ -318,7 +318,7 @@ func (s *queueMessageSender) buildQueueEntry(
 		TrackingSettings: trackingSettings,
 	}
 	compileReq.MjmlSource = emailContent.GetCodeModeMjmlSource()
-	compiledTemplate, err := broadside_mjml.CompileTemplate(compileReq)
+	compiledTemplate, err := broadsheet_mjml.CompileTemplate(compileReq)
 	if err != nil {
 		return nil, fmt.Errorf("failed to compile template: %w", err)
 	}
@@ -332,7 +332,7 @@ func (s *queueMessageSender) buildQueueEntry(
 	htmlContent := *compiledTemplate.HTML
 
 	// Process subject line through Liquid templating
-	subject, err := broadside_mjml.ProcessLiquidTemplate(
+	subject, err := broadsheet_mjml.ProcessLiquidTemplate(
 		emailContent.Subject,
 		data,
 		"email_subject",

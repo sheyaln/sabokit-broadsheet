@@ -9,10 +9,10 @@ import (
 	"net/url"
 	"testing"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain/mocks"
-	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain/mocks"
+	pkgmocks "github.com/sheyaln/sabokit-broadsheet/pkg/mocks"
 
 	"github.com/golang/mock/gomock"
 

@@ -7,9 +7,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/config"
-	"github.com/sheyaln/sabokit-broadside/internal/app"
-	"github.com/sheyaln/sabokit-broadside/tests/testutil"
+	"github.com/sheyaln/sabokit-broadsheet/config"
+	"github.com/sheyaln/sabokit-broadsheet/internal/app"
+	"github.com/sheyaln/sabokit-broadsheet/tests/testutil"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -258,7 +258,7 @@ func TestTemplateIntegrationBasic(t *testing.T) {
 
 // TestTemplateCompileWithSubject verifies that /api/templates.compile renders
 // subject and subject_preview through the Liquid engine using test_data.
-// Regression for https://github.com/sheyaln/sabokit-broadside/issues/329.
+// Regression for https://github.com/sheyaln/sabokit-broadsheet/issues/329.
 func TestTemplateCompileWithSubject(t *testing.T) {
 	testutil.SkipIfShort(t)
 	testutil.SetupTestEnvironment()

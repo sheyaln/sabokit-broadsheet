@@ -9,8 +9,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/config"
-	"github.com/sheyaln/sabokit-broadside/internal/database"
+	"github.com/sheyaln/sabokit-broadsheet/config"
+	"github.com/sheyaln/sabokit-broadsheet/internal/database"
 )
 
 // pingHealthCheckTimeout caps the GetWorkspaceConnection pool health check.

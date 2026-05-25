@@ -9,9 +9,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/internal/domain/mocks"
-	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain/mocks"
+	pkgmocks "github.com/sheyaln/sabokit-broadsheet/pkg/mocks"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -514,9 +514,9 @@ func TestProcessSESWebhook(t *testing.T) {
 	})
 
 	t.Run("Bounce Event with Notifuse Message ID", func(t *testing.T) {
-		// Create test bounce payload with broadside_message_id in tags
+		// Create test bounce payload with broadsheet_message_id in tags
 		payload := domain.SESWebhookPayload{
-			Message: `{"eventType":"Bounce","bounce":{"bounceType":"Permanent","bounceSubType":"General","bouncedRecipients":[{"emailAddress":"test@example.com","diagnosticCode":"554"}],"timestamp":"2023-01-01T12:00:00Z"},"mail":{"messageId":"provider-msg-id","tags":{"broadside_message_id":["notifuse-123"]}}}`,
+			Message: `{"eventType":"Bounce","bounce":{"bounceType":"Permanent","bounceSubType":"General","bouncedRecipients":[{"emailAddress":"test@example.com","diagnosticCode":"554"}],"timestamp":"2023-01-01T12:00:00Z"},"mail":{"messageId":"provider-msg-id","tags":{"broadsheet_message_id":["notifuse-123"]}}}`,
 		}
 		rawPayload, err := json.Marshal(payload)
 		require.NoError(t, err)
@@ -532,9 +532,9 @@ func TestProcessSESWebhook(t *testing.T) {
 	})
 
 	t.Run("Delivery Event with Notifuse Message ID", func(t *testing.T) {
-		// Create test delivery payload with broadside_message_id in tags
+		// Create test delivery payload with broadsheet_message_id in tags
 		payload := domain.SESWebhookPayload{
-			Message: `{"eventType":"Delivery","delivery":{"recipients":["test@example.com"],"timestamp":"2023-01-01T12:00:00Z"},"mail":{"messageId":"provider-msg-id","tags":{"broadside_message_id":["notifuse-456"]}}}`,
+			Message: `{"eventType":"Delivery","delivery":{"recipients":["test@example.com"],"timestamp":"2023-01-01T12:00:00Z"},"mail":{"messageId":"provider-msg-id","tags":{"broadsheet_message_id":["notifuse-456"]}}}`,
 		}
 		rawPayload, err := json.Marshal(payload)
 		require.NoError(t, err)
@@ -550,9 +550,9 @@ func TestProcessSESWebhook(t *testing.T) {
 	})
 
 	t.Run("Complaint Event with Notifuse Message ID", func(t *testing.T) {
-		// Create test complaint payload with broadside_message_id in tags
+		// Create test complaint payload with broadsheet_message_id in tags
 		payload := domain.SESWebhookPayload{
-			Message: `{"eventType":"Complaint","complaint":{"complainedRecipients":[{"emailAddress":"test@example.com"}],"timestamp":"2023-01-01T12:00:00Z","complaintFeedbackType":"abuse"},"mail":{"messageId":"provider-msg-id","tags":{"broadside_message_id":["notifuse-789"]}}}`,
+			Message: `{"eventType":"Complaint","complaint":{"complainedRecipients":[{"emailAddress":"test@example.com"}],"timestamp":"2023-01-01T12:00:00Z","complaintFeedbackType":"abuse"},"mail":{"messageId":"provider-msg-id","tags":{"broadsheet_message_id":["notifuse-789"]}}}`,
 		}
 		rawPayload, err := json.Marshal(payload)
 		require.NoError(t, err)
@@ -672,7 +672,7 @@ func TestProcessSESWebhook(t *testing.T) {
 	t.Run("Tags take priority over X-Message-ID header fallback", func(t *testing.T) {
 		// Create test delivery payload with both tags AND headers
 		payload := domain.SESWebhookPayload{
-			Message: `{"eventType":"Delivery","delivery":{"recipients":["test@example.com"],"timestamp":"2023-01-01T12:00:00Z"},"mail":{"messageId":"provider-msg-id","tags":{"broadside_message_id":["tag-message-id"]},"headers":[{"name":"X-Message-ID","value":"header-message-id"}]}}`,
+			Message: `{"eventType":"Delivery","delivery":{"recipients":["test@example.com"],"timestamp":"2023-01-01T12:00:00Z"},"mail":{"messageId":"provider-msg-id","tags":{"broadsheet_message_id":["tag-message-id"]},"headers":[{"name":"X-Message-ID","value":"header-message-id"}]}}`,
 		}
 		rawPayload, err := json.Marshal(payload)
 		require.NoError(t, err)
@@ -931,14 +931,14 @@ func TestProcessPostmarkWebhook(t *testing.T) {
 	})
 
 	t.Run("Event with Notifuse Message ID in Metadata", func(t *testing.T) {
-		// Create test delivery payload with broadside_message_id in metadata
+		// Create test delivery payload with broadsheet_message_id in metadata
 		rawPayload, err := json.Marshal(map[string]interface{}{
 			"RecordType":  "Delivery",
 			"MessageID":   "provider-message-id",
 			"Recipient":   "test@example.com",
 			"DeliveredAt": "2023-01-01T12:00:00Z",
 			"Metadata": map[string]interface{}{
-				"broadside_message_id": "notifuse-123",
+				"broadsheet_message_id": "notifuse-123",
 			},
 		})
 		require.NoError(t, err)
@@ -1219,7 +1219,7 @@ func TestProcessSparkPostWebhook(t *testing.T) {
 	})
 
 	t.Run("Event with Notifuse Message ID", func(t *testing.T) {
-		// Create test delivery payload with broadside_message_id in recipient meta
+		// Create test delivery payload with broadsheet_message_id in recipient meta
 		payload := []*domain.SparkPostWebhookPayload{
 			{
 				MSys: domain.SparkPostMSys{
@@ -1229,7 +1229,7 @@ func TestProcessSparkPostWebhook(t *testing.T) {
 						MessageID:   "provider-message-id",
 						Timestamp:   "2023-01-01T12:00:00Z",
 						RecipientMeta: map[string]interface{}{
-							"broadside_message_id": "notifuse-123",
+							"broadsheet_message_id": "notifuse-123",
 						},
 					},
 				},
@@ -1466,7 +1466,7 @@ func TestProcessMailgunWebhook(t *testing.T) {
 	})
 
 	t.Run("Event with Notifuse Message ID in User Variables", func(t *testing.T) {
-		// Create test delivery payload with broadside_message_id in user variables
+		// Create test delivery payload with broadsheet_message_id in user variables
 		// We need to create the raw JSON to include the user-variables structure
 		rawPayload := []byte(`{
 			"event-data": {
@@ -1479,7 +1479,7 @@ func TestProcessMailgunWebhook(t *testing.T) {
 					}
 				},
 				"user-variables": {
-					"broadside_message_id": "notifuse-123"
+					"broadsheet_message_id": "notifuse-123"
 				}
 			}
 		}`)
@@ -2036,7 +2036,7 @@ func TestProcessSendGridWebhook(t *testing.T) {
 			"sg_event_id": "abc123",
 			"sg_message_id": "14c5d75ce93.dfd.64b469",
 			"response": "250 2.0.0 OK",
-			"broadside_message_id": "msg_123"
+			"broadsheet_message_id": "msg_123"
 		}]`)
 
 		events, err := service.processSendGridWebhook(integrationID, rawPayload)
@@ -2048,11 +2048,11 @@ func TestProcessSendGridWebhook(t *testing.T) {
 		assert.Equal(t, integrationID, events[0].IntegrationID)
 		assert.Equal(t, "test@example.com", events[0].RecipientEmail)
 		assert.NotNil(t, events[0].MessageID)
-		assert.Equal(t, "msg_123", *events[0].MessageID) // Uses broadside_message_id
+		assert.Equal(t, "msg_123", *events[0].MessageID) // Uses broadsheet_message_id
 	})
 
 	t.Run("Delivered Event - Fallback to sg_message_id", func(t *testing.T) {
-		// When broadside_message_id is not present, fall back to sg_message_id
+		// When broadsheet_message_id is not present, fall back to sg_message_id
 		rawPayload := []byte(`[{
 			"email": "test@example.com",
 			"timestamp": 1706097600,
@@ -2079,7 +2079,7 @@ func TestProcessSendGridWebhook(t *testing.T) {
 			"status": "5.1.1",
 			"type": "bounce",
 			"bounce_classification": "Invalid Address",
-			"broadside_message_id": "msg_456"
+			"broadsheet_message_id": "msg_456"
 		}]`)
 
 		events, err := service.processSendGridWebhook(integrationID, rawPayload)
@@ -2104,7 +2104,7 @@ func TestProcessSendGridWebhook(t *testing.T) {
 			"reason": "Temporarily rejected due to reputation",
 			"status": "4.7.1",
 			"bounce_classification": "Reputation",
-			"broadside_message_id": "msg_789"
+			"broadsheet_message_id": "msg_789"
 		}]`)
 
 		events, err := service.processSendGridWebhook(integrationID, rawPayload)
@@ -2125,7 +2125,7 @@ func TestProcessSendGridWebhook(t *testing.T) {
 			"sg_event_id": "jkl012",
 			"sg_message_id": "14c5d75ce93.dfd.64b469",
 			"reason": "Bounced Address",
-			"broadside_message_id": "msg_012"
+			"broadsheet_message_id": "msg_012"
 		}]`)
 
 		events, err := service.processSendGridWebhook(integrationID, rawPayload)
@@ -2145,7 +2145,7 @@ func TestProcessSendGridWebhook(t *testing.T) {
 			"event": "spamreport",
 			"sg_event_id": "mno345",
 			"sg_message_id": "14c5d75ce93.dfd.64b469",
-			"broadside_message_id": "msg_345"
+			"broadsheet_message_id": "msg_345"
 		}]`)
 
 		events, err := service.processSendGridWebhook(integrationID, rawPayload)
@@ -2166,7 +2166,7 @@ func TestProcessSendGridWebhook(t *testing.T) {
 				"event": "delivered",
 				"sg_event_id": "event1",
 				"sg_message_id": "msg1",
-				"broadside_message_id": "notifuse_1"
+				"broadsheet_message_id": "notifuse_1"
 			},
 			{
 				"email": "bounced@example.com",
@@ -2176,7 +2176,7 @@ func TestProcessSendGridWebhook(t *testing.T) {
 				"sg_message_id": "msg2",
 				"reason": "User unknown",
 				"bounce_classification": "Invalid Address",
-				"broadside_message_id": "notifuse_2"
+				"broadsheet_message_id": "notifuse_2"
 			},
 			{
 				"email": "complained@example.com",
@@ -2184,7 +2184,7 @@ func TestProcessSendGridWebhook(t *testing.T) {
 				"event": "spamreport",
 				"sg_event_id": "event3",
 				"sg_message_id": "msg3",
-				"broadside_message_id": "notifuse_3"
+				"broadsheet_message_id": "notifuse_3"
 			}
 		]`)
 

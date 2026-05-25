@@ -10,9 +10,9 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
-	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/broadsheet_mjml"
 	"github.com/google/uuid"
 )
 
@@ -299,7 +299,7 @@ func (e *EmailNodeExecutor) Execute(ctx context.Context, params NodeExecutionPar
 		endpoint = *workspace.Settings.CustomEndpointURL
 	}
 
-	trackingSettings := broadside_mjml.TrackingSettings{
+	trackingSettings := broadsheet_mjml.TrackingSettings{
 		Endpoint:       endpoint,
 		EnableTracking: workspace.Settings.EmailTrackingEnabled,
 		UTMSource:      "automation",
@@ -344,15 +344,15 @@ func (e *EmailNodeExecutor) Execute(ctx context.Context, params NodeExecutionPar
 	emailContent := template.ResolveEmailContent(contactLang, workspace.Settings.DefaultLanguage)
 
 	// 9. Compile template
-	compileReq := broadside_mjml.CompileTemplateRequest{
+	compileReq := broadsheet_mjml.CompileTemplateRequest{
 		WorkspaceID:      params.WorkspaceID,
 		MessageID:        messageID,
 		VisualEditorTree: emailContent.VisualEditorTree,
-		TemplateData:     broadside_mjml.MapOfAny(templateData),
+		TemplateData:     broadsheet_mjml.MapOfAny(templateData),
 		TrackingSettings: trackingSettings,
 	}
 	compileReq.MjmlSource = emailContent.GetCodeModeMjmlSource()
-	compiledTemplate, err := broadside_mjml.CompileTemplate(compileReq)
+	compiledTemplate, err := broadsheet_mjml.CompileTemplate(compileReq)
 	if err != nil {
 		return nil, fmt.Errorf("failed to compile template: %w", err)
 	}
@@ -366,7 +366,7 @@ func (e *EmailNodeExecutor) Execute(ctx context.Context, params NodeExecutionPar
 	htmlContent := *compiledTemplate.HTML
 
 	// 10. Process subject line through Liquid templating
-	subject, err := broadside_mjml.ProcessLiquidTemplate(
+	subject, err := broadsheet_mjml.ProcessLiquidTemplate(
 		emailContent.Subject,
 		templateData,
 		"email_subject",

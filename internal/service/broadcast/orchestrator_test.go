@@ -8,26 +8,26 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	domainmocks "github.com/sheyaln/sabokit-broadside/internal/domain/mocks"
-	"github.com/sheyaln/sabokit-broadside/internal/service/broadcast"
-	"github.com/sheyaln/sabokit-broadside/internal/service/broadcast/mocks"
-	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
-	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	domainmocks "github.com/sheyaln/sabokit-broadsheet/internal/domain/mocks"
+	"github.com/sheyaln/sabokit-broadsheet/internal/service/broadcast"
+	"github.com/sheyaln/sabokit-broadsheet/internal/service/broadcast/mocks"
+	pkgmocks "github.com/sheyaln/sabokit-broadsheet/pkg/mocks"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/broadsheet_mjml"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
 // Helper function to create a minimal valid MJML block with proper children
-func createMinimalValidMJMLBlock(id string) *broadside_mjml.MJMLBlock {
-	bodyBase := broadside_mjml.NewBaseBlock(id+"-body", broadside_mjml.MJMLComponentMjBody)
-	bodyBlock := &broadside_mjml.MJBodyBlock{BaseBlock: bodyBase}
+func createMinimalValidMJMLBlock(id string) *broadsheet_mjml.MJMLBlock {
+	bodyBase := broadsheet_mjml.NewBaseBlock(id+"-body", broadsheet_mjml.MJMLComponentMjBody)
+	bodyBlock := &broadsheet_mjml.MJBodyBlock{BaseBlock: bodyBase}
 
-	rootBase := broadside_mjml.NewBaseBlock(id, broadside_mjml.MJMLComponentMjml)
+	rootBase := broadsheet_mjml.NewBaseBlock(id, broadsheet_mjml.MJMLComponentMjml)
 	rootBase.Attributes["version"] = "4.0.0"
-	rootBase.Children = []broadside_mjml.EmailBlock{bodyBlock}
-	return &broadside_mjml.MJMLBlock{BaseBlock: rootBase}
+	rootBase.Children = []broadsheet_mjml.EmailBlock{bodyBlock}
+	return &broadsheet_mjml.MJMLBlock{BaseBlock: rootBase}
 }
 
 func TestBroadcastOrchestrator_CanProcess(t *testing.T) {
@@ -730,8 +730,8 @@ func TestBroadcastOrchestrator_Process(t *testing.T) {
 					Email: &domain.EmailTemplate{
 						Subject:  "Test Subject",
 						SenderID: "sender-123",
-						VisualEditorTree: &broadside_mjml.MJMLBlock{
-							BaseBlock: broadside_mjml.NewBaseBlock("root1", broadside_mjml.MJMLComponentMjml),
+						VisualEditorTree: &broadsheet_mjml.MJMLBlock{
+							BaseBlock: broadsheet_mjml.NewBaseBlock("root1", broadsheet_mjml.MJMLComponentMjml),
 						},
 					},
 				}
@@ -863,8 +863,8 @@ func TestBroadcastOrchestrator_Process(t *testing.T) {
 					Email: &domain.EmailTemplate{
 						Subject:  "Test Subject",
 						SenderID: "sender-123",
-						VisualEditorTree: &broadside_mjml.MJMLBlock{
-							BaseBlock: broadside_mjml.NewBaseBlock("root1", broadside_mjml.MJMLComponentMjml),
+						VisualEditorTree: &broadsheet_mjml.MJMLBlock{
+							BaseBlock: broadsheet_mjml.NewBaseBlock("root1", broadsheet_mjml.MJMLComponentMjml),
 						},
 					},
 				}
@@ -1190,8 +1190,8 @@ func TestBroadcastOrchestrator_Process(t *testing.T) {
 					Email: &domain.EmailTemplate{
 						Subject:  "Test Subject",
 						SenderID: "sender-123",
-						VisualEditorTree: &broadside_mjml.MJMLBlock{
-							BaseBlock: broadside_mjml.NewBaseBlock("root1", broadside_mjml.MJMLComponentMjml),
+						VisualEditorTree: &broadsheet_mjml.MJMLBlock{
+							BaseBlock: broadsheet_mjml.NewBaseBlock("root1", broadsheet_mjml.MJMLComponentMjml),
 						},
 					},
 				}
@@ -1305,8 +1305,8 @@ func TestBroadcastOrchestrator_Process(t *testing.T) {
 					Email: &domain.EmailTemplate{
 						Subject:  "Test Subject",
 						SenderID: "sender-123",
-						VisualEditorTree: &broadside_mjml.MJMLBlock{
-							BaseBlock: broadside_mjml.NewBaseBlock("root1", broadside_mjml.MJMLComponentMjml),
+						VisualEditorTree: &broadsheet_mjml.MJMLBlock{
+							BaseBlock: broadsheet_mjml.NewBaseBlock("root1", broadsheet_mjml.MJMLComponentMjml),
 						},
 					},
 				}
@@ -1479,7 +1479,7 @@ func TestBroadcastOrchestrator_Process_ABTestStartSetsTestingAndCompletesTestPha
 	}).Times(2)
 
 	// Template
-	tpl := &domain.Template{ID: "template-1", Email: &domain.EmailTemplate{Subject: "S", SenderID: "s", VisualEditorTree: &broadside_mjml.MJMLBlock{BaseBlock: broadside_mjml.NewBaseBlock("root", broadside_mjml.MJMLComponentMjml)}}}
+	tpl := &domain.Template{ID: "template-1", Email: &domain.EmailTemplate{Subject: "S", SenderID: "s", VisualEditorTree: &broadsheet_mjml.MJMLBlock{BaseBlock: broadsheet_mjml.NewBaseBlock("root", broadsheet_mjml.MJMLComponentMjml)}}}
 	mockTemplateRepo.EXPECT().GetTemplateByID(gomock.Any(), "workspace-123", "template-1", int64(0)).Return(tpl, nil)
 
 	// Contacts - since sample 100% and totalRecipients preset below = 1, expect limit 1
@@ -1604,7 +1604,7 @@ func TestBroadcastOrchestrator_Process_ValidateTemplatesFailure(t *testing.T) {
 	mockBroadcastRepo.EXPECT().UpdateBroadcast(gomock.Any(), gomock.Any()).Return(nil).AnyTimes()
 
 	// Load template that will fail validation (missing subject)
-	badTpl := &domain.Template{ID: "tpl1", Email: &domain.EmailTemplate{SenderID: "s", VisualEditorTree: &broadside_mjml.MJMLBlock{BaseBlock: broadside_mjml.NewBaseBlock("root", broadside_mjml.MJMLComponentMjml)}}}
+	badTpl := &domain.Template{ID: "tpl1", Email: &domain.EmailTemplate{SenderID: "s", VisualEditorTree: &broadsheet_mjml.MJMLBlock{BaseBlock: broadsheet_mjml.NewBaseBlock("root", broadsheet_mjml.MJMLComponentMjml)}}}
 	mockTemplateRepo.EXPECT().GetTemplateByID(gomock.Any(), "workspace-123", "tpl1", int64(0)).Return(badTpl, nil)
 
 	config := &broadcast.Config{FetchBatchSize: 50, MaxProcessTime: 30 * time.Second}
@@ -1648,7 +1648,7 @@ func TestBroadcastOrchestrator_Process_BatchSizeZeroTriggersPhaseCompletion(t *t
 	// First UpdateBroadcast to testing during phase init, second to test_completed in handleTestPhaseCompletion
 	mockBroadcastRepo.EXPECT().UpdateBroadcast(gomock.Any(), gomock.Any()).Return(nil).Times(2)
 
-	tpl := &domain.Template{ID: "tpl", Email: &domain.EmailTemplate{Subject: "s", SenderID: "x", VisualEditorTree: &broadside_mjml.MJMLBlock{BaseBlock: broadside_mjml.NewBaseBlock("root", broadside_mjml.MJMLComponentMjml)}}}
+	tpl := &domain.Template{ID: "tpl", Email: &domain.EmailTemplate{Subject: "s", SenderID: "x", VisualEditorTree: &broadsheet_mjml.MJMLBlock{BaseBlock: broadsheet_mjml.NewBaseBlock("root", broadsheet_mjml.MJMLComponentMjml)}}}
 	mockTemplateRepo.EXPECT().GetTemplateByID(gomock.Any(), "w", "tpl", int64(0)).Return(tpl, nil)
 
 	// No SaveState expectations needed; allow any
@@ -1697,7 +1697,7 @@ func TestBroadcastOrchestrator_Process_EmptyRecipientsTriggersTestCompletion(t *
 	// Update to testing then to test_completed
 	mockBroadcastRepo.EXPECT().UpdateBroadcast(gomock.Any(), gomock.Any()).Return(nil).Times(2)
 
-	tpl := &domain.Template{ID: "tpl", Email: &domain.EmailTemplate{Subject: "s", SenderID: "x", VisualEditorTree: &broadside_mjml.MJMLBlock{BaseBlock: broadside_mjml.NewBaseBlock("root", broadside_mjml.MJMLComponentMjml)}}}
+	tpl := &domain.Template{ID: "tpl", Email: &domain.EmailTemplate{Subject: "s", SenderID: "x", VisualEditorTree: &broadsheet_mjml.MJMLBlock{BaseBlock: broadsheet_mjml.NewBaseBlock("root", broadsheet_mjml.MJMLComponentMjml)}}}
 	mockTemplateRepo.EXPECT().GetTemplateByID(gomock.Any(), "w", "tpl", int64(0)).Return(tpl, nil)
 
 	// Return empty recipients
@@ -1793,7 +1793,7 @@ func TestBroadcastOrchestrator_Process_AutoWinnerEvaluationPath(t *testing.T) {
 	}).AnyTimes()
 
 	// Template load for tplB
-	tplB := &domain.Template{ID: "tplB", Email: &domain.EmailTemplate{Subject: "s", SenderID: "x", VisualEditorTree: &broadside_mjml.MJMLBlock{BaseBlock: broadside_mjml.NewBaseBlock("root", broadside_mjml.MJMLComponentMjml)}}}
+	tplB := &domain.Template{ID: "tplB", Email: &domain.EmailTemplate{Subject: "s", SenderID: "x", VisualEditorTree: &broadsheet_mjml.MJMLBlock{BaseBlock: broadsheet_mjml.NewBaseBlock("root", broadsheet_mjml.MJMLComponentMjml)}}}
 	mockTemplateRepo.EXPECT().GetTemplateByID(gomock.Any(), "w", "tplB", int64(0)).Return(tplB, nil)
 
 	// Recipient batch for winner phase (totalRecipients preset to 1 in task below)
@@ -1893,8 +1893,8 @@ func TestBroadcastOrchestrator_Process_ABTestWinnerPhaseProcessesRemainingRecipi
 		Email: &domain.EmailTemplate{
 			Subject:  "Test Subject A",
 			SenderID: "sender-1",
-			VisualEditorTree: &broadside_mjml.MJMLBlock{
-				BaseBlock: broadside_mjml.NewBaseBlock("root", broadside_mjml.MJMLComponentMjml),
+			VisualEditorTree: &broadsheet_mjml.MJMLBlock{
+				BaseBlock: broadsheet_mjml.NewBaseBlock("root", broadsheet_mjml.MJMLComponentMjml),
 			},
 		},
 	}
@@ -1903,8 +1903,8 @@ func TestBroadcastOrchestrator_Process_ABTestWinnerPhaseProcessesRemainingRecipi
 		Email: &domain.EmailTemplate{
 			Subject:  "Test Subject B",
 			SenderID: "sender-1",
-			VisualEditorTree: &broadside_mjml.MJMLBlock{
-				BaseBlock: broadside_mjml.NewBaseBlock("root", broadside_mjml.MJMLComponentMjml),
+			VisualEditorTree: &broadsheet_mjml.MJMLBlock{
+				BaseBlock: broadsheet_mjml.NewBaseBlock("root", broadsheet_mjml.MJMLComponentMjml),
 			},
 		},
 	}
@@ -2398,14 +2398,14 @@ func TestBroadcastOrchestrator_ValidateTemplates_MissingContent(t *testing.T) {
 	)
 
 	// Test with template missing content
-	emptyBase := broadside_mjml.NewBaseBlock("", "")
+	emptyBase := broadsheet_mjml.NewBaseBlock("", "")
 	templates := map[string]*domain.Template{
 		"template-1": {
 			ID: "template-1",
 			Email: &domain.EmailTemplate{
 				Subject:          "Test Subject",
 				SenderID:         "sender-1",
-				VisualEditorTree: &broadside_mjml.MJMLBlock{BaseBlock: emptyBase},
+				VisualEditorTree: &broadsheet_mjml.MJMLBlock{BaseBlock: emptyBase},
 			},
 		},
 	}
@@ -2858,8 +2858,8 @@ func TestBroadcastOrchestrator_Process_PartialBatchCursorUpdate(t *testing.T) {
 		Email: &domain.EmailTemplate{
 			Subject:  "Test Subject",
 			SenderID: "sender-123",
-			VisualEditorTree: &broadside_mjml.MJMLBlock{
-				BaseBlock: broadside_mjml.NewBaseBlock("root1", broadside_mjml.MJMLComponentMjml),
+			VisualEditorTree: &broadsheet_mjml.MJMLBlock{
+				BaseBlock: broadsheet_mjml.NewBaseBlock("root1", broadsheet_mjml.MJMLComponentMjml),
 			},
 		},
 	}
@@ -3049,7 +3049,7 @@ func TestProcessBroadcastTask_RecipientFeedFailure_PausesBroadcast(t *testing.T)
 	mockBroadcastRepo.EXPECT().GetBroadcast(gomock.Any(), "workspace-123", "broadcast-123").Return(bcast, nil).AnyTimes()
 
 	// Template
-	tpl := &domain.Template{ID: "template-1", Email: &domain.EmailTemplate{Subject: "S", SenderID: "s", VisualEditorTree: &broadside_mjml.MJMLBlock{BaseBlock: broadside_mjml.NewBaseBlock("root", broadside_mjml.MJMLComponentMjml)}}}
+	tpl := &domain.Template{ID: "template-1", Email: &domain.EmailTemplate{Subject: "S", SenderID: "s", VisualEditorTree: &broadsheet_mjml.MJMLBlock{BaseBlock: broadsheet_mjml.NewBaseBlock("root", broadsheet_mjml.MJMLComponentMjml)}}}
 	mockTemplateRepo.EXPECT().GetTemplateByID(gomock.Any(), "workspace-123", "template-1", int64(0)).Return(tpl, nil)
 
 	// Contacts
@@ -3160,7 +3160,7 @@ func TestProcessBroadcastTask_RecipientFeedFailure_NotMarkedAsFailed(t *testing.
 	mockBroadcastRepo.EXPECT().GetBroadcast(gomock.Any(), "workspace-123", "broadcast-123").Return(bcast, nil).AnyTimes()
 
 	// Template
-	tpl := &domain.Template{ID: "template-1", Email: &domain.EmailTemplate{Subject: "S", SenderID: "s", VisualEditorTree: &broadside_mjml.MJMLBlock{BaseBlock: broadside_mjml.NewBaseBlock("root", broadside_mjml.MJMLComponentMjml)}}}
+	tpl := &domain.Template{ID: "template-1", Email: &domain.EmailTemplate{Subject: "S", SenderID: "s", VisualEditorTree: &broadsheet_mjml.MJMLBlock{BaseBlock: broadsheet_mjml.NewBaseBlock("root", broadsheet_mjml.MJMLComponentMjml)}}}
 	mockTemplateRepo.EXPECT().GetTemplateByID(gomock.Any(), "workspace-123", "template-1", int64(0)).Return(tpl, nil)
 
 	// Contacts

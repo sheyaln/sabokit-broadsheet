@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
-	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
-	"github.com/sheyaln/sabokit-broadside/pkg/tracing"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/broadsheet_mjml"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/tracing"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/session"
@@ -122,8 +122,8 @@ func (s *EmailService) TestEmailProvider(ctx context.Context, workspaceID string
 	}
 
 	// Generate email content
-	subject := "Broadside: Test Email Provider"
-	content := "<h1>Broadside: Test Email Provider</h1><p>This is a test email from Broadside. Your provider is working!</p>"
+	subject := "Broadsheet: Test Email Provider"
+	content := "<h1>Broadsheet: Test Email Provider</h1><p>This is a test email from Broadsheet. Your provider is working!</p>"
 
 	// Send email with the provider details
 	messageID := uuid.New().String()
@@ -303,7 +303,7 @@ func (s *EmailService) SendEmailForTemplate(ctx context.Context, request domain.
 		endpoint = *workspace.Settings.CustomEndpointURL
 	}
 
-	trackingSettings := broadside_mjml.TrackingSettings{
+	trackingSettings := broadsheet_mjml.TrackingSettings{
 		Endpoint:       endpoint,
 		EnableTracking: request.TrackingSettings.EnableTracking,
 		UTMSource:      request.TrackingSettings.UTMSource,
@@ -366,7 +366,7 @@ func (s *EmailService) SendEmailForTemplate(ctx context.Context, request domain.
 	}
 
 	// Process subject line through Liquid templating if it contains Liquid tags
-	subject, err := broadside_mjml.ProcessLiquidTemplate(
+	subject, err := broadsheet_mjml.ProcessLiquidTemplate(
 		emailContent.Subject,
 		request.MessageData.Data,
 		"email_subject",
@@ -384,7 +384,7 @@ func (s *EmailService) SendEmailForTemplate(ctx context.Context, request domain.
 
 	// Allow override of subject via email options
 	if request.EmailOptions.Subject != nil && *request.EmailOptions.Subject != "" {
-		overrideSubject, err := broadside_mjml.ProcessLiquidTemplate(
+		overrideSubject, err := broadsheet_mjml.ProcessLiquidTemplate(
 			*request.EmailOptions.Subject,
 			request.MessageData.Data,
 			"email_subject_override",

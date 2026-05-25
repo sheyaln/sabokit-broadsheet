@@ -8,11 +8,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	domainmocks "github.com/sheyaln/sabokit-broadside/internal/domain/mocks"
-	broadcastmocks "github.com/sheyaln/sabokit-broadside/internal/service/broadcast/mocks"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
-	broadsidemjml "github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	domainmocks "github.com/sheyaln/sabokit-broadsheet/internal/domain/mocks"
+	broadcastmocks "github.com/sheyaln/sabokit-broadsheet/internal/service/broadcast/mocks"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
+	broadsheetmjml "github.com/sheyaln/sabokit-broadsheet/pkg/broadsheet_mjml"
 	"github.com/golang/mock/gomock"
 	"github.com/preslavrachev/gomjml/mjml"
 	"github.com/stretchr/testify/assert"
@@ -45,10 +45,10 @@ func testBroadcast(workspaceID, id string) *domain.Broadcast {
 }
 
 // helper to create a minimal MJML root block
-func createMJMLRootBlock() broadsidemjml.EmailBlock {
-	base := broadsidemjml.NewBaseBlock("root", broadsidemjml.MJMLComponentMjml)
+func createMJMLRootBlock() broadsheetmjml.EmailBlock {
+	base := broadsheetmjml.NewBaseBlock("root", broadsheetmjml.MJMLComponentMjml)
 	base.Attributes["version"] = "4.0.0"
-	return &broadsidemjml.MJMLBlock{BaseBlock: base}
+	return &broadsheetmjml.MJMLBlock{BaseBlock: base}
 }
 
 type broadcastSvcDeps struct {

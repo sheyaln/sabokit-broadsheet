@@ -2,7 +2,7 @@
 
 An embeddable React widget that gives end-users a self-serve subscription preference page — list management, transactional notification settings, unsubscribe — without leaving the host site.
 
-This is the customer-facing surface of Broadside; the **console** (under `/console`) is the operator-facing surface.
+This is the customer-facing surface of Broadsheet; the **console** (under `/console`) is the operator-facing surface.
 
 ## Stack
 
@@ -21,7 +21,7 @@ npm run build    # production bundle
 npm run lint     # type-check + lint
 ```
 
-The built bundle is embedded by Broadside instances at the `/notifications` route per workspace; see the Broadside docs for embed instructions and customization options.
+The built bundle is embedded by Broadsheet instances at the `/notifications` route per workspace; see the Broadsheet docs for embed instructions and customization options.
 
 ## Internationalization
 

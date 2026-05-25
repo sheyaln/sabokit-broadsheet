@@ -9,7 +9,7 @@ export default defineConfig({
   reporter: [['html'], ['list']],
   timeout: 30000,
   use: {
-    baseURL: 'https://broadsidedev.local:5173',
+    baseURL: 'https://broadsheetdev.local:5173',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     ignoreHTTPSErrors: true
@@ -22,7 +22,7 @@ export default defineConfig({
   ],
   webServer: {
     command: 'npm run dev',
-    url: 'https://broadsidedev.local:5173/console/',
+    url: 'https://broadsheetdev.local:5173/console/',
     reuseExistingServer: true,
     ignoreHTTPSErrors: true,
     timeout: 120000

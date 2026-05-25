@@ -1,7 +1,7 @@
 /api/user.rootSignin:
   post:
     summary: Root user programmatic signin
-    security: []  # Public endpoint - no authentication required
+    security: [] # Public endpoint - no authentication required
     description: |
       Authenticates the root user using HMAC signature for programmatic access.
       This endpoint is designed for automation scenarios like Infrastructure-as-Code
@@ -16,7 +16,7 @@
 
       **How to generate the signature:**
       ```bash
-      SECRET_KEY="your-broadside-secret-key"
+      SECRET_KEY="your-broadsheet-secret-key"
       ROOT_EMAIL="admin@example.com"
       TIMESTAMP=$(date +%s)
       MESSAGE="${ROOT_EMAIL}:${TIMESTAMP}"
@@ -30,18 +30,18 @@
       content:
         application/json:
           schema:
-            $ref: '../components/schemas/user.yaml#/RootSigninRequest'
+            $ref: "../components/schemas/user.yaml#/RootSigninRequest"
           example:
             email: admin@example.com
             timestamp: 1735600000
             signature: a1b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef123456
     responses:
-      '200':
+      "200":
         description: Authentication successful
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/user.yaml#/RootSigninResponse'
+              $ref: "../components/schemas/user.yaml#/RootSigninResponse"
             example:
               token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidXNyXzEyMzQ1Njc4OTAiLCJzZXNzaW9uX2lkIjoic2VzXzEyMzQ1Njc4OTAiLCJleHAiOjE3MzU2ODY0MDB9.signature
               user:
@@ -51,12 +51,12 @@
                 created_at: "2025-01-01T00:00:00Z"
                 updated_at: "2025-01-01T00:00:00Z"
               expires_at: "2025-01-01T12:00:00Z"
-      '400':
+      "400":
         description: Bad request - missing required fields
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/common.yaml#/ErrorResponse'
+              $ref: "../components/schemas/common.yaml#/ErrorResponse"
             examples:
               missingFields:
                 summary: Missing required fields
@@ -66,12 +66,12 @@
                 summary: Invalid JSON body
                 value:
                   error: "Invalid request body"
-      '401':
+      "401":
         description: Unauthorized - invalid credentials
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/common.yaml#/ErrorResponse'
+              $ref: "../components/schemas/common.yaml#/ErrorResponse"
             examples:
               invalidCredentials:
                 summary: Invalid email, timestamp, or signature
@@ -81,11 +81,11 @@
                 summary: Too many failed attempts
                 value:
                   error: "Invalid credentials"
-      '405':
+      "405":
         description: Method not allowed
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/common.yaml#/ErrorResponse'
+              $ref: "../components/schemas/common.yaml#/ErrorResponse"
             example:
               error: "Method not allowed"

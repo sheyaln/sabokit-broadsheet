@@ -7,7 +7,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/sheyaln/sabokit-broadside/internal/service"
+	"github.com/sheyaln/sabokit-broadsheet/internal/service"
 	"github.com/stretchr/testify/assert"
 )
 

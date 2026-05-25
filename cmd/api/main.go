@@ -11,9 +11,9 @@ import (
 
 	_ "github.com/lib/pq"
 
-	"github.com/sheyaln/sabokit-broadside/config"
-	"github.com/sheyaln/sabokit-broadside/internal/app"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/config"
+	"github.com/sheyaln/sabokit-broadsheet/internal/app"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
 )
 
 // osExit is a variable to allow mocking os.Exit in tests

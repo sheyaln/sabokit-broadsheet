@@ -6,11 +6,11 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
 )
 
-//go:generate mockgen -destination=./mocks/mock_broadcast_orchestrator.go -package=mocks github.com/sheyaln/sabokit-broadside/internal/service/broadcast BroadcastOrchestratorInterface
+//go:generate mockgen -destination=./mocks/mock_broadcast_orchestrator.go -package=mocks github.com/sheyaln/sabokit-broadsheet/internal/service/broadcast BroadcastOrchestratorInterface
 
 // BroadcastOrchestratorInterface defines the interface for broadcast orchestration
 type BroadcastOrchestratorInterface interface {

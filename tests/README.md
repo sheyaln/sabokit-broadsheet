@@ -1,6 +1,6 @@
-# Integration Testing Framework for Broadside API
+# Integration Testing Framework for Broadsheet API
 
-This directory contains the integration testing framework for the Broadside API, providing comprehensive end-to-end testing capabilities.
+This directory contains the integration testing framework for the Broadsheet API, providing comprehensive end-to-end testing capabilities.
 
 ## Directory Structure
 
@@ -59,7 +59,7 @@ cd tests && docker compose -f compose.test.yaml up -d
 INTEGRATION_TESTS=true \
 TEST_DB_HOST=localhost \
 TEST_DB_PORT=5433 \
-TEST_DB_USER=broadside_test \
+TEST_DB_USER=broadsheet_test \
 TEST_DB_PASSWORD=test_password \
 ENVIRONMENT=test \
 go test -v ./tests/integration/...
@@ -74,7 +74,7 @@ cd tests && docker compose -f compose.test.yaml down -v
 
 - **Host**: localhost
 - **Port**: 5433
-- **User**: broadside_test
+- **User**: broadsheet_test
 - **Password**: test_password
 - **Max Connections**: 500 (optimized for concurrent testing)
 - **Shared Buffers**: 256MB
@@ -96,7 +96,7 @@ The test database includes several optimizations:
 - `max_locks_per_transaction = 256` - Support for concurrent operations
 - `checkpoint_timeout = '15min'` - Reduced checkpoint frequency
 - **Port**: 5433 (to avoid conflicts with development database)
-- **User**: broadside_test
+- **User**: broadsheet_test
 - **Password**: test_password
 - **Database**: Created dynamically per test
 
@@ -247,7 +247,7 @@ make test-integration-debug     # Run with debug logging
 - `INTEGRATION_TESTS=true` - Required to run integration tests
 - `TEST_DB_HOST` - Test database host (default: localhost)
 - `TEST_DB_PORT` - Test database port (default: 5433)
-- `TEST_DB_USER` - Test database user (default: broadside_test)
+- `TEST_DB_USER` - Test database user (default: broadsheet_test)
 - `TEST_DB_PASSWORD` - Test database password (default: test_password)
 - `ENVIRONMENT=test` - Set application environment to test mode
 

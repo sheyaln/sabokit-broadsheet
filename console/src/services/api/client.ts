@@ -39,8 +39,8 @@ async function request<T>(endpoint: string, options: RequestInit = {}): Promise<
   }
 
   let defaultOrigin = window.location.origin
-  if (defaultOrigin.includes('broadsidedev.local')) {
-    defaultOrigin = 'https://localapi.broadside.local:4000'
+  if (defaultOrigin.includes('broadsheetdev.local')) {
+    defaultOrigin = 'https://localapi.broadsheet.local:4000'
   }
 
   const apiEndpoint = window.API_ENDPOINT?.trim().replace(/\/+$/, '') || defaultOrigin

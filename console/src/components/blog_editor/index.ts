@@ -5,8 +5,8 @@
  */
 
 // Main component
-export { BroadsideEditor, DEFAULT_INITIAL_CONTENT } from './BroadsideEditor'
-export type { BroadsideEditorProps, BroadsideEditorRef, TOCAnchor } from './BroadsideEditor'
+export { BroadsheetEditor, DEFAULT_INITIAL_CONTENT } from './BroadsheetEditor'
+export type { BroadsheetEditorProps, BroadsheetEditorRef, TOCAnchor } from './BroadsheetEditor'
 
 // Types
 export type {

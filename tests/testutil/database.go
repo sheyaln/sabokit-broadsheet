@@ -8,11 +8,11 @@ import (
 	"os"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/config"
-	"github.com/sheyaln/sabokit-broadside/internal/database"
-	"github.com/sheyaln/sabokit-broadside/internal/migrations"
-	"github.com/sheyaln/sabokit-broadside/pkg/crypto"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/config"
+	"github.com/sheyaln/sabokit-broadsheet/internal/database"
+	"github.com/sheyaln/sabokit-broadsheet/internal/migrations"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/crypto"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
 	_ "github.com/lib/pq"
 )
 
@@ -45,10 +45,10 @@ func NewDatabaseManager() *DatabaseManager {
 	config := &config.DatabaseConfig{
 		Host:                  testHost,
 		Port:                  testPort,
-		User:                  getEnvOrDefault("TEST_DB_USER", "broadside_test"),
+		User:                  getEnvOrDefault("TEST_DB_USER", "broadsheet_test"),
 		Password:              getEnvOrDefault("TEST_DB_PASSWORD", "test_password"),
-		DBName:                fmt.Sprintf("broadside_test_%d", time.Now().UnixNano()),
-		Prefix:                "broadside_test",
+		DBName:                fmt.Sprintf("broadsheet_test_%d", time.Now().UnixNano()),
+		Prefix:                "broadsheet_test",
 		SSLMode:               "disable",
 		MaxConnections:        100, // Default value for tests
 		MaxConnectionsPerDB:   10,  // Higher than default (3) for parallel tests

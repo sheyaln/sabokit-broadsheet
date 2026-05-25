@@ -5,7 +5,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
 )
 
 // QueryBuilder converts segment tree structures into safe, parameterized SQL queries

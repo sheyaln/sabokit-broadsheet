@@ -10,12 +10,12 @@ import (
 	"strings"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/pkg/botdetection"
-	pkgDatabase "github.com/sheyaln/sabokit-broadside/pkg/database"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
-	"github.com/sheyaln/sabokit-broadside/pkg/ratelimiter"
-	"github.com/sheyaln/sabokit-broadside/pkg/safehttpclient"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/botdetection"
+	pkgDatabase "github.com/sheyaln/sabokit-broadsheet/pkg/database"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/ratelimiter"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/safehttpclient"
 	"github.com/PuerkitoBio/goquery"
 )
 

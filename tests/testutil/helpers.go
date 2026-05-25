@@ -13,9 +13,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/config"
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/config"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
 	"github.com/stretchr/testify/require"
 )
 
@@ -391,7 +391,7 @@ func SetupTestEnvironment() {
 	// This allows for flexibility between local and containerized environments
 	// os.Setenv("TEST_DB_HOST", "localhost") // Default handled in connection_pool.go
 	// os.Setenv("TEST_DB_PORT", "5433")      // Default handled in connection_pool.go
-	os.Setenv("TEST_DB_USER", "broadside_test")
+	os.Setenv("TEST_DB_USER", "broadsheet_test")
 	os.Setenv("TEST_DB_PASSWORD", "test_password")
 	os.Setenv("ENVIRONMENT", "test")
 

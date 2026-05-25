@@ -9,9 +9,9 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/pkg/disposable_emails"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/disposable_emails"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
 )
 
 // SupabaseService handles Supabase webhook processing
@@ -324,7 +324,7 @@ func (s *SupabaseService) ProcessUserCreatedHook(ctx context.Context, workspaceI
 		}
 	}
 
-	// Convert Supabase user to Broadside contact
+	// Convert Supabase user to Broadsheet contact
 	// Get the custom_json_field setting (optional - if not set, user_metadata won't be mapped)
 	customJSONField := integration.SupabaseSettings.BeforeUserCreatedHook.CustomJSONField
 

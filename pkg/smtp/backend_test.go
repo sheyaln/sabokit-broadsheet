@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
+	pkgmocks "github.com/sheyaln/sabokit-broadsheet/pkg/mocks"
 	"github.com/emersion/go-smtp"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"

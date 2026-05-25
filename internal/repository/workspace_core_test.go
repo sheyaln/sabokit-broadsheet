@@ -16,12 +16,12 @@ import (
 	"github.com/stretchr/testify/require"
 
 	"github.com/DATA-DOG/go-sqlmock"
-	"github.com/sheyaln/sabokit-broadside/config"
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/internal/domain/mocks"
-	"github.com/sheyaln/sabokit-broadside/internal/repository/testutil"
-	"github.com/sheyaln/sabokit-broadside/pkg/crypto"
-	pkgDatabase "github.com/sheyaln/sabokit-broadside/pkg/database"
+	"github.com/sheyaln/sabokit-broadsheet/config"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain/mocks"
+	"github.com/sheyaln/sabokit-broadsheet/internal/repository/testutil"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/crypto"
+	pkgDatabase "github.com/sheyaln/sabokit-broadsheet/pkg/database"
 )
 
 // mockConnectionManager is a simple mock for testing

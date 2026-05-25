@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/sheyaln/sabokit-broadside/pkg/crypto"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/crypto"
 )
 
-//go:generate mockgen -destination mocks/mock_mailjet_service.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain MailjetServiceInterface
+//go:generate mockgen -destination mocks/mock_mailjet_service.go -package mocks github.com/sheyaln/sabokit-broadsheet/internal/domain MailjetServiceInterface
 
 // MailjetWebhookPayload represents the webhook payload from Mailjet
 // According to https://dev.mailjet.com/email/guides/webhooks/
@@ -144,7 +144,7 @@ func (m *MailjetSettings) Validate(passphrase string) error {
 	return nil
 }
 
-//go:generate mockgen -destination mocks/mock_mailjet_service.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain MailjetServiceInterface
+//go:generate mockgen -destination mocks/mock_mailjet_service.go -package mocks github.com/sheyaln/sabokit-broadsheet/internal/domain MailjetServiceInterface
 
 // MailjetServiceInterface defines operations for managing Mailjet webhooks
 type MailjetServiceInterface interface {

@@ -11,14 +11,14 @@ import (
 	"strconv"
 	"time"
 
-	// Import the broadside_mjml package
+	// Import the broadsheet_mjml package
 
-	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/broadsheet_mjml"
 	"github.com/asaskevich/govalidator"
 )
 
-//go:generate mockgen -destination mocks/mock_template_service.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain TemplateService
-//go:generate mockgen -destination mocks/mock_template_repository.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain TemplateRepository
+//go:generate mockgen -destination mocks/mock_template_service.go -package mocks github.com/sheyaln/sabokit-broadsheet/internal/domain TemplateService
+//go:generate mockgen -destination mocks/mock_template_repository.go -package mocks github.com/sheyaln/sabokit-broadsheet/internal/domain TemplateRepository
 
 // templateIDPattern allows alphanumeric characters, underscores, and hyphens
 var templateIDPattern = regexp.MustCompile(`^[a-zA-Z0-9_-]+$`)
@@ -281,7 +281,7 @@ type EmailTemplate struct {
 	Subject          string                  `json:"subject"`
 	SubjectPreview   *string                 `json:"subject_preview,omitempty"`
 	CompiledPreview  string                  `json:"compiled_preview"` // compiled html
-	VisualEditorTree broadside_mjml.EmailBlock `json:"visual_editor_tree"`
+	VisualEditorTree broadsheet_mjml.EmailBlock `json:"visual_editor_tree"`
 	Text             *string                 `json:"text,omitempty"`
 }
 
@@ -321,7 +321,7 @@ func (e *EmailTemplate) Validate(testData MapOfAny) error {
 		}
 	} else {
 		// Visual mode validation (default)
-		if e.VisualEditorTree.GetType() != broadside_mjml.MJMLComponentMjml {
+		if e.VisualEditorTree.GetType() != broadsheet_mjml.MJMLComponentMjml {
 			return fmt.Errorf("invalid email template: visual_editor_tree must have type 'mjml'")
 		}
 		if e.VisualEditorTree.GetChildren() == nil {
@@ -338,16 +338,16 @@ func (e *EmailTemplate) Validate(testData MapOfAny) error {
 				templateDataStr = string(jsonDataBytes)
 			}
 
-			// Compile tree to MJML using our pkg/broadside_mjml function
+			// Compile tree to MJML using our pkg/broadsheet_mjml function
 			var mjmlResult string
 			if templateDataStr != "" {
-				result, err := broadside_mjml.ConvertJSONToMJMLWithData(e.VisualEditorTree, templateDataStr)
+				result, err := broadsheet_mjml.ConvertJSONToMJMLWithData(e.VisualEditorTree, templateDataStr)
 				if err != nil {
 					return fmt.Errorf("failed to convert tree to MJML: %w", err)
 				}
 				mjmlResult = result
 			} else {
-				mjmlResult = broadside_mjml.ConvertJSONToMJML(e.VisualEditorTree)
+				mjmlResult = broadsheet_mjml.ConvertJSONToMJML(e.VisualEditorTree)
 			}
 			e.CompiledPreview = mjmlResult
 		}
@@ -411,7 +411,7 @@ func (x *EmailTemplate) UnmarshalJSON(data []byte) error {
 
 	// Handle the VisualEditorTree field specially
 	if len(aux.VisualEditorTree) > 0 {
-		block, err := broadside_mjml.UnmarshalEmailBlock(aux.VisualEditorTree)
+		block, err := broadsheet_mjml.UnmarshalEmailBlock(aux.VisualEditorTree)
 		if err != nil {
 			return fmt.Errorf("failed to unmarshal VisualEditorTree: %w", err)
 		}
@@ -480,8 +480,8 @@ func (w *WebTemplate) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-//go:generate mockgen -destination mocks/mock_template_service.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain TemplateService
-//go:generate mockgen -destination mocks/mock_template_repository.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain TemplateRepository
+//go:generate mockgen -destination mocks/mock_template_service.go -package mocks github.com/sheyaln/sabokit-broadsheet/internal/domain TemplateService
+//go:generate mockgen -destination mocks/mock_template_repository.go -package mocks github.com/sheyaln/sabokit-broadsheet/internal/domain TemplateRepository
 
 // Request/Response types
 type CreateTemplateRequest struct {
@@ -747,9 +747,9 @@ func (r *DeleteTemplateRequest) Validate() (workspaceID string, id string, err e
 
 // --- Compile Request/Response ---
 
-// Use types from broadside_mjml package
-type CompileTemplateRequest = broadside_mjml.CompileTemplateRequest
-type CompileTemplateResponse = broadside_mjml.CompileTemplateResponse
+// Use types from broadsheet_mjml package
+type CompileTemplateRequest = broadsheet_mjml.CompileTemplateRequest
+type CompileTemplateResponse = broadsheet_mjml.CompileTemplateResponse
 
 // TemplateService provides operations for managing templates
 type TemplateService interface {
@@ -769,7 +769,7 @@ type TemplateService interface {
 	DeleteTemplate(ctx context.Context, workspaceID string, id string) error
 
 	// CompileTemplate compiles a visual editor tree to MJML and HTML
-	CompileTemplate(ctx context.Context, payload CompileTemplateRequest) (*CompileTemplateResponse, error) // Use broadside_mjml.EmailBlock
+	CompileTemplate(ctx context.Context, payload CompileTemplateRequest) (*CompileTemplateResponse, error) // Use broadsheet_mjml.EmailBlock
 }
 
 // TemplateRepository provides database operations for templates
@@ -818,7 +818,7 @@ type TemplateDataRequest struct {
 	ContactWithList    ContactWithList                `json:"contact_with_list"`
 	MessageID          string                         `json:"message_id"`
 	ProvidedData       MapOfAny                       `json:"provided_data,omitempty"`
-	TrackingSettings   broadside_mjml.TrackingSettings `json:"tracking_settings"`
+	TrackingSettings   broadsheet_mjml.TrackingSettings `json:"tracking_settings"`
 	Broadcast          *Broadcast                     `json:"broadcast,omitempty"`
 }
 

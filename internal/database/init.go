@@ -7,8 +7,8 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/sheyaln/sabokit-broadside/internal/database/schema"
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/internal/database/schema"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
 )
 
 // InitializeDatabase creates all necessary database tables if they don't exist

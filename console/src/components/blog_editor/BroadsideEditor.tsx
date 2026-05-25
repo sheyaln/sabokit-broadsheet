@@ -213,9 +213,9 @@ function addSyntaxHighlightingToHTML(html: string, lowlightInstance: LowlightIns
 }
 
 /**
- * Ref API for BroadsideEditor - allows parent components to retrieve content on-demand
+ * Ref API for BroadsheetEditor - allows parent components to retrieve content on-demand
  */
-export interface BroadsideEditorRef {
+export interface BroadsheetEditorRef {
   getJSON: () => Record<string, unknown> | null
   getHTML: () => string
   getCSS: () => string
@@ -309,7 +309,7 @@ export const DEFAULT_INITIAL_CONTENT = `
 <p>Start editing and make this document your own! ✨</p>
 `
 
-export interface BroadsideEditorProps {
+export interface BroadsheetEditorProps {
   placeholder?: string
   initialContent?: string
   styleConfig?: EditorStyleConfig
@@ -361,7 +361,7 @@ export function EditorContentArea() {
 /**
  * Component that creates and provides the editor instance
  */
-export const EditorProvider = forwardRef<BroadsideEditorRef, EditorProviderProps>((props, ref) => {
+export const EditorProvider = forwardRef<BroadsheetEditorRef, EditorProviderProps>((props, ref) => {
   const { t } = useLingui()
   const {
     placeholder = t`Start writing...`,
@@ -493,7 +493,7 @@ EditorProvider.displayName = 'EditorProvider'
 /**
  * Full editor with all necessary providers, ready to use
  */
-export const BroadsideEditor = forwardRef<BroadsideEditorRef, BroadsideEditorProps>(
+export const BroadsheetEditor = forwardRef<BroadsheetEditorRef, BroadsheetEditorProps>(
   (
     {
       placeholder = 'Start writing...',
@@ -521,7 +521,7 @@ export const BroadsideEditor = forwardRef<BroadsideEditorRef, BroadsideEditorPro
   }
 )
 
-BroadsideEditor.displayName = 'BroadsideEditor'
+BroadsheetEditor.displayName = 'BroadsheetEditor'
 
 // Export default styles and utility functions for external use
 // eslint-disable-next-line react-refresh/only-export-components -- Utility exports co-located with component

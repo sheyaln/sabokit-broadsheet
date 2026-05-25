@@ -3,7 +3,7 @@ package domain
 import (
 	"fmt"
 
-	"github.com/sheyaln/sabokit-broadside/pkg/crypto"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/crypto"
 )
 
 // FirecrawlSettings contains configuration for Firecrawl integration

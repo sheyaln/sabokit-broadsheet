@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/internal/service"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/internal/service"
 	"github.com/golang-jwt/jwt/v5"
 )
 

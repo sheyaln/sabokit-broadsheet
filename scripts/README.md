@@ -15,7 +15,7 @@ Generates self-signed TLS certificates for local development.
 
 **Example:**
 ```bash
-./scripts/generate-dev-certs.sh localapi.broadside.local
+./scripts/generate-dev-certs.sh localapi.broadsheet.local
 ```
 
 **Output:**
@@ -48,7 +48,7 @@ Sends a test email to the local SMTP bridge server.
 
 **Environment Variables:**
 ```bash
-SMTP_SERVER=localapi.broadside.local    # SMTP server address
+SMTP_SERVER=localapi.broadsheet.local    # SMTP server address
 SMTP_PORT=587                         # SMTP server port
 FROM_EMAIL=test@example.com           # Sender email
 TO_EMAIL=recipient@example.com        # Recipient email
@@ -161,13 +161,13 @@ sudo apt-get install netcat
 ### 1. Generate Certificates
 
 ```bash
-./scripts/generate-dev-certs.sh localapi.broadside.local
+./scripts/generate-dev-certs.sh localapi.broadsheet.local
 ```
 
 ### 2. Add Domain to Hosts
 
 ```bash
-echo "127.0.0.1 localapi.broadside.local" | sudo tee -a /etc/hosts
+echo "127.0.0.1 localapi.broadsheet.local" | sudo tee -a /etc/hosts
 ```
 
 ### 3. Configure Environment
@@ -222,7 +222,7 @@ Verify:
 
 Use the certificate path:
 ```bash
---tls-ca-path ./dev-certs/localapi.broadside.local.cert.pem
+--tls-ca-path ./dev-certs/localapi.broadsheet.local.cert.pem
 ```
 
 Or disable verification for testing:

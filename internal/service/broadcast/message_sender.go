@@ -9,14 +9,14 @@ import (
 	"sync"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
-	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/broadsheet_mjml"
 	"github.com/google/uuid"
 	"golang.org/x/sync/semaphore"
 )
 
-//go:generate mockgen -destination=./mocks/mock_message_sender.go -package=mocks github.com/sheyaln/sabokit-broadside/internal/service/broadcast MessageSender
+//go:generate mockgen -destination=./mocks/mock_message_sender.go -package=mocks github.com/sheyaln/sabokit-broadsheet/internal/service/broadcast MessageSender
 
 // MessageSender is the interface for sending messages to recipients
 type MessageSender interface {
@@ -239,7 +239,7 @@ func (s *messageSender) SendToRecipient(ctx context.Context, workspaceID string,
 		broadcast.UTMParameters.Content = template.ID
 	}
 
-	trackingSettings := broadside_mjml.TrackingSettings{
+	trackingSettings := broadsheet_mjml.TrackingSettings{
 		Endpoint:       endpoint,
 		EnableTracking: trackingEnabled,
 		UTMSource:      broadcast.UTMParameters.Source,
@@ -258,7 +258,7 @@ func (s *messageSender) SendToRecipient(ctx context.Context, workspaceID string,
 	}
 
 	// Compile template with the provided data
-	compileReq := broadside_mjml.CompileTemplateRequest{
+	compileReq := broadsheet_mjml.CompileTemplateRequest{
 		WorkspaceID:      workspaceID,
 		MessageID:        messageID,
 		VisualEditorTree: emailContent.VisualEditorTree,
@@ -266,7 +266,7 @@ func (s *messageSender) SendToRecipient(ctx context.Context, workspaceID string,
 		TrackingSettings: trackingSettings,
 	}
 	compileReq.MjmlSource = emailContent.GetCodeModeMjmlSource()
-	compiledTemplate, err := broadside_mjml.CompileTemplate(compileReq)
+	compiledTemplate, err := broadsheet_mjml.CompileTemplate(compileReq)
 
 	if err != nil {
 		s.logger.WithFields(map[string]interface{}{
@@ -307,7 +307,7 @@ func (s *messageSender) SendToRecipient(ctx context.Context, workspaceID string,
 	}
 
 	// Process subject line through Liquid templating if it contains Liquid tags
-	processedSubject, err := broadside_mjml.ProcessLiquidTemplate(
+	processedSubject, err := broadsheet_mjml.ProcessLiquidTemplate(
 		emailContent.Subject,
 		data,
 		"email_subject",
@@ -524,7 +524,7 @@ func (s *messageSender) SendBatch(ctx context.Context, workspaceID string, integ
 		// Generate a unique message ID for tracking
 		messageID := generateMessageID(workspaceID)
 
-		trackingSettings := broadside_mjml.TrackingSettings{
+		trackingSettings := broadsheet_mjml.TrackingSettings{
 			Endpoint:       endpoint,
 			EnableTracking: trackingEnabled,
 			UTMSource:      broadcast.UTMParameters.Source,

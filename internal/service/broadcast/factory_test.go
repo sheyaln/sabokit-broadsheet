@@ -3,9 +3,9 @@ package broadcast
 import (
 	"testing"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain/mocks"
-	broadcastmocks "github.com/sheyaln/sabokit-broadside/internal/service/broadcast/mocks"
-	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain/mocks"
+	broadcastmocks "github.com/sheyaln/sabokit-broadsheet/internal/service/broadcast/mocks"
+	pkgmocks "github.com/sheyaln/sabokit-broadsheet/pkg/mocks"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
 )

@@ -7,12 +7,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/config"
-	"github.com/sheyaln/sabokit-broadside/internal/app"
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
-	"github.com/sheyaln/sabokit-broadside/pkg/templates"
-	"github.com/sheyaln/sabokit-broadside/tests/testutil"
+	"github.com/sheyaln/sabokit-broadsheet/config"
+	"github.com/sheyaln/sabokit-broadsheet/internal/app"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/broadsheet_mjml"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/templates"
+	"github.com/sheyaln/sabokit-broadsheet/tests/testutil"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -97,7 +97,7 @@ func TestTemplateRoundtripSerialization(t *testing.T) {
 		// Verify structure
 		assert.NotNil(t, result.Template.Email, "Template should have email field")
 		assert.NotNil(t, result.Template.Email.VisualEditorTree, "Template should have visual_editor_tree")
-		assert.Equal(t, broadside_mjml.MJMLComponentMjml, result.Template.Email.VisualEditorTree.GetType())
+		assert.Equal(t, broadsheet_mjml.MJMLComponentMjml, result.Template.Email.VisualEditorTree.GetType())
 	})
 
 	t.Run("Roundtrip with nested structure", func(t *testing.T) {
@@ -234,7 +234,7 @@ func TestTemplateRoundtripSerialization(t *testing.T) {
 				assert.NotNil(t, result.Template.Email, "Template %s should have email field", name)
 				assert.NotNil(t, result.Template.Email.VisualEditorTree,
 					"Template %s should have visual_editor_tree", name)
-				assert.Equal(t, broadside_mjml.MJMLComponentMjml,
+				assert.Equal(t, broadsheet_mjml.MJMLComponentMjml,
 					result.Template.Email.VisualEditorTree.GetType(),
 					"Template %s root should be mjml type", name)
 			})
@@ -243,7 +243,7 @@ func TestTemplateRoundtripSerialization(t *testing.T) {
 }
 
 // createAllComponentsTree creates a tree with all supported MJML component types
-func createAllComponentsTree(t *testing.T) broadside_mjml.EmailBlock {
+func createAllComponentsTree(t *testing.T) broadsheet_mjml.EmailBlock {
 	jsonTemplate := `{
 		"id": "mjml-root",
 		"type": "mjml",
@@ -415,13 +415,13 @@ func createAllComponentsTree(t *testing.T) broadside_mjml.EmailBlock {
 		]
 	}`
 
-	block, err := broadside_mjml.UnmarshalEmailBlock([]byte(jsonTemplate))
+	block, err := broadsheet_mjml.UnmarshalEmailBlock([]byte(jsonTemplate))
 	require.NoError(t, err, "Failed to unmarshal all components tree")
 	return block
 }
 
 // createNestedStructure creates a deeply nested structure similar to Supabase templates
-func createNestedStructure(t *testing.T) broadside_mjml.EmailBlock {
+func createNestedStructure(t *testing.T) broadsheet_mjml.EmailBlock {
 	jsonTemplate := `{
 		"id": "mjml-1",
 		"type": "mjml",
@@ -531,7 +531,7 @@ func createNestedStructure(t *testing.T) broadside_mjml.EmailBlock {
 		]
 	}`
 
-	block, err := broadside_mjml.UnmarshalEmailBlock([]byte(jsonTemplate))
+	block, err := broadsheet_mjml.UnmarshalEmailBlock([]byte(jsonTemplate))
 	require.NoError(t, err, "Failed to unmarshal nested structure")
 	return block
 }

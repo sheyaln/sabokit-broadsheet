@@ -9,9 +9,9 @@ import (
 	"time"
 
 	"github.com/DATA-DOG/go-sqlmock"
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/internal/domain/mocks"
-	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain/mocks"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/broadsheet_mjml"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -52,7 +52,7 @@ func createSampleTransactionalNotification() *domain.TransactionalNotification {
 				},
 			},
 		},
-		TrackingSettings: broadside_mjml.TrackingSettings{
+		TrackingSettings: broadsheet_mjml.TrackingSettings{
 			EnableTracking: true,
 			UTMSource:      "notifuse",
 			UTMMedium:      "email",

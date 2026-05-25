@@ -6,9 +6,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/pkg/emailerror"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/emailerror"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
 )
 
 // EmailQueueWorkerConfig holds configuration for the worker pool

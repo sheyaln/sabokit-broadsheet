@@ -5,15 +5,15 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/broadsheet_mjml"
 	"github.com/asaskevich/govalidator"
 	"github.com/google/uuid"
 )
 
-//go:generate mockgen -destination mocks/mock_email_service.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain EmailServiceInterface
-//go:generate mockgen -destination mocks/mock_http_client.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain HTTPClient
-//go:generate mockgen -destination mocks/mock_ses_client.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain SESClient
-//go:generate mockgen -destination mocks/mock_email_provider_service.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain EmailProviderService
+//go:generate mockgen -destination mocks/mock_email_service.go -package mocks github.com/sheyaln/sabokit-broadsheet/internal/domain EmailServiceInterface
+//go:generate mockgen -destination mocks/mock_http_client.go -package mocks github.com/sheyaln/sabokit-broadsheet/internal/domain HTTPClient
+//go:generate mockgen -destination mocks/mock_ses_client.go -package mocks github.com/sheyaln/sabokit-broadsheet/internal/domain SESClient
+//go:generate mockgen -destination mocks/mock_email_provider_service.go -package mocks github.com/sheyaln/sabokit-broadsheet/internal/domain EmailProviderService
 
 // HTTPClient defines the interface for HTTP operations
 type HTTPClient interface {
@@ -409,7 +409,7 @@ type SendEmailRequest struct {
 	MessageData    MessageData
 
 	// Configuration
-	TrackingSettings broadside_mjml.TrackingSettings
+	TrackingSettings broadsheet_mjml.TrackingSettings
 	EmailProvider    *EmailProvider `validate:"required"`
 	EmailOptions     EmailOptions
 }

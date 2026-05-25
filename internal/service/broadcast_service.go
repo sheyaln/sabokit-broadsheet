@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/internal/service/broadcast"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
-	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/internal/service/broadcast"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/broadsheet_mjml"
 	"github.com/google/uuid"
 )
 
@@ -963,7 +963,7 @@ func (s *BroadcastService) SendToIndividual(ctx context.Context, request *domain
 		endpoint = *workspace.Settings.CustomEndpointURL
 	}
 
-	trackingSettings := broadside_mjml.TrackingSettings{
+	trackingSettings := broadsheet_mjml.TrackingSettings{
 		Endpoint:       endpoint,
 		EnableTracking: workspace.Settings.EmailTrackingEnabled,
 		WorkspaceID:    request.WorkspaceID,
@@ -1010,7 +1010,7 @@ func (s *BroadcastService) SendToIndividual(ctx context.Context, request *domain
 		WorkspaceID:      request.WorkspaceID,
 		MessageID:        messageID,
 		VisualEditorTree: emailContent.VisualEditorTree,
-		TemplateData:     broadside_mjml.MapOfAny(templateData),
+		TemplateData:     broadsheet_mjml.MapOfAny(templateData),
 		TrackingSettings: trackingSettings,
 	}
 	compileReq.MjmlSource = emailContent.GetCodeModeMjmlSource()

@@ -9,12 +9,12 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/broadsheet_mjml"
 	"github.com/asaskevich/govalidator"
 )
 
-//go:generate mockgen -destination mocks/mock_transactional_notification_service.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain TransactionalNotificationService
-//go:generate mockgen -destination mocks/mock_transactional_notification_repository.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain TransactionalNotificationRepository
+//go:generate mockgen -destination mocks/mock_transactional_notification_service.go -package mocks github.com/sheyaln/sabokit-broadsheet/internal/domain TransactionalNotificationService
+//go:generate mockgen -destination mocks/mock_transactional_notification_repository.go -package mocks github.com/sheyaln/sabokit-broadsheet/internal/domain TransactionalNotificationRepository
 
 // TransactionalChannel represents supported notification channels
 type TransactionalChannel string
@@ -60,7 +60,7 @@ type TransactionalNotification struct {
 	Name             string                         `json:"name"`
 	Description      string                         `json:"description"`
 	Channels         ChannelTemplates               `json:"channels"`
-	TrackingSettings broadside_mjml.TrackingSettings `json:"tracking_settings"`
+	TrackingSettings broadsheet_mjml.TrackingSettings `json:"tracking_settings"`
 	Metadata         MapOfAny                       `json:"metadata,omitempty"`
 	IntegrationID    *string                        `json:"integration_id,omitempty"` // Set if notification is managed by an integration (e.g., Supabase)
 
@@ -94,7 +94,7 @@ type TransactionalNotificationCreateParams struct {
 	Name             string                         `json:"name" validate:"required"`
 	Description      string                         `json:"description"`
 	Channels         ChannelTemplates               `json:"channels" validate:"required,min=1"`
-	TrackingSettings broadside_mjml.TrackingSettings `json:"tracking_settings"`
+	TrackingSettings broadsheet_mjml.TrackingSettings `json:"tracking_settings"`
 	Metadata         MapOfAny                       `json:"metadata,omitempty"`
 }
 
@@ -103,7 +103,7 @@ type TransactionalNotificationUpdateParams struct {
 	Name             string                         `json:"name,omitempty"`
 	Description      string                         `json:"description,omitempty"`
 	Channels         ChannelTemplates               `json:"channels,omitempty"`
-	TrackingSettings broadside_mjml.TrackingSettings `json:"tracking_settings,omitempty"`
+	TrackingSettings broadsheet_mjml.TrackingSettings `json:"tracking_settings,omitempty"`
 	Metadata         MapOfAny                       `json:"metadata,omitempty"`
 }
 

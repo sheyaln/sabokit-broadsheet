@@ -5,8 +5,8 @@ import (
 	"time"
 )
 
-//go:generate mockgen -destination mocks/mock_auth_repository.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain AuthRepository
-//go:generate mockgen -destination mocks/mock_auth_service.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain AuthService
+//go:generate mockgen -destination mocks/mock_auth_repository.go -package mocks github.com/sheyaln/sabokit-broadsheet/internal/domain AuthRepository
+//go:generate mockgen -destination mocks/mock_auth_service.go -package mocks github.com/sheyaln/sabokit-broadsheet/internal/domain AuthService
 
 type ContextKey string
 
@@ -32,7 +32,7 @@ type AuthService interface {
 	InvalidateSecretCache()
 }
 
-// OIDCGroupMapping maps an IdP group to Broadside role and permissions (settings key: "oidc_group_mappings").
+// OIDCGroupMapping maps an IdP group to Broadsheet role and permissions (settings key: "oidc_group_mappings").
 type OIDCGroupMapping struct {
 	OIDCGroup     string          `json:"oidc_group"`
 	Role          string          `json:"role"` // "owner" or "member"

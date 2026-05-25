@@ -5,7 +5,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
 )
 
 // AutomationScheduler manages periodic automation execution

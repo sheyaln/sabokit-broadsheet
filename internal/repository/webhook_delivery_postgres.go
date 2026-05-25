@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
 )
 
 // webhookDeliveryRepository implements domain.WebhookDeliveryRepository for PostgreSQL

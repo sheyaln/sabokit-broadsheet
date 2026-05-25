@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/pkg/crypto"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/crypto"
 	svix "github.com/standard-webhooks/standard-webhooks/libraries/go"
 )
 
@@ -53,7 +53,7 @@ type SupabaseUserCreatedHookSettings struct {
 	RejectDisposableEmail bool     `json:"reject_disposable_email,omitempty"` // Reject user creation if email is disposable
 }
 
-// SupabaseTemplateMappings maps each email action type to a Broadside template ID
+// SupabaseTemplateMappings maps each email action type to a Broadsheet template ID
 type SupabaseTemplateMappings struct {
 	Signup           string `json:"signup"`
 	MagicLink        string `json:"magiclink"`
@@ -292,7 +292,7 @@ func DecryptString(encrypted, passphrase string) (string, error) {
 	return crypto.DecryptFromHexString(encrypted, passphrase)
 }
 
-// ToContact converts a Supabase user to a Broadside Contact
+// ToContact converts a Supabase user to a Broadsheet Contact
 // customJSONField specifies which custom_json field to use (e.g., "custom_json_1", "custom_json_2", etc.)
 // If empty, user_metadata will not be mapped
 func (u *SupabaseUser) ToContact(customJSONField string) (*Contact, error) {

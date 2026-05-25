@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/config"
+	"github.com/sheyaln/sabokit-broadsheet/config"
 	_ "github.com/lib/pq"
 )
 
@@ -354,9 +354,9 @@ func GetGlobalTestPool() *TestConnectionPool {
 		config := &config.DatabaseConfig{
 			Host:     testHost,
 			Port:     testPort,
-			User:     getEnvOrDefault("TEST_DB_USER", "broadside_test"),
+			User:     getEnvOrDefault("TEST_DB_USER", "broadsheet_test"),
 			Password: getEnvOrDefault("TEST_DB_PASSWORD", "test_password"),
-			Prefix:   "broadside_test",
+			Prefix:   "broadsheet_test",
 			SSLMode:  "disable",
 		}
 		globalTestPool = NewTestConnectionPoolWithTiming(config, FastTimingConfig())

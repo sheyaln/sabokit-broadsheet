@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/config"
-	"github.com/sheyaln/sabokit-broadside/tests/testutil"
+	"github.com/sheyaln/sabokit-broadsheet/config"
+	"github.com/sheyaln/sabokit-broadsheet/tests/testutil"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -295,7 +295,7 @@ func TestConnectionPoolSystemConnectionFailure(t *testing.T) {
 			Port:     cfg.Port,
 			User:     "invalid_user_xyz",
 			Password: "invalid_password",
-			Prefix:   "broadside_test",
+			Prefix:   "broadsheet_test",
 			SSLMode:  "disable",
 		}
 

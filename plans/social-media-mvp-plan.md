@@ -8,7 +8,7 @@ Three options were considered:
 
 | Model | Pro | Con |
 |---|---|---|
-| **Central app** (we register Broadside with each platform) | One-click connect for end users | We eat Meta/TikTok app review, business verification, and the maintenance tail of every platform breakage |
+| **Central app** (we register Broadsheet with each platform) | One-click connect for end users | We eat Meta/TikTok app review, business verification, and the maintenance tail of every platform breakage |
 | **BYO credentials** (each operator registers their own app) | Zero gatekeeping by us, ships immediately, fork-honest | Operators do a 20-minute developer-account setup per platform |
 | **Hybrid** (we register, operators can override) | Best of both | Doubles the surface area to maintain |
 
@@ -105,7 +105,7 @@ Workspace settings get a per-platform credential block:
     "facebook": {
       "client_id": "...",
       "client_secret_encrypted": "...",
-      "redirect_uri": "https://broadside.example.org/api/social.oauthCallback?provider=facebook"
+      "redirect_uri": "https://broadsheet.example.org/api/social.oauthCallback?provider=facebook"
     },
     "instagram": { ... },
     "tiktok": { ... },

@@ -14,8 +14,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
 )
 
 // WebhookDeliveryWorker processes pending webhook deliveries
@@ -436,7 +436,7 @@ func buildTestPayload(eventType string) map[string]interface{} {
 	default:
 		// Fallback for unknown event types
 		return map[string]interface{}{
-			"message":    "This is a test webhook from Broadside",
+			"message":    "This is a test webhook from Broadsheet",
 			"event_type": eventType,
 			"created_at": now,
 		}

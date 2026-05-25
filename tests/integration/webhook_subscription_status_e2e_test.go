@@ -8,10 +8,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/config"
-	"github.com/sheyaln/sabokit-broadside/internal/app"
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/tests/testutil"
+	"github.com/sheyaln/sabokit-broadsheet/config"
+	"github.com/sheyaln/sabokit-broadsheet/internal/app"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/tests/testutil"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -568,7 +568,7 @@ func createSESHardBouncePayload(messageID, recipientEmail string) string {
 			"mail": map[string]interface{}{
 				"messageId": "ses-message-id",
 				"tags": map[string][]string{
-					"broadside_message_id": {messageID},
+					"broadsheet_message_id": {messageID},
 				},
 			},
 		},
@@ -604,7 +604,7 @@ func createSESSoftBouncePayload(messageID, recipientEmail string) string {
 			"mail": map[string]interface{}{
 				"messageId": "ses-message-id",
 				"tags": map[string][]string{
-					"broadside_message_id": {messageID},
+					"broadsheet_message_id": {messageID},
 				},
 			},
 		},
@@ -638,7 +638,7 @@ func createSESComplaintPayload(messageID, recipientEmail string) string {
 			"mail": map[string]interface{}{
 				"messageId": "ses-message-id",
 				"tags": map[string][]string{
-					"broadside_message_id": {messageID},
+					"broadsheet_message_id": {messageID},
 				},
 			},
 		},

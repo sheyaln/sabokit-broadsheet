@@ -9,10 +9,10 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
-	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
-	"github.com/sheyaln/sabokit-broadside/pkg/tracing"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/broadsheet_mjml"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/tracing"
 	"go.opencensus.io/trace"
 )
 
@@ -775,7 +775,7 @@ func (s *TransactionalNotificationService) TestTemplate(ctx context.Context, wor
 		endpoint = *workspace.Settings.CustomEndpointURL
 	}
 
-	trackingSettings := broadside_mjml.TrackingSettings{
+	trackingSettings := broadsheet_mjml.TrackingSettings{
 		EnableTracking: true,
 		Endpoint:       endpoint,
 		WorkspaceID:    workspaceID,
@@ -802,7 +802,7 @@ func (s *TransactionalNotificationService) TestTemplate(ctx context.Context, wor
 		WorkspaceID:            workspaceID,
 		MessageID:              messageID,
 		VisualEditorTree:       emailContent.VisualEditorTree,
-		TemplateData:           broadside_mjml.MapOfAny(messageData),
+		TemplateData:           broadsheet_mjml.MapOfAny(messageData),
 		TrackingSettings:       trackingSettings,
 		SubjectPreviewOverride: emailOptions.SubjectPreview,
 	}
@@ -822,7 +822,7 @@ func (s *TransactionalNotificationService) TestTemplate(ctx context.Context, wor
 	}
 
 	// Process subject line through Liquid templating if it contains Liquid tags
-	processedSubject, err := broadside_mjml.ProcessLiquidTemplate(
+	processedSubject, err := broadsheet_mjml.ProcessLiquidTemplate(
 		emailContent.Subject,
 		messageData,
 		"email_subject",
@@ -833,7 +833,7 @@ func (s *TransactionalNotificationService) TestTemplate(ctx context.Context, wor
 
 	// Allow override of subject via email options
 	if emailOptions.Subject != nil && *emailOptions.Subject != "" {
-		overrideSubject, err := broadside_mjml.ProcessLiquidTemplate(
+		overrideSubject, err := broadsheet_mjml.ProcessLiquidTemplate(
 			*emailOptions.Subject,
 			messageData,
 			"email_subject_override",

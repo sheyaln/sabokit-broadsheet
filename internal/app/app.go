@@ -12,23 +12,23 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/config"
-	"github.com/sheyaln/sabokit-broadside/internal/database"
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	httpHandler "github.com/sheyaln/sabokit-broadside/internal/http"
-	"github.com/sheyaln/sabokit-broadside/internal/http/middleware"
-	"github.com/sheyaln/sabokit-broadside/internal/migrations"
-	"github.com/sheyaln/sabokit-broadside/internal/repository"
-	"github.com/sheyaln/sabokit-broadside/internal/service"
-	"github.com/sheyaln/sabokit-broadside/internal/service/broadcast"
-	"github.com/sheyaln/sabokit-broadside/internal/service/queue"
-	"github.com/sheyaln/sabokit-broadside/pkg/cache"
-	pkgDatabase "github.com/sheyaln/sabokit-broadside/pkg/database"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
-	"github.com/sheyaln/sabokit-broadside/pkg/mailer"
-	"github.com/sheyaln/sabokit-broadside/pkg/ratelimiter"
-	"github.com/sheyaln/sabokit-broadside/pkg/smtp_bridge"
-	"github.com/sheyaln/sabokit-broadside/pkg/tracing"
+	"github.com/sheyaln/sabokit-broadsheet/config"
+	"github.com/sheyaln/sabokit-broadsheet/internal/database"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	httpHandler "github.com/sheyaln/sabokit-broadsheet/internal/http"
+	"github.com/sheyaln/sabokit-broadsheet/internal/http/middleware"
+	"github.com/sheyaln/sabokit-broadsheet/internal/migrations"
+	"github.com/sheyaln/sabokit-broadsheet/internal/repository"
+	"github.com/sheyaln/sabokit-broadsheet/internal/service"
+	"github.com/sheyaln/sabokit-broadsheet/internal/service/broadcast"
+	"github.com/sheyaln/sabokit-broadsheet/internal/service/queue"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/cache"
+	pkgDatabase "github.com/sheyaln/sabokit-broadsheet/pkg/database"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/mailer"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/ratelimiter"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/smtp_bridge"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/tracing"
 
 	"contrib.go.opencensus.io/integrations/ocsql"
 )
@@ -1645,7 +1645,7 @@ func (a *App) WaitForServerStart(ctx context.Context) bool {
 
 // Initialize sets up all components of the application
 func (a *App) Initialize() error {
-	a.logger.WithField("version", a.config.Version).Info("Starting Broadside application")
+	a.logger.WithField("version", a.config.Version).Info("Starting Broadsheet application")
 
 	if err := a.InitTracing(); err != nil {
 		return err

@@ -6,8 +6,8 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/broadsheet_mjml"
 )
 
 // CreateDefaultSupabaseNotifications creates the default Supabase auth email transactional notifications
@@ -29,7 +29,7 @@ func (s *SupabaseService) CreateDefaultSupabaseNotifications(ctx context.Context
 				TemplateID: mappings.Signup,
 			},
 		},
-		TrackingSettings: broadside_mjml.TrackingSettings{
+		TrackingSettings: broadsheet_mjml.TrackingSettings{
 			EnableTracking: false,
 		},
 		CreatedAt: time.Now().UTC(),
@@ -52,7 +52,7 @@ func (s *SupabaseService) CreateDefaultSupabaseNotifications(ctx context.Context
 				TemplateID: mappings.MagicLink,
 			},
 		},
-		TrackingSettings: broadside_mjml.TrackingSettings{
+		TrackingSettings: broadsheet_mjml.TrackingSettings{
 			EnableTracking: false,
 		},
 		CreatedAt: time.Now().UTC(),
@@ -75,7 +75,7 @@ func (s *SupabaseService) CreateDefaultSupabaseNotifications(ctx context.Context
 				TemplateID: mappings.Recovery,
 			},
 		},
-		TrackingSettings: broadside_mjml.TrackingSettings{
+		TrackingSettings: broadsheet_mjml.TrackingSettings{
 			EnableTracking: false,
 		},
 		CreatedAt: time.Now().UTC(),
@@ -98,7 +98,7 @@ func (s *SupabaseService) CreateDefaultSupabaseNotifications(ctx context.Context
 				TemplateID: mappings.EmailChange,
 			},
 		},
-		TrackingSettings: broadside_mjml.TrackingSettings{
+		TrackingSettings: broadsheet_mjml.TrackingSettings{
 			EnableTracking: false,
 		},
 		CreatedAt: time.Now().UTC(),
@@ -121,7 +121,7 @@ func (s *SupabaseService) CreateDefaultSupabaseNotifications(ctx context.Context
 				TemplateID: mappings.Invite,
 			},
 		},
-		TrackingSettings: broadside_mjml.TrackingSettings{
+		TrackingSettings: broadsheet_mjml.TrackingSettings{
 			EnableTracking: false,
 		},
 		CreatedAt: time.Now().UTC(),
@@ -144,7 +144,7 @@ func (s *SupabaseService) CreateDefaultSupabaseNotifications(ctx context.Context
 				TemplateID: mappings.Reauthentication,
 			},
 		},
-		TrackingSettings: broadside_mjml.TrackingSettings{
+		TrackingSettings: broadsheet_mjml.TrackingSettings{
 			EnableTracking: false,
 		},
 		CreatedAt: time.Now().UTC(),

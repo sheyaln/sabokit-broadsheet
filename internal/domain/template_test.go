@@ -7,30 +7,30 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/broadsheet_mjml"
 	"github.com/stretchr/testify/assert"
 )
 
 // createValidMJMLBlock creates a valid MJML EmailBlock for testing EmailTemplate
-func createValidMJMLBlock() broadside_mjml.EmailBlock {
-	bodyBlock := &broadside_mjml.MJBodyBlock{
-		BaseBlock: broadside_mjml.NewBaseBlock("body-1", broadside_mjml.MJMLComponentMjBody),
+func createValidMJMLBlock() broadsheet_mjml.EmailBlock {
+	bodyBlock := &broadsheet_mjml.MJBodyBlock{
+		BaseBlock: broadsheet_mjml.NewBaseBlock("body-1", broadsheet_mjml.MJMLComponentMjBody),
 	}
-	bodyBlock.Children = []broadside_mjml.EmailBlock{}
+	bodyBlock.Children = []broadsheet_mjml.EmailBlock{}
 
-	mjmlBlock := &broadside_mjml.MJMLBlock{
-		BaseBlock: broadside_mjml.NewBaseBlock("mjml-root", broadside_mjml.MJMLComponentMjml),
+	mjmlBlock := &broadsheet_mjml.MJMLBlock{
+		BaseBlock: broadsheet_mjml.NewBaseBlock("mjml-root", broadsheet_mjml.MJMLComponentMjml),
 	}
 	mjmlBlock.Attributes["lang"] = "en"
-	mjmlBlock.Children = []broadside_mjml.EmailBlock{bodyBlock}
+	mjmlBlock.Children = []broadsheet_mjml.EmailBlock{bodyBlock}
 
 	return mjmlBlock
 }
 
 // createInvalidMJMLBlock creates an invalid MJML EmailBlock for testing EmailTemplate
-func createInvalidMJMLBlock(blockType broadside_mjml.MJMLComponentType) broadside_mjml.EmailBlock {
-	return &broadside_mjml.MJTextBlock{
-		BaseBlock: broadside_mjml.NewBaseBlock("text-1", blockType),
+func createInvalidMJMLBlock(blockType broadsheet_mjml.MJMLComponentType) broadsheet_mjml.EmailBlock {
+	return &broadsheet_mjml.MJTextBlock{
+		BaseBlock: broadsheet_mjml.NewBaseBlock("text-1", blockType),
 	}
 }
 
@@ -519,7 +519,7 @@ func TestEmailTemplate_Validate(t *testing.T) {
 					SenderID:         "test123",
 					Subject:          "Test Subject",
 					CompiledPreview:  "",
-					VisualEditorTree: createInvalidMJMLBlock(broadside_mjml.MJMLComponentMjml),
+					VisualEditorTree: createInvalidMJMLBlock(broadsheet_mjml.MJMLComponentMjml),
 				}
 				return e
 			}(),
@@ -533,7 +533,7 @@ func TestEmailTemplate_Validate(t *testing.T) {
 					SenderID:         "test123",
 					Subject:          "Test Subject",
 					CompiledPreview:  "",
-					VisualEditorTree: createInvalidMJMLBlock(broadside_mjml.MJMLComponentMjml),
+					VisualEditorTree: createInvalidMJMLBlock(broadsheet_mjml.MJMLComponentMjml),
 				}
 				return e
 			}(),
@@ -547,7 +547,7 @@ func TestEmailTemplate_Validate(t *testing.T) {
 					SenderID:         "test123",
 					Subject:          "Test Subject",
 					CompiledPreview:  "",
-					VisualEditorTree: createInvalidMJMLBlock(broadside_mjml.MJMLComponentMjml),
+					VisualEditorTree: createInvalidMJMLBlock(broadsheet_mjml.MJMLComponentMjml),
 				}
 				return e
 			}(),
@@ -561,7 +561,7 @@ func TestEmailTemplate_Validate(t *testing.T) {
 					SenderID:         "test123",
 					Subject:          "Test Subject",
 					CompiledPreview:  "<html>Test content</html>",
-					VisualEditorTree: createInvalidMJMLBlock(broadside_mjml.MJMLComponentMjText),
+					VisualEditorTree: createInvalidMJMLBlock(broadsheet_mjml.MJMLComponentMjText),
 				}
 				return e
 			}(),
@@ -1675,7 +1675,7 @@ func TestBuildTemplateData(t *testing.T) {
 			Name: "Test Broadcast",
 		}
 
-		trackingSettings := broadside_mjml.TrackingSettings{
+		trackingSettings := broadsheet_mjml.TrackingSettings{
 			Endpoint:    apiEndpoint,
 			UTMSource:   "newsletter",
 			UTMMedium:   "email",
@@ -1774,7 +1774,7 @@ func TestBuildTemplateData(t *testing.T) {
 		contactWithList := ContactWithList{
 			Contact: nil,
 		}
-		trackingSettings := broadside_mjml.TrackingSettings{
+		trackingSettings := broadsheet_mjml.TrackingSettings{
 			Endpoint:    "https://api.example.com",
 			UTMSource:   "newsletter",
 			UTMMedium:   "email",
@@ -1836,7 +1836,7 @@ func TestBuildTemplateData(t *testing.T) {
 			ListID:   "", // No list
 			ListName: "",
 		}
-		trackingSettings := broadside_mjml.TrackingSettings{
+		trackingSettings := broadsheet_mjml.TrackingSettings{
 			Endpoint:    "https://api.example.com",
 			UTMSource:   "app",
 			UTMMedium:   "email",
@@ -1920,7 +1920,7 @@ func TestGenerateEmailRedirectionEndpoint(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			url := broadside_mjml.GenerateEmailRedirectionEndpoint(tt.workspaceID, tt.messageID, tt.apiEndpoint, tt.destinationURL, testTimestamp)
+			url := broadsheet_mjml.GenerateEmailRedirectionEndpoint(tt.workspaceID, tt.messageID, tt.apiEndpoint, tt.destinationURL, testTimestamp)
 			assert.True(t, len(url) > len(tt.expectedPrefix), "URL should be longer than prefix")
 			assert.Equal(t, tt.expectedPrefix, url[:len(tt.expectedPrefix)], "URL should start with encrypted redirect prefix")
 		})
@@ -1940,7 +1940,7 @@ func TestTemplateDataRequest_Validate(t *testing.T) {
 				WorkspaceSecretKey: "secret-key",
 				MessageID:          "msg-456",
 				ContactWithList:    ContactWithList{},
-				TrackingSettings:   broadside_mjml.TrackingSettings{},
+				TrackingSettings:   broadsheet_mjml.TrackingSettings{},
 			},
 			wantErr: false,
 		},
@@ -1950,7 +1950,7 @@ func TestTemplateDataRequest_Validate(t *testing.T) {
 				WorkspaceSecretKey: "secret-key",
 				MessageID:          "msg-456",
 				ContactWithList:    ContactWithList{},
-				TrackingSettings:   broadside_mjml.TrackingSettings{},
+				TrackingSettings:   broadsheet_mjml.TrackingSettings{},
 			},
 			wantErr: true,
 		},
@@ -1960,7 +1960,7 @@ func TestTemplateDataRequest_Validate(t *testing.T) {
 				WorkspaceID:      "ws-123",
 				MessageID:        "msg-456",
 				ContactWithList:  ContactWithList{},
-				TrackingSettings: broadside_mjml.TrackingSettings{},
+				TrackingSettings: broadsheet_mjml.TrackingSettings{},
 			},
 			wantErr: true,
 		},
@@ -1970,7 +1970,7 @@ func TestTemplateDataRequest_Validate(t *testing.T) {
 				WorkspaceID:        "ws-123",
 				WorkspaceSecretKey: "secret-key",
 				ContactWithList:    ContactWithList{},
-				TrackingSettings:   broadside_mjml.TrackingSettings{},
+				TrackingSettings:   broadsheet_mjml.TrackingSettings{},
 			},
 			wantErr: true,
 		},
@@ -2044,16 +2044,16 @@ func TestEmailTemplate_MjRawContent_JSONRoundTrip(t *testing.T) {
 
 	// Verify the visual_editor_tree was unmarshaled correctly
 	assert.NotNil(t, emailTemplate.VisualEditorTree, "VisualEditorTree should not be nil")
-	assert.Equal(t, broadside_mjml.MJMLComponentMjml, emailTemplate.VisualEditorTree.GetType())
+	assert.Equal(t, broadsheet_mjml.MJMLComponentMjml, emailTemplate.VisualEditorTree.GetType())
 
 	// Find the mj-raw block and verify content
-	var rawBlock broadside_mjml.EmailBlock
+	var rawBlock broadsheet_mjml.EmailBlock
 	bodyBlock := emailTemplate.VisualEditorTree.GetChildren()[0]
 	sectionBlock := bodyBlock.GetChildren()[0]
 	columnBlock := sectionBlock.GetChildren()[0]
 	rawBlock = columnBlock.GetChildren()[0]
 
-	assert.Equal(t, broadside_mjml.MJMLComponentMjRaw, rawBlock.GetType(), "Expected mj-raw block")
+	assert.Equal(t, broadsheet_mjml.MJMLComponentMjRaw, rawBlock.GetType(), "Expected mj-raw block")
 	content := rawBlock.GetContent()
 	assert.NotNil(t, content, "mj-raw content should not be nil")
 	assert.Equal(t, "<table><tr><td>Cell 1</td><td>Cell 2</td></tr></table>", *content)
@@ -2072,7 +2072,7 @@ func TestEmailTemplate_MjRawContent_JSONRoundTrip(t *testing.T) {
 	assert.NoError(t, err, "Failed to unmarshal EmailTemplate after round-trip")
 
 	// Find the mj-raw block again and verify content
-	var rawBlock2 broadside_mjml.EmailBlock
+	var rawBlock2 broadsheet_mjml.EmailBlock
 	bodyBlock2 := emailTemplate2.VisualEditorTree.GetChildren()[0]
 	sectionBlock2 := bodyBlock2.GetChildren()[0]
 	columnBlock2 := sectionBlock2.GetChildren()[0]
@@ -2089,21 +2089,21 @@ func TestEmailTemplate_MjRawContent_Value_Scan(t *testing.T) {
 	// Create an EmailTemplate with mj-raw content
 	rawContent := "<table><tr><td>Cell 1</td><td>Cell 2</td></tr></table>"
 
-	rawBase := broadside_mjml.NewBaseBlock("raw-1", broadside_mjml.MJMLComponentMjRaw)
+	rawBase := broadsheet_mjml.NewBaseBlock("raw-1", broadsheet_mjml.MJMLComponentMjRaw)
 	rawBase.Content = &rawContent
-	rawBlock := &broadside_mjml.MJRawBlock{BaseBlock: rawBase}
+	rawBlock := &broadsheet_mjml.MJRawBlock{BaseBlock: rawBase}
 
-	columnBlock := &broadside_mjml.MJColumnBlock{BaseBlock: broadside_mjml.NewBaseBlock("column-1", broadside_mjml.MJMLComponentMjColumn)}
-	columnBlock.Children = []broadside_mjml.EmailBlock{rawBlock}
+	columnBlock := &broadsheet_mjml.MJColumnBlock{BaseBlock: broadsheet_mjml.NewBaseBlock("column-1", broadsheet_mjml.MJMLComponentMjColumn)}
+	columnBlock.Children = []broadsheet_mjml.EmailBlock{rawBlock}
 
-	sectionBlock := &broadside_mjml.MJSectionBlock{BaseBlock: broadside_mjml.NewBaseBlock("section-1", broadside_mjml.MJMLComponentMjSection)}
-	sectionBlock.Children = []broadside_mjml.EmailBlock{columnBlock}
+	sectionBlock := &broadsheet_mjml.MJSectionBlock{BaseBlock: broadsheet_mjml.NewBaseBlock("section-1", broadsheet_mjml.MJMLComponentMjSection)}
+	sectionBlock.Children = []broadsheet_mjml.EmailBlock{columnBlock}
 
-	bodyBlock := &broadside_mjml.MJBodyBlock{BaseBlock: broadside_mjml.NewBaseBlock("body-1", broadside_mjml.MJMLComponentMjBody)}
-	bodyBlock.Children = []broadside_mjml.EmailBlock{sectionBlock}
+	bodyBlock := &broadsheet_mjml.MJBodyBlock{BaseBlock: broadsheet_mjml.NewBaseBlock("body-1", broadsheet_mjml.MJMLComponentMjBody)}
+	bodyBlock.Children = []broadsheet_mjml.EmailBlock{sectionBlock}
 
-	mjmlBlock := &broadside_mjml.MJMLBlock{BaseBlock: broadside_mjml.NewBaseBlock("mjml-1", broadside_mjml.MJMLComponentMjml)}
-	mjmlBlock.Children = []broadside_mjml.EmailBlock{bodyBlock}
+	mjmlBlock := &broadsheet_mjml.MJMLBlock{BaseBlock: broadsheet_mjml.NewBaseBlock("mjml-1", broadsheet_mjml.MJMLComponentMjml)}
+	mjmlBlock.Children = []broadsheet_mjml.EmailBlock{bodyBlock}
 
 	emailTemplate := &EmailTemplate{
 		SenderID:         "test-sender",
@@ -2131,13 +2131,13 @@ func TestEmailTemplate_MjRawContent_Value_Scan(t *testing.T) {
 	assert.NotNil(t, emailTemplate2.VisualEditorTree, "VisualEditorTree should not be nil after Scan")
 
 	// Find the mj-raw block and verify content
-	var rawBlock2 broadside_mjml.EmailBlock
+	var rawBlock2 broadsheet_mjml.EmailBlock
 	bodyBlock2 := emailTemplate2.VisualEditorTree.GetChildren()[0]
 	sectionBlock2 := bodyBlock2.GetChildren()[0]
 	columnBlock2 := sectionBlock2.GetChildren()[0]
 	rawBlock2 = columnBlock2.GetChildren()[0]
 
-	assert.Equal(t, broadside_mjml.MJMLComponentMjRaw, rawBlock2.GetType(), "Expected mj-raw block after Scan")
+	assert.Equal(t, broadsheet_mjml.MJMLComponentMjRaw, rawBlock2.GetType(), "Expected mj-raw block after Scan")
 	content2 := rawBlock2.GetContent()
 	assert.NotNil(t, content2, "mj-raw content should not be nil after Scan")
 	assert.Equal(t, rawContent, *content2, "mj-raw content should be preserved after Value/Scan round-trip")

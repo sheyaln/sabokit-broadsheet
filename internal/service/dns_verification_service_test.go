@@ -5,8 +5,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	pkgmocks "github.com/sheyaln/sabokit-broadsheet/pkg/mocks"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -321,10 +321,10 @@ func TestDNSVerificationService_VerifyTXTRecord_ExpectedRecordFormat(t *testing.
 
 	// Test that the expected record format is correct
 	token := "test-verification-token-123"
-	expectedRecord := "broadside-verify=" + token
+	expectedRecord := "broadsheet-verify=" + token
 
 	// Verify the format matches what the code expects
-	assert.Equal(t, "broadside-verify=test-verification-token-123", expectedRecord)
+	assert.Equal(t, "broadsheet-verify=test-verification-token-123", expectedRecord)
 
 	// Test with different tokens
 	tokens := []string{
@@ -336,8 +336,8 @@ func TestDNSVerificationService_VerifyTXTRecord_ExpectedRecordFormat(t *testing.
 
 	for _, token := range tokens {
 		t.Run("Token format: "+token, func(t *testing.T) {
-			expected := "broadside-verify=" + token
-			assert.Equal(t, expected, "broadside-verify="+token)
+			expected := "broadsheet-verify=" + token
+			assert.Equal(t, expected, "broadsheet-verify="+token)
 		})
 	}
 }

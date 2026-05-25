@@ -4,11 +4,11 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
 )
 
-// TelemetryService is a no-op in Broadside. Upstream Notifuse posts
+// TelemetryService is a no-op in Broadsheet. Upstream Notifuse posts
 // workspace metrics to a hosted GCP function (`telemetry/`); the fork
 // does not. The type is retained so app wiring in internal/app/app.go
 // continues to compile, but every method returns immediately.

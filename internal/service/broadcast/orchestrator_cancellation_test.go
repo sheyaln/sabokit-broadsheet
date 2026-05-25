@@ -5,12 +5,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	domainmocks "github.com/sheyaln/sabokit-broadside/internal/domain/mocks"
-	"github.com/sheyaln/sabokit-broadside/internal/service/broadcast"
-	"github.com/sheyaln/sabokit-broadside/internal/service/broadcast/mocks"
-	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
-	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	domainmocks "github.com/sheyaln/sabokit-broadsheet/internal/domain/mocks"
+	"github.com/sheyaln/sabokit-broadsheet/internal/service/broadcast"
+	"github.com/sheyaln/sabokit-broadsheet/internal/service/broadcast/mocks"
+	pkgmocks "github.com/sheyaln/sabokit-broadsheet/pkg/mocks"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/broadsheet_mjml"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -149,12 +149,12 @@ func TestBroadcastOrchestrator_Process_CancelledBroadcast(t *testing.T) {
 		Name: "Test Template",
 		Email: &domain.EmailTemplate{
 			Subject: "Test Subject",
-			VisualEditorTree: func() broadside_mjml.EmailBlock {
-				bodyBase := broadside_mjml.NewBaseBlock("body-1", broadside_mjml.MJMLComponentMjBody)
-				bodyBlock := &broadside_mjml.MJBodyBlock{BaseBlock: bodyBase}
-				rootBase := broadside_mjml.NewBaseBlock("mjml-root", broadside_mjml.MJMLComponentMjml)
-				rootBase.Children = []broadside_mjml.EmailBlock{bodyBlock}
-				return &broadside_mjml.MJMLBlock{BaseBlock: rootBase}
+			VisualEditorTree: func() broadsheet_mjml.EmailBlock {
+				bodyBase := broadsheet_mjml.NewBaseBlock("body-1", broadsheet_mjml.MJMLComponentMjBody)
+				bodyBlock := &broadsheet_mjml.MJBodyBlock{BaseBlock: bodyBase}
+				rootBase := broadsheet_mjml.NewBaseBlock("mjml-root", broadsheet_mjml.MJMLComponentMjml)
+				rootBase.Children = []broadsheet_mjml.EmailBlock{bodyBlock}
+				return &broadsheet_mjml.MJMLBlock{BaseBlock: rootBase}
 			}(),
 		},
 	}

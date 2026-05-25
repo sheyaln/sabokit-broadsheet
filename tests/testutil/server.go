@@ -7,11 +7,11 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/config"
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/internal/service"
-	"github.com/sheyaln/sabokit-broadside/internal/service/queue"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/config"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/internal/service"
+	"github.com/sheyaln/sabokit-broadsheet/internal/service/queue"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
 )
 
 // ServerManager manages test server lifecycle

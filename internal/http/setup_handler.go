@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/service"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/internal/service"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
 )
 
 // AppShutdowner defines the interface for triggering app shutdown

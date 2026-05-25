@@ -109,7 +109,7 @@ export default function SetupWizard() {
         setupConfig.smtp_username = typeof values.smtp_username === 'string' ? values.smtp_username : ''
         setupConfig.smtp_password = typeof values.smtp_password === 'string' ? values.smtp_password : ''
         setupConfig.smtp_from_email = typeof values.smtp_from_email === 'string' ? values.smtp_from_email : undefined
-        setupConfig.smtp_from_name = typeof values.smtp_from_name === 'string' ? values.smtp_from_name : 'Broadside'
+        setupConfig.smtp_from_name = typeof values.smtp_from_name === 'string' ? values.smtp_from_name : 'Broadsheet'
         setupConfig.smtp_use_tls = typeof values.smtp_use_tls === 'boolean' ? values.smtp_use_tls : true
       }
 
@@ -236,7 +236,7 @@ export default function SetupWizard() {
         <div className="sm:mx-auto sm:w-full sm:max-w-3xl">
           {/* Logo */}
           <div className="text-center mb-8">
-            <img src="/console/logo.png" alt="Broadside" className="mx-auto" width={120} />
+            <img src="/console/logo.png" alt="Broadsheet" className="mx-auto" width={120} />
           </div>
 
           <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
@@ -248,7 +248,7 @@ export default function SetupWizard() {
                   />
                   <h2 className="text-3xl font-bold text-gray-900 mb-2">{t`Setup Complete!`}</h2>
                   <p className="text-gray-600">
-                    {t`Your Broadside instance has been successfully configured.`}
+                    {t`Your Broadsheet instance has been successfully configured.`}
                   </p>
                 </div>
 
@@ -280,7 +280,7 @@ export default function SetupWizard() {
                   initialValues={{
                     smtp_port: 587,
                     smtp_use_tls: true,
-                    smtp_from_name: 'Broadside',
+                    smtp_from_name: 'Broadsheet',
                     telemetry_enabled: false,
                     check_for_updates: false
                   }}
@@ -309,9 +309,9 @@ export default function SetupWizard() {
                             { required: true, message: t`API endpoint is required` },
                             { type: 'url', message: t`Invalid URL format` }
                           ]}
-                          tooltip={t`Public URL where this Broadside instance is accessible`}
+                          tooltip={t`Public URL where this Broadsheet instance is accessible`}
                         >
-                          <Input placeholder="https://broadside.example.com" />
+                          <Input placeholder="https://broadsheet.example.com" />
                         </Form.Item>
                       )}
                     </div>
@@ -430,7 +430,7 @@ export default function SetupWizard() {
                         </Col>
                         <Col span={12}>
                           <Form.Item label={t`From Name`} name="smtp_from_name">
-                            <Input placeholder="Broadside" />
+                            <Input placeholder="Broadsheet" />
                           </Form.Item>
                         </Col>
                       </Row>
@@ -471,7 +471,7 @@ export default function SetupWizard() {
                                   name="telemetry_enabled"
                                   valuePropName="checked"
                                   label={t`Enable Anonymous Telemetry`}
-                                  tooltip={t`Help us improve Broadside by sending anonymous usage statistics. No personal data or message content is collected.`}
+                                  tooltip={t`Help us improve Broadsheet by sending anonymous usage statistics. No personal data or message content is collected.`}
                                 >
                                   <Switch />
                                 </Form.Item>
@@ -481,7 +481,7 @@ export default function SetupWizard() {
                                   name="check_for_updates"
                                   valuePropName="checked"
                                   label={t`Check for Updates`}
-                                  tooltip={t`Periodically check for new Broadside versions and security updates. A popup will list new versions available.`}
+                                  tooltip={t`Periodically check for new Broadsheet versions and security updates. A popup will list new versions available.`}
                                 >
                                   <Switch />
                                 </Form.Item>

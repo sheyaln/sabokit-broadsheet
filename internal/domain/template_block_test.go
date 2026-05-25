@@ -7,15 +7,15 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/broadsheet_mjml"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
 // Helper function to create a valid EmailBlock for testing
-func createTestEmailBlock() broadside_mjml.EmailBlock {
+func createTestEmailBlock() broadsheet_mjml.EmailBlock {
 	blockJSON := []byte(`{"id":"b1","type":"mj-text","content":"Hello","attributes":{"fontSize":"16px"}}`)
-	blk, _ := broadside_mjml.UnmarshalEmailBlock(blockJSON)
+	blk, _ := broadsheet_mjml.UnmarshalEmailBlock(blockJSON)
 	return blk
 }
 
@@ -24,9 +24,9 @@ type dummyEmptyTypeBlock struct{}
 
 func (d dummyEmptyTypeBlock) GetID() string                                   { return "dummy" }
 func (d dummyEmptyTypeBlock) SetID(id string)                                 {}
-func (d dummyEmptyTypeBlock) GetType() broadside_mjml.MJMLComponentType        { return "" }
-func (d dummyEmptyTypeBlock) GetChildren() []broadside_mjml.EmailBlock         { return nil }
-func (d dummyEmptyTypeBlock) SetChildren(children []broadside_mjml.EmailBlock) {}
+func (d dummyEmptyTypeBlock) GetType() broadsheet_mjml.MJMLComponentType        { return "" }
+func (d dummyEmptyTypeBlock) GetChildren() []broadsheet_mjml.EmailBlock         { return nil }
+func (d dummyEmptyTypeBlock) SetChildren(children []broadsheet_mjml.EmailBlock) {}
 func (d dummyEmptyTypeBlock) GetAttributes() map[string]interface{}           { return nil }
 func (d dummyEmptyTypeBlock) SetAttributes(attrs map[string]interface{})      {}
 func (d dummyEmptyTypeBlock) GetContent() *string                             { return nil }
@@ -85,7 +85,7 @@ func TestTemplateBlock_UnmarshalJSON(t *testing.T) {
 				assert.Equal(t, "test-id", tb.ID)
 				assert.Equal(t, "Test Block", tb.Name)
 				assert.NotNil(t, tb.Block)
-				assert.Equal(t, broadside_mjml.MJMLComponentMjText, tb.Block.GetType())
+				assert.Equal(t, broadsheet_mjml.MJMLComponentMjText, tb.Block.GetType())
 			},
 		},
 		{

@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/broadsheet_mjml"
 	"github.com/asaskevich/govalidator"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -3213,7 +3213,7 @@ func TestIntegration_BeforeAfterSave_Secrets(t *testing.T) {
 func TestTemplateBlock_MarshalUnmarshal(t *testing.T) {
 	now := time.Now()
 	blockJSON := []byte(`{"id":"b1","type":"mj-text","content":"Hello","attributes":{"fontSize":"16px"}}`)
-	blk, err := broadside_mjml.UnmarshalEmailBlock(blockJSON)
+	blk, err := broadsheet_mjml.UnmarshalEmailBlock(blockJSON)
 	require.NoError(t, err)
 
 	tb := TemplateBlock{ID: "tb1", Name: "Text Block", Block: blk, Created: now, Updated: now}
@@ -3225,7 +3225,7 @@ func TestTemplateBlock_MarshalUnmarshal(t *testing.T) {
 	assert.Equal(t, "tb1", out.ID)
 	assert.Equal(t, "Text Block", out.Name)
 	assert.NotNil(t, out.Block)
-	assert.Equal(t, broadside_mjml.MJMLComponentMjText, out.Block.GetType())
+	assert.Equal(t, broadsheet_mjml.MJMLComponentMjText, out.Block.GetType())
 }
 
 func TestWorkspaceSettings_Validate_TemplateBlocks(t *testing.T) {
@@ -3233,7 +3233,7 @@ func TestWorkspaceSettings_Validate_TemplateBlocks(t *testing.T) {
 
 	// Valid
 	blockJSON := []byte(`{"id":"b1","type":"mj-text","content":"Hello"}`)
-	blk, err := broadside_mjml.UnmarshalEmailBlock(blockJSON)
+	blk, err := broadsheet_mjml.UnmarshalEmailBlock(blockJSON)
 	require.NoError(t, err)
 	settings := WorkspaceSettings{Timezone: "UTC", DefaultLanguage: "en", Languages: []string{"en"}, TemplateBlocks: []TemplateBlock{{ID: "t1", Name: "Block", Block: blk}}}
 	assert.NoError(t, settings.Validate(passphrase))

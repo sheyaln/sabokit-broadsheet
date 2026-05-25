@@ -1,10 +1,10 @@
 # GitHub Actions Workflows
 
-Workflows for Broadside.
+Workflows for Broadsheet.
 
 ## Docker image build
 
-Two workflows publish to **GitHub Container Registry** at `ghcr.io/<owner>/broadside`. Both authenticate with the workflow-provided `GITHUB_TOKEN` — no external secrets needed.
+Two workflows publish to **GitHub Container Registry** at `ghcr.io/<owner>/broadsheet`. Both authenticate with the workflow-provided `GITHUB_TOKEN` — no external secrets needed.
 
 ### `docker-release.yml` — auto on tag push
 
@@ -14,7 +14,7 @@ Triggers on push of any tag matching `v*.*` or the `latest` tag.
 - Builds per-arch by digest, then merges into a single manifest list
 - Tag policy: the literal tag name (`v1.2`, `latest`, etc.) — no derived `v1` / `v1.2` partial tags
 - Per-arch and manifest-list build provenance attestations pushed to the registry
-- OCI labels include `broadside.git.commit`, `broadside.git.tag`, `broadside.build.url`
+- OCI labels include `broadsheet.git.commit`, `broadsheet.git.tag`, `broadsheet.build.url`
 
 Trigger:
 ```
@@ -33,16 +33,16 @@ Use for ad-hoc builds and testing.
 
 ## Required configuration
 
-**Image visibility.** First push to `ghcr.io/<owner>/broadside` creates a private package linked to the repo owner. To make it public, go to the package settings on github.com after the first successful push.
+**Image visibility.** First push to `ghcr.io/<owner>/broadsheet` creates a private package linked to the repo owner. To make it public, go to the package settings on github.com after the first successful push.
 
 **Permissions.** The workflows declare `permissions.packages: write` at the job level — no repo-wide setting needed.
 
 ## Pulling the image
 
 ```
-docker pull ghcr.io/<owner>/broadside:latest
-docker pull ghcr.io/<owner>/broadside:v1.2
-docker run -p 8080:8080 ghcr.io/<owner>/broadside:latest
+docker pull ghcr.io/<owner>/broadsheet:latest
+docker pull ghcr.io/<owner>/broadsheet:v1.2
+docker run -p 8080:8080 ghcr.io/<owner>/broadsheet:latest
 ```
 
 ## Other workflows

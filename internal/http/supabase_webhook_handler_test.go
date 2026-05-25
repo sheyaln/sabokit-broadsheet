@@ -8,8 +8,8 @@ import (
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/sheyaln/sabokit-broadside/internal/service"
-	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
+	"github.com/sheyaln/sabokit-broadsheet/internal/service"
+	pkgmocks "github.com/sheyaln/sabokit-broadsheet/pkg/mocks"
 )
 
 func TestSupabaseWebhookHandler_RegisterRoutes(t *testing.T) {

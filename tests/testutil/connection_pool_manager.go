@@ -5,7 +5,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/config"
+	"github.com/sheyaln/sabokit-broadsheet/config"
 )
 
 // TestConnectionPoolManager manages multiple isolated connection pools for tests

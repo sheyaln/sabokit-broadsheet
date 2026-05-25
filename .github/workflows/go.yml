@@ -21,7 +21,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.25'
+          go-version: "1.25"
           cache: true
 
       - name: Install dependencies
@@ -42,7 +42,7 @@ jobs:
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          slug: sheyaln/sabokit-broadside
+          slug: sheyaln/sabokit-broadsheet
           files: coverage-unit.txt
           fail_ci_if_error: false
           verbose: true
@@ -60,7 +60,7 @@ jobs:
       postgres:
         image: postgres:15
         env:
-          POSTGRES_USER: broadside_test
+          POSTGRES_USER: broadsheet_test
           POSTGRES_PASSWORD: test_password
           POSTGRES_DB: postgres
 
@@ -92,7 +92,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.25'
+          go-version: "1.25"
           cache: true
 
       - name: Install dependencies
@@ -107,16 +107,16 @@ jobs:
           # Test database configuration
           TEST_DB_HOST: localhost
           TEST_DB_PORT: 5433
-          TEST_DB_USER: broadside_test
+          TEST_DB_USER: broadsheet_test
           TEST_DB_PASSWORD: test_password
           ENVIRONMENT: test
           # Set main database config to use test database
           DB_HOST: localhost
           DB_PORT: 5433
-          DB_USER: broadside_test
+          DB_USER: broadsheet_test
           DB_PASSWORD: test_password
-          DB_NAME: broadside_test_integration
-          DB_PREFIX: broadside_test
+          DB_NAME: broadsheet_test_integration
+          DB_PREFIX: broadsheet_test
           DB_SSLMODE: disable
         run: |
           # Create a test .env file for integration tests
@@ -124,10 +124,10 @@ jobs:
           echo "ROOT_EMAIL=admin@example.com" >> .env.test
           echo "DB_HOST=localhost" >> .env.test
           echo "DB_PORT=5433" >> .env.test
-          echo "DB_USER=broadside_test" >> .env.test
+          echo "DB_USER=broadsheet_test" >> .env.test
           echo "DB_PASSWORD=test_password" >> .env.test
-          echo "DB_NAME=broadside_test_integration" >> .env.test
-          echo "DB_PREFIX=broadside_test" >> .env.test
+          echo "DB_NAME=broadsheet_test_integration" >> .env.test
+          echo "DB_PREFIX=broadsheet_test" >> .env.test
           echo "DB_SSLMODE=disable" >> .env.test
 
           # Wait for services to be ready
@@ -152,7 +152,7 @@ jobs:
       #   uses: codecov/codecov-action@v3
       #   with:
       #     token: ${{ secrets.CODECOV_TOKEN }}
-      #     slug: sheyaln/sabokit-broadside
+      #     slug: sheyaln/sabokit-broadsheet
       #     file: coverage-integration.txt
       #     fail_ci_if_error: true
       #     verbose: true

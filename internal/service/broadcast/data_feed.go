@@ -10,8 +10,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
 )
 
 const (
@@ -22,10 +22,10 @@ const (
 	MaxResponseSize = 10 * 1024 * 1024
 
 	// UserAgent is the User-Agent header sent with requests
-	UserAgent = "Broadside/1.0 DataFeedFetcher"
+	UserAgent = "Broadsheet/1.0 DataFeedFetcher"
 )
 
-//go:generate mockgen -destination=./mocks/mock_data_feed_fetcher.go -package=mocks github.com/sheyaln/sabokit-broadside/internal/service/broadcast DataFeedFetcher
+//go:generate mockgen -destination=./mocks/mock_data_feed_fetcher.go -package=mocks github.com/sheyaln/sabokit-broadsheet/internal/service/broadcast DataFeedFetcher
 
 // DataFeedFetcher handles external data fetching for broadcasts
 type DataFeedFetcher interface {

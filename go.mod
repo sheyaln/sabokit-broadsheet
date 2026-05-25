@@ -1,4 +1,4 @@
-module github.com/sheyaln/sabokit-broadside
+module github.com/sheyaln/sabokit-broadsheet
 
 go 1.25.4
 

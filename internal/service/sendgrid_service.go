@@ -8,8 +8,8 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
 )
 
 const (
@@ -335,7 +335,7 @@ func (s *SendGridService) SendEmail(ctx context.Context, request domain.SendEmai
 			},
 		},
 		CustomArgs: map[string]string{
-			"broadside_message_id": request.MessageID,
+			"broadsheet_message_id": request.MessageID,
 		},
 	}
 

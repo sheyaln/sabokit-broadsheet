@@ -214,7 +214,7 @@ export function OIDCSettings() {
                 </Text>
                 <br />
                 <Text type="secondary" style={{ fontSize: 13 }}>
-                  {t`Map IdP groups to Broadside roles and permissions. Users without a matching group get member access with full permissions by default.`}
+                  {t`Map IdP groups to Broadsheet roles and permissions. Users without a matching group get member access with full permissions by default.`}
                 </Text>
               </div>
               <Space>
@@ -291,7 +291,7 @@ export function OIDCSettings() {
                           </Text>
                           <Input
                             value={mapping.oidc_group}
-                            placeholder={t`e.g. broadside-admins`}
+                            placeholder={t`e.g. broadsheet-admins`}
                             onChange={(e) =>
                               updateMapping(index, { oidc_group: e.target.value })
                             }

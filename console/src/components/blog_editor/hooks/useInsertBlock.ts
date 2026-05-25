@@ -3,7 +3,7 @@ import type { Editor } from '@tiptap/react'
 import type { Node } from '@tiptap/pm/model'
 
 // --- Hooks ---
-import { useBroadsideEditor } from '../hooks/useEditor'
+import { useBroadsheetEditor } from '../hooks/useEditor'
 
 /**
  * Configuration for the insert block functionality
@@ -182,9 +182,9 @@ export function insertSlashCommand(
           })
           .focus('end')
           .run()
-        
+
         if (!success) return false
-        
+
         // Then insert the trigger character using insertContent to trigger the suggestion plugin
         return editor.chain().insertContent(trigger).run()
       } else {
@@ -194,9 +194,9 @@ export function insertSlashCommand(
           .insertContentAt(insertPos, { type: 'paragraph' })
           .focus(insertPos + 1)
           .run()
-        
+
         if (!success) return false
-        
+
         // Insert the trigger character to trigger the suggestion plugin
         return editor.chain().insertContent(trigger).run()
       }
@@ -263,7 +263,7 @@ export function shouldShowButton(props: {
 export function useInsertBlock(config?: UseInsertBlockConfig) {
   const { editor: providedEditor, node, nodePos, trigger = '/', onTriggered } = config || {}
 
-  const { editor } = useBroadsideEditor(providedEditor)
+  const { editor } = useBroadsheetEditor(providedEditor)
   const [isVisible, setIsVisible] = useState<boolean>(true)
   const canInsert = canInsertSlashCommand(editor, node, nodePos)
 

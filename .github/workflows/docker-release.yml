@@ -3,12 +3,12 @@ name: Docker Build and Push on Tag
 on:
   push:
     tags:
-      - 'v*.*'
-      - 'latest'
+      - "v*.*"
+      - "latest"
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository_owner }}/broadside
+  IMAGE_NAME: ${{ github.repository_owner }}/broadsheet
 
 jobs:
   build:
@@ -61,11 +61,11 @@ jobs:
           labels: |
             org.opencontainers.image.revision=${{ steps.git-info.outputs.commit-sha }}
             org.opencontainers.image.version=${{ steps.git-info.outputs.tag-name }}
-            broadside.git.commit=${{ steps.git-info.outputs.commit-sha }}
-            broadside.git.commit.short=${{ steps.git-info.outputs.commit-short-sha }}
-            broadside.git.tag=${{ steps.git-info.outputs.tag-name }}
-            broadside.build.date=${{ github.run_id }}
-            broadside.build.url=${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            broadsheet.git.commit=${{ steps.git-info.outputs.commit-sha }}
+            broadsheet.git.commit.short=${{ steps.git-info.outputs.commit-short-sha }}
+            broadsheet.git.tag=${{ steps.git-info.outputs.tag-name }}
+            broadsheet.build.date=${{ github.run_id }}
+            broadsheet.build.url=${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
       - name: Build and push by digest
         id: build

@@ -9,8 +9,8 @@ import (
 	"github.com/asaskevich/govalidator"
 )
 
-//go:generate mockgen -destination mocks/mock_list_service.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain ListService
-//go:generate mockgen -destination mocks/mock_list_repository.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain ListRepository
+//go:generate mockgen -destination mocks/mock_list_service.go -package mocks github.com/sheyaln/sabokit-broadsheet/internal/domain ListService
+//go:generate mockgen -destination mocks/mock_list_repository.go -package mocks github.com/sheyaln/sabokit-broadsheet/internal/domain ListRepository
 
 // List represents a subscription list
 type List struct {

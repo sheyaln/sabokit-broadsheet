@@ -5,11 +5,11 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/pkg/cache"
-	"github.com/sheyaln/sabokit-broadside/pkg/disposable_emails"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
-	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/cache"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/disposable_emails"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/broadsheet_mjml"
 	"github.com/google/uuid"
 )
 
@@ -403,7 +403,7 @@ func (s *ListService) SubscribeToLists(ctx context.Context, payload *domain.Subs
 			endpoint = *workspace.Settings.CustomEndpointURL
 		}
 
-		trackingSettings := broadside_mjml.TrackingSettings{
+		trackingSettings := broadsheet_mjml.TrackingSettings{
 			Endpoint:       endpoint,
 			EnableTracking: workspace.Settings.EmailTrackingEnabled,
 			UTMSource:      workspace.Settings.WebsiteURL,

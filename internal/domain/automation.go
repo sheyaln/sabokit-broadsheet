@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-//go:generate mockgen -destination mocks/mock_automation_repository.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain AutomationRepository
+//go:generate mockgen -destination mocks/mock_automation_repository.go -package mocks github.com/sheyaln/sabokit-broadsheet/internal/domain AutomationRepository
 
 // AutomationStatus represents the status of an automation
 type AutomationStatus string
@@ -715,7 +715,7 @@ type AutomationRepository interface {
 	IncrementAutomationStat(ctx context.Context, workspaceID, automationID, statName string) error
 }
 
-//go:generate mockgen -destination mocks/mock_automation_service.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain AutomationService
+//go:generate mockgen -destination mocks/mock_automation_service.go -package mocks github.com/sheyaln/sabokit-broadsheet/internal/domain AutomationService
 
 // AutomationService defines the interface for automation business logic
 type AutomationService interface {

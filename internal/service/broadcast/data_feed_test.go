@@ -8,8 +8,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	pkgmocks "github.com/sheyaln/sabokit-broadsheet/pkg/mocks"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -121,7 +121,7 @@ func TestDataFeedFetcher_FetchGlobal_Success(t *testing.T) {
 	// Verify request
 	assert.Equal(t, "POST", receivedMethod)
 	assert.Equal(t, "application/json", receivedContentType)
-	assert.Contains(t, receivedUserAgent, "Broadside")
+	assert.Contains(t, receivedUserAgent, "Broadsheet")
 
 	// Verify payload was sent
 	require.NotNil(t, receivedBody)
@@ -663,7 +663,7 @@ func TestDataFeedFetcher_FetchRecipient_Success(t *testing.T) {
 	// Verify request
 	assert.Equal(t, "POST", receivedMethod)
 	assert.Equal(t, "application/json", receivedContentType)
-	assert.Contains(t, receivedUserAgent, "Broadside")
+	assert.Contains(t, receivedUserAgent, "Broadsheet")
 
 	// Verify payload was sent with contact data
 	require.NotNil(t, receivedBody)

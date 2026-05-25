@@ -1,7 +1,7 @@
 package domain
 
-//go:generate mockgen -destination mocks/mock_webhook_subscription_repository.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain WebhookSubscriptionRepository
-//go:generate mockgen -destination mocks/mock_webhook_delivery_repository.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain WebhookDeliveryRepository
+//go:generate mockgen -destination mocks/mock_webhook_subscription_repository.go -package mocks github.com/sheyaln/sabokit-broadsheet/internal/domain WebhookSubscriptionRepository
+//go:generate mockgen -destination mocks/mock_webhook_delivery_repository.go -package mocks github.com/sheyaln/sabokit-broadsheet/internal/domain WebhookDeliveryRepository
 
 import (
 	"context"

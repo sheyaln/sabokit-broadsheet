@@ -2,7 +2,7 @@ package domain
 
 import "context"
 
-//go:generate mockgen -destination mocks/mock_webhook_provider.go -package mocks github.com/sheyaln/sabokit-broadside/internal/domain WebhookProvider
+//go:generate mockgen -destination mocks/mock_webhook_provider.go -package mocks github.com/sheyaln/sabokit-broadsheet/internal/domain WebhookProvider
 
 // WebhookProvider defines a common interface for all email providers that support webhooks
 type WebhookProvider interface {

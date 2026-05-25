@@ -69,35 +69,35 @@ keygen:
 # Docker commands
 docker-build:
 	@echo "Building Docker image..."
-	docker build -t broadside:latest .
+	docker build -t broadsheet:latest .
 
 docker-run:
 	@echo "Running Docker container..."
-	docker run -d --name broadside \
+	docker run -d --name broadsheet \
 		-p 8080:8080 \
 		-e SECRET_KEY=$${SECRET_KEY} \
 		-e ROOT_EMAIL=$${ROOT_EMAIL:-admin@example.com} \
 		-e API_ENDPOINT=$${API_ENDPOINT:-http://localhost:8080} \
 		-e WEBHOOK_ENDPOINT=$${WEBHOOK_ENDPOINT:-http://localhost:8080} \
-		broadside:latest
+		broadsheet:latest
 
 docker-stop:
 	@echo "Stopping Docker container..."
-	docker stop broadside || true
-	docker rm broadside || true
+	docker stop broadsheet || true
+	docker rm broadsheet || true
 
 docker-clean: docker-stop
 	@echo "Removing Docker image..."
-	docker rmi broadside:latest || true
+	docker rmi broadsheet:latest || true
 
 docker-logs:
 	@echo "Showing Docker container logs..."
-	docker logs -f broadside
+	docker logs -f broadsheet
 
 docker-buildx-setup:
 	@echo "Setting up Docker buildx for multi-platform builds..."
-	@docker buildx create --name broadside-builder --use --bootstrap 2>/dev/null || \
-		docker buildx use broadside-builder 2>/dev/null || \
+	@docker buildx create --name broadsheet-builder --use --bootstrap 2>/dev/null || \
+		docker buildx use broadsheet-builder 2>/dev/null || \
 		echo "Buildx builder already exists and is active"
 	@docker buildx inspect --bootstrap
 
@@ -105,10 +105,10 @@ docker-publish:
 	@echo "Building and publishing multi-platform Docker image to Docker Hub..."
 	@if [ -z "$(word 2,$(MAKECMDGOALS))" ]; then \
 		echo "Building with tag: latest for amd64 and arm64"; \
-		docker buildx build --platform linux/amd64,linux/arm64 -t sheyaln/sabokit-broadside:latest --push .; \
+		docker buildx build --platform linux/amd64,linux/arm64 -t sheyaln/sabokit-broadsheet:latest --push .; \
 	else \
 		echo "Building with tag: $(word 2,$(MAKECMDGOALS)) for amd64 and arm64"; \
-		docker buildx build --platform linux/amd64,linux/arm64 -t sheyaln/sabokit-broadside:$(word 2,$(MAKECMDGOALS)) --push .; \
+		docker buildx build --platform linux/amd64,linux/arm64 -t sheyaln/sabokit-broadsheet:$(word 2,$(MAKECMDGOALS)) --push .; \
 	fi
 
 # This prevents make from trying to run the tag as a target

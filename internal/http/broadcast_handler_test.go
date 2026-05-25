@@ -11,12 +11,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain/mocks"
-	http_handler "github.com/sheyaln/sabokit-broadside/internal/http"
-	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
-	broadsidemjml "github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain/mocks"
+	http_handler "github.com/sheyaln/sabokit-broadsheet/internal/http"
+	pkgmocks "github.com/sheyaln/sabokit-broadsheet/pkg/mocks"
+	broadsheetmjml "github.com/sheyaln/sabokit-broadsheet/pkg/broadsheet_mjml"
 
 	"github.com/golang/mock/gomock"
 
@@ -252,10 +252,10 @@ func TestHandleGet(t *testing.T) {
 				SenderID:        "sender123",
 				Subject:         "Test Subject",
 				CompiledPreview: "<p>Test HTML content</p>",
-				VisualEditorTree: func() broadsidemjml.EmailBlock {
-					base := broadsidemjml.NewBaseBlock("root", broadsidemjml.MJMLComponentMjml)
+				VisualEditorTree: func() broadsheetmjml.EmailBlock {
+					base := broadsheetmjml.NewBaseBlock("root", broadsheetmjml.MJMLComponentMjml)
 					base.Attributes["version"] = "4.0.0"
-					return &broadsidemjml.MJMLBlock{BaseBlock: base}
+					return &broadsheetmjml.MJMLBlock{BaseBlock: base}
 				}(),
 			},
 			Category:  "marketing",

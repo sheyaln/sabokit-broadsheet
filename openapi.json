@@ -1,22 +1,22 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "Broadside API",
-    "description": "API for Broadside - a transactional email and newsletter management platform (fork of Notifuse)",
+    "title": "Broadsheet API",
+    "description": "API for Broadsheet - a transactional email and newsletter management platform (fork of Notifuse)",
     "version": "1.0.0",
     "contact": {
-      "name": "Broadside",
-      "url": "https://github.com/sheyaln/sabokit-broadside"
+      "name": "Broadsheet",
+      "url": "https://github.com/sheyaln/sabokit-broadsheet"
     }
   },
   "servers": [
     {
-      "url": "https://{broadsideDomain}",
-      "description": "Customer-specific Broadside API server",
+      "url": "https://{broadsheetDomain}",
+      "description": "Customer-specific Broadsheet API server",
       "variables": {
-        "broadsideDomain": {
-          "description": "Your unique Broadside domain",
-          "default": "demo.broadside.example"
+        "broadsheetDomain": {
+          "description": "Your unique Broadsheet domain",
+          "default": "demo.broadsheet.example"
         }
       }
     }
@@ -6931,7 +6931,7 @@
             "type": "string",
             "format": "uri",
             "description": "The HTTPS URL to receive webhook events",
-            "example": "https://api.example.com/webhooks/broadside"
+            "example": "https://api.example.com/webhooks/broadsheet"
           },
           "secret": {
             "type": "string",
@@ -7181,7 +7181,7 @@
             "type": "string",
             "format": "uri",
             "description": "The HTTPS URL to receive webhook events",
-            "example": "https://api.example.com/webhooks/broadside"
+            "example": "https://api.example.com/webhooks/broadsheet"
           },
           "event_types": {
             "type": "array",
@@ -7237,7 +7237,7 @@
             "type": "string",
             "format": "uri",
             "description": "Updated URL",
-            "example": "https://api.example.com/webhooks/broadside/v2"
+            "example": "https://api.example.com/webhooks/broadsheet/v2"
           },
           "event_types": {
             "type": "array",

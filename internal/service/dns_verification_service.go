@@ -7,14 +7,14 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
 )
 
 // DNSVerificationService handles DNS verification for custom domains
 type DNSVerificationService struct {
 	logger         logger.Logger
-	expectedTarget string // The CNAME target (e.g., "broadside.example" or your main domain)
+	expectedTarget string // The CNAME target (e.g., "broadsheet.example" or your main domain)
 }
 
 // NewDNSVerificationService creates a new DNS verification service
@@ -108,7 +108,7 @@ func (s *DNSVerificationService) VerifyDomainOwnership(ctx context.Context, doma
 
 // verifyARecord verifies domain ownership via A record by comparing IP addresses
 func (s *DNSVerificationService) verifyARecord(ctx context.Context, hostname, expectedTarget string) error {
-	// Extract hostname from expectedTarget (it might be a URL like https://preview.broadside.example)
+	// Extract hostname from expectedTarget (it might be a URL like https://preview.broadsheet.example)
 	expectedTargetHostname, err := extractHostname(expectedTarget)
 	if err != nil {
 		return domain.ValidationError{
@@ -193,7 +193,7 @@ func (s *DNSVerificationService) VerifyTXTRecord(ctx context.Context, domainURL,
 	}
 
 	// Look for verification token
-	expectedRecord := fmt.Sprintf("broadside-verify=%s", expectedToken)
+	expectedRecord := fmt.Sprintf("broadsheet-verify=%s", expectedToken)
 	for _, record := range txtRecords {
 		if strings.TrimSpace(record) == expectedRecord {
 			s.logger.WithFields(map[string]interface{}{

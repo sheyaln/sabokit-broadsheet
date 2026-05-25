@@ -29,8 +29,8 @@ import { ImageURLInput } from '../common/ImageURLInput'
 import { templatesApi } from '../../services/api/template'
 import { AuthorsTable } from './AuthorsTable'
 import {
-  BroadsideEditor,
-  type BroadsideEditorRef,
+  BroadsheetEditor,
+  type BroadsheetEditorRef,
   type TOCAnchor,
   DEFAULT_INITIAL_CONTENT
 } from '../blog_editor'
@@ -93,7 +93,7 @@ export function PostDrawer({ open, onClose, post, workspace, initialCategoryId }
   )
 
   // Editor ref for undo/redo
-  const editorRef = useRef<BroadsideEditorRef>(null)
+  const editorRef = useRef<BroadsheetEditorRef>(null)
   const [canUndo, setCanUndo] = useState(false)
   const [canRedo, setCanRedo] = useState(false)
 
@@ -741,7 +741,7 @@ export function PostDrawer({ open, onClose, post, workspace, initialCategoryId }
                     </Space>
                   </div>
                 ) : (
-                  <BroadsideEditor
+                  <BroadsheetEditor
                     key={`editor-${post?.id || 'new'}-${post?.settings.template.template_id || 'no-template'}-${post?.settings.template.template_version || 0}-${editorKeyCounter}`}
                     ref={editorRef}
                     placeholder={t`Start writing your blog post...`}

@@ -1,4 +1,4 @@
-package broadside_mjml
+package broadsheet_mjml
 
 import (
 	"encoding/json"
@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/sheyaln/sabokit-broadside/pkg/crypto"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/crypto"
 	"github.com/stretchr/testify/assert"
 )
 

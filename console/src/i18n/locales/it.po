@@ -5849,7 +5849,7 @@ msgstr "Caricamento eventi webhook..."
 msgid "Loading webhook status..."
 msgstr "Caricamento stato webhook..."
 
-#: src/components/blog_editor/BroadsideEditor.tsx:478
+#: src/components/blog_editor/BroadsheetEditor.tsx:478
 #: src/components/messages/MessageHistoryTab.tsx:610
 #: src/components/templates/TemplateSelectorInput.tsx:131
 #: src/components/timeline/ContactTimeline.tsx:823
@@ -5930,7 +5930,7 @@ msgid "Managed by {0} ({1} integration)"
 msgstr "Gestito da {0} (integrazione {1})"
 
 #: src/components/settings/OIDCSettings.tsx:217
-msgid "Map IdP groups to Broadside roles and permissions. Users without a matching group get member access with full permissions by default."
+msgid "Map IdP groups to Broadsheet roles and permissions. Users without a matching group get member access with full permissions by default."
 msgstr ""
 
 #: src/components/settings/OIDCSettings.tsx:217
@@ -9085,7 +9085,7 @@ msgstr "Inizia caricamento"
 msgid "Start writing your blog post..."
 msgstr "Inizia a scrivere il tuo post del blog..."
 
-#: src/components/blog_editor/BroadsideEditor.tsx:367
+#: src/components/blog_editor/BroadsheetEditor.tsx:367
 #: src/components/email_builder/ui/tiptap/TiptapRichEditor.tsx:21
 msgid "Start writing..."
 msgstr "Inizia a scrivere..."

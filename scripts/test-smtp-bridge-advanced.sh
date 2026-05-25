@@ -11,7 +11,7 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
-SMTP_SERVER="${SMTP_SERVER:-localapi.broadside.local}"
+SMTP_SERVER="${SMTP_SERVER:-localapi.broadsheet.local}"
 SMTP_PORT="${SMTP_PORT:-587}"
 API_EMAIL="${1}"
 API_KEY="${2}"

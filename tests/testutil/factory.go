@@ -8,9 +8,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/internal/repository"
-	"github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/internal/repository"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/broadsheet_mjml"
 	"github.com/google/uuid"
 )
 
@@ -1206,7 +1206,7 @@ func createDefaultEmailTemplate() *domain.EmailTemplate {
 	}
 }
 
-func createDefaultMJMLBlock() broadside_mjml.EmailBlock {
+func createDefaultMJMLBlock() broadsheet_mjml.EmailBlock {
 	// Create a simple MJML structure using BaseBlock with proper JSON structure
 	// Create a map structure instead of using specific block types to avoid marshaling issues
 	textBlockMap := map[string]interface{}{
@@ -1261,7 +1261,7 @@ func createDefaultMJMLBlock() broadside_mjml.EmailBlock {
 		panic(err)
 	}
 
-	block, err := broadside_mjml.UnmarshalEmailBlock(jsonData)
+	block, err := broadsheet_mjml.UnmarshalEmailBlock(jsonData)
 	if err != nil {
 		panic(err)
 	}
@@ -1271,7 +1271,7 @@ func createDefaultMJMLBlock() broadside_mjml.EmailBlock {
 
 // CreateMJMLBlockWithContent creates an MJML block with custom text content
 // This allows testing Liquid template variables in the email body
-func CreateMJMLBlockWithContent(content string) broadside_mjml.EmailBlock {
+func CreateMJMLBlockWithContent(content string) broadsheet_mjml.EmailBlock {
 	textBlockMap := map[string]interface{}{
 		"id":      "text-1",
 		"type":    "mj-text",
@@ -1323,7 +1323,7 @@ func CreateMJMLBlockWithContent(content string) broadside_mjml.EmailBlock {
 		panic(err)
 	}
 
-	block, err := broadside_mjml.UnmarshalEmailBlock(jsonData)
+	block, err := broadsheet_mjml.UnmarshalEmailBlock(jsonData)
 	if err != nil {
 		panic(err)
 	}
@@ -1589,7 +1589,7 @@ func (tdf *TestDataFactory) CreateTransactionalNotification(workspaceID string, 
 		Name:        fmt.Sprintf("Test Transactional %s", uuid.New().String()[:8]),
 		Description: "Test transactional notification",
 		Channels:    channels,
-		TrackingSettings: broadside_mjml.TrackingSettings{
+		TrackingSettings: broadsheet_mjml.TrackingSettings{
 			EnableTracking: true,
 		},
 		Metadata:  map[string]interface{}{},

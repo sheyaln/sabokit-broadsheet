@@ -7,14 +7,14 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/config"
+	"github.com/sheyaln/sabokit-broadsheet/config"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
 
-	"github.com/sheyaln/sabokit-broadside/internal/service"
+	"github.com/sheyaln/sabokit-broadsheet/internal/service"
 
-	"github.com/sheyaln/sabokit-broadside/pkg/logger"
-	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
+	"github.com/sheyaln/sabokit-broadsheet/pkg/logger"
+	pkgmocks "github.com/sheyaln/sabokit-broadsheet/pkg/mocks"
 
 	"github.com/golang/mock/gomock"
 

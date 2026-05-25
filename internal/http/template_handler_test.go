@@ -12,12 +12,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sheyaln/sabokit-broadside/internal/domain"
-	"github.com/sheyaln/sabokit-broadside/internal/domain/mocks"
-	http_handler "github.com/sheyaln/sabokit-broadside/internal/http"
-	"github.com/sheyaln/sabokit-broadside/internal/service"
-	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
-	broadsidemjml "github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain"
+	"github.com/sheyaln/sabokit-broadsheet/internal/domain/mocks"
+	http_handler "github.com/sheyaln/sabokit-broadsheet/internal/http"
+	"github.com/sheyaln/sabokit-broadsheet/internal/service"
+	pkgmocks "github.com/sheyaln/sabokit-broadsheet/pkg/mocks"
+	broadsheetmjml "github.com/sheyaln/sabokit-broadsheet/pkg/broadsheet_mjml"
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
@@ -57,13 +57,13 @@ func setupTemplateHandlerTest(t *testing.T) (*mocks.MockTemplateService, *pkgmoc
 }
 
 func createTestEmailTemplate() *domain.EmailTemplate {
-	base := broadsidemjml.NewBaseBlock("root", broadsidemjml.MJMLComponentMjml)
+	base := broadsheetmjml.NewBaseBlock("root", broadsheetmjml.MJMLComponentMjml)
 	base.Attributes["version"] = "4.0.0"
 	return &domain.EmailTemplate{
 		SenderID:         "sender123",
 		Subject:          "Test Email",
 		CompiledPreview:  "<html><body>Test</body></html>",
-		VisualEditorTree: &broadsidemjml.MJMLBlock{BaseBlock: base},
+		VisualEditorTree: &broadsheetmjml.MJMLBlock{BaseBlock: base},
 	}
 }
 
@@ -745,18 +745,18 @@ func TestTemplateHandler_HandleDelete(t *testing.T) {
 }
 
 // Helper function from email_blocks_test.go (or define similarly here)
-func createTestRootBlockHandler(children ...broadsidemjml.EmailBlock) broadsidemjml.EmailBlock {
-	base := broadsidemjml.NewBaseBlock("root", broadsidemjml.MJMLComponentMjml)
+func createTestRootBlockHandler(children ...broadsheetmjml.EmailBlock) broadsheetmjml.EmailBlock {
+	base := broadsheetmjml.NewBaseBlock("root", broadsheetmjml.MJMLComponentMjml)
 	base.Children = children
 	base.Attributes["version"] = "4.0.0"
-	return &broadsidemjml.MJMLBlock{BaseBlock: base}
+	return &broadsheetmjml.MJMLBlock{BaseBlock: base}
 }
 
-func createTestTextBlockHandler(id, textContent string) broadsidemjml.EmailBlock {
+func createTestTextBlockHandler(id, textContent string) broadsheetmjml.EmailBlock {
 	content := textContent
-	base := broadsidemjml.NewBaseBlock(id, broadsidemjml.MJMLComponentMjText)
+	base := broadsheetmjml.NewBaseBlock(id, broadsheetmjml.MJMLComponentMjText)
 	base.Content = &content
-	return &broadsidemjml.MJTextBlock{BaseBlock: base}
+	return &broadsheetmjml.MJTextBlock{BaseBlock: base}
 }
 
 func TestHandleCompile_ServiceError(t *testing.T) {
