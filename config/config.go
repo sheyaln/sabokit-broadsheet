@@ -434,7 +434,7 @@ func LoadWithOptions(opts LoadOptions) (*Config, error) {
 	v.SetDefault("VERSION", VERSION)
 
 	// SMTP defaults
-	v.SetDefault("SMTP_FROM_NAME", "Notifuse")
+	v.SetDefault("SMTP_FROM_NAME", "Broadside")
 
 	// SMTP Bridge defaults (formerly SMTP Relay)
 	// NOTE: Don't set default for SMTP_BRIDGE_ENABLED - we need to detect when it's truly unset
@@ -442,7 +442,7 @@ func LoadWithOptions(opts LoadOptions) (*Config, error) {
 
 	// Default tracing config
 	v.SetDefault("TRACING_ENABLED", false)
-	v.SetDefault("TRACING_SERVICE_NAME", "notifuse-api")
+	v.SetDefault("TRACING_SERVICE_NAME", "broadside-api")
 	v.SetDefault("TRACING_SAMPLING_PROBABILITY", 0.1)
 
 	// Default trace exporter config
@@ -725,7 +725,7 @@ func LoadWithOptions(opts LoadOptions) (*Config, error) {
 			smtpConfig.FromName = systemSettings.SMTPFromName
 		}
 		if smtpConfig.FromName == "" {
-			smtpConfig.FromName = "Notifuse" // Default
+			smtpConfig.FromName = "Broadside" // Default
 		}
 		// Use database value for TLS if env var is not set
 		if envVals.SMTPUseTLS == "" {
@@ -788,7 +788,7 @@ func LoadWithOptions(opts LoadOptions) (*Config, error) {
 			smtpConfig.Port = 587
 		}
 		if smtpConfig.FromName == "" {
-			smtpConfig.FromName = "Notifuse"
+			smtpConfig.FromName = "Broadside"
 		}
 
 		smtpBridgeConfig = SMTPBridgeConfig{

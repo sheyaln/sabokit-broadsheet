@@ -1,19 +1,18 @@
 openapi: 3.0.3
 info:
-  title: Notifuse API
-  description: API for Notifuse - a transactional email and newsletter management platform
+  title: Broadside API
+  description: API for Broadside - a transactional email and newsletter management platform (fork of Notifuse)
   version: 1.0.0
   contact:
-    name: Notifuse Support
-    url: https://www.notifuse.com/support
-    email: hello@notifuse.com
+    name: Broadside
+    url: https://github.com/sheyaln/sabokit-broadside
 servers:
-  - url: https://{notifuseDomain}
-    description: Customer-specific Notifuse API server
+  - url: https://{broadsideDomain}
+    description: Customer-specific Broadside API server
     variables:
-      notifuseDomain:
-        description: Your unique Notifuse domain
-        default: demo.notifuse.com
+      broadsideDomain:
+        description: Your unique Broadside domain
+        default: demo.broadside.example
 paths:
   /api/transactional.send:
     $ref: './paths/transactional.yaml#/~1api~1transactional.send'

@@ -39,7 +39,7 @@ func TestSetupMinimalConfig(t *testing.T) {
 	os.Setenv("DB_PASS", "postgres_test")
 	os.Setenv("DB_HOST", "localhost")
 	os.Setenv("DB_PORT", "5432")
-	os.Setenv("DB_NAME", "notifuse_test")
+	os.Setenv("DB_NAME", "broadside_test")
 	os.Setenv("ROOT_EMAIL", "test@example.com")
 
 	// Cleanup
@@ -130,7 +130,7 @@ func createSimpleTestConfig() *config.Config {
 			Password: "postgres_test",
 			Host:     "localhost",
 			Port:     5432,
-			DBName:   "notifuse_test",
+			DBName:   "broadside_test",
 		},
 		Server: config.ServerConfig{
 			Host: "localhost",

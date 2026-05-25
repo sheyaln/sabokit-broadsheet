@@ -568,7 +568,7 @@ func createSESHardBouncePayload(messageID, recipientEmail string) string {
 			"mail": map[string]interface{}{
 				"messageId": "ses-message-id",
 				"tags": map[string][]string{
-					"notifuse_message_id": {messageID},
+					"broadside_message_id": {messageID},
 				},
 			},
 		},
@@ -604,7 +604,7 @@ func createSESSoftBouncePayload(messageID, recipientEmail string) string {
 			"mail": map[string]interface{}{
 				"messageId": "ses-message-id",
 				"tags": map[string][]string{
-					"notifuse_message_id": {messageID},
+					"broadside_message_id": {messageID},
 				},
 			},
 		},
@@ -638,7 +638,7 @@ func createSESComplaintPayload(messageID, recipientEmail string) string {
 			"mail": map[string]interface{}{
 				"messageId": "ses-message-id",
 				"tags": map[string][]string{
-					"notifuse_message_id": {messageID},
+					"broadside_message_id": {messageID},
 				},
 			},
 		},

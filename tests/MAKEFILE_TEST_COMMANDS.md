@@ -106,7 +106,7 @@ Running all integration tests (non-verbose)...
 --- PASS: TestConnectionPoolConcurrency (16.91s)
 === RUN   TestAPIServerShutdown
 --- PASS: TestAPIServerShutdown (2.15s)
-ok      github.com/Notifuse/notifuse/tests/integration
+ok      github.com/sheyaln/sabokit-broadside/tests/integration
 
 ✅ All integration tests completed
 ```

@@ -32,7 +32,7 @@ type AuthService interface {
 	InvalidateSecretCache()
 }
 
-// OIDCGroupMapping maps an IdP group to Notifuse role and permissions (settings key: "oidc_group_mappings").
+// OIDCGroupMapping maps an IdP group to Broadside role and permissions (settings key: "oidc_group_mappings").
 type OIDCGroupMapping struct {
 	OIDCGroup     string          `json:"oidc_group"`
 	Role          string          `json:"role"` // "owner" or "member"

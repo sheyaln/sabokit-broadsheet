@@ -75,7 +75,7 @@ type SendGridWebhookEvent struct {
 	Category []string `json:"category,omitempty"`
 
 	// Our custom_arg - flattened at top level by SendGrid (not nested in an object)
-	NotifuseMessageID string `json:"notifuse_message_id,omitempty"`
+	BroadsideMessageID string `json:"broadside_message_id,omitempty"`
 }
 
 // SendGridWebhookSettings represents the webhook configuration in SendGrid

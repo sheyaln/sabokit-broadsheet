@@ -2,7 +2,7 @@
 
 ## Marketing
 
-- create notifuse blog
+- create Broadside blog
 - pages on homepage for:
 
   - rich contact profiles with custom events + segments

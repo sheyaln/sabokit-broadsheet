@@ -394,11 +394,14 @@ export function WorkspaceLayout() {
 
   return (
     <ContactsCsvUploadProvider>
-      <Layout style={{ minHeight: '100vh', backgroundColor: '#F9F9F9' }}>
+      <Layout style={{ minHeight: '100vh', backgroundColor: '#1a1612' }}>
         <Layout>
           <Sider
             width={250}
             theme="light"
+            collapsible
+            collapsed={collapsed}
+            trigger={null}
             style={{
               position: 'fixed',
               height: '100vh',
@@ -406,39 +409,80 @@ export function WorkspaceLayout() {
               top: 0,
               overflow: 'auto',
               zIndex: 10,
-              backgroundColor: '#F9F9F9'
+              backgroundColor: '#1a1612',
+              borderRight: '1px solid #3b342d'
             }}
-            collapsible
-            collapsed={collapsed}
-            trigger={null}
-            className="border-r border-gray-200"
           >
             <div
               style={{
-                padding: '16px 0 16px 27px',
-                textAlign: 'center',
-                borderBottom: '1px solid #f0f0f0'
+                padding: collapsed ? '20px 0 14px' : '18px 24px 14px',
+                textAlign: collapsed ? 'center' : 'left',
+                borderTop: '3px solid #5a4f43',
+                borderBottom: '1px solid #5a4f43',
+                margin: collapsed ? '12px 12px 8px' : '12px 16px 8px',
+                background: 'transparent',
+                lineHeight: 1
               }}
             >
-              <img
-                src={collapsed ? '/console/icon.png' : '/console/logo.png'}
-                alt=""
-                style={{
-                  height: '31px',
-                  width: 'auto',
-                  transition: 'height 0.2s'
-                }}
-              />
+              {collapsed ? (
+                <img
+                  src="/console/broadside-icon.png"
+                  alt="Broadside"
+                  width={32}
+                  height={32}
+                  style={{ display: 'inline-block' }}
+                />
+              ) : (
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <img
+                    src="/console/broadside-icon.png"
+                    alt=""
+                    width={36}
+                    height={36}
+                    style={{ display: 'block', flexShrink: 0 }}
+                  />
+                  <div>
+                    <div
+                      style={{
+                        fontFamily:
+                          "'IBM Plex Sans', system-ui, -apple-system, sans-serif",
+                        fontSize: 9,
+                        fontWeight: 600,
+                        letterSpacing: '0.18em',
+                        textTransform: 'uppercase',
+                        color: '#a39c8e',
+                        marginBottom: 2
+                      }}
+                    >
+                      Vol. {window.VERSION || '1.0'} &middot; No. 1
+                    </div>
+                    <div
+                      style={{
+                        fontFamily:
+                          "'Fraunces', 'IBM Plex Serif', Georgia, serif",
+                        fontWeight: 800,
+                        fontSize: 22,
+                        color: '#f0e9da',
+                        letterSpacing: '-0.025em',
+                        lineHeight: 1
+                      }}
+                    >
+                      Broad<span style={{ color: '#ca1625' }}>side</span>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
             <Menu
               mode="inline"
               selectedKeys={[selectedKey]}
               style={{
-                height: 'calc(100% - 120px)',
+                height: 'calc(100% - 140px)',
                 borderRight: 0,
-                backgroundColor: '#F9F9F9',
+                backgroundColor: '#1a1612',
                 fontSize: '13px',
-                fontWeight: 600
+                fontWeight: 500,
+                paddingTop: 8
               }}
               items={loadingPermissions ? [] : menuItems}
               theme="light"
@@ -450,16 +494,16 @@ export function WorkspaceLayout() {
                 left: 0,
                 width: collapsed ? '80px' : '249px',
                 padding: '16px',
-                // backgroundColor: '#F9F9F9',
+                // backgroundColor: '#1a1612',
                 zIndex: 1
               }}
             >
               <div
                 style={{
-                  borderBottom: '1px solid #f0f0f0',
+                  borderBottom: '1px solid #3b342d',
                   textAlign: 'center',
                   fontSize: '9px',
-                  color: '#000',
+                  color: '#f0e9da',
                   opacity: 0.7,
                   marginBottom: '8px',
                   paddingBottom: '8px'
@@ -484,8 +528,8 @@ export function WorkspaceLayout() {
               right: 0,
               width: `calc(100% - ${collapsed ? '80px' : '250px'})`,
               height: '64px',
-              backgroundColor: '#F9F9F9',
-              borderBottom: '1px solid #f0f0f0',
+              backgroundColor: '#1a1612',
+              borderBottom: '1px solid #3b342d',
               padding: '0 24px',
               display: 'flex',
               alignItems: 'center',
@@ -526,7 +570,7 @@ export function WorkspaceLayout() {
                   ? [
                       {
                         label: (
-                          <Space className="text-indigo-500">
+                          <Space style={{ color: '#CA1625' }}>
                             <FontAwesomeIcon icon={faPlus} /> {t`New workspace`}
                           </Space>
                         ),
@@ -613,10 +657,10 @@ export function WorkspaceLayout() {
               marginTop: '64px',
               padding: isSettingsPage ? '0' : '24px',
               transition: 'margin-left 0.2s',
-              backgroundColor: '#F9F9F9'
+              backgroundColor: '#1a1612'
             }}
           >
-            <Content style={{ backgroundColor: '#F9F9F9' }}>
+            <Content style={{ backgroundColor: '#1a1612' }}>
               <FileManagerProvider
                 key={`fm-${workspaceId}-${!userPermissions?.templates?.write}`}
                 settings={workspaces.find((w) => w.id === workspaceId)?.settings.file_manager}

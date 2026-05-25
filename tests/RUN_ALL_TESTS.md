@@ -116,7 +116,7 @@ After applying Solution 1, verify it works:
 
 ```bash
 # Check PostgreSQL max_connections
-docker exec tests-postgres-test-1 psql -U notifuse_test -d postgres -c "SHOW max_connections;"
+docker exec tests-postgres-test-1 psql -U broadside_test -d postgres -c "SHOW max_connections;"
 
 # Should output: 300
 

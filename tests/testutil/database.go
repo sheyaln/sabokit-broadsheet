@@ -45,10 +45,10 @@ func NewDatabaseManager() *DatabaseManager {
 	config := &config.DatabaseConfig{
 		Host:                  testHost,
 		Port:                  testPort,
-		User:                  getEnvOrDefault("TEST_DB_USER", "notifuse_test"),
+		User:                  getEnvOrDefault("TEST_DB_USER", "broadside_test"),
 		Password:              getEnvOrDefault("TEST_DB_PASSWORD", "test_password"),
-		DBName:                fmt.Sprintf("notifuse_test_%d", time.Now().UnixNano()),
-		Prefix:                "notifuse_test",
+		DBName:                fmt.Sprintf("broadside_test_%d", time.Now().UnixNano()),
+		Prefix:                "broadside_test",
 		SSLMode:               "disable",
 		MaxConnections:        100, // Default value for tests
 		MaxConnectionsPerDB:   10,  // Higher than default (3) for parallel tests

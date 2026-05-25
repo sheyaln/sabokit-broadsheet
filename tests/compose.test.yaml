@@ -9,14 +9,14 @@ services:
       - 'shared_buffers=128MB'
     environment:
       POSTGRES_DB: postgres
-      POSTGRES_USER: notifuse_test
+      POSTGRES_USER: broadside_test
       POSTGRES_PASSWORD: test_password
     ports:
       - '5433:5432'
     volumes:
       - postgres_test_data:/var/lib/postgresql/data
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U notifuse_test -d postgres']
+      test: ['CMD-SHELL', 'pg_isready -U broadside_test -d postgres']
       interval: 10s
       timeout: 5s
       retries: 5

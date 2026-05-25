@@ -204,12 +204,12 @@ func TestSendGridWebhookEvent(t *testing.T) {
 			SGEventID:         "abc123",
 			SGMessageID:       "14c5d75ce93.dfd.64b469",
 			Response:          "250 2.0.0 OK",
-			NotifuseMessageID: "msg_123",
+			BroadsideMessageID: "msg_123",
 		}
 
 		assert.Equal(t, "delivered", event.Event)
 		assert.Equal(t, "recipient@example.com", event.Email)
-		assert.Equal(t, "msg_123", event.NotifuseMessageID)
+		assert.Equal(t, "msg_123", event.BroadsideMessageID)
 	})
 
 	t.Run("Parse bounce event", func(t *testing.T) {
@@ -223,7 +223,7 @@ func TestSendGridWebhookEvent(t *testing.T) {
 			Status:               "5.1.1",
 			Type:                 "bounce",
 			BounceClassification: "Invalid Address",
-			NotifuseMessageID:    "msg_123",
+			BroadsideMessageID:    "msg_123",
 		}
 
 		assert.Equal(t, "bounce", event.Event)
@@ -239,11 +239,11 @@ func TestSendGridWebhookEvent(t *testing.T) {
 			Event:             "spamreport",
 			SGEventID:         "ghi789",
 			SGMessageID:       "14c5d75ce93.dfd.64b469",
-			NotifuseMessageID: "msg_123",
+			BroadsideMessageID: "msg_123",
 		}
 
 		assert.Equal(t, "spamreport", event.Event)
-		assert.Equal(t, "msg_123", event.NotifuseMessageID)
+		assert.Equal(t, "msg_123", event.BroadsideMessageID)
 	})
 
 	t.Run("Parse blocked event (soft bounce)", func(t *testing.T) {

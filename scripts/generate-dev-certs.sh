@@ -6,7 +6,7 @@
 set -e
 
 # Default domain
-DOMAIN="${1:-localapi.notifuse.com}"
+DOMAIN="${1:-localapi.broadside.local}"
 OUTPUT_DIR="./dev-certs"
 
 echo "🔐 Generating self-signed TLS certificates for local development"

@@ -218,7 +218,7 @@ func sesBouncePayload(messageID, recipientEmail, bounceType, subtype, diagnostic
 		},
 		"mail": map[string]interface{}{
 			"messageId": "ses-" + messageID,
-			"tags":      map[string][]string{"notifuse_message_id": {messageID}},
+			"tags":      map[string][]string{"broadside_message_id": {messageID}},
 		},
 	}
 	messageBytes, _ := json.Marshal(message)

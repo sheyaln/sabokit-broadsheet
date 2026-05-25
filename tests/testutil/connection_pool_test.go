@@ -21,9 +21,9 @@ func TestConnectionPoolFunctionality(t *testing.T) {
 	config := &config.DatabaseConfig{
 		Host:     getEnvOrDefault("TEST_DB_HOST", "localhost"),
 		Port:     5433,
-		User:     getEnvOrDefault("TEST_DB_USER", "notifuse_test"),
+		User:     getEnvOrDefault("TEST_DB_USER", "broadside_test"),
 		Password: getEnvOrDefault("TEST_DB_PASSWORD", "test_password"),
-		Prefix:   "notifuse_test",
+		Prefix:   "broadside_test",
 		SSLMode:  "disable",
 	}
 

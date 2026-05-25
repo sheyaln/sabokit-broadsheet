@@ -13,7 +13,7 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # Default values
-SMTP_SERVER="${SMTP_SERVER:-localapi.notifuse.com}"
+SMTP_SERVER="${SMTP_SERVER:-localapi.broadside.local}"
 SMTP_PORT="${SMTP_PORT:-587}"
 FROM_EMAIL="${FROM_EMAIL:-test@example.com}"
 TO_EMAIL="${TO_EMAIL:-recipient@example.com}"
@@ -60,7 +60,7 @@ if [ -z "$API_EMAIL" ] || [ -z "$API_KEY" ] || [ -z "$WORKSPACE_ID" ]; then
     echo "  $0 api@example.com \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\" workspace_abc123"
     echo ""
     echo "Environment variables (optional):"
-    echo "  SMTP_SERVER=localapi.notifuse.com    # SMTP server address"
+    echo "  SMTP_SERVER=localapi.broadside.local    # SMTP server address"
     echo "  SMTP_PORT=587                         # SMTP server port"
     echo "  FROM_EMAIL=test@example.com           # Sender email"
     echo "  TO_EMAIL=recipient@example.com        # Recipient email"
@@ -131,9 +131,9 @@ TLS_CA_PATH=""
 if [ -f "./dev-certs/$SMTP_SERVER.cert.pem" ]; then
     TLS_CA_PATH="--tls-ca-path ./dev-certs/$SMTP_SERVER.cert.pem"
     print_info "Using TLS certificate: ./dev-certs/$SMTP_SERVER.cert.pem"
-elif [ -f "./dev-certs/localapi.notifuse.com.cert.pem" ]; then
-    TLS_CA_PATH="--tls-ca-path ./dev-certs/localapi.notifuse.com.cert.pem"
-    print_info "Using TLS certificate: ./dev-certs/localapi.notifuse.com.cert.pem"
+elif [ -f "./dev-certs/localapi.broadside.local.cert.pem" ]; then
+    TLS_CA_PATH="--tls-ca-path ./dev-certs/localapi.broadside.local.cert.pem"
+    print_info "Using TLS certificate: ./dev-certs/localapi.broadside.local.cert.pem"
 else
     print_warning "TLS certificate not found, using --tls-verify=no (INSECURE)"
     TLS_CA_PATH="--tls-verify=no"

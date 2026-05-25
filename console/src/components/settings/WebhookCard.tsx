@@ -361,7 +361,7 @@ export function WebhookCard({
         {testResult ? (
           <div className="bg-gray-900 text-gray-100 p-4 rounded-lg font-mono text-sm overflow-auto max-h-80">
             <div>
-              <span className="text-purple-400">HTTP/1.1</span>{' '}
+              <span className="text-cyan-400">HTTP/1.1</span>{' '}
               <span className={testResult.success ? 'text-green-400' : 'text-red-400'}>
                 {testResult.statusCode || 0}
               </span>

@@ -33,7 +33,7 @@ test-integration:
 	INTEGRATION_TESTS=true \
 	TEST_DB_HOST=localhost \
 	TEST_DB_PORT=5433 \
-	TEST_DB_USER=notifuse_test \
+	TEST_DB_USER=broadside_test \
 	TEST_DB_PASSWORD=test_password \
 	ENVIRONMENT=test \
 	go test -v -timeout 5m ./tests/integration/...
@@ -45,7 +45,7 @@ test-integration-docker: test-integration-setup
 	INTEGRATION_TESTS=true \
 	TEST_DB_HOST=localhost \
 	TEST_DB_PORT=5433 \
-	TEST_DB_USER=notifuse_test \
+	TEST_DB_USER=broadside_test \
 	TEST_DB_PASSWORD=test_password \
 	ENVIRONMENT=test \
 	go test -v -timeout 10m ./tests/integration/... || (make test-integration-teardown && exit 1)
@@ -59,7 +59,7 @@ test-integration-database:
 	INTEGRATION_TESTS=true \
 	TEST_DB_HOST=localhost \
 	TEST_DB_PORT=5433 \
-	TEST_DB_USER=notifuse_test \
+	TEST_DB_USER=broadside_test \
 	TEST_DB_PASSWORD=test_password \
 	ENVIRONMENT=test \
 	go test -v -timeout 5m ./tests/integration/database_test.go
@@ -68,7 +68,7 @@ test-integration-api:
 	INTEGRATION_TESTS=true \
 	TEST_DB_HOST=localhost \
 	TEST_DB_PORT=5433 \
-	TEST_DB_USER=notifuse_test \
+	TEST_DB_USER=broadside_test \
 	TEST_DB_PASSWORD=test_password \
 	ENVIRONMENT=test \
 	go test -v -timeout 5m ./tests/integration/api_test.go
@@ -77,7 +77,7 @@ test-integration-contacts:
 	INTEGRATION_TESTS=true \
 	TEST_DB_HOST=localhost \
 	TEST_DB_PORT=5433 \
-	TEST_DB_USER=notifuse_test \
+	TEST_DB_USER=broadside_test \
 	TEST_DB_PASSWORD=test_password \
 	ENVIRONMENT=test \
 	go test -v -timeout 5m ./tests/integration/contact_api_test.go
@@ -94,7 +94,7 @@ test-integration-coverage:
 	INTEGRATION_TESTS=true \
 	TEST_DB_HOST=localhost \
 	TEST_DB_PORT=5433 \
-	TEST_DB_USER=notifuse_test \
+	TEST_DB_USER=broadside_test \
 	TEST_DB_PASSWORD=test_password \
 	ENVIRONMENT=test \
 	go test -v -timeout 10m -coverprofile=integration_coverage.out ./tests/integration/...
@@ -124,7 +124,7 @@ test-integration-debug:
 	INTEGRATION_TESTS=true \
 	TEST_DB_HOST=localhost \
 	TEST_DB_PORT=5433 \
-	TEST_DB_USER=notifuse_test \
+	TEST_DB_USER=broadside_test \
 	TEST_DB_PASSWORD=test_password \
 	ENVIRONMENT=test \
 	LOG_LEVEL=debug \
@@ -154,7 +154,7 @@ test-integration-quick:
 	INTEGRATION_TESTS=true \
 	TEST_DB_HOST=localhost \
 	TEST_DB_PORT=5433 \
-	TEST_DB_USER=notifuse_test \
+	TEST_DB_USER=broadside_test \
 	TEST_DB_PASSWORD=test_password \
 	ENVIRONMENT=test \
 	go test -v -timeout 3m -short ./tests/integration/... 

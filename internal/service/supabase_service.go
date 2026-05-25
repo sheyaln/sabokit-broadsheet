@@ -324,7 +324,7 @@ func (s *SupabaseService) ProcessUserCreatedHook(ctx context.Context, workspaceI
 		}
 	}
 
-	// Convert Supabase user to Notifuse contact
+	// Convert Supabase user to Broadside contact
 	// Get the custom_json_field setting (optional - if not set, user_metadata won't be mapped)
 	customJSONField := integration.SupabaseSettings.BeforeUserCreatedHook.CustomJSONField
 

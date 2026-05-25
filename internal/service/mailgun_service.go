@@ -661,7 +661,7 @@ func (s *MailgunService) sendEmailSimple(ctx context.Context, apiURL string, req
 	}
 
 	// Add messageID as a custom variable for tracking
-	form.Add("v:notifuse_message_id", request.MessageID)
+	form.Add("v:broadside_message_id", request.MessageID)
 
 	// Create the request
 	req, err := http.NewRequestWithContext(ctx, http.MethodPost, apiURL, strings.NewReader(form.Encode()))
@@ -747,7 +747,7 @@ func (s *MailgunService) sendEmailWithAttachments(ctx context.Context, apiURL st
 	}
 
 	// Add messageID as a custom variable for tracking
-	if err := writer.WriteField("v:notifuse_message_id", request.MessageID); err != nil {
+	if err := writer.WriteField("v:broadside_message_id", request.MessageID); err != nil {
 		return fmt.Errorf("failed to write message id field: %w", err)
 	}
 

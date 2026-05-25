@@ -430,7 +430,7 @@ func TestSendGridService_SendEmail(t *testing.T) {
 
 				// Verify request body contains custom_args
 				body, _ := io.ReadAll(req.Body)
-				assert.Contains(t, string(body), `"notifuse_message_id":"msg-789"`)
+				assert.Contains(t, string(body), `"broadside_message_id":"msg-789"`)
 
 				return mockSendGridHTTPResponse(http.StatusAccepted, `{}`), nil
 			})

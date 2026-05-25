@@ -17,7 +17,7 @@ import (
 	http_handler "github.com/sheyaln/sabokit-broadside/internal/http"
 	"github.com/sheyaln/sabokit-broadside/internal/service"
 	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
-	notifusemjml "github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
+	broadsidemjml "github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
@@ -57,13 +57,13 @@ func setupTemplateHandlerTest(t *testing.T) (*mocks.MockTemplateService, *pkgmoc
 }
 
 func createTestEmailTemplate() *domain.EmailTemplate {
-	base := notifusemjml.NewBaseBlock("root", notifusemjml.MJMLComponentMjml)
+	base := broadsidemjml.NewBaseBlock("root", broadsidemjml.MJMLComponentMjml)
 	base.Attributes["version"] = "4.0.0"
 	return &domain.EmailTemplate{
 		SenderID:         "sender123",
 		Subject:          "Test Email",
 		CompiledPreview:  "<html><body>Test</body></html>",
-		VisualEditorTree: &notifusemjml.MJMLBlock{BaseBlock: base},
+		VisualEditorTree: &broadsidemjml.MJMLBlock{BaseBlock: base},
 	}
 }
 
@@ -745,18 +745,18 @@ func TestTemplateHandler_HandleDelete(t *testing.T) {
 }
 
 // Helper function from email_blocks_test.go (or define similarly here)
-func createTestRootBlockHandler(children ...notifusemjml.EmailBlock) notifusemjml.EmailBlock {
-	base := notifusemjml.NewBaseBlock("root", notifusemjml.MJMLComponentMjml)
+func createTestRootBlockHandler(children ...broadsidemjml.EmailBlock) broadsidemjml.EmailBlock {
+	base := broadsidemjml.NewBaseBlock("root", broadsidemjml.MJMLComponentMjml)
 	base.Children = children
 	base.Attributes["version"] = "4.0.0"
-	return &notifusemjml.MJMLBlock{BaseBlock: base}
+	return &broadsidemjml.MJMLBlock{BaseBlock: base}
 }
 
-func createTestTextBlockHandler(id, textContent string) notifusemjml.EmailBlock {
+func createTestTextBlockHandler(id, textContent string) broadsidemjml.EmailBlock {
 	content := textContent
-	base := notifusemjml.NewBaseBlock(id, notifusemjml.MJMLComponentMjText)
+	base := broadsidemjml.NewBaseBlock(id, broadsidemjml.MJMLComponentMjText)
 	base.Content = &content
-	return &notifusemjml.MJTextBlock{BaseBlock: base}
+	return &broadsidemjml.MJTextBlock{BaseBlock: base}
 }
 
 func TestHandleCompile_ServiceError(t *testing.T) {

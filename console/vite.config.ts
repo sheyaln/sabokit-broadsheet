@@ -24,20 +24,20 @@ export default defineConfig({
     lingui(),
   ],
   server: {
-    host: 'notifusedev.com',
+    host: 'broadsidedev.local',
     https: {
       key: readFileSync(resolve(__dirname, 'certificates/key.pem')),
       cert: readFileSync(resolve(__dirname, 'certificates/cert.pem'))
     },
     proxy: {
       '/config.js': {
-        target: 'https://localapi.notifuse.com:4000',
+        target: 'https://localapi.broadside.local:4000',
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/console/, '')
       },
       '/console/config.js': {
-        target: 'https://localapi.notifuse.com:4000',
+        target: 'https://localapi.broadside.local:4000',
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/console/, '')

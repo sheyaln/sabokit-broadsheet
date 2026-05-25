@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+---
+
+## Broadside fork
+
+This repository is **Broadside**, a fork of [Notifuse](https://github.com/Notifuse/notifuse). The entries below this section describe Notifuse upstream releases; the entries in this section describe changes specific to the fork, on top of whatever upstream version is currently rebased onto `main`.
+
+The fork tracks upstream by force-rebasing `main` and re-applying fork patches on top. Upstream version tags (e.g. `[32.0]` below) reflect the upstream release we are currently aligned with.
+
+### Fork changes (on top of upstream)
+
+- **Rebrand to Broadside** (2026-05-24) — user-facing strings, Go module path (`github.com/sheyaln/sabokit-broadside`), and internal identifiers. Original Notifuse copyright preserved. Commits: `c39167cf`, `fce78bd1`, `2d36aa25`.
+- **OIDC SSO** (2026-05-24, `3fb44c48`) — OIDC with IdP group → workspace permission mapping. Tested against Authentik; protocol-compatible with Keycloak, Okta, Google Workspace. Not present upstream.
+
+---
+
+## Upstream Notifuse releases
+
 ## [32.0] - 2026-05-22
 
 ### Database Schema Changes

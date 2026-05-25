@@ -337,10 +337,10 @@ func (s *PostmarkService) RegisterWebhooks(
 	}
 
 	// Check if we have existing webhooks
-	notifuseWebhooks := s.filterPostmarkWebhooks(existingWebhooks.Webhooks, baseURL, workspaceID, integrationID)
+	broadsideWebhooks := s.filterPostmarkWebhooks(existingWebhooks.Webhooks, baseURL, workspaceID, integrationID)
 
 	// If we have existing webhooks, unregister them
-	for _, webhook := range notifuseWebhooks {
+	for _, webhook := range broadsideWebhooks {
 		err := s.UnregisterWebhook(ctx, *providerConfig.Postmark, webhook.ID)
 		if err != nil {
 			s.logger.WithField("webhook_id", webhook.ID).
@@ -419,10 +419,10 @@ func (s *PostmarkService) GetWebhookStatus(
 	}
 
 	// Filter webhooks for our integration
-	notifuseWebhooks := s.filterPostmarkWebhooks(existingWebhooks.Webhooks, "", workspaceID, integrationID)
+	broadsideWebhooks := s.filterPostmarkWebhooks(existingWebhooks.Webhooks, "", workspaceID, integrationID)
 
 	// Check each webhook in the response
-	for _, webhook := range notifuseWebhooks {
+	for _, webhook := range broadsideWebhooks {
 		// Create base endpoint status
 		baseEndpoint := domain.WebhookEndpointStatus{
 			WebhookID: strconv.Itoa(webhook.ID),
@@ -482,11 +482,11 @@ func (s *PostmarkService) UnregisterWebhooks(
 	}
 
 	// Find webhooks that contain this integration or workspace ID
-	notifuseWebhooks := s.filterPostmarkWebhooks(existingWebhooks.Webhooks, "", workspaceID, integrationID)
+	broadsideWebhooks := s.filterPostmarkWebhooks(existingWebhooks.Webhooks, "", workspaceID, integrationID)
 
 	// Unregister each webhook
 	var lastError error
-	for _, webhook := range notifuseWebhooks {
+	for _, webhook := range broadsideWebhooks {
 		err := s.UnregisterWebhook(ctx, *providerConfig.Postmark, webhook.ID)
 		if err != nil {
 			s.logger.WithField("webhook_id", webhook.ID).
@@ -552,7 +552,7 @@ func (s *PostmarkService) SendEmail(ctx context.Context, request domain.SendEmai
 		"HtmlBody":      request.Content,
 		"MessageStream": request.Provider.Postmark.GetMessageStream(),
 		"Metadata": map[string]string{
-			"notifuse_message_id": request.MessageID,
+			"broadside_message_id": request.MessageID,
 		},
 	}
 

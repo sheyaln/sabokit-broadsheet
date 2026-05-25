@@ -111,8 +111,8 @@ export function BulkActionsBar({
 
   return (
     <>
-      <div className="mb-4 rounded-md bg-gradient-to-r from-pink-500 via-fuchsia-500 to-violet-500 p-[1px]">
-        <div className="flex items-center gap-3 rounded-md bg-white px-3 py-2">
+      <div className="mb-4 rounded-md border border-gray-200 bg-paper-bright">
+        <div className="flex items-center gap-3 rounded-md px-3 py-2">
         <Text strong>
           <Plural
             value={selectedCount}

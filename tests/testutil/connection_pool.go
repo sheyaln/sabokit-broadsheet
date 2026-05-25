@@ -354,9 +354,9 @@ func GetGlobalTestPool() *TestConnectionPool {
 		config := &config.DatabaseConfig{
 			Host:     testHost,
 			Port:     testPort,
-			User:     getEnvOrDefault("TEST_DB_USER", "notifuse_test"),
+			User:     getEnvOrDefault("TEST_DB_USER", "broadside_test"),
 			Password: getEnvOrDefault("TEST_DB_PASSWORD", "test_password"),
-			Prefix:   "notifuse_test",
+			Prefix:   "broadside_test",
 			SSLMode:  "disable",
 		}
 		globalTestPool = NewTestConnectionPoolWithTiming(config, FastTimingConfig())

@@ -1,8 +1,10 @@
-# Notifuse Tech Stack Documentation
+# Broadside Tech Stack Documentation
+
+> Broadside is a fork of [Notifuse](https://github.com/Notifuse/notifuse) (AGPLv3). The tech stack, conventions, and migration model documented here are inherited from upstream and apply equally to the fork. Fork-specific behavior (OIDC, IdP group mapping) is noted where it differs.
 
 ## Overview
 
-Notifuse is a modern, self-hosted email marketing platform built with a clean architecture approach. The application follows a microservices-inspired design with clear separation between frontend and backend components.
+Broadside is a modern, self-hosted email platform built with a clean architecture approach. The application follows a microservices-inspired design with clear separation between frontend and backend components.
 
 ## 🏗️ Architecture
 
@@ -31,7 +33,7 @@ The application follows **Clean Architecture** principles with distinct layers:
 
 ### Database Migration System
 
-Notifuse uses a custom migration system that manages database schema changes across both the system database and individual workspace databases. The migration system is designed to handle schema evolution safely and consistently.
+Broadside uses a custom migration system (inherited from upstream Notifuse) that manages database schema changes across both the system database and individual workspace databases. The migration system is designed to handle schema evolution safely and consistently.
 
 #### Version Format
 
@@ -124,7 +126,7 @@ func (m *V6Migration) UpdateSystem(ctx context.Context, config *config.Config, d
   - Amazon SES (AWS SDK v1.55.7)
   - SMTP (go-mail v0.7.2)
   - Mailgun, Mailjet, Postmark, SparkPost integrations
-- **Template Engine**: Liquid templating (Notifuse/liquidgo)
+- **Template Engine**: Liquid templating (Notifuse/liquidgo — upstream library)
 - **MJML Support**: gomjml v0.10.0 for email rendering
 - **HTML Parsing**: PuerkitoBio/goquery v1.10.3
 
@@ -255,7 +257,7 @@ func (m *V6Migration) UpdateSystem(ctx context.Context, config *config.Config, d
 ## 📁 Project Structure
 
 ```
-notifuse/
+broadside/
 ├── cmd/                    # Application entry points
 │   ├── api/               # Main API server
 ├── internal/              # Private application code
@@ -662,8 +664,8 @@ package migrations
 import (
     "context"
     "fmt"
-    "github.com/Notifuse/notifuse/config"
-    "github.com/Notifuse/notifuse/internal/domain"
+    "github.com/sheyaln/sabokit-broadside/config"
+    "github.com/sheyaln/sabokit-broadside/internal/domain"
 )
 
 type V7Migration struct{}
@@ -745,14 +747,14 @@ GET  /api/contact.list
 
 #### Plans Directory
 
-Notifuse uses the `plans/` directory to store AI-generated implementation plans created with Cursor's AI planning tools. This provides a centralized location for tracking feature implementations, bug fixes, and architectural changes.
+Broadside uses the `plans/` directory to store AI-generated implementation plans (inherited from upstream's Cursor-driven workflow). This provides a centralized location for tracking feature implementations, bug fixes, and architectural changes.
 
 #### Planning Workflow
 
 When planning a new feature or significant change with Cursor:
 
 1. **Create Plan**: Use Cursor's plan mode to generate a detailed implementation plan
-2. **Save to Plans Directory**: All `.md` plan files should be saved to `/Users/pierre/Sites/notifuse3/code/notifuse/plans/`
+2. **Save to Plans Directory**: All `.md` plan files should be saved to the repo's `plans/` directory
 3. **Follow the Plan**: Use the plan as a guide during implementation
 4. **Update as Needed**: Modify the plan if requirements change during development
 
@@ -829,7 +831,7 @@ Refer to the `Makefile` for the most up-to-date test commands and their configur
 
 #### Best Practices
 
-- Write plans to the notifuse /plans folder
+- Write plans to the repo's `plans/` folder
 - Include specific file paths and code snippets in plans
 - Break down complex features into clear, actionable steps
 - Reference existing architectural patterns documented in this file
@@ -841,7 +843,7 @@ This structured approach to AI-assisted planning ensures all team members and AI
 
 ---
 
-These coding standards ensure consistency, maintainability, and reliability across the entire Notifuse codebase.
+These coding standards ensure consistency, maintainability, and reliability across the entire Broadside codebase.
 
 ## 🤖 Claude Agent Rules
 

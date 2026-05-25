@@ -335,7 +335,7 @@ func (s *SendGridService) SendEmail(ctx context.Context, request domain.SendEmai
 			},
 		},
 		CustomArgs: map[string]string{
-			"notifuse_message_id": request.MessageID,
+			"broadside_message_id": request.MessageID,
 		},
 	}
 

@@ -39,7 +39,7 @@ export const OpenGraphPreview: React.FC<OpenGraphPreviewProps> = ({
           />
         </div>
       ) : (
-        <div className="w-24 h-24 flex-shrink-0 bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
+        <div className="w-24 h-24 flex-shrink-0 bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
           {fallbackIcon}
         </div>
       )}

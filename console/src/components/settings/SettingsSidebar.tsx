@@ -131,15 +131,26 @@ export function SettingsSidebar({ activeSection, onSectionChange, isOwner }: Set
   }
 
   return (
-    <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-      <div className="text-xl font-medium pt-6 pl-6">{t`Settings`}</div>
-      <Divider className="!my-4" />
+    <div style={{ height: '100%', display: 'flex', flexDirection: 'column', backgroundColor: '#1a1612' }}>
+      <div
+        className="pt-6 pl-6 pr-6"
+        style={{
+          fontFamily: "'Fraunces', 'IBM Plex Serif', Georgia, serif",
+          fontSize: 22,
+          fontWeight: 700,
+          letterSpacing: '-0.015em',
+          color: '#f0e9da'
+        }}
+      >
+        {t`Settings`}
+      </div>
+      <Divider className="!my-4" style={{ borderColor: '#3b342d' }} />
       <Menu
         mode="inline"
         selectedKeys={[activeSection]}
         items={menuItems}
         onClick={({ key }) => onSectionChange(key as SettingsSection)}
-        style={{ borderRight: 0, backgroundColor: '#F9F9F9' }}
+        style={{ borderRight: 0, backgroundColor: '#1a1612', fontSize: 13 }}
       />
     </div>
   )

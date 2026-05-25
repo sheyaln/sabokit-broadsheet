@@ -60,11 +60,11 @@ jobs:
           labels: |
             org.opencontainers.image.revision=${{ steps.git-info.outputs.commit-sha }}
             org.opencontainers.image.version=${{ steps.git-info.outputs.tag-name }}
-            notifuse.git.commit=${{ steps.git-info.outputs.commit-sha }}
-            notifuse.git.commit.short=${{ steps.git-info.outputs.commit-short-sha }}
-            notifuse.git.tag=${{ steps.git-info.outputs.tag-name }}
-            notifuse.build.date=${{ github.run_id }}
-            notifuse.build.url=${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            broadside.git.commit=${{ steps.git-info.outputs.commit-sha }}
+            broadside.git.commit.short=${{ steps.git-info.outputs.commit-short-sha }}
+            broadside.git.tag=${{ steps.git-info.outputs.tag-name }}
+            broadside.build.date=${{ github.run_id }}
+            broadside.build.url=${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
       - name: Build and push by digest
         id: build

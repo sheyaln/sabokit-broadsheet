@@ -16,7 +16,7 @@ import (
 	"github.com/sheyaln/sabokit-broadside/internal/domain/mocks"
 	http_handler "github.com/sheyaln/sabokit-broadside/internal/http"
 	pkgmocks "github.com/sheyaln/sabokit-broadside/pkg/mocks"
-	notifusemjml "github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
+	broadsidemjml "github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
 
 	"github.com/golang/mock/gomock"
 
@@ -252,10 +252,10 @@ func TestHandleGet(t *testing.T) {
 				SenderID:        "sender123",
 				Subject:         "Test Subject",
 				CompiledPreview: "<p>Test HTML content</p>",
-				VisualEditorTree: func() notifusemjml.EmailBlock {
-					base := notifusemjml.NewBaseBlock("root", notifusemjml.MJMLComponentMjml)
+				VisualEditorTree: func() broadsidemjml.EmailBlock {
+					base := broadsidemjml.NewBaseBlock("root", broadsidemjml.MJMLComponentMjml)
 					base.Attributes["version"] = "4.0.0"
-					return &notifusemjml.MJMLBlock{BaseBlock: base}
+					return &broadsidemjml.MJMLBlock{BaseBlock: base}
 				}(),
 			},
 			Category:  "marketing",

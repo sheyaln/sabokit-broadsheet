@@ -12,7 +12,7 @@ import (
 	domainmocks "github.com/sheyaln/sabokit-broadside/internal/domain/mocks"
 	broadcastmocks "github.com/sheyaln/sabokit-broadside/internal/service/broadcast/mocks"
 	"github.com/sheyaln/sabokit-broadside/pkg/logger"
-	notifusemjml "github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
+	broadsidemjml "github.com/sheyaln/sabokit-broadside/pkg/broadside_mjml"
 	"github.com/golang/mock/gomock"
 	"github.com/preslavrachev/gomjml/mjml"
 	"github.com/stretchr/testify/assert"
@@ -45,10 +45,10 @@ func testBroadcast(workspaceID, id string) *domain.Broadcast {
 }
 
 // helper to create a minimal MJML root block
-func createMJMLRootBlock() notifusemjml.EmailBlock {
-	base := notifusemjml.NewBaseBlock("root", notifusemjml.MJMLComponentMjml)
+func createMJMLRootBlock() broadsidemjml.EmailBlock {
+	base := broadsidemjml.NewBaseBlock("root", broadsidemjml.MJMLComponentMjml)
 	base.Attributes["version"] = "4.0.0"
-	return &notifusemjml.MJMLBlock{BaseBlock: base}
+	return &broadsidemjml.MJMLBlock{BaseBlock: base}
 }
 
 type broadcastSvcDeps struct {

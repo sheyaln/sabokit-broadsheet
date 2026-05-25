@@ -370,7 +370,7 @@ export const EmailMetricsChart: React.FC<EmailMetricsChartProps> = ({
                     <FontAwesomeIcon
                       icon={faEye}
                       style={{ opacity: 0.7 }}
-                      className="text-purple-500"
+                      className="text-amber-500"
                     />{' '}
                     {t`Opens`}
                   </Space>

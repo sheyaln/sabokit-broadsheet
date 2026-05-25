@@ -69,35 +69,35 @@ keygen:
 # Docker commands
 docker-build:
 	@echo "Building Docker image..."
-	docker build -t notifuse:latest .
+	docker build -t broadside:latest .
 
 docker-run:
 	@echo "Running Docker container..."
-	docker run -d --name notifuse \
+	docker run -d --name broadside \
 		-p 8080:8080 \
 		-e SECRET_KEY=$${SECRET_KEY} \
 		-e ROOT_EMAIL=$${ROOT_EMAIL:-admin@example.com} \
 		-e API_ENDPOINT=$${API_ENDPOINT:-http://localhost:8080} \
 		-e WEBHOOK_ENDPOINT=$${WEBHOOK_ENDPOINT:-http://localhost:8080} \
-		notifuse:latest
+		broadside:latest
 
 docker-stop:
 	@echo "Stopping Docker container..."
-	docker stop notifuse || true
-	docker rm notifuse || true
+	docker stop broadside || true
+	docker rm broadside || true
 
 docker-clean: docker-stop
 	@echo "Removing Docker image..."
-	docker rmi notifuse:latest || true
+	docker rmi broadside:latest || true
 
 docker-logs:
 	@echo "Showing Docker container logs..."
-	docker logs -f notifuse
+	docker logs -f broadside
 
 docker-buildx-setup:
 	@echo "Setting up Docker buildx for multi-platform builds..."
-	@docker buildx create --name notifuse-builder --use --bootstrap 2>/dev/null || \
-		docker buildx use notifuse-builder 2>/dev/null || \
+	@docker buildx create --name broadside-builder --use --bootstrap 2>/dev/null || \
+		docker buildx use broadside-builder 2>/dev/null || \
 		echo "Buildx builder already exists and is active"
 	@docker buildx inspect --bootstrap
 

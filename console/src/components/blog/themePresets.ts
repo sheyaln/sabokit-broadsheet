@@ -567,7 +567,7 @@ const defaultTheme: ThemePreset = {
           </a>
           <p class="text-gray-600 text-sm">&copy; {{ current_year }} All rights reserved.</p>
           <p class="text-gray-500 text-xs mt-1">
-            Powered by <a href="https://www.notifuse.com" target="_blank" rel="noopener" style="color: var(--color-link); text-decoration: none;">Notifuse</a>
+            Powered by Broadside
           </p>
         </div>
 
@@ -2342,7 +2342,7 @@ function preservePreviewParameter(previewVersion) {
 }
 
 /**
- * Subscribe a contact to newsletter lists via Notifuse API
+ * Subscribe a contact to newsletter lists via Broadside API
  * @param {string} email - Contact email address
  * @param {string} firstName - Contact first name (optional)
  * @returns {Promise<{success: boolean, data?: any, error?: string}>}

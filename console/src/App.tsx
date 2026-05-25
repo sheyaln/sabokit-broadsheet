@@ -1,4 +1,4 @@
-import { ConfigProvider, App as AntApp, ThemeConfig } from 'antd'
+import { ConfigProvider, App as AntApp, ThemeConfig, theme as antdTheme } from 'antd'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { RouterProvider } from '@tanstack/react-router'
 import { I18nProvider } from '@lingui/react'
@@ -31,47 +31,137 @@ const queryClient = new QueryClient({
   }
 })
 
+// Broadside — Newsprint (after-hours) tokens for Ant Design.
+// Dark variant: warm darks, brick-red re-tuned for AA on near-black.
+// See console/THEMES.md for the design notes and alternative directions.
+const PAPER = '#1A1612'         // page bg — warm near-black
+const PAPER_BRIGHT = '#221D18'  // surfaces / cards
+const PAPER_DEEP = '#2C2620'    // raised / hover
+const INK = '#F0E9DA'           // primary text — warm off-white
+const INK_MUTED = '#A39C8E'     // secondary text
+const INK_HINT = '#8B8377'      // placeholder / empty-state hint — readable on PAPER_BRIGHT
+const RULE = '#3B342D'          // hairline rules
+const PRESS_RED = '#CA1625'     // logo body — vivid pure red
+const PRESS_RED_DEEP = '#A8121F'    // pressed
+const PRESS_RED_SOFT = '#F61D28'    // logo peak — used where AA on dark body text matters (links, alerts)
+
+const SANS = "'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif"
+
 const theme: ThemeConfig = {
+  algorithm: antdTheme.darkAlgorithm,
   token: {
-    colorPrimary: '#7763F1',
-    colorLink: '#7763F1'
+    colorPrimary: PRESS_RED,
+    colorLink: PRESS_RED_SOFT,
+    colorLinkHover: PRESS_RED,
+    colorInfo: '#6AA2C4',
+    colorSuccess: '#7BB364',
+    colorWarning: '#D8A35A',
+    colorError: PRESS_RED_SOFT,
+    colorTextBase: INK,
+    colorBgBase: PAPER,
+    colorText: INK,
+    colorTextSecondary: INK_MUTED,
+    colorTextTertiary: INK_HINT,
+    colorTextQuaternary: INK_HINT,
+    colorTextPlaceholder: INK_HINT,
+    colorTextDisabled: INK_HINT,
+    colorTextDescription: INK_MUTED,
+    colorBorder: RULE,
+    colorBorderSecondary: RULE,
+    colorBgLayout: PAPER,
+    colorBgContainer: PAPER_BRIGHT,
+    colorBgElevated: PAPER_BRIGHT,
+    borderRadius: 2,
+    borderRadiusLG: 3,
+    borderRadiusSM: 2,
+    borderRadiusXS: 2,
+    fontFamily: SANS,
+    fontFamilyCode: "'IBM Plex Mono', ui-monospace, Menlo, monospace",
+    wireframe: false
   },
   components: {
     Layout: {
-      // bodyBg: 'rgb(243, 246, 252)'
-      bodyBg: '#F9F9F9',
-      lightSiderBg: '#F9F9F9',
-      siderBg: '#F9F9F9'
+      bodyBg: PAPER,
+      headerBg: PAPER,
+      lightSiderBg: PAPER,
+      siderBg: PAPER
     },
     Button: {
-      // primaryColor: '#212121',
-      // colorTextLightSolid: '#616161'
+      primaryShadow: 'none',
+      defaultShadow: 'none',
+      dangerShadow: 'none',
+      fontWeight: 500,
+      // Primary buttons: white text on logo-red hits 6.2:1 (AA / AAA for large)
+      primaryColor: '#FFFFFF'
     },
     Card: {
-      //   headerBg: '#f0f0f0',
       headerFontSize: 16,
-      borderRadius: 4,
-      borderRadiusLG: 4,
-      borderRadiusSM: 4,
-      borderRadiusXS: 4,
-      colorBorderSecondary: 'var(--color-gray-200)',
-      colorBgContainer: '#F9F9F9'
+      borderRadius: 2,
+      borderRadiusLG: 3,
+      borderRadiusSM: 2,
+      borderRadiusXS: 2,
+      colorBorderSecondary: RULE,
+      colorBgContainer: PAPER_BRIGHT
     },
     Table: {
       headerBg: 'transparent',
       fontSize: 12,
-      colorTextHeading: 'rgb(51 65 85)',
+      colorTextHeading: INK,
       colorBgContainer: 'transparent',
-      rowHoverBg: 'transparent'
+      rowHoverBg: 'rgba(240, 233, 218, 0.04)',
+      headerSplitColor: RULE,
+      borderColor: RULE
+    },
+    Menu: {
+      itemBg: 'transparent',
+      subMenuItemBg: 'transparent',
+      itemSelectedBg: 'rgba(226, 106, 85, 0.14)',
+      itemSelectedColor: PRESS_RED_SOFT,
+      itemHoverBg: 'rgba(240, 233, 218, 0.06)',
+      itemHoverColor: INK,
+      itemColor: INK,
+      itemHeight: 38,
+      iconSize: 14
     },
     Drawer: {
-      colorBgElevated: '#F9F9F9'
+      colorBgElevated: PAPER_BRIGHT
     },
     Modal: {
-      colorBgElevated: '#F9F9F9'
+      colorBgElevated: PAPER_BRIGHT,
+      headerBg: PAPER_BRIGHT
     },
     Timeline: {
-      dotBg: '#F9F9F9'
+      dotBg: PAPER
+    },
+    Input: {
+      colorBgContainer: PAPER_DEEP,
+      activeBorderColor: PRESS_RED,
+      hoverBorderColor: INK_MUTED
+    },
+    Select: {
+      colorBgContainer: PAPER_DEEP
+    },
+    Typography: {
+      titleMarginBottom: '0.5em',
+      titleMarginTop: '1em',
+      fontWeightStrong: 600
+    },
+    Tabs: {
+      itemActiveColor: PRESS_RED,
+      itemSelectedColor: PRESS_RED,
+      itemHoverColor: PRESS_RED_SOFT,
+      inkBarColor: PRESS_RED
+    },
+    Tag: {
+      defaultBg: PAPER_DEEP,
+      defaultColor: INK
+    },
+    Divider: {
+      colorSplit: RULE
+    },
+    Tooltip: {
+      colorBgSpotlight: PAPER_DEEP,
+      colorTextLightSolid: INK
     }
   }
 }

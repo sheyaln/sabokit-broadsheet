@@ -291,7 +291,7 @@ export function OIDCSettings() {
                           </Text>
                           <Input
                             value={mapping.oidc_group}
-                            placeholder={t`e.g. notifuse-admins`}
+                            placeholder={t`e.g. broadside-admins`}
                             onChange={(e) =>
                               updateMapping(index, { oidc_group: e.target.value })
                             }

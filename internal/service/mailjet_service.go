@@ -281,17 +281,17 @@ func (s *MailjetService) RegisterWebhooks(
 	}
 
 	// Check for existing webhooks that match our criteria
-	var notifuseWebhooks []domain.MailjetWebhook
+	var broadsideWebhooks []domain.MailjetWebhook
 	for _, webhook := range existingWebhooks.Data {
 		if strings.Contains(webhook.Endpoint, baseURL) &&
 			strings.Contains(webhook.Endpoint, fmt.Sprintf("workspace_id=%s", workspaceID)) &&
 			strings.Contains(webhook.Endpoint, fmt.Sprintf("integration_id=%s", integrationID)) {
-			notifuseWebhooks = append(notifuseWebhooks, webhook)
+			broadsideWebhooks = append(broadsideWebhooks, webhook)
 		}
 	}
 
 	// Delete existing webhooks
-	for _, webhook := range notifuseWebhooks {
+	for _, webhook := range broadsideWebhooks {
 		err := s.DeleteWebhook(ctx, *providerConfig.Mailjet, webhook.ID)
 		if err != nil {
 			s.logger.WithField("webhook_id", webhook.ID).

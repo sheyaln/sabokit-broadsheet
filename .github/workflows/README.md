@@ -1,6 +1,6 @@
 # GitHub Actions Workflows
 
-This directory contains GitHub Actions workflows for the Notifuse project.
+This directory contains GitHub Actions workflows for the Broadside project.
 
 ## Docker Workflows
 
@@ -26,7 +26,7 @@ This directory contains GitHub Actions workflows for the Notifuse project.
 1. Push a version tag: `git push origin v1.2.3`
 2. Or push the latest tag: `git push origin latest`
 3. The workflow will automatically build and push the Docker image
-4. The image will be available at `your-dockerhub-username/notifuse`
+4. The image will be available at `your-dockerhub-username/broadside`
 
 ### 2. Manual Docker Workflow (`docker-manual.yml`)
 
@@ -131,11 +131,11 @@ git push origin latest
 
 ```bash
 # Pull the latest release
-docker pull your-dockerhub-username/notifuse:latest
+docker pull your-dockerhub-username/broadside:latest
 
 # Pull a specific version
-docker pull your-dockerhub-username/notifuse:v1.2.3
+docker pull your-dockerhub-username/broadside:v1.2.3
 
 # Run the container
-docker run -p 8080:8080 your-dockerhub-username/notifuse:latest
+docker run -p 8080:8080 your-dockerhub-username/broadside:latest
 ```

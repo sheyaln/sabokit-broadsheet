@@ -143,8 +143,25 @@ export function SignInPage() {
 
   return (
     <MainLayout>
-      <div className="flex items-center justify-center h-[calc(100vh-48px)]">
-        <Card title={t`Sign In`} style={{ width: 400 }}>
+      <div className="flex items-center justify-center" style={{ marginTop: 24, marginBottom: 64 }}>
+        <Card
+          title={t`Sign In`}
+          style={{
+            width: 420,
+            border: '1px solid #5a4f43',
+            backgroundColor: '#221d18',
+            boxShadow: '4px 4px 0 0 rgba(0, 0, 0, 0.45)'
+          }}
+          styles={{
+            header: {
+              borderBottom: '1px solid #5a4f43',
+              fontFamily: "'Fraunces', 'IBM Plex Serif', Georgia, serif",
+              fontWeight: 700,
+              fontSize: 18,
+              letterSpacing: '-0.01em'
+            }
+          }}
+        >
           {search.error === 'oidc_failed' && search.message && (
             <Alert
               message={search.message}

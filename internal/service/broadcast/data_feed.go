@@ -22,7 +22,7 @@ const (
 	MaxResponseSize = 10 * 1024 * 1024
 
 	// UserAgent is the User-Agent header sent with requests
-	UserAgent = "Notifuse/1.0 DataFeedFetcher"
+	UserAgent = "Broadside/1.0 DataFeedFetcher"
 )
 
 //go:generate mockgen -destination=./mocks/mock_data_feed_fetcher.go -package=mocks github.com/sheyaln/sabokit-broadside/internal/service/broadcast DataFeedFetcher

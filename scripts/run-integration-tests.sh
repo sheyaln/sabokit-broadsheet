@@ -27,7 +27,7 @@ echo "📬 Mailpit container IP: $MAILPIT_IP"
 # Export environment variables for tests
 export TEST_DB_HOST="$POSTGRES_IP"
 export TEST_DB_PORT="5432"
-export TEST_DB_USER="notifuse_test"
+export TEST_DB_USER="broadside_test"
 export TEST_DB_PASSWORD="test_password"
 export TEST_SMTP_HOST="$MAILPIT_IP"
 export ENVIRONMENT="test"

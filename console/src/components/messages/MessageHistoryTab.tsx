@@ -138,7 +138,7 @@ export const MessageHistoryTab: React.FC<MessageHistoryTabProps> = ({ workspaceI
         key: 'is_opened',
         label: (
           <Tooltip title={t`Opened`}>
-            <FontAwesomeIcon className="!mr-1 opacity-70 text-purple-500" icon={faEye} />{' '}
+            <FontAwesomeIcon className="!mr-1 opacity-70 text-amber-500" icon={faEye} />{' '}
             {t`Opened`}
           </Tooltip>
         ),

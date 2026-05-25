@@ -295,7 +295,7 @@ func TestConnectionPoolSystemConnectionFailure(t *testing.T) {
 			Port:     cfg.Port,
 			User:     "invalid_user_xyz",
 			Password: "invalid_password",
-			Prefix:   "notifuse_test",
+			Prefix:   "broadside_test",
 			SSLMode:  "disable",
 		}
 

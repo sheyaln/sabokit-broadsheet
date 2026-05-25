@@ -255,7 +255,7 @@ func (s *SESService) CreateSNSTopic(ctx context.Context, config domain.AmazonSES
 	// Create a new SNS topic if no ARN was provided
 	topicName := topicConfig.TopicName
 	if topicName == "" {
-		topicName = "notifuse-email-webhooks"
+		topicName = "broadside-email-webhooks"
 	}
 
 	createResult, err := snsClient.CreateTopicWithContext(ctx, &sns.CreateTopicInput{
@@ -525,11 +525,11 @@ func (s *SESService) RegisterWebhooks(
 	}
 
 	// Create configuration set name
-	configSetName := fmt.Sprintf("notifuse-%s", integrationID)
+	configSetName := fmt.Sprintf("broadside-%s", integrationID)
 
 	// First, create the SNS topic that will receive the events
 	topicConfig := domain.SESTopicConfig{
-		TopicName:            fmt.Sprintf("notifuse-ses-%s", integrationID),
+		TopicName:            fmt.Sprintf("broadside-ses-%s", integrationID),
 		Protocol:             "https",
 		NotificationEndpoint: webhookURL,
 	}
@@ -548,7 +548,7 @@ func (s *SESService) RegisterWebhooks(
 	// Create event destination in the configuration set
 	eventDestination := domain.SESConfigurationSetEventDestination{
 		ConfigurationSetName: configSetName,
-		Name:                 fmt.Sprintf("notifuse-destination-%s", integrationID),
+		Name:                 fmt.Sprintf("broadside-destination-%s", integrationID),
 		Enabled:              true,
 		MatchingEventTypes:   sesEventTypes,
 		SNSDestination: &domain.SESTopicConfig{
@@ -615,7 +615,7 @@ func (s *SESService) GetWebhookStatus(
 	}
 
 	// Check if the configuration set exists
-	configSetName := fmt.Sprintf("notifuse-%s", integrationID)
+	configSetName := fmt.Sprintf("broadside-%s", integrationID)
 	configSets, err := s.ListConfigurationSets(ctx, *providerConfig.SES)
 	if err != nil {
 		return nil, fmt.Errorf("failed to list configuration sets: %w", err)
@@ -696,8 +696,8 @@ func (s *SESService) UnregisterWebhooks(
 	}
 
 	// Configuration set and destination naming pattern
-	configSetName := fmt.Sprintf("notifuse-%s", integrationID)
-	destinationPattern := fmt.Sprintf("notifuse-destination-%s", integrationID)
+	configSetName := fmt.Sprintf("broadside-%s", integrationID)
+	destinationPattern := fmt.Sprintf("broadside-destination-%s", integrationID)
 
 	// Check if the configuration set exists
 	configSets, err := s.ListConfigurationSets(ctx, *providerConfig.SES)
@@ -872,7 +872,7 @@ func (s *SESService) SendEmail(ctx context.Context, request domain.SendEmailProv
 	}
 
 	// Add configuration set if it exists - use integrationID instead of workspaceID
-	configSetName := fmt.Sprintf("notifuse-%s", request.IntegrationID)
+	configSetName := fmt.Sprintf("broadside-%s", request.IntegrationID)
 	configSets, err := s.ListConfigurationSets(ctx, *request.Provider.SES)
 
 	if err == nil {
@@ -899,7 +899,7 @@ func (s *SESService) SendEmail(ctx context.Context, request domain.SendEmailProv
 	if request.MessageID != "" {
 		input.Tags = []*ses.MessageTag{
 			{
-				Name:  aws.String("notifuse_message_id"),
+				Name:  aws.String("broadside_message_id"),
 				Value: aws.String(request.MessageID),
 			},
 		}
@@ -1078,7 +1078,7 @@ func (s *SESService) sendRawEmail(ctx context.Context, sesClient domain.SESClien
 	if request.MessageID != "" {
 		rawInput.Tags = []*ses.MessageTag{
 			{
-				Name:  aws.String("notifuse_message_id"),
+				Name:  aws.String("broadside_message_id"),
 				Value: aws.String(request.MessageID),
 			},
 		}

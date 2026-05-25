@@ -640,7 +640,7 @@ const BroadcastCard: React.FC<BroadcastCardProps> = ({
         />
       </div>
 
-      <div className={`bg-gradient-to-br from-gray-50 to-violet-50 border-t border-gray-200`}>
+      <div className={`bg-paper-bright border-t border-gray-200`}>
         <div className="text-center py-2">
           <Button type="link" onClick={() => setShowDetails(!showDetails)}>
             {showDetails ? (
@@ -757,7 +757,7 @@ const BroadcastCard: React.FC<BroadcastCardProps> = ({
                               return (
                                 <Tooltip title={t`0 opens out of 0 recipients`}>
                                   <>
-                                    <FontAwesomeIcon icon={faEye} style={{ opacity: 0.7 }} className="text-purple-500" />
+                                    <FontAwesomeIcon icon={faEye} style={{ opacity: 0.7 }} className="text-amber-500" />
                                     <span className="cursor-help ml-1">{t`N/A`}</span>
                                   </>
                                 </Tooltip>
@@ -769,7 +769,7 @@ const BroadcastCard: React.FC<BroadcastCardProps> = ({
                             return (
                               <Tooltip title={t`${opens} opens out of ${recipients} recipients`}>
                                 <>
-                                  <FontAwesomeIcon icon={faEye} style={{ opacity: 0.7 }} className="text-purple-500" />{' '}
+                                  <FontAwesomeIcon icon={faEye} style={{ opacity: 0.7 }} className="text-amber-500" />{' '}
                                   <span className="cursor-help ml-1">
                                     {(openRate * 100).toFixed(1)}%
                                   </span>

@@ -1,16 +1,16 @@
-# Notifuse Editor - Dynamic Styling Guide
+# Broadside Editor - Dynamic Styling Guide
 
-This guide explains how to customize the Notifuse Editor's appearance through the `styleConfig` prop.
+This guide explains how to customize the Broadside Editor's appearance through the `styleConfig` prop.
 
 ## Overview
 
-The Notifuse Editor supports dynamic styling through a type-safe JSON configuration. This allows you to customize fonts, colors, sizes, and spacing for all text elements in the editor.
+The Broadside Editor supports dynamic styling through a type-safe JSON configuration. This allows you to customize fonts, colors, sizes, and spacing for all text elements in the editor.
 
 ## Table of Contents
 
 - [Quick Start](#quick-start)
 - [Style Configuration Reference](#style-configuration-reference)
-- [Integration with Notifuse Go Backend](#integration-with-notifuse-go-backend)
+- [Integration with Broadside Go Backend](#integration-with-broadside-go-backend)
 - [Blog Post Rendering](#blog-post-rendering)
 - [Examples](#examples)
 - [Validation](#validation)
@@ -182,7 +182,7 @@ interface LinkStyles {
 }
 ```
 
-## Integration with Notifuse Go Backend
+## Integration with Broadside Go Backend
 
 ### Step 1: Store Style Config in Database
 
@@ -596,4 +596,4 @@ These stacks:
 
 ## Support
 
-For issues or questions about dynamic styling, refer to the Notifuse Editor documentation or contact support.
+For issues or questions about dynamic styling, refer to the Broadside Editor documentation or contact support.

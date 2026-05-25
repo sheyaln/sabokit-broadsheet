@@ -413,7 +413,7 @@ func (s *SparkPostService) RegisterWebhooks(
 	} else {
 		// Create a new webhook
 		newWebhook := domain.SparkPostWebhook{
-			Name:     fmt.Sprintf("Notifuse-%s", integrationID),
+			Name:     fmt.Sprintf("Broadside-%s", integrationID),
 			Target:   webhookURL,
 			Events:   sparkpostEvents,
 			Active:   true,
@@ -844,7 +844,7 @@ func (s *SparkPostService) SendEmail(ctx context.Context, request domain.SendEma
 			HTML:    request.Content,
 		},
 		Metadata: map[string]interface{}{
-			"notifuse_message_id": request.MessageID,
+			"broadside_message_id": request.MessageID,
 		},
 	}
 
