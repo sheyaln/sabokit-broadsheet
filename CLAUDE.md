@@ -1,10 +1,10 @@
-# Broadside Tech Stack Documentation
+# Broadsheet Tech Stack Documentation
 
-> Broadside is a fork of [Notifuse](https://github.com/Notifuse/notifuse) (AGPLv3). The tech stack, conventions, and migration model documented here are inherited from upstream and apply equally to the fork. Fork-specific behavior (OIDC, IdP group mapping) is noted where it differs.
+> Broadsheet is a fork of [Notifuse](https://github.com/Notifuse/notifuse) (AGPLv3). The tech stack, conventions, and migration model documented here are inherited from upstream and apply equally to the fork. Fork-specific behavior (OIDC, IdP group mapping) is noted where it differs.
 
 ## Overview
 
-Broadside is a modern, self-hosted email platform built with a clean architecture approach. The application follows a microservices-inspired design with clear separation between frontend and backend components.
+Broadsheet is a modern, self-hosted email platform built with a clean architecture approach. The application follows a microservices-inspired design with clear separation between frontend and backend components.
 
 ## 🏗️ Architecture
 
@@ -33,7 +33,7 @@ The application follows **Clean Architecture** principles with distinct layers:
 
 ### Database Migration System
 
-Broadside uses a custom migration system (inherited from upstream Notifuse) that manages database schema changes across both the system database and individual workspace databases. The migration system is designed to handle schema evolution safely and consistently.
+Broadsheet uses a custom migration system (inherited from upstream Notifuse) that manages database schema changes across both the system database and individual workspace databases. The migration system is designed to handle schema evolution safely and consistently.
 
 #### Version Format
 
@@ -257,7 +257,7 @@ func (m *V6Migration) UpdateSystem(ctx context.Context, config *config.Config, d
 ## 📁 Project Structure
 
 ```
-broadside/
+broadsheet/
 ├── cmd/                    # Application entry points
 │   ├── api/               # Main API server
 ├── internal/              # Private application code
@@ -664,8 +664,8 @@ package migrations
 import (
     "context"
     "fmt"
-    "github.com/sheyaln/sabokit-broadside/config"
-    "github.com/sheyaln/sabokit-broadside/internal/domain"
+    "github.com/sheyaln/sabokit-broadsheet/config"
+    "github.com/sheyaln/sabokit-broadsheet/internal/domain"
 )
 
 type V7Migration struct{}
@@ -747,7 +747,7 @@ GET  /api/contact.list
 
 #### Plans Directory
 
-Broadside uses the `plans/` directory to store AI-generated implementation plans (inherited from upstream's Cursor-driven workflow). This provides a centralized location for tracking feature implementations, bug fixes, and architectural changes.
+Broadsheet uses the `plans/` directory to store AI-generated implementation plans (inherited from upstream's Cursor-driven workflow). This provides a centralized location for tracking feature implementations, bug fixes, and architectural changes.
 
 #### Planning Workflow
 
@@ -843,7 +843,7 @@ This structured approach to AI-assisted planning ensures all team members and AI
 
 ---
 
-These coding standards ensure consistency, maintainability, and reliability across the entire Broadside codebase.
+These coding standards ensure consistency, maintainability, and reliability across the entire Broadsheet codebase.
 
 ## 🤖 Claude Agent Rules
 

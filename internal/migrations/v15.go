@@ -56,7 +56,7 @@ BREAKING CHANGES:
 
 	// Log migration warnings
 	fmt.Println("================================================================================")
-	fmt.Println("BROADSIDE v15.0 MIGRATION - PASETO → JWT + Magic Code Security")
+	fmt.Println("BROADSHEET v15.0 MIGRATION - PASETO → JWT + Magic Code Security")
 	fmt.Println("================================================================================")
 	fmt.Println()
 	fmt.Println("⚠️  BREAKING CHANGES:")
