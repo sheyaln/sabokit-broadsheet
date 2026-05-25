@@ -1,10 +1,12 @@
+<p align="center">
+  <img alt="Broadsheet" src="console/public/broadsheet-icon.png" width="128" height="128" />
+</p>
+
 # Broadsheet
 
 > *A broadsheet (n.): a single sheet of paper, printed on one side, posted in public places to be read by anyone passing. The format of the IWW, the suffragists, the abolitionist press, the samizdat-passers and the leaflet-droppers. The original mass-communication tool, before the term existed.*
 
 A self-hosted email platform. Fork of [Notifuse](https://github.com/Notifuse/notifuse) (AGPLv3), with OIDC SSO and a small set of fork-specific patches on top of upstream releases. Go backend, React console.
-
-<img alt="Email Editor" src="https://github.com/user-attachments/assets/f650ac1b-58fd-44fb-884d-e9811255f1e4" />
 
 ## What it does
 
