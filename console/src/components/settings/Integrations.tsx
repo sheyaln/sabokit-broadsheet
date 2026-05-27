@@ -1208,7 +1208,7 @@ export function Integrations({ workspace, onSave, loading, isOwner }: Integratio
                           <Tag bordered={false} color="green" className="mb-2">
                             <FontAwesomeIcon icon={faCheck} className="mr-1" /> {t`Configured`}
                           </Tag>
-                          <div className="mt-2 text-xs text-gray-500">{t`Webhook endpoint:`}</div>
+                          <div className="mt-2 text-xs text-ink-faint">{t`Webhook endpoint:`}</div>
 
                           <Input
                             value={authEmailWebhookURL}
@@ -1245,7 +1245,7 @@ export function Integrations({ workspace, onSave, loading, isOwner }: Integratio
                           <Tag bordered={false} color="green" className="mb-2">
                             <FontAwesomeIcon icon={faCheck} className="mr-1" /> {t`Configured`}
                           </Tag>
-                          <div className="mt-2 text-xs text-gray-500">{t`Webhook endpoint:`}</div>
+                          <div className="mt-2 text-xs text-ink-faint">{t`Webhook endpoint:`}</div>
 
                           <Input
                             value={beforeUserCreatedWebhookURL}
@@ -1847,7 +1847,7 @@ export function Integrations({ workspace, onSave, loading, isOwner }: Integratio
         </Form.Item>
 
         {(rateLimitPerMinute || 25) > 0 && (
-          <div className="text-xs text-gray-600 -mt-4 mb-4">
+          <div className="text-xs text-ink-muted -mt-4 mb-4">
             <div>≈ {((rateLimitPerMinute || 25) * 60).toLocaleString()} {t`emails per hour`}</div>
             <div>≈ {((rateLimitPerMinute || 25) * 60 * 24).toLocaleString()} {t`emails per day`}</div>
           </div>
@@ -1896,7 +1896,7 @@ export function Integrations({ workspace, onSave, loading, isOwner }: Integratio
               {!record.is_default && (
                 <Tooltip title={t`Set as default sender`}>
                   <Button size="small" type="text" onClick={() => setDefaultSender(index)}>
-                    <span className="text-blue-500">Default</span>
+                    <span className="text-primary-soft">Default</span>
                   </Button>
                 </Tooltip>
               )}
@@ -2026,7 +2026,7 @@ export function Integrations({ workspace, onSave, loading, isOwner }: Integratio
     items.push(
       <Descriptions.Item key="rate_limit" label={t`Rate Limit for Marketing`}>
         <div>{provider.rate_limit_per_minute} emails/min</div>
-        <div className="text-xs text-gray-600 mt-1">
+        <div className="text-xs text-ink-muted mt-1">
           <div>≈ {(provider.rate_limit_per_minute * 60).toLocaleString()} {t`emails per hour`}</div>
           <div>≈ {(provider.rate_limit_per_minute * 60 * 24).toLocaleString()} {t`emails per day`}</div>
         </div>

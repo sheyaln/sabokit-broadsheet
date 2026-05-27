@@ -28,13 +28,13 @@ export function JsonViewer({ json, title }: JsonViewerProps) {
       content={
         <div>
           {title && <div className="font-medium mb-2">{title}</div>}
-          <pre className="max-h-[300px] overflow-auto text-sm bg-gray-50 p-2 rounded">
+          <pre className="max-h-[300px] overflow-auto text-sm bg-paper p-2 rounded">
             {JSON.stringify(json, null, 2)}
           </pre>
         </div>
       }
     >
-      <span className="text-gray-600 cursor-pointer">{preview}</span>
+      <span className="text-ink-muted cursor-pointer">{preview}</span>
     </Popover>
   )
 }

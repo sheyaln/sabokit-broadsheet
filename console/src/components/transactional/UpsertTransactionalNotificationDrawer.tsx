@@ -303,7 +303,7 @@ export function UpsertTransactionalNotificationDrawer({
                 />
               </Form.Item>
 
-              <p className="text-sm text-gray-500 pt-8">
+              <p className="text-sm text-ink-faint pt-8">
                 {t`Define UTM parameters for links in your email for better campaign tracking.`}
               </p>
 

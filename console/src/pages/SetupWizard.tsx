@@ -220,10 +220,10 @@ export default function SetupWizard() {
   if (statusLoading) {
     return (
       <App>
-        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="min-h-screen bg-paper flex items-center justify-center">
           <div className="text-center">
-            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900" />
-            <p className="mt-4 text-gray-600">{t`Loading setup...`}</p>
+            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-ink" />
+            <p className="mt-4 text-ink-muted">{t`Loading setup...`}</p>
           </div>
         </div>
       </App>
@@ -232,22 +232,25 @@ export default function SetupWizard() {
 
   return (
     <App>
-      <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-paper flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-3xl">
           {/* Logo */}
           <div className="text-center mb-8">
             <img src="/console/logo.png" alt="Broadsheet" className="mx-auto" width={120} />
           </div>
 
-          <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+          <div
+            className="bg-paper-bright py-8 px-4 sm:px-10"
+            style={{ border: '1px solid #3b342d', borderTop: '6px solid #ca1625' }}
+          >
             {setupComplete ? (
               <div className="space-y-6">
                 <div className="text-center">
                   <CheckOutlined
                     style={{ fontSize: '48px', color: '#52c41a', marginBottom: '16px' }}
                   />
-                  <h2 className="text-3xl font-bold text-gray-900 mb-2">{t`Setup Complete!`}</h2>
-                  <p className="text-gray-600">
+                  <h2 className="text-3xl font-bold text-ink mb-2">{t`Setup Complete!`}</h2>
+                  <p className="text-ink-muted">
                     {t`Your Broadsheet instance has been successfully configured.`}
                   </p>
                 </div>
@@ -270,7 +273,7 @@ export default function SetupWizard() {
             ) : (
               <div className="space-y-6">
                 <div className="text-center">
-                  <h2 className="text-3xl font-bold text-gray-900">{t`Setup`}</h2>
+                  <h2 className="text-3xl font-bold text-ink">{t`Setup`}</h2>
                 </div>
 
                 <Form
@@ -325,13 +328,13 @@ export default function SetupWizard() {
                       </Divider>
 
                       <div className="text-center mb-4">
-                        <p className="text-sm text-gray-600">
+                        <p className="text-sm text-ink-muted">
                           {t`See docs for:`}
                           <a
                             href="https://docs.aws.amazon.com/ses/latest/dg/smtp-credentials.html"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-blue-600 hover:underline pl-2"
+                            className="text-primary-soft hover:underline pl-2"
                           >
                             Amazon SES
                           </a>
@@ -340,7 +343,7 @@ export default function SetupWizard() {
                             href="https://documentation.mailgun.com/docs/mailgun/user-manual/sending-messages/send-smtp"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-blue-600 hover:underline"
+                            className="text-primary-soft hover:underline"
                           >
                             Mailgun
                           </a>
@@ -349,7 +352,7 @@ export default function SetupWizard() {
                             href="https://developers.sparkpost.com/api/smtp/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-blue-600 hover:underline"
+                            className="text-primary-soft hover:underline"
                           >
                             SparkPost
                           </a>
@@ -358,7 +361,7 @@ export default function SetupWizard() {
                             href="https://postmarkapp.com/developer/user-guide/send-email-with-smtp"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-blue-600 hover:underline"
+                            className="text-primary-soft hover:underline"
                           >
                             Postmark
                           </a>

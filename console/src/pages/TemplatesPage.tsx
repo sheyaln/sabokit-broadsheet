@@ -40,7 +40,7 @@ const getIntegrationIcon = (integrationType: string) => {
     case 'supabase':
       return <img src="/console/supabase.png" alt="Supabase" className="h-3" />
     default:
-      return <FontAwesomeIcon icon={faTerminal} className="text-gray-600" />
+      return <FontAwesomeIcon icon={faTerminal} className="text-ink-muted" />
   }
 }
 
@@ -300,7 +300,7 @@ export function TemplatesPage() {
                   content: (
                     <div>
                       <p>{t`Are you sure you want to delete this template?`}</p>
-                      <p className="mt-2 text-gray-600">
+                      <p className="mt-2 text-ink-muted">
                         {t`Note: The template will be hidden from your workspace but preserved to maintain the ability to preview previously sent broadcasts and messages that used this template.`}
                       </p>
                     </div>

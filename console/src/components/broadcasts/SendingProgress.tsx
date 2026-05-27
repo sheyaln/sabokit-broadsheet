@@ -53,7 +53,7 @@ export function SendingProgress({
       <div className="flex justify-between items-center mb-1">
         <Space>
           <FontAwesomeIcon icon={faPaperPlane} className="text-amber-500" />
-          <span className="font-medium text-gray-700">{t`Sending emails...`}</span>
+          <span className="font-medium text-ink-muted">{t`Sending emails...`}</span>
         </Space>
         <Text type="secondary">
           {t`${processed.toLocaleString()} of ${enqueuedCount.toLocaleString()}`}

@@ -391,7 +391,7 @@ export const ImportExportButton: React.FC<ImportExportButtonProps> = ({
           label: (
             <div className="flex flex-col">
               <span className="font-medium">{t`JSON`}</span>
-              <span className="text-xs text-gray-500">{t`Load saved template`}</span>
+              <span className="text-xs text-ink-faint">{t`Load saved template`}</span>
             </div>
           ),
           onClick: handleImportJSON
@@ -401,7 +401,7 @@ export const ImportExportButton: React.FC<ImportExportButtonProps> = ({
           label: (
             <div className="flex flex-col">
               <span className="font-medium">{t`MJML`}</span>
-              <span className="text-xs text-gray-500">{t`Import MJML markup`}</span>
+              <span className="text-xs text-ink-faint">{t`Import MJML markup`}</span>
             </div>
           ),
           onClick: handleImportMJML
@@ -420,7 +420,7 @@ export const ImportExportButton: React.FC<ImportExportButtonProps> = ({
           label: (
             <div className="flex flex-col">
               <span className="font-medium">{t`HTML`}</span>
-              <span className="text-xs text-gray-500">{t`Ready to send`}</span>
+              <span className="text-xs text-ink-faint">{t`Ready to send`}</span>
             </div>
           ),
           onClick: handleExportHTML
@@ -430,7 +430,7 @@ export const ImportExportButton: React.FC<ImportExportButtonProps> = ({
           label: (
             <div className="flex flex-col">
               <span className="font-medium">{t`MJML`}</span>
-              <span className="text-xs text-gray-500">{t`Editable markup`}</span>
+              <span className="text-xs text-ink-faint">{t`Editable markup`}</span>
             </div>
           ),
           onClick: handleExportMJML
@@ -440,7 +440,7 @@ export const ImportExportButton: React.FC<ImportExportButtonProps> = ({
           label: (
             <div className="flex flex-col">
               <span className="font-medium">{t`JSON`}</span>
-              <span className="text-xs text-gray-500">{t`Save for later import`}</span>
+              <span className="text-xs text-ink-faint">{t`Save for later import`}</span>
             </div>
           ),
           onClick: handleExportJSON
@@ -494,7 +494,7 @@ export const ImportExportButton: React.FC<ImportExportButtonProps> = ({
         width={600}
       >
         <div className="space-y-3">
-          <p className="text-gray-600">
+          <p className="text-ink-muted">
             {t`The following validation errors were found in your import:`}
           </p>
 
@@ -509,7 +509,7 @@ export const ImportExportButton: React.FC<ImportExportButtonProps> = ({
             </ul>
           </div>
 
-          <div className="text-sm text-gray-500">
+          <div className="text-sm text-ink-faint">
             <p className="font-medium">{t`Tips for fixing these errors:`}</p>
             <ul className="mt-1 ml-4 space-y-1">
               <li>{t`• Check that your MJML structure follows the proper hierarchy`}</li>

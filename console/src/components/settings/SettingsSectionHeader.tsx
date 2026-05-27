@@ -9,7 +9,7 @@ export function SettingsSectionHeader({ title, description }: SettingsSectionHea
   return (
     <>
       <div className="text-2xl font-medium mb-2">{title}</div>
-      <div className="text-gray-500">{description}</div>
+      <div className="text-ink-faint">{description}</div>
 
       <Divider className="mb-12" />
     </>

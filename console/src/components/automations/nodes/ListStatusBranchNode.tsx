@@ -49,13 +49,13 @@ export const ListStatusBranchNode: React.FC<ListStatusBranchNodeProps> = ({ data
         {!config?.list_id ? (
           <div className="text-orange-500 text-xs">{t`Select a list`}</div>
         ) : (
-          <div className="text-xs text-gray-600 truncate max-w-[180px]">
+          <div className="text-xs text-ink-muted truncate max-w-[180px]">
             {t`Check`}: {listName || config.list_id}
           </div>
         )}
         {/* Branch labels */}
         <div className="flex justify-between text-xs mt-2 px-1">
-          <span className="text-gray-500 font-medium">{t`Not in List`}</span>
+          <span className="text-ink-faint font-medium">{t`Not in List`}</span>
           <span className="text-green-600 font-medium">{t`Active`}</span>
           <span className="text-orange-500 font-medium">{t`Non-Active`}</span>
         </div>

@@ -337,7 +337,7 @@ export function ExportContactsModal({
               ))}
             </Space>
           ) : (
-            <div className="text-gray-500">{t`Exporting all contacts`}</div>
+            <div className="text-ink-faint">{t`Exporting all contacts`}</div>
           )}
         </div>
 
@@ -349,7 +349,7 @@ export function ExportContactsModal({
               <span>{t`Fetched ${fetchedCount.toLocaleString()} contacts...`}</span>
             </Space>
             {elapsedTime > 0 && (
-              <div className="text-gray-500 text-sm mt-2">
+              <div className="text-ink-faint text-sm mt-2">
                 {t`Elapsed`}: {formatElapsedTime(elapsedTime)}
               </div>
             )}

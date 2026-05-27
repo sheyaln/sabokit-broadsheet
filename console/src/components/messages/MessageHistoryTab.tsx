@@ -99,7 +99,7 @@ export const MessageHistoryTab: React.FC<MessageHistoryTabProps> = ({ workspaceI
         key: 'is_sent',
         label: (
           <Tooltip title={t`Sent`}>
-            <FontAwesomeIcon className="!mr-1 opacity-70 text-blue-500" icon={faPaperPlane} />{' '}
+            <FontAwesomeIcon className="!mr-1 opacity-70 text-primary-soft" icon={faPaperPlane} />{' '}
             {t`Sent`}
           </Tooltip>
         ),
@@ -151,7 +151,7 @@ export const MessageHistoryTab: React.FC<MessageHistoryTabProps> = ({ workspaceI
         key: 'is_clicked',
         label: (
           <Tooltip title={t`Clicked`}>
-            <FontAwesomeIcon className="!mr-1 opacity-70 text-blue-500" icon={faHandPointer} />{' '}
+            <FontAwesomeIcon className="!mr-1 opacity-70 text-primary-soft" icon={faHandPointer} />{' '}
             {t`Clicked`}
           </Tooltip>
         ),
@@ -577,13 +577,13 @@ export const MessageHistoryTab: React.FC<MessageHistoryTabProps> = ({ workspaceI
       <div className="flex flex-col gap-2">
         {/* First line: Status filters */}
         <div className="flex items-center gap-2">
-          <span className="text-sm font-medium text-gray-600">{t`Status`}:</span>
+          <span className="text-sm font-medium text-ink-muted">{t`Status`}:</span>
           <Space wrap>{renderFilterGroup(statusFilterOptions)}</Space>
         </div>
 
         {/* Second line: Other filters */}
         <div className="flex items-center gap-2">
-          <span className="text-sm font-medium text-gray-600">{t`Filters`}:</span>
+          <span className="text-sm font-medium text-ink-muted">{t`Filters`}:</span>
           <Space wrap>
             {renderFilterGroup(otherFilterOptions)}
             {activeFilters.length > 0 && (

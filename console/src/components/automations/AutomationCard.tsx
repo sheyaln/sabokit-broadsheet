@@ -299,7 +299,7 @@ export const AutomationCard: React.FC<AutomationCardProps> = ({
                   {triggerFilter && <Tag color="cyan">{triggerFilter}</Tag>}
                 </>
               ) : (
-                <span className="text-gray-400">{t`No trigger configured`}</span>
+                <span className="text-ink-faint">{t`No trigger configured`}</span>
               )}
             </Space>
           </Descriptions.Item>

@@ -253,13 +253,13 @@ export function WebhookCard({
     >
       <div className="p-4">
         <div className="flex items-center gap-2 mb-3">
-          <span className="text-gray-500 text-sm">{t`URL:`}</span>
-          <code className="text-sm bg-gray-100 px-2 py-1 rounded truncate flex-1">
+          <span className="text-ink-faint text-sm">{t`URL:`}</span>
+          <code className="text-sm bg-paper-bright px-2 py-1 rounded truncate flex-1">
             {webhook.url}
           </code>
         </div>
         <div className="flex items-center gap-2 mb-3">
-          <span className="text-gray-500 text-sm">{t`Secret:`}</span>
+          <span className="text-ink-faint text-sm">{t`Secret:`}</span>
           <Space.Compact className="flex-1">
             <Input
               size="small"
@@ -293,7 +293,7 @@ export function WebhookCard({
         </div>
         <Divider className="my-6!" />
         <div className="flex justify-between items-center mb-4">
-          <span className="text-gray-500 text-sm">
+          <span className="text-ink-faint text-sm">
             {timeRange === '1D' ? t`Last 24 hours` : t`Last 7 days`}
           </span>
           <Segmented
@@ -368,13 +368,13 @@ export function WebhookCard({
             </div>
             {testResult.error && (
               <>
-                <div className="mt-3 text-gray-500">{t`Error:`}</div>
+                <div className="mt-3 text-ink-faint">{t`Error:`}</div>
                 <div className="text-red-400">{testResult.error}</div>
               </>
             )}
             {testResult.responseBody && (
               <>
-                <div className="mt-3 text-gray-500">{t`Body:`}</div>
+                <div className="mt-3 text-ink-faint">{t`Body:`}</div>
                 <div className="text-gray-300 whitespace-pre-wrap break-all">
                   {testResult.responseBody}
                 </div>
@@ -382,10 +382,10 @@ export function WebhookCard({
             )}
           </div>
         ) : testLoading ? (
-          <div className="py-8 text-center text-gray-500">{t`Sending test webhook...`}</div>
+          <div className="py-8 text-center text-ink-faint">{t`Sending test webhook...`}</div>
         ) : (
           <div className="py-4">
-            <label className="block text-sm text-gray-600 mb-2">
+            <label className="block text-sm text-ink-muted mb-2">
               {t`Select event type to test:`}
             </label>
             <Select

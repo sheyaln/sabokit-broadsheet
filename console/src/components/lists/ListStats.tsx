@@ -84,7 +84,7 @@ export function ListStats({ workspaceId, listId }: ListStatsProps) {
               <Space>
                 <FontAwesomeIcon
                   icon={faHourglass}
-                  className="text-blue-500"
+                  className="text-primary-soft"
                   style={{ opacity: 0.7 }}
                 />{' '}
                 {t`Pending`}
@@ -106,7 +106,7 @@ export function ListStats({ workspaceId, listId }: ListStatsProps) {
               className="text-inherit hover:text-primary transition-colors"
             >
               <Space>
-                <FontAwesomeIcon icon={faBan} className="text-gray-500" style={{ opacity: 0.7 }} />{' '}
+                <FontAwesomeIcon icon={faBan} className="text-ink-faint" style={{ opacity: 0.7 }} />{' '}
                 {t`Unsub`}
               </Space>
             </Link>

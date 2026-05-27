@@ -67,8 +67,8 @@ export const TriggerNode: React.FC<TriggerNodeProps> = ({ data, selected }) => {
         {hasEventKind ? (
           <div>
             <div>{getEventDisplay()}</div>
-            {detail && <div className="text-gray-500">{detail}</div>}
-            <div className="text-gray-400">{frequency}</div>
+            {detail && <div className="text-ink-faint">{detail}</div>}
+            <div className="text-ink-faint">{frequency}</div>
           </div>
         ) : (
           <div className="text-orange-500">{t`Configure`}</div>

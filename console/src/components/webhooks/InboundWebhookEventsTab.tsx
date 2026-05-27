@@ -357,7 +357,7 @@ export const InboundWebhookEventsTab: React.FC<InboundWebhookEventsTabProps> = (
       key: 'id',
       render: (id: string) => (
         <Tooltip title={id}>
-          <span className="text-xs text-gray-500">{id.substring(0, 8) + '...'}</span>
+          <span className="text-xs text-ink-faint">{id.substring(0, 8) + '...'}</span>
         </Tooltip>
       )
     },
@@ -387,10 +387,10 @@ export const InboundWebhookEventsTab: React.FC<InboundWebhookEventsTabProps> = (
       render: (id: string | undefined) =>
         id ? (
           <Tooltip title={id}>
-            <span className="text-xs text-gray-500">{id.substring(0, 8) + '...'}</span>
+            <span className="text-xs text-ink-faint">{id.substring(0, 8) + '...'}</span>
           </Tooltip>
         ) : (
-          <span className="text-xs text-gray-400">-</span>
+          <span className="text-xs text-ink-faint">-</span>
         )
     },
     {
@@ -400,7 +400,7 @@ export const InboundWebhookEventsTab: React.FC<InboundWebhookEventsTabProps> = (
       render: (id: string) =>
         id && (
           <Tooltip title={id}>
-            <span className="text-xs text-gray-500">{id.substring(0, 8) + '...'}</span>
+            <span className="text-xs text-ink-faint">{id.substring(0, 8) + '...'}</span>
           </Tooltip>
         )
     },
@@ -411,7 +411,7 @@ export const InboundWebhookEventsTab: React.FC<InboundWebhookEventsTabProps> = (
       render: (id: string) =>
         id && (
           <Tooltip title={id}>
-            <span className="text-xs text-gray-500">{id.substring(0, 8) + '...'}</span>
+            <span className="text-xs text-ink-faint">{id.substring(0, 8) + '...'}</span>
           </Tooltip>
         )
     },
@@ -539,7 +539,7 @@ export const InboundWebhookEventsTab: React.FC<InboundWebhookEventsTabProps> = (
                   )}
                   <div className="text-xs mb-2">
                     <strong>{t`Raw Payload:`}</strong>
-                    <pre className="mt-1 p-2 bg-gray-100 rounded text-xs overflow-auto">
+                    <pre className="mt-1 p-2 bg-paper-bright rounded text-xs overflow-auto">
                       {JSON.stringify(JSON.parse(record.raw_payload), null, 2)}
                     </pre>
                   </div>

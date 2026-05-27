@@ -168,7 +168,7 @@ const ButtonFilesSettings = (props: ButtonFilesSettingsProps) => {
           <Col span={12} key={provider.id}>
             <div
               onClick={() => handleProviderSelect(provider)}
-              className="flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg cursor-pointer transition-all hover:border-primary"
+              className="flex items-center gap-3 p-3 bg-paper-bright border border-gray-200 rounded-lg cursor-pointer transition-all hover:border-primary"
             >
               <img
                 src={provider.logo}

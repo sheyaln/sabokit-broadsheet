@@ -603,7 +603,7 @@ export function PostDrawer({ open, onClose, post, workspace, initialCategoryId }
               title={t`Redo`}
             />
             {/* add vertical separator */}
-            <div className="h-4 w-px bg-gray-200" />
+            <div className="h-4 w-px bg-paper-deep" />
             <Button type="link" loading={loading} onClick={handleClose}>
               {t`Cancel`}
             </Button>

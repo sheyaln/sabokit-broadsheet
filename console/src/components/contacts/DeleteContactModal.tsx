@@ -43,10 +43,10 @@ export function DeleteContactModal({
       width={500}
     >
       <div className="space-y-4 mt-10 mb-10">
-        <p className="text-gray-900">
+        <p className="text-ink">
           {t`Are you sure you want to delete`} <strong>{contactEmail}</strong>?
         </p>
-        <div className="text-sm text-gray-600">
+        <div className="text-sm text-ink-muted">
           <p>{t`This will permanently remove the contact and their subscriptions.`}</p>
           <p>
             {t`Message history and webhook events will be anonymized (email addresses redacted) but retained for analytics.`}

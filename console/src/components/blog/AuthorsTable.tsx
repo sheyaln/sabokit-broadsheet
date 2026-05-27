@@ -75,11 +75,11 @@ export function AuthorsTable({ value = [], onChange }: AuthorsTableProps) {
       render: (_: unknown, record: BlogAuthor) => (
         <div>
           <div className="font-medium">
-            {record.name || <em className="text-gray-400">{t`No name`}</em>}
+            {record.name || <em className="text-ink-faint">{t`No name`}</em>}
           </div>
           {record.avatar_url && (
             <Tooltip title={record.avatar_url}>
-              <div className="text-xs text-gray-500 truncate mt-1" style={{ maxWidth: 200 }}>
+              <div className="text-xs text-ink-faint truncate mt-1" style={{ maxWidth: 200 }}>
                 {record.avatar_url}
               </div>
             </Tooltip>
@@ -123,7 +123,7 @@ export function AuthorsTable({ value = [], onChange }: AuthorsTableProps) {
           showHeader={false}
           rowKey={(_, index) => index?.toString() || '0'}
           size="small"
-          className="authors-table mb-2 bg-white rounded-lg"
+          className="authors-table mb-2 bg-paper-bright rounded-lg"
         />
       )}
       <Button type="primary" ghost onClick={handleAdd} block icon={<PlusOutlined />}>

@@ -3,52 +3,58 @@
 @import "./styles/reactflow.css";
 
 /*
- * Broadsheet — Newsprint (after-hours) theme
+ * Broadsheet — After-hours newsprint theme
  *
- * The dark variant of the labour-press palette. Same DNA — warm darks
- * instead of cream paper, brick red re-tuned (#E26A55) so it reads on
- * a near-black ground. Think a late-shift desk under a sodium lamp;
- * carbon copies in low light. See THEMES.md for the full notes and
- * alternative directions.
+ * Dark presses, cream paper on the desk. Page bg, cards, sidebars all
+ * sit in warm darks. Form fields invert to cream paper so inputs stay
+ * legible like a proof under the lamp. Steward's design principles —
+ * no rounded corners, no shadows, sans-only — applied to a dark deck.
  */
 @theme {
-  /* Brand — pulled directly from the logo. Vivid pure red. */
-  --color-primary: #ca1625;        /* logo body — used for fills, buttons, masthead "side" */
-  --color-primary-soft: #f61d28;   /* logo peak — used where text-on-dark AA matters (links, alerts) */
-  --color-primary-deep: #a8121f;   /* pressed / active */
-  --color-accent: #d8a35a;         /* warm ochre, used sparingly */
+  /* Brand — labor-poster red. */
+  --color-primary: #ca1625;
+  --color-primary-soft: #e26a55;
+  --color-primary-deep: #7e131e;
+  --color-accent: #d8a35a;
 
-  /* Surfaces (warm darks, NOT cold tech-startup grey) */
-  --color-paper: #1a1612;          /* page background — warm near-black */
-  --color-paper-bright: #221d18;   /* surfaces / cards */
-  --color-paper-deep: #2c2620;     /* subtle subdivisions / raised */
+  /* Surfaces (warm darks). */
+  --color-paper: #1a1612;          /* page background */
+  --color-paper-bright: #221d18;   /* cards / sidebars */
+  --color-paper-deep: #2c2620;     /* raised / hover */
 
-  /* Ink (now cream-on-dark) */
-  --color-ink: #f0e9da;            /* primary text — warm off-white */
-  --color-ink-muted: #a39c8e;      /* secondary text — desaturated warm grey */
-  --color-ink-faint: #6f685c;
-  --color-rule: #3b342d;           /* hairline rules / borders */
-  --color-rule-strong: #5a4f43;    /* visible masthead rules */
+  /* Ink. */
+  --color-ink: #f0e9da;
+  --color-ink-muted: #a39c8e;
+  --color-ink-faint: #8b8377;
+  --color-rule: #3b342d;
+  --color-rule-strong: #5a4f43;
+  --color-rule-light: #3b342d;
 
-  /* Status (warm, sit on the dark ground) */
+  /* Cream form fields. */
+  --color-field: #fbf6ec;
+  --color-field-text: #1a1a1a;
+  --color-field-border: #3b342d;
+  --color-field-placeholder: #6c6660;
+
+  /* Status. */
   --color-success: #7bb364;
   --color-warning: #d8a35a;
-  --color-error: #f61d28;
+  --color-error: #e26a55;
   --color-info: #6aa2c4;
 
-  /* Type */
-  --font-display: 'Fraunces', 'IBM Plex Serif', Georgia, serif;
-  --font-sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  /* Type — system sans only, no serif. */
+  --font-display: "Helvetica Neue", "Inter", system-ui, sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, "Inter", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, "JetBrains Mono", Menlo, monospace;
 }
 
 :root {
   --background: #1a1612;
   --foreground: #f0e9da;
-  --primary: #e26a55;
+  --primary: #ca1625;
 
-  font-family: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  line-height: 1.5;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, "Inter", system-ui, sans-serif;
+  line-height: 1.45;
   font-weight: 400;
 
   color-scheme: dark;
@@ -62,22 +68,26 @@
 }
 
 body {
-  font-family: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, "Inter", system-ui, sans-serif;
   background-color: #1a1612;
   color: #f0e9da;
 }
 
-/* Headings use the display serif — gives screens a typographic confidence */
+/* Headings: same sans family, heavy weight, slight letter-spacing. */
 h1, h2, h3, h4 {
-  font-family: 'Fraunces', 'IBM Plex Serif', Georgia, serif;
-  font-weight: 600;
-  font-feature-settings: 'ss01';
-  letter-spacing: -0.01em;
+  font-family: "Helvetica Neue", "Inter", system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.005em;
 }
 
 h1 {
-  font-size: 2.4em;
+  font-size: 2.2em;
   line-height: 1.1;
+}
+
+h2 {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 a {
@@ -86,18 +96,119 @@ a {
   text-decoration: inherit;
 }
 a:hover {
-  color: #f08672;
+  color: #ca1625;
 }
 
-/* AntD overrides — keep AntD components but bend them onto warm darks */
+/* ────────────────────────────────────────────────────────────────
+ * Form fields — invert to cream paper on the dark deck.
+ * AntD's dark algorithm dyes these slate-grey by default; we want
+ * them visibly "paper" so users can read what they're typing.
+ * ──────────────────────────────────────────────────────────────── */
+.ant-input,
+.ant-input-affix-wrapper,
+.ant-input-number,
+.ant-input-number-input,
+.ant-picker,
+.ant-cascader-picker,
+.ant-mentions,
+textarea.ant-input {
+  background-color: #fbf6ec !important;
+  color: #1a1a1a !important;
+  border-color: #3b342d !important;
+}
+
+.ant-input::placeholder,
+.ant-input-affix-wrapper input::placeholder,
+.ant-input-number-input::placeholder,
+.ant-picker-input > input::placeholder,
+textarea.ant-input::placeholder {
+  color: #6c6660 !important;
+}
+
+.ant-input-affix-wrapper > input.ant-input,
+.ant-input-number .ant-input-number-input,
+.ant-picker input {
+  background-color: transparent !important;
+  color: #1a1a1a !important;
+}
+
+.ant-input:hover,
+.ant-input-affix-wrapper:hover,
+.ant-input-number:hover,
+.ant-picker:hover {
+  border-color: #ca1625 !important;
+  background-color: #fbf6ec !important;
+}
+
+.ant-input:focus,
+.ant-input-affix-wrapper-focused,
+.ant-input-number-focused,
+.ant-picker-focused {
+  border-color: #ca1625 !important;
+  box-shadow: none !important;
+}
+
+/* Select: closed selector is cream paper too. The popup is set via
+ * ConfigProvider tokens (Select.colorBgElevated) so options also render
+ * on cream. */
+.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  background-color: #fbf6ec !important;
+  color: #1a1a1a !important;
+  border-color: #3b342d !important;
+}
+.ant-select-selection-placeholder { color: #6c6660 !important; }
+.ant-select-selection-item { color: #1a1a1a !important; }
+.ant-select-arrow { color: #6c6660 !important; }
+.ant-select-clear { background-color: #fbf6ec !important; color: #6c6660 !important; }
+.ant-select:not(.ant-select-disabled):hover .ant-select-selector {
+  border-color: #ca1625 !important;
+}
+.ant-select-focused:not(.ant-select-disabled) .ant-select-selector {
+  border-color: #ca1625 !important;
+  box-shadow: none !important;
+}
+.ant-select-dropdown,
+.ant-picker-dropdown .ant-picker-panel-container {
+  background-color: #fbf6ec !important;
+  color: #1a1a1a !important;
+}
+.ant-select-item { color: #1a1a1a !important; }
+.ant-select-item-option-active:not(.ant-select-item-option-disabled) {
+  background-color: rgba(26, 22, 18, 0.06) !important;
+}
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  background-color: rgba(202, 22, 37, 0.12) !important;
+  color: #1a1a1a !important;
+}
+
+/* Checkbox / Radio bullets — keep light so they read on dark cards. */
+.ant-checkbox-inner,
+.ant-radio-inner {
+  background-color: #fbf6ec !important;
+  border-color: #3b342d !important;
+}
+.ant-checkbox-checked .ant-checkbox-inner,
+.ant-radio-checked .ant-radio-inner {
+  background-color: #ca1625 !important;
+  border-color: #ca1625 !important;
+}
+
+/* Form item labels — readable secondary on dark. */
+.ant-form-item-label > label {
+  color: #a39c8e !important;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* AntD overrides — table, alerts, etc. */
 
 .ant-table-tbody > tr:hover > td,
 .tr-hover:hover > td {
   border-bottom: 1px solid rgba(226, 106, 85, 0.45) !important;
 }
 
-/* Contacts table: fixed columns need an opaque background so scrolling
- * content doesn't bleed through. Matches the new dark surface. */
 td.ant-table-cell.contacts-fixed-col,
 th.ant-table-cell.contacts-fixed-col {
   background-color: #1a1612;
@@ -107,7 +218,7 @@ th.ant-table-cell.contacts-fixed-col {
 }
 .ant-table-tbody > tr.ant-table-row-selected > td.ant-table-cell.contacts-fixed-col,
 .ant-table-tbody > tr.ant-table-row-selected:hover > td.ant-table-cell.contacts-fixed-col {
-  background-color: #3a241f;
+  background-color: #2c2620;
 }
 
 .drawer-body-no-padding .ant-drawer-body {
@@ -133,10 +244,10 @@ th.ant-table-cell.contacts-fixed-col {
   padding-top: 32px;
 }
 
-/* Alerts: keep the left-bar accent, but use the warm dark palette */
+/* Alerts: left-bar accent on a card surface, light ink. */
 .ant-alert {
   border: none !important;
-  border-left: 3px solid transparent !important;
+  border-left: 4px solid transparent !important;
 }
 
 .ant-alert.ant-alert-info {
@@ -155,31 +266,30 @@ th.ant-table-cell.contacts-fixed-col {
   border-left-color: #e26a55 !important;
 }
 
-/* AntD's generated class for required-mark uses SimSun on some builds;
- * keep the inherit so it picks up our sans. */
+/* AntD's required-mark uses SimSun on some builds; keep inherit. */
 :where(.css-dev-only-do-not-override-1d0rgb4).ant-form-item .ant-form-item-label > label.ant-form-item-required::before {
   font-family: inherit;
 }
 
-/* The masthead rule — a couple of styles we'll opt into from the layout
- * chrome and login card to nod to broadsheet typography. */
+/* Masthead rule — opt-in classes for layout chrome and login card. */
 .broadsheet-masthead-rule {
-  border-top: 2px solid #5a4f43;
-  border-bottom: 1px solid #5a4f43;
+  border-top: 6px solid #ca1625;
+  border-bottom: 2px solid #5a4f43;
   padding: 6px 0;
 }
 
 .broadsheet-eyebrow {
-  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  font-family: "Helvetica Neue", "Inter", system-ui, sans-serif;
   font-size: 10px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: #a39c8e;
 }
 
 .broadsheet-display {
-  font-family: 'Fraunces', 'IBM Plex Serif', Georgia, serif;
-  font-weight: 700;
-  letter-spacing: -0.015em;
+  font-family: "Helvetica Neue", "Inter", system-ui, sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }

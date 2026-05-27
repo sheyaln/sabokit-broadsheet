@@ -26,17 +26,14 @@ export function MainLayout({ children }: MainLayoutProps) {
     <Layout
       style={{
         minHeight: '100vh',
-        backgroundColor: '#1a1612',
-        backgroundImage:
-          'radial-gradient(rgba(240, 233, 218, 0.04) 1px, transparent 1px)',
-        backgroundSize: '4px 4px'
+        backgroundColor: '#1a1612'
       }}
     >
       <div style={{ maxWidth: 980, margin: '0 auto', padding: '40px 24px 12px', width: '100%' }}>
         <div
           style={{
-            borderTop: '3px solid #5a4f43',
-            borderBottom: '1px solid #5a4f43',
+            borderTop: '6px solid #ca1625',
+            borderBottom: '2px solid #5a4f43',
             padding: '14px 0 10px',
             display: 'flex',
             alignItems: 'baseline',
@@ -60,9 +57,9 @@ export function MainLayout({ children }: MainLayoutProps) {
             />
             <div
               style={{
-                fontFamily: "'IBM Plex Sans', system-ui, sans-serif",
+                fontFamily: "'Helvetica Neue', 'Inter', system-ui, sans-serif",
                 fontSize: 10,
-                fontWeight: 600,
+                fontWeight: 700,
                 letterSpacing: '0.18em',
                 textTransform: 'uppercase',
                 color: '#a39c8e',
@@ -76,22 +73,23 @@ export function MainLayout({ children }: MainLayoutProps) {
           </div>
           <div
             style={{
-              fontFamily: "'Fraunces', 'IBM Plex Serif', Georgia, serif",
-              fontWeight: 800,
+              fontFamily: "'Helvetica Neue', 'Inter', system-ui, sans-serif",
+              fontWeight: 900,
               fontSize: 56,
               color: '#f0e9da',
-              letterSpacing: '-0.03em',
+              letterSpacing: '-0.01em',
               lineHeight: 1,
-              textAlign: 'center'
+              textAlign: 'center',
+              textTransform: 'uppercase'
             }}
           >
-            Broad<span style={{ color: '#ca1625' }}>side</span>
+            Broad<span style={{ color: '#ca1625' }}>sheet</span>
           </div>
           <div
             style={{
-              fontFamily: "'IBM Plex Sans', system-ui, sans-serif",
+              fontFamily: "'Helvetica Neue', 'Inter', system-ui, sans-serif",
               fontSize: 10,
-              fontWeight: 600,
+              fontWeight: 700,
               letterSpacing: '0.18em',
               textTransform: 'uppercase',
               color: '#a39c8e',
@@ -141,9 +139,10 @@ export function MainLayoutSidebar({ children, title, extra }: MainLayoutSidebarP
         <h3
           style={{
             margin: 0,
-            fontFamily: "'Fraunces', 'IBM Plex Serif', Georgia, serif",
-            fontWeight: 700,
-            letterSpacing: '-0.015em'
+            fontFamily: "'Helvetica Neue', 'Inter', system-ui, sans-serif",
+            fontWeight: 800,
+            letterSpacing: '0.02em',
+            textTransform: 'uppercase'
           }}
         >
           {title}

@@ -639,7 +639,7 @@ export function ContactDetailsDrawer({
         <div className="flex h-full">
           {/* Left column - Contact Details (400px fixed width) */}
           <div
-            className="bg-gray-50 overflow-y-auto h-full"
+            className="bg-paper overflow-y-auto h-full"
             style={{
               width: '400px',
               minWidth: '400px',
@@ -674,7 +674,7 @@ export function ContactDetailsDrawer({
 
             <div className="contact-details">
               {isLoadingContact && (
-                <div className="mb-4 p-2 bg-blue-50 text-blue-600 rounded text-center">
+                <div className="mb-4 p-2 bg-blue-50 text-primary-soft rounded text-center">
                   <Spin size="small" className="mr-2" />
                   <span>{t`Refreshing contact data...`}</span>
                 </div>
@@ -789,7 +789,7 @@ export function ContactDetailsDrawer({
                   className="py-2 px-4 grid grid-cols-2 text-xs gap-1 border-b border-dashed border-gray-300"
                 >
                   <span className="font-semibold text-slate-600">{field.label}</span>
-                  <span className="text-gray-500">{field.value || '—'}</span>
+                  <span className="text-ink-faint">{field.value || '—'}</span>
                 </div>
               ))}
 
@@ -841,7 +841,7 @@ export function ContactDetailsDrawer({
                 if (unsetCustomStrings.length > 0) {
                   collapseItems.push({
                     key: 'custom_strings',
-                    label: <span className="text-xs text-gray-500">{t`Custom String Fields`} ({unsetCustomStrings.length})</span>,
+                    label: <span className="text-xs text-ink-faint">{t`Custom String Fields`} ({unsetCustomStrings.length})</span>,
                     children: unsetCustomStrings.map((field) => (
                       <InlineEditableField
                         key={field.key}
@@ -863,7 +863,7 @@ export function ContactDetailsDrawer({
                 if (unsetCustomNumbers.length > 0) {
                   collapseItems.push({
                     key: 'custom_numbers',
-                    label: <span className="text-xs text-gray-500">{t`Custom Number Fields`} ({unsetCustomNumbers.length})</span>,
+                    label: <span className="text-xs text-ink-faint">{t`Custom Number Fields`} ({unsetCustomNumbers.length})</span>,
                     children: unsetCustomNumbers.map((field) => (
                       <InlineEditableField
                         key={field.key}
@@ -885,7 +885,7 @@ export function ContactDetailsDrawer({
                 if (unsetCustomDatetimes.length > 0) {
                   collapseItems.push({
                     key: 'custom_datetimes',
-                    label: <span className="text-xs text-gray-500">{t`Custom Datetime Fields`} ({unsetCustomDatetimes.length})</span>,
+                    label: <span className="text-xs text-ink-faint">{t`Custom Datetime Fields`} ({unsetCustomDatetimes.length})</span>,
                     children: unsetCustomDatetimes.map((field) => (
                       <InlineEditableField
                         key={field.key}
@@ -907,7 +907,7 @@ export function ContactDetailsDrawer({
                 if (unsetCustomJsons.length > 0) {
                   collapseItems.push({
                     key: 'custom_jsons',
-                    label: <span className="text-xs text-gray-500">{t`Custom JSON Fields`} ({unsetCustomJsons.length})</span>,
+                    label: <span className="text-xs text-ink-faint">{t`Custom JSON Fields`} ({unsetCustomJsons.length})</span>,
                     children: unsetCustomJsons.map((field) => (
                       <InlineEditableField
                         key={field.key}

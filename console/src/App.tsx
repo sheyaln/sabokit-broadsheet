@@ -31,21 +31,29 @@ const queryClient = new QueryClient({
   }
 })
 
-// Broadsheet — Newsprint (after-hours) tokens for Ant Design.
-// Dark variant: warm darks, brick-red re-tuned for AA on near-black.
-// See console/THEMES.md for the design notes and alternative directions.
-const PAPER = '#1A1612'         // page bg — warm near-black
-const PAPER_BRIGHT = '#221D18'  // surfaces / cards
-const PAPER_DEEP = '#2C2620'    // raised / hover
-const INK = '#F0E9DA'           // primary text — warm off-white
-const INK_MUTED = '#A39C8E'     // secondary text
-const INK_HINT = '#8B8377'      // placeholder / empty-state hint — readable on PAPER_BRIGHT
-const RULE = '#3B342D'          // hairline rules
-const PRESS_RED = '#CA1625'     // logo body — vivid pure red
-const PRESS_RED_DEEP = '#A8121F'    // pressed
-const PRESS_RED_SOFT = '#F61D28'    // logo peak — used where AA on dark body text matters (links, alerts)
+// Broadsheet — After-hours newsprint tokens for Ant Design.
+// Dark surfaces (page, cards, sidebars) with light cream form fields, so
+// inputs read like a proof on the desk under a sodium lamp. No rounded
+// corners, no shadows — steward's design principles applied to a dark deck.
+const BG = '#1A1612'           // page bg — warm near-black
+const PAPER = '#221D18'        // cards / sidebars / surfaces
+const PAPER_DEEP = '#2C2620'   // raised / hover
+const INK = '#F0E9DA'          // primary text — warm off-white
+const INK_DIM = '#A39C8E'      // secondary
+const INK_MUTE = '#8B8377'     // hint
+const RULE = '#3B342D'         // hairline rules
+const PRESS_RED = '#CA1625'    // primary / button fills
+const PRESS_RED_SOFT = '#E26A55' // links / alerts — AA on dark
+const PRESS_RED_INK = '#7E131E'  // pressed / active
 
-const SANS = "'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif"
+// Light fields — cream paper sitting on the dark deck.
+const FIELD_BG = '#FBF6EC'
+const FIELD_BG_HOVER = '#F5EFE3'
+const FIELD_TEXT = '#1A1A1A'
+const FIELD_BORDER = '#3B342D'
+const FIELD_PLACEHOLDER = '#6C6660'
+
+const SANS = "-apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, 'Inter', system-ui, sans-serif"
 
 const theme: ThemeConfig = {
   algorithm: antdTheme.darkAlgorithm,
@@ -58,50 +66,49 @@ const theme: ThemeConfig = {
     colorWarning: '#D8A35A',
     colorError: PRESS_RED_SOFT,
     colorTextBase: INK,
-    colorBgBase: PAPER,
+    colorBgBase: BG,
     colorText: INK,
-    colorTextSecondary: INK_MUTED,
-    colorTextTertiary: INK_HINT,
-    colorTextQuaternary: INK_HINT,
-    colorTextPlaceholder: INK_HINT,
-    colorTextDisabled: INK_HINT,
-    colorTextDescription: INK_MUTED,
+    colorTextSecondary: INK_DIM,
+    colorTextTertiary: INK_MUTE,
+    colorTextQuaternary: INK_MUTE,
+    colorTextPlaceholder: INK_MUTE,
+    colorTextDisabled: INK_MUTE,
+    colorTextDescription: INK_DIM,
     colorBorder: RULE,
     colorBorderSecondary: RULE,
-    colorBgLayout: PAPER,
-    colorBgContainer: PAPER_BRIGHT,
-    colorBgElevated: PAPER_BRIGHT,
-    borderRadius: 2,
-    borderRadiusLG: 3,
-    borderRadiusSM: 2,
-    borderRadiusXS: 2,
+    colorBgLayout: BG,
+    colorBgContainer: PAPER,
+    colorBgElevated: PAPER,
+    borderRadius: 0,
+    borderRadiusLG: 0,
+    borderRadiusSM: 0,
+    borderRadiusXS: 0,
     fontFamily: SANS,
-    fontFamilyCode: "'IBM Plex Mono', ui-monospace, Menlo, monospace",
+    fontFamilyCode: "ui-monospace, 'SF Mono', SFMono-Regular, 'JetBrains Mono', Menlo, monospace",
     wireframe: false
   },
   components: {
     Layout: {
-      bodyBg: PAPER,
-      headerBg: PAPER,
-      lightSiderBg: PAPER,
-      siderBg: PAPER
+      bodyBg: BG,
+      headerBg: BG,
+      lightSiderBg: BG,
+      siderBg: BG
     },
     Button: {
       primaryShadow: 'none',
       defaultShadow: 'none',
       dangerShadow: 'none',
-      fontWeight: 500,
-      // Primary buttons: white text on logo-red hits 6.2:1 (AA / AAA for large)
+      fontWeight: 700,
       primaryColor: '#FFFFFF'
     },
     Card: {
       headerFontSize: 16,
-      borderRadius: 2,
-      borderRadiusLG: 3,
-      borderRadiusSM: 2,
-      borderRadiusXS: 2,
+      borderRadius: 0,
+      borderRadiusLG: 0,
+      borderRadiusSM: 0,
+      borderRadiusXS: 0,
       colorBorderSecondary: RULE,
-      colorBgContainer: PAPER_BRIGHT
+      colorBgContainer: PAPER
     },
     Table: {
       headerBg: 'transparent',
@@ -124,32 +131,80 @@ const theme: ThemeConfig = {
       iconSize: 14
     },
     Drawer: {
-      colorBgElevated: PAPER_BRIGHT
+      colorBgElevated: PAPER
     },
     Modal: {
-      colorBgElevated: PAPER_BRIGHT,
-      headerBg: PAPER_BRIGHT
+      colorBgElevated: PAPER,
+      headerBg: PAPER
     },
     Timeline: {
-      dotBg: PAPER
+      dotBg: BG
     },
+    // Form widgets: cream paper field on the dark deck.
     Input: {
-      colorBgContainer: PAPER_DEEP,
+      colorBgContainer: FIELD_BG,
+      colorBgContainerDisabled: FIELD_BG_HOVER,
+      colorText: FIELD_TEXT,
+      colorTextPlaceholder: FIELD_PLACEHOLDER,
+      colorBorder: FIELD_BORDER,
       activeBorderColor: PRESS_RED,
-      hoverBorderColor: INK_MUTED
+      hoverBorderColor: PRESS_RED_INK,
+      activeShadow: 'none'
+    },
+    InputNumber: {
+      colorBgContainer: FIELD_BG,
+      colorText: FIELD_TEXT,
+      colorTextPlaceholder: FIELD_PLACEHOLDER,
+      colorBorder: FIELD_BORDER,
+      activeBorderColor: PRESS_RED,
+      hoverBorderColor: PRESS_RED_INK,
+      activeShadow: 'none'
     },
     Select: {
-      colorBgContainer: PAPER_DEEP
+      colorBgContainer: FIELD_BG,
+      colorBgElevated: FIELD_BG,
+      colorText: FIELD_TEXT,
+      colorTextPlaceholder: FIELD_PLACEHOLDER,
+      colorBorder: FIELD_BORDER,
+      optionSelectedBg: 'rgba(202, 22, 37, 0.12)',
+      optionSelectedColor: FIELD_TEXT,
+      optionActiveBg: 'rgba(26, 22, 18, 0.06)'
+    },
+    DatePicker: {
+      colorBgContainer: FIELD_BG,
+      colorBgElevated: FIELD_BG,
+      colorText: FIELD_TEXT,
+      colorTextPlaceholder: FIELD_PLACEHOLDER,
+      colorBorder: FIELD_BORDER,
+      activeBorderColor: PRESS_RED,
+      cellHoverBg: 'rgba(202, 22, 37, 0.10)',
+      cellActiveWithRangeBg: 'rgba(202, 22, 37, 0.16)'
+    },
+    Cascader: {
+      colorBgContainer: FIELD_BG,
+      colorText: FIELD_TEXT
+    },
+    Checkbox: {
+      colorBgContainer: FIELD_BG,
+      colorBorder: FIELD_BORDER
+    },
+    Radio: {
+      colorBgContainer: FIELD_BG,
+      colorBorder: FIELD_BORDER
+    },
+    Form: {
+      labelColor: INK_DIM,
+      labelFontSize: 12
     },
     Typography: {
       titleMarginBottom: '0.5em',
       titleMarginTop: '1em',
-      fontWeightStrong: 600
+      fontWeightStrong: 700
     },
     Tabs: {
-      itemActiveColor: PRESS_RED,
-      itemSelectedColor: PRESS_RED,
-      itemHoverColor: PRESS_RED_SOFT,
+      itemActiveColor: PRESS_RED_SOFT,
+      itemSelectedColor: PRESS_RED_SOFT,
+      itemHoverColor: PRESS_RED,
       inkBarColor: PRESS_RED
     },
     Tag: {
@@ -162,9 +217,15 @@ const theme: ThemeConfig = {
     Tooltip: {
       colorBgSpotlight: PAPER_DEEP,
       colorTextLightSolid: INK
+    },
+    Steps: {
+      colorTextDescription: INK_DIM,
+      // Pending steps need to stay legible on the dark deck
+      colorTextLabel: INK_DIM
     }
   }
 }
+
 
 // Initialize analytics service
 initializeAnalytics()

@@ -124,7 +124,7 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({
       <Row gutter={[16, 16]} className="mb-8">
         {/* Total Contacts */}
         <Col xs={24} sm={12} md={6}>
-          <div className="p-4 rounded-lg bg-gray-100" style={{ height: '110px' }}>
+          <div className="p-4 rounded-lg bg-paper-bright" style={{ height: '110px' }}>
             <Statistic
               title={t`Total Contacts`}
               value={totalContacts as number}
@@ -136,7 +136,7 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({
 
         {/* New Contacts */}
         <Col xs={24} sm={12} md={6}>
-          <div className="bg-gray-100 p-4 rounded-lg" style={{ height: '110px' }}>
+          <div className="bg-paper-bright p-4 rounded-lg" style={{ height: '110px' }}>
             <Statistic
               title={t`New Contacts`}
               value={newContactsCount as number}
@@ -148,20 +148,20 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({
 
         {/* Transactional Email Provider */}
         <Col xs={24} sm={12} md={6}>
-          <div className="bg-gray-100 p-4 rounded-lg" style={{ height: '110px' }}>
-            <div className="text-gray-500 text-sm mb-2">{t`Transactional Provider`}</div>
+          <div className="bg-paper-bright p-4 rounded-lg" style={{ height: '110px' }}>
+            <div className="text-ink-faint text-sm mb-2">{t`Transactional Provider`}</div>
             {transactionalProvider ? (
               <div>
                 <div className="mb-1">
                   <span className="font-medium">{transactionalProviderInfo?.name}</span>
                 </div>
                 {transactionalSender && (
-                  <div className="text-sm text-gray-600">{transactionalSender.email}</div>
+                  <div className="text-sm text-ink-muted">{transactionalSender.email}</div>
                 )}
               </div>
             ) : (
               <div>
-                <div className="text-gray-400 mb-2">{t`Not configured`}</div>
+                <div className="text-ink-faint mb-2">{t`Not configured`}</div>
                 <Button size="small" type="primary" onClick={handleNavigateToSettings}>
                   {t`Configure`}
                 </Button>
@@ -172,20 +172,20 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({
 
         {/* Marketing Email Provider */}
         <Col xs={24} sm={12} md={6}>
-          <div className="bg-gray-100 p-4 rounded-lg" style={{ height: '110px' }}>
-            <div className="text-gray-500 text-sm mb-2">{t`Marketing Provider`}</div>
+          <div className="bg-paper-bright p-4 rounded-lg" style={{ height: '110px' }}>
+            <div className="text-ink-faint text-sm mb-2">{t`Marketing Provider`}</div>
             {marketingProvider ? (
               <div>
                 <div className="mb-1">
                   <span className="font-medium">{marketingProviderInfo?.name}</span>
                 </div>
                 {marketingSender && (
-                  <div className="text-sm text-gray-600">{marketingSender.email}</div>
+                  <div className="text-sm text-ink-muted">{marketingSender.email}</div>
                 )}
               </div>
             ) : (
               <div>
-                <div className="text-gray-400 mb-2">{t`Not configured`}</div>
+                <div className="text-ink-faint mb-2">{t`Not configured`}</div>
                 <Button size="small" type="primary" onClick={handleNavigateToSettings}>
                   {t`Configure`}
                 </Button>

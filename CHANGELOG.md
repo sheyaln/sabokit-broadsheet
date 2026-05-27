@@ -12,6 +12,8 @@ The fork tracks upstream by force-rebasing `main` and re-applying fork patches o
 
 ### Fork changes (on top of upstream)
 
+- **Dark-mode visual identity** (2026-05-27, `v2026.06.2`) — newsprint after-hours theme: warm near-black surfaces (`#1a1612` / `#221d18`), cream-paper form fields (`#fbf6ec` with black ink) so inputs stay readable on the dark deck, labor-poster red (`#ca1625`) for masthead and primary, soft red (`#e26a55`) for links/alerts to hit AA on dark. Steward design principles applied: no rounded corners, no shadows, system sans only (Helvetica Neue / Inter), uppercase H2 with letter-spacing, masthead is a 6px red rule over a 2px brown rule. AntD `darkAlgorithm` with per-component overrides for Input/Select/DatePicker/InputNumber/Checkbox/Radio to invert to light fields. Setup wizard, sign-in, masthead, sidebars, and ~30 component files swept from `bg-white`/`bg-gray-*`/`text-gray-*` to `bg-paper`/`bg-paper-bright`/`text-ink`/`text-ink-muted` tokens. Email-builder canvas left on white (intentional, simulates an email surface).
+- **`.dockerignore`** (2026-05-27) — excludes host `node_modules` so the Docker frontend build is no longer clobbered by macOS-built binaries (which broke `lingui` exec permissions in the alpine image).
 - **Rebrand to Broadsheet** (2026-05-24) — user-facing strings, Go module path (`github.com/sheyaln/sabokit-broadsheet`), and internal identifiers. Original Notifuse copyright preserved. Commits: `c39167cf`, `fce78bd1`, `2d36aa25`.
 - **OIDC SSO** (2026-05-24, `3fb44c48`) — OIDC with IdP group → workspace permission mapping. Tested against Authentik; protocol-compatible with Keycloak, Okta, Google Workspace. Not present upstream.
 

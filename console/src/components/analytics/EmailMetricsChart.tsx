@@ -306,7 +306,7 @@ export const EmailMetricsChart: React.FC<EmailMetricsChartProps> = ({
             title={!visibleLines.count_sent ? t`${stats.count_sent} total emails sent (hidden from chart)` : t`${stats.count_sent} total emails sent`}
           >
             <div
-              className="p-2 cursor-pointer hover:bg-gray-50 rounded transition-colors"
+              className="p-2 cursor-pointer hover:bg-paper rounded transition-colors"
               style={{ opacity: visibleLines.count_sent ? 1 : 0.5 }}
               onClick={() => toggleLineVisibility('count_sent')}
             >
@@ -316,7 +316,7 @@ export const EmailMetricsChart: React.FC<EmailMetricsChartProps> = ({
                     <FontAwesomeIcon
                       icon={faPaperPlane}
                       style={{ opacity: 0.7 }}
-                      className="text-blue-500"
+                      className="text-primary-soft"
                     />{' '}
                     {t`Sent`}
                   </Space>
@@ -333,7 +333,7 @@ export const EmailMetricsChart: React.FC<EmailMetricsChartProps> = ({
             title={!visibleLines.count_delivered ? t`${stats.count_delivered} emails successfully delivered (hidden from chart)` : t`${stats.count_delivered} emails successfully delivered`}
           >
             <div
-              className="p-2 cursor-pointer hover:bg-gray-50 rounded transition-colors"
+              className="p-2 cursor-pointer hover:bg-paper rounded transition-colors"
               style={{ opacity: visibleLines.count_delivered ? 1 : 0.5 }}
               onClick={() => toggleLineVisibility('count_delivered')}
             >
@@ -360,7 +360,7 @@ export const EmailMetricsChart: React.FC<EmailMetricsChartProps> = ({
             title={!visibleLines.count_opened ? t`${stats.count_opened} total opens (hidden from chart)` : t`${stats.count_opened} total opens`}
           >
             <div
-              className="p-2 cursor-pointer hover:bg-gray-50 rounded transition-colors"
+              className="p-2 cursor-pointer hover:bg-paper rounded transition-colors"
               style={{ opacity: visibleLines.count_opened ? 1 : 0.5 }}
               onClick={() => toggleLineVisibility('count_opened')}
             >
@@ -387,7 +387,7 @@ export const EmailMetricsChart: React.FC<EmailMetricsChartProps> = ({
             title={!visibleLines.count_clicked ? t`${stats.count_clicked} total clicks (hidden from chart)` : t`${stats.count_clicked} total clicks`}
           >
             <div
-              className="p-2 cursor-pointer hover:bg-gray-50 rounded transition-colors"
+              className="p-2 cursor-pointer hover:bg-paper rounded transition-colors"
               style={{ opacity: visibleLines.count_clicked ? 1 : 0.5 }}
               onClick={() => toggleLineVisibility('count_clicked')}
             >
@@ -414,7 +414,7 @@ export const EmailMetricsChart: React.FC<EmailMetricsChartProps> = ({
             title={!visibleLines.count_bounced ? t`${stats.count_bounced} emails bounced back (hidden from chart)` : t`${stats.count_bounced} emails bounced back`}
           >
             <div
-              className="p-2 cursor-pointer hover:bg-gray-50 rounded transition-colors"
+              className="p-2 cursor-pointer hover:bg-paper rounded transition-colors"
               style={{ opacity: visibleLines.count_bounced ? 1 : 0.5 }}
               onClick={() => toggleLineVisibility('count_bounced')}
             >
@@ -441,7 +441,7 @@ export const EmailMetricsChart: React.FC<EmailMetricsChartProps> = ({
             title={!visibleLines.count_complained ? t`${stats.count_complained} total complaints (hidden from chart)` : t`${stats.count_complained} total complaints`}
           >
             <div
-              className="p-2 cursor-pointer hover:bg-gray-50 rounded transition-colors"
+              className="p-2 cursor-pointer hover:bg-paper rounded transition-colors"
               style={{ opacity: visibleLines.count_complained ? 1 : 0.5 }}
               onClick={() => toggleLineVisibility('count_complained')}
             >
@@ -468,7 +468,7 @@ export const EmailMetricsChart: React.FC<EmailMetricsChartProps> = ({
             title={!visibleLines.count_unsubscribed ? t`${stats.count_unsubscribed} total unsubscribes (hidden from chart)` : t`${stats.count_unsubscribed} total unsubscribes`}
           >
             <div
-              className="p-2 cursor-pointer hover:bg-gray-50 rounded transition-colors"
+              className="p-2 cursor-pointer hover:bg-paper rounded transition-colors"
               style={{ opacity: visibleLines.count_unsubscribed ? 1 : 0.5 }}
               onClick={() => toggleLineVisibility('count_unsubscribed')}
             >
@@ -495,7 +495,7 @@ export const EmailMetricsChart: React.FC<EmailMetricsChartProps> = ({
             title={!visibleLines.count_failed ? t`${stats.count_failed} emails failed to send (hidden from chart)` : t`${stats.count_failed} emails failed to send`}
           >
             <div
-              className="p-2 cursor-pointer hover:bg-gray-50 rounded transition-colors"
+              className="p-2 cursor-pointer hover:bg-paper rounded transition-colors"
               style={{ opacity: visibleLines.count_failed ? 1 : 0.5 }}
               onClick={() => toggleLineVisibility('count_failed')}
             >

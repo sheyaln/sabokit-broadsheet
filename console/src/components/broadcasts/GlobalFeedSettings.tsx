@@ -97,7 +97,7 @@ export function GlobalFeedSettings({
               <Space size={4}>
                 <span>{t`Global feed URL`}</span>
                 <Tooltip title={t`The URL must be publicly accessible. A POST request will be sent with broadcast and list information.`}>
-                  <QuestionCircleOutlined className="text-gray-400 cursor-help" />
+                  <QuestionCircleOutlined className="text-ink-faint cursor-help" />
                 </Tooltip>
               </Space>
             }

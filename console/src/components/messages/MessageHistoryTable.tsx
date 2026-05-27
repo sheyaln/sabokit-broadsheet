@@ -145,7 +145,7 @@ export function MessageHistoryTable({
       render: (id: string) => {
         return (
           <Tooltip title={id}>
-            <span className="text-xs text-gray-500">{id.substring(0, 8) + '...'}</span>
+            <span className="text-xs text-ink-faint">{id.substring(0, 8) + '...'}</span>
           </Tooltip>
         )
       }
@@ -157,11 +157,11 @@ export function MessageHistoryTable({
       hidden: visibleColumns.external_id === false,
       render: (externalId: string | undefined) => {
         if (!externalId) {
-          return <span className="text-xs text-gray-400">-</span>
+          return <span className="text-xs text-ink-faint">-</span>
         }
         return (
           <Tooltip title={externalId}>
-            <span className="text-xs text-gray-500">
+            <span className="text-xs text-ink-faint">
               {externalId.length > 12 ? externalId.substring(0, 12) + '...' : externalId}
             </span>
           </Tooltip>
@@ -176,7 +176,7 @@ export function MessageHistoryTable({
         return (
           <>
             <span className="text-xs">{record.template_id}</span>
-            <span className="text-xs text-gray-500 pl-2">v{record.template_version}</span>
+            <span className="text-xs text-ink-faint pl-2">v{record.template_version}</span>
           </>
         )
       }
@@ -188,14 +188,14 @@ export function MessageHistoryTable({
       hidden: visibleColumns.broadcast_id === false,
       render: (broadcastId: string | undefined) => {
         if (!broadcastId) {
-          return <span className="text-xs text-gray-400">-</span>
+          return <span className="text-xs text-ink-faint">-</span>
         }
 
         const broadcast = broadcastMap.get(broadcastId)
         if (!broadcast) {
           return (
             <Tooltip title={broadcastId}>
-              <span className="text-xs text-gray-500">{broadcastId.substring(0, 8)}...</span>
+              <span className="text-xs text-ink-faint">{broadcastId.substring(0, 8)}...</span>
             </Tooltip>
           )
         }
@@ -231,7 +231,7 @@ export function MessageHistoryTable({
       hidden: visibleColumns.list_id === false,
       render: (record: MessageHistory) => {
         if (!record.list_id) {
-          return <span className="text-xs text-gray-400">-</span>
+          return <span className="text-xs text-ink-faint">-</span>
         }
 
         // Get list name from listMap

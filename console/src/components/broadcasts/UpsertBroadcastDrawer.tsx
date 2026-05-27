@@ -716,7 +716,7 @@ export function UpsertBroadcastDrawer({
                               <ABTestingConfig form={form} />
 
                               {/* Variations management will be added here */}
-                              <div className="text-xs mt-4 mb-4 font-bold border-b border-solid pb-2 border-gray-400 text-gray-900">
+                              <div className="text-xs mt-4 mb-4 font-bold border-b border-solid pb-2 border-gray-400 text-ink">
                                 {t`Variations`}
                               </div>
 

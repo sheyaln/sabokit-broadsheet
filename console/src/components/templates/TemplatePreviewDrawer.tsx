@@ -391,7 +391,7 @@ const TemplatePreviewDrawer: React.FC<TemplatePreviewDrawerProps> = ({
           !previewHtml &&
           !previewMjml &&
           items.length === 0 && ( // Neither success nor error, initial or no data state
-            <div className="flex items-center justify-center flex-grow text-gray-500">
+            <div className="flex items-center justify-center flex-grow text-ink-faint">
               {t`No preview available or template is empty.`}
             </div>
           )}

@@ -50,7 +50,7 @@ const getIntegrationIcon = (integrationType: string) => {
     case 'supabase':
       return <img src="/console/supabase.png" alt="Supabase" className="h-3" />
     default:
-      return <FontAwesomeIcon icon={faTerminal} className="text-gray-600" />
+      return <FontAwesomeIcon icon={faTerminal} className="text-ink-muted" />
   }
 }
 
@@ -193,7 +193,7 @@ const TransactionalNotificationCard: React.FC<{
                 <FontAwesomeIcon
                   icon={faPaperPlane}
                   style={{ opacity: 0.7 }}
-                  className="text-blue-500"
+                  className="text-primary-soft"
                 />{' '}
                 {t`Sent`}
               </Space>

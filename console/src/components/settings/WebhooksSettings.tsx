@@ -172,7 +172,7 @@ export function WebhooksSettings({ workspaceId }: WebhooksSettingsProps) {
 
       {subscriptions.length === 0 && !loading ? (
         <Card className="text-center py-8">
-          <p className="text-gray-500 mb-4">{t`No webhook subscriptions configured`}</p>
+          <p className="text-ink-faint mb-4">{t`No webhook subscriptions configured`}</p>
           <Button type="primary" onClick={handleCreate}>
             <FontAwesomeIcon icon={faPlus} className="mr-2" />
             {t`Create Webhook`}

@@ -1,0 +1,38 @@
+# Build artifacts and host-platform binaries that would clobber
+# in-container npm ci / go mod download.
+**/node_modules
+**/dist
+**/.next
+
+# Local secrets / env
+.env
+.env.test
+
+# Go local builds
+bin/
+tmp/
+*.log
+
+# IDE / OS
+.DS_Store
+.vscode/
+.idea/
+
+# Git
+.git/
+.gitignore
+
+# Tests
+coverage*
+e2e/
+tests/
+
+# Docs that don't belong in the image
+*.md
+plans/
+samples/
+testdata/
+
+# Local override never goes into the image
+compose.override.yaml
+compose.override.yml

@@ -186,7 +186,7 @@ export const NewContactsTable: React.FC<NewContactsTableProps> = ({ workspace })
       key: 'created_at',
       render: (date: string) => (
         <span
-          className="text-xs text-gray-500"
+          className="text-xs text-ink-faint"
           title={dayjs(date).tz(workspace.settings.timezone).format('lll')}
         >
           {dayjs(date).fromNow()}

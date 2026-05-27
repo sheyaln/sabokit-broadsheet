@@ -48,7 +48,7 @@ export function OptionSelector<T = string>({
           >
             <div className="font-medium">{option.label}</div>
             {option.description && (
-              <div className="text-xs text-gray-500 mt-1">
+              <div className="text-xs text-ink-faint mt-1">
                 {option.description}
               </div>
             )}

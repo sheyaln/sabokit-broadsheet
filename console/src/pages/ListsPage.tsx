@@ -290,7 +290,7 @@ export function ListsPage() {
                       />
                     </Space>
                   ) : (
-                    <X size={16} className="text-slate-500 mt-1" />
+                    <X size={16} className="text-ink-faint mt-1" />
                   )}
                 </Descriptions.Item>
               </Descriptions>

@@ -161,7 +161,7 @@ function DrawerContent({ onCloseDrawer }: { onCloseDrawer: () => void }) {
       </div>
 
       {/* Form Header */}
-      <div className="p-4 border-b border-gray-200 bg-white">
+      <div className="p-4 border-b border-gray-200 bg-paper-bright">
         <Form layout="inline">
           <Form.Item
             label={t`Name`}

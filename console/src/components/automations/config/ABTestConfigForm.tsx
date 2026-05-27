@@ -118,7 +118,7 @@ export const ABTestConfigForm: React.FC<ABTestConfigFormProps> = ({ config, onCh
         <div className="space-y-2">
           {variants.map((variant, index) => (
             <div key={variant.id} className="flex items-center gap-2">
-              <div className="w-8 h-8 flex items-center justify-center bg-blue-100 text-blue-600 rounded font-medium text-sm">
+              <div className="w-8 h-8 flex items-center justify-center bg-blue-100 text-primary-soft rounded font-medium text-sm">
                 {variant.id}
               </div>
               <Input
@@ -164,7 +164,7 @@ export const ABTestConfigForm: React.FC<ABTestConfigFormProps> = ({ config, onCh
 
       <div className={`text-sm flex items-center gap-1 ${isWeightValid ? 'text-green-600' : 'text-red-500'}`}>
         <span>{t`Total`}: {totalWeight}%</span>
-        <span className="text-gray-400">-</span>
+        <span className="text-ink-faint">-</span>
         <Button type="link" onClick={handleDistributeEvenly} size="small" className="p-0 h-auto text-sm">
           {t`Distribute evenly`}
         </Button>

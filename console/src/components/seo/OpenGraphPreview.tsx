@@ -26,12 +26,12 @@ export const OpenGraphPreview: React.FC<OpenGraphPreviewProps> = ({
     defaultDescription ?? t`Read the latest post from this broadcast.`
   return (
     <div
-      className="border border-gray-200 rounded-lg overflow-hidden bg-white flex"
+      className="border border-gray-200 rounded-lg overflow-hidden bg-paper-bright flex"
       style={{ width }}
     >
       {/* OG Image - Square on the left */}
       {webPublicationSettings.og_image ? (
-        <div className="w-24 h-24 flex-shrink-0 bg-gray-100 overflow-hidden">
+        <div className="w-24 h-24 flex-shrink-0 bg-paper-bright overflow-hidden">
           <img
             src={webPublicationSettings.og_image}
             alt={webPublicationSettings.og_title || broadcastName}
@@ -47,14 +47,14 @@ export const OpenGraphPreview: React.FC<OpenGraphPreviewProps> = ({
       {/* OG Content - Text on the right */}
       <div className="flex-1 p-3 flex flex-col justify-center min-w-0">
         {customEndpointUrl && (
-          <div className="text-xs text-gray-500 mb-1 truncate">
+          <div className="text-xs text-ink-faint mb-1 truncate">
             {customEndpointUrl.replace(/^https?:\/\//, '')}
           </div>
         )}
-        <div className="text-sm font-semibold text-gray-900 mb-1 line-clamp-2">
+        <div className="text-sm font-semibold text-ink mb-1 line-clamp-2">
           {webPublicationSettings.og_title || webPublicationSettings.meta_title || broadcastName}
         </div>
-        <div className="text-xs text-gray-600 line-clamp-2">
+        <div className="text-xs text-ink-muted line-clamp-2">
           {webPublicationSettings.og_description ||
             webPublicationSettings.meta_description ||
             resolvedDefaultDescription}

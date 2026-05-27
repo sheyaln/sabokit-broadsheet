@@ -150,15 +150,16 @@ export function SignInPage() {
             width: 420,
             border: '1px solid #5a4f43',
             backgroundColor: '#221d18',
-            boxShadow: '4px 4px 0 0 rgba(0, 0, 0, 0.45)'
+            boxShadow: 'none'
           }}
           styles={{
             header: {
               borderBottom: '1px solid #5a4f43',
-              fontFamily: "'Fraunces', 'IBM Plex Serif', Georgia, serif",
-              fontWeight: 700,
+              fontFamily: "'Helvetica Neue', 'Inter', system-ui, sans-serif",
+              fontWeight: 800,
               fontSize: 18,
-              letterSpacing: '-0.01em'
+              letterSpacing: '0.04em',
+              textTransform: 'uppercase'
             }
           }}
         >

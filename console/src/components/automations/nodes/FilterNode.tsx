@@ -60,7 +60,7 @@ export const FilterNode: React.FC<FilterNodeProps> = ({ data, selected }) => {
           <div className="text-orange-500 text-xs">{t`No conditions`}</div>
         ) : (
           <div
-            className="text-xs text-gray-600 truncate max-w-[180px]"
+            className="text-xs text-ink-muted truncate max-w-[180px]"
             title={
               config.description
                 ? `${config.description} (${conditionCount} ${conditionCount !== 1 ? t`conditions` : t`condition`})`
@@ -70,7 +70,7 @@ export const FilterNode: React.FC<FilterNodeProps> = ({ data, selected }) => {
             {config.description ? (
               <>
                 {config.description}
-                <span className="text-gray-400 ml-1">({conditionCount})</span>
+                <span className="text-ink-faint ml-1">({conditionCount})</span>
               </>
             ) : (
               `${conditionCount} ${conditionCount !== 1 ? t`conditions` : t`condition`}`

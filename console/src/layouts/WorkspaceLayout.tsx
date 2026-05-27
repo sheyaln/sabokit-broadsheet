@@ -417,8 +417,8 @@ export function WorkspaceLayout() {
               style={{
                 padding: collapsed ? '20px 0 14px' : '18px 24px 14px',
                 textAlign: collapsed ? 'center' : 'left',
-                borderTop: '3px solid #5a4f43',
-                borderBottom: '1px solid #5a4f43',
+                borderTop: '6px solid #ca1625',
+                borderBottom: '2px solid #5a4f43',
                 margin: collapsed ? '12px 12px 8px' : '12px 16px 8px',
                 background: 'transparent',
                 lineHeight: 1
@@ -445,9 +445,9 @@ export function WorkspaceLayout() {
                     <div
                       style={{
                         fontFamily:
-                          "'IBM Plex Sans', system-ui, -apple-system, sans-serif",
+                          "'Helvetica Neue', 'Inter', system-ui, sans-serif",
                         fontSize: 9,
-                        fontWeight: 600,
+                        fontWeight: 700,
                         letterSpacing: '0.18em',
                         textTransform: 'uppercase',
                         color: '#a39c8e',
@@ -459,15 +459,16 @@ export function WorkspaceLayout() {
                     <div
                       style={{
                         fontFamily:
-                          "'Fraunces', 'IBM Plex Serif', Georgia, serif",
-                        fontWeight: 800,
+                          "'Helvetica Neue', 'Inter', system-ui, sans-serif",
+                        fontWeight: 900,
                         fontSize: 22,
                         color: '#f0e9da',
-                        letterSpacing: '-0.025em',
-                        lineHeight: 1
+                        letterSpacing: '0.02em',
+                        lineHeight: 1,
+                        textTransform: 'uppercase'
                       }}
                     >
-                      Broad<span style={{ color: '#ca1625' }}>side</span>
+                      Broad<span style={{ color: '#ca1625' }}>sheet</span>
                     </div>
                   </div>
                 </div>

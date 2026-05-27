@@ -106,7 +106,7 @@ export function RecipientFeedSettings({
               <Space size={4}>
                 <span>{t`Per-recipient feed URL`}</span>
                 <Tooltip title={t`The URL must use HTTPS. A POST request will be sent with contact information for each recipient.`}>
-                  <QuestionCircleOutlined className="text-gray-400 cursor-help" />
+                  <QuestionCircleOutlined className="text-ink-faint cursor-help" />
                 </Tooltip>
               </Space>
             }

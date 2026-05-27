@@ -197,7 +197,7 @@ export function PostsTable() {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
             <div className="font-medium">{title}</div>
-            <div className="text-xs text-gray-500 mt-1">
+            <div className="text-xs text-ink-faint mt-1">
               <code>{record.slug}</code>
             </div>
           </div>
@@ -256,7 +256,7 @@ export function PostsTable() {
       dataIndex: 'published_at',
       key: 'published_at',
       render: (publishedAt: string | null) => {
-        if (!publishedAt) return <span className="text-gray-400">—</span>
+        if (!publishedAt) return <span className="text-ink-faint">—</span>
 
         const timezone = workspace?.settings?.timezone || 'UTC'
         const dateInTz = dayjs(publishedAt).tz(timezone)
@@ -273,7 +273,7 @@ export function PostsTable() {
 
           return (
             <Tooltip title={`${formattedDate} ${timezone}`}>
-              <span className="text-blue-600">{displayText}</span>
+              <span className="text-primary-soft">{displayText}</span>
             </Tooltip>
           )
         }
@@ -377,7 +377,7 @@ export function PostsTable() {
           <Title level={4} className="!mb-2">
             {selectedCategory ? selectedCategory.settings.name : t`All Posts`}
           </Title>
-          <Paragraph className="!mb-0 text-gray-600">
+          <Paragraph className="!mb-0 text-ink-muted">
             {selectedCategory
               ? t`Posts in ${selectedCategory.settings.name}`
               : t`Create and manage your blog content`}

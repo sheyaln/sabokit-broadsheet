@@ -1,5 +1,7 @@
 .env
 .env.test
+compose.override.yaml
+compose.override.yml
 
 *.log
 node_modules

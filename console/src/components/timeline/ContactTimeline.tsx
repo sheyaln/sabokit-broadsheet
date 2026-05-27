@@ -318,7 +318,7 @@ export function ContactTimeline({
 
     // Tier 2: Expandable for >3 properties or complex objects
     const rawJsonContent = (
-      <div className="p-2 bg-gray-50 rounded border border-gray-200 max-h-96 overflow-auto">
+      <div className="p-2 bg-paper rounded border border-gray-200 max-h-96 overflow-auto">
         <pre className="text-xs m-0 whitespace-pre-wrap break-all">
           {JSON.stringify(properties, null, 2)}
         </pre>
@@ -800,7 +800,7 @@ export function ContactTimeline({
           dot: (
             <Popover
               content={
-                <pre className="text-xs max-w-lg max-h-96 overflow-auto bg-gray-50 p-2 rounded">
+                <pre className="text-xs max-w-lg max-h-96 overflow-auto bg-paper p-2 rounded">
                   {JSON.stringify(entry, null, 2)}
                 </pre>
               }

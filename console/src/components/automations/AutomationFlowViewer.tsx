@@ -227,7 +227,7 @@ const AutomationFlowViewerInner: React.FC<AutomationFlowViewerProps> = ({
 
   if (nodes.length === 0) {
     return (
-      <div className="flex items-center justify-center h-full text-gray-400">
+      <div className="flex items-center justify-center h-full text-ink-faint">
         {t`No nodes in this automation`}
       </div>
     )

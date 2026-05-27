@@ -174,7 +174,7 @@ export function AutomationsPage() {
       </Row>
 
       {isLoadingAutomations ? (
-        <div className="text-center py-12 text-gray-500">{t`Loading automations...`}</div>
+        <div className="text-center py-12 text-ink-faint">{t`Loading automations...`}</div>
       ) : automations.length === 0 ? (
         <Empty
           description={t`No automations yet`}

@@ -141,13 +141,13 @@ export function InlineEditableField({
   // Format display value
   const formatDisplayValue = () => {
     if (value === null || value === undefined || value === '') {
-      return <span className="text-gray-400 italic">{t`Not set`}</span>
+      return <span className="text-ink-faint italic">{t`Not set`}</span>
     }
 
     if (fieldType === 'json') {
       try {
         return (
-          <pre className="text-xs bg-gray-100 p-1 rounded m-0 max-h-20 overflow-auto">
+          <pre className="text-xs bg-paper-bright p-1 rounded m-0 max-h-20 overflow-auto">
             {JSON.stringify(value, null, 2)}
           </pre>
         )
@@ -326,7 +326,7 @@ export function InlineEditableField({
   // Display mode with hover edit icon
   return (
     <div
-      className="py-2 px-4 grid grid-cols-[1fr_auto] text-xs gap-1 border-b border-dashed border-gray-300 hover:bg-gray-100 group cursor-pointer"
+      className="py-2 px-4 grid grid-cols-[1fr_auto] text-xs gap-1 border-b border-dashed border-gray-300 hover:bg-paper-bright group cursor-pointer"
       onClick={disabled ? undefined : handleStartEdit}
     >
       <div className="grid grid-cols-2 gap-1">
@@ -342,9 +342,9 @@ export function InlineEditableField({
       {!disabled && (
         <div className="opacity-0 group-hover:opacity-100 transition-opacity flex items-center">
           {isLoading ? (
-            <span className="text-gray-400">...</span>
+            <span className="text-ink-faint">...</span>
           ) : (
-            <EditOutlined className="text-gray-400 hover:text-blue-500" />
+            <EditOutlined className="text-ink-faint hover:text-primary-soft" />
           )}
         </div>
       )}

@@ -135,10 +135,11 @@ export function SettingsSidebar({ activeSection, onSectionChange, isOwner }: Set
       <div
         className="pt-6 pl-6 pr-6"
         style={{
-          fontFamily: "'Fraunces', 'IBM Plex Serif', Georgia, serif",
+          fontFamily: "'Helvetica Neue', 'Inter', system-ui, sans-serif",
           fontSize: 22,
-          fontWeight: 700,
-          letterSpacing: '-0.015em',
+          fontWeight: 800,
+          letterSpacing: '0.02em',
+          textTransform: 'uppercase',
           color: '#f0e9da'
         }}
       >
